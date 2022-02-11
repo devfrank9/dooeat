@@ -1,13 +1,15 @@
 import styled from 'styled-components';
-
-const NavProgress = () => {
+interface Prop {
+    pageNumber? : number
+}
+const NavProgress = ({pageNumber = 1}) => {
   return (
     <NavContainer>
       <ArrowContainer>
         <BackArrow src="image/Icon ionic-ios-arrow-round-back.png" alt="" />
       </ArrowContainer>
       <NumContainer>
-        <p>1/8</p>
+        <p>{pageNumber}/8</p>
       </NumContainer>
     </NavContainer>
   );

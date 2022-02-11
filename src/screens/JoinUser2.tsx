@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const JoinUser2 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={2} />
       <TextAlign>
         <p>회원님의</p>
         <p>활동 정보를 입력해주세요.</p>

@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 const JoinUser1 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={1} />
       <TextAlign>
         <p>회원님의</p>
         <p>아이디 정보를 입력해주세요.</p>

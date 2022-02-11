@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 const JoinUser3 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={3}/>
       <TextAlign>
         <p>회원님의</p>
         <p>성별과 나이를 입력해주세요.</p>

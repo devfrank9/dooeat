@@ -9,7 +9,7 @@ import {LinkStyle} from './JoinUser1';
 const JoinUser5 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={5}/>
       <TextAlign>
         <p>회원님의</p>
         <p>현재 체중과 키는 얼마인가요?</p>

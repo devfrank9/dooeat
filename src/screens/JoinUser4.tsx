@@ -10,7 +10,7 @@ import {LinkStyle2, Footer} from './JoinUser3';
 const JoinUser4 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={4}/>
       <TextAlign>
         <p>회원님의</p>
         <p>사는 곳은 어디인가요?</p>

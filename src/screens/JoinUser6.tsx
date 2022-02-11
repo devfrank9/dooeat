@@ -8,7 +8,7 @@ import {LinkStyle} from './JoinUser1';
 const JoinUser6 = () => {
   return (
     <BaseScreen>
-      <NavProgress></NavProgress>
+      <NavProgress pageNumber={6}/>
       <Subject>
         <p>BMI 계산 결과</p>
       </Subject>

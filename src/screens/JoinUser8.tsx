@@ -9,7 +9,7 @@ import {LinkStyle2} from './JoinUser3';
 const JoinUser8 = () => {
   return (
     <BaseScreen>
-      <NavProgress />
+      <NavProgress pageNumber={8}/>
       <OverFlow>
         <Banner>
           <p>닉네임 님의 목표,</p>
