@@ -15,7 +15,7 @@ const JoinUser6 = () => {
       <BmiResult />
       <BtnAlign>
         <Btn2>
-          <LinkStyle to="join-user7">다음</LinkStyle>
+          <LinkStyle to="/join-user7">다음</LinkStyle>
         </Btn2>
       </BtnAlign>
     </BaseScreen>
@@ -24,7 +24,8 @@ const JoinUser6 = () => {
 const BtnAlign = styled.div`
   margin-top: 3.3333rem;
 `;
-const Subject = styled.div`
+export const Subject = styled.div`
+  margin-top: 6.8333rem;
   p {
     font-size: 2rem;
     margin-bottom: 6.5833rem;

@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
-const BmiResult = () => {
+const BmiResult2 = () => {
   return (
     <ContentBox>
       <Header>
-        <p>BMI(신체질량지수)</p>
+        <p>현재 체중</p>
+        <p>kg</p>
       </Header>
       <BmiCalc>
+        <p>현재 BMI</p>
         <p>20.29(test)</p>
       </BmiCalc>
       <HealthResult>
-        <p>정상(test)</p>
+        <p>정상</p>
       </HealthResult>
       <BmiGraph>
         <div>저체중</div>
@@ -30,16 +32,22 @@ const BmiResult = () => {
   );
 };
 const Header = styled.div`
-  margin-top: 3.6667rem;
+  margin-top: 3.3333rem;
   p {
     text-align: center;
-    font-size: 1.25rem;
-    color: rgb(148, 148, 148);
+    font-size: 1.6667rem;
+  }
+  p:last-child {
+    color: ${prop => prop.theme.mainColor};
   }
 `;
 const BmiCalc = styled.div`
-  margin-top: 1.3333rem;
-  p {
+  margin-top: 3.3333rem;
+  p:first-child {
+    text-align: center;
+    font-size: 1.6667rem;
+  }
+  p:last-child {
     text-align: center;
     font-size: 2.6667rem;
     color: rgb(51, 51, 51);
@@ -104,9 +112,9 @@ const ContentBox = styled.div`
   padding: 0 auto;
   margin: 0;
   width: 26.5833rem;
-  height: 30rem;
+  height: 38.9167rem;
   box-shadow: 0pt 3pt 10pt 0pt rgb(0, 0, 0, 0.1);
   border-radius: 2rem;
 `;
 
-export default BmiResult;
+export default BmiResult2;

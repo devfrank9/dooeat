@@ -23,6 +23,8 @@ import JoinUser3 from './screens/JoinUser3';
 import JoinUser4 from './screens/JoinUser4';
 import JoinUser5 from './screens/JoinUser5';
 import JoinUser6 from './screens/JoinUser6';
+import JoinUser7 from './screens/JoinUser7';
+import JoinUser8 from './screens/JoinUser8';
 import CompTest from './screens/CompTest';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
@@ -106,6 +108,8 @@ function Screens() {
           <Route path={'/join-user4'} element={<JoinUser4 />} />
           <Route path={'/join-user5'} element={<JoinUser5 />} />
           <Route path={'/join-user6'} element={<JoinUser6 />} />
+          <Route path={'/join-user7'} element={<JoinUser7 />} />
+          <Route path={'/join-user8'} element={<JoinUser8 />} />
           <Route path={'/join-pro1'} element={<Main />} />
           <Route path={'/test'} element={<CompTest />} />
         </Routes>
