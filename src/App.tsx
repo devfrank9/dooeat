@@ -16,6 +16,13 @@ import {useLocalStorage, useSessionStorage} from 'react-use-storage';
 
 // view 페이지
 import Main from './screens/Main';
+import Login from './screens/Login';
+import JoinUser1 from './screens/JoinUser1';
+import JoinUser2 from './screens/JoinUser2';
+import JoinUser3 from './screens/JoinUser3';
+import JoinUser4 from './screens/JoinUser4';
+import JoinUser5 from './screens/JoinUser5';
+import JoinUser6 from './screens/JoinUser6';
 import CompTest from './screens/CompTest';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
@@ -92,6 +99,14 @@ function Screens() {
       >
         <Routes location={location}>
           <Route path={'/'} element={<Main />} />
+          <Route path={'/login'} element={<Login />} />
+          <Route path={'/join-user1'} element={<JoinUser1 />} />
+          <Route path={'/join-user2'} element={<JoinUser2 />} />
+          <Route path={'/join-user3'} element={<JoinUser3 />} />
+          <Route path={'/join-user4'} element={<JoinUser4 />} />
+          <Route path={'/join-user5'} element={<JoinUser5 />} />
+          <Route path={'/join-user6'} element={<JoinUser6 />} />
+          <Route path={'/join-pro1'} element={<Main />} />
           <Route path={'/test'} element={<CompTest />} />
         </Routes>
       </CSSTransition>
