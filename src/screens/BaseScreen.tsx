@@ -20,9 +20,6 @@ const Base = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
 `;
 
 export default BaseScreen;

@@ -14,8 +14,8 @@ export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
 
 export const Short = styled.button`
   display: block;
-  width: 3.6875rem;
-  height: 3rem;
+  width: 4.9167rem;
+  height: 4rem;
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
@@ -28,8 +28,8 @@ export const Short = styled.button`
 `;
 export const Middle = styled(Short)`
   display: block;
-  width: 4.625rem;
-  height: 3rem;
+  width: 6.1667rem;
+  height: 4rem;
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
@@ -42,8 +42,8 @@ export const Middle = styled(Short)`
 `;
 export const Long = styled(Short)`
   display: block;
-  width: 6.31255rem;
-  height: 3rem;
+  width: 8.4167rem;
+  height: 4rem;
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
@@ -56,8 +56,8 @@ export const Long = styled(Short)`
 `;
 export const LongLine = styled(Short)`
   display: block;
-  width: 19.9375rem;
-  height: 3.25rem;
+  width: 26.5833rem;
+  height: 4rem;
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
@@ -70,30 +70,33 @@ export const LongLine = styled(Short)`
 `;
 export const Btn = styled.button`
   display: block;
-  width: 19.9375rem;
-  height: 3.25rem;
+  width: 26.5833rem;
+  height: 4.3333rem;
   border: 0.1rem solid ${props => props.theme.mainColor};
   border-radius: 3rem;
   background-color: inherit;
-  font-size: 1.1667rem;
+  font-size: 1.3333rem;
   color: ${props => props.theme.mainColor};
+  box-sizing: border-box;
 `;
 export const Btn2 = styled.button`
   display: block;
-  width: 19.9375rem;
-  height: 3.25rem;
+  width: 26.5833rem;
+  height: 4.3333rem;
   border: 0.1rem solid white;
   border-radius: 3rem;
   background-color: ${props => props.theme.mainColor};
-  font-size: 1.1667rem;
+  font-size: 1.3333rem;
   color: white;
+  box-sizing: border-box;
 `;
 export const Btn3 = styled.button`
   display: block;
-  width: 19.9375rem;
-  height: 3.25rem;
+  width: 26.5833rem;
+  height: 4.3333rem;
   border: none;
   border-radius: 3rem;
   background-color: #f5f5f5;
-  font-size: 1.1667rem;
+  font-size: 1.3333rem;
+  box-sizing: border-box;
 `;
