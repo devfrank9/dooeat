@@ -30,7 +30,7 @@ const JoinUser8 = () => {
         </Goal>
         <BtnAlign>
           <ColoredBtn>
-            <LinkStyle to="/">동네 운동 멘토 찾기</LinkStyle>
+            <LinkStyle to="/search-mento/1">동네 운동 멘토 찾기</LinkStyle>
           </ColoredBtn>
           <UnColoredBtn>
             <LinkStyle2 to="/">아니오, 괜찮습니다!</LinkStyle2>

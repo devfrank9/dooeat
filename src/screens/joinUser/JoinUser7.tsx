@@ -26,7 +26,7 @@ const JoinUser7 = () => {
       </LastText>
       <BtnAlign>
         <ColoredBtn>
-          <LinkStyle to="/join-user8">완료</LinkStyle>
+          <LinkStyle to="/join-user/8">완료</LinkStyle>
         </ColoredBtn>
       </BtnAlign>
     </BaseScreen>

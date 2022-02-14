@@ -19,7 +19,7 @@ const JoinUser6 = () => {
       <BmiResult />
       <BtnAlign>
         <ColoredBtn>
-          <LinkStyle to="/join-user7">다음</LinkStyle>
+          <LinkStyle to="/join-user/7">다음</LinkStyle>
         </ColoredBtn>
       </BtnAlign>
     </BaseScreen>

@@ -30,10 +30,10 @@ const JoinUser3 = () => {
       <CheckNone placeholder="나이를 입력해주세요." />
       <BtnAlign2>
         <UnColoredBtn>
-          <LinkStyle2 to="/join-user4">건너뛰기</LinkStyle2>
+          <LinkStyle2 to="/join-user/4">건너뛰기</LinkStyle2>
         </UnColoredBtn>
         <ColoredBtn>
-          <LinkStyle to="/join-user4">다음</LinkStyle>
+          <LinkStyle to="/join-user/4">다음</LinkStyle>
         </ColoredBtn>
       </BtnAlign2>
       <Footer>

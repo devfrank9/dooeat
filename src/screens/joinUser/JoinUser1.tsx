@@ -26,7 +26,7 @@ const JoinUser1 = () => {
       <Agreement />
       <BtnAlign>
         <ColoredBtn>
-          <LinkStyle to="/join-user2">다음</LinkStyle>
+          <LinkStyle to="/join-user/2">다음</LinkStyle>
         </ColoredBtn>
       </BtnAlign>
     </BaseScreen>

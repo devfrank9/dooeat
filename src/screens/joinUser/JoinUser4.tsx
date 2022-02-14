@@ -23,10 +23,10 @@ const JoinUser4 = () => {
       </InputAlign>
       <BtnAlign>
         <UnColoredBtn>
-          <LinkStyle2 to="/join-user5">건너뛰기</LinkStyle2>
+          <LinkStyle2 to="/join-user/5">건너뛰기</LinkStyle2>
         </UnColoredBtn>
         <ColoredBtn>
-          <LinkStyle to="/join-user5">다음</LinkStyle>
+          <LinkStyle to="/join-user/5">다음</LinkStyle>
         </ColoredBtn>
       </BtnAlign>
       <Footer>

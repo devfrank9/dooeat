@@ -29,7 +29,7 @@ const JoinUser5 = () => {
       </InputAlign>
       <BtnAlign>
         <ColoredBtn>
-          <LinkStyle to="/join-user6">다음</LinkStyle>
+          <LinkStyle to="/join-user/6">다음</LinkStyle>
         </ColoredBtn>
       </BtnAlign>
     </BaseScreen>

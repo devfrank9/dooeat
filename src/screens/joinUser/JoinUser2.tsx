@@ -25,7 +25,7 @@ const JoinUser2 = () => {
         <CheckNone placeholder="닉네임을 입력해주세요." />
       </InputAlign>
       <ColoredBtn>
-        <LinkStyle to="/join-user3">다음</LinkStyle>
+        <LinkStyle to="/join-user/3">다음</LinkStyle>
       </ColoredBtn>
     </BaseScreen>
   );
