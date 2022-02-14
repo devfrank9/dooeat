@@ -1,9 +1,13 @@
-import {Logo} from '../components/Logo';
-import {Common} from '../components/InputStyled';
-import {Btn2} from '../components/BtnStyled';
-import BaseScreen from './BaseScreen';
+// Packages
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+// Screens
+import BaseScreen from './BaseScreen';
+// Components
+import {Logo} from '../components/Logo';
+// Styles
+import {Common} from '../styles/InputStyled';
+import {ColoredBtn} from '../styles/BtnStyled';
 
 const Login = () => {
   return (
@@ -13,7 +17,7 @@ const Login = () => {
         <Common placeholder="이메일을 입력해주세요" />
         <Common placeholder="비밀번호를 입력해주세요" />
       </InputAlign>
-      <Btn2>두잇두잇 시작하기</Btn2>
+      <ColoredBtn>두잇두잇 시작하기</ColoredBtn>
       <SearchLink to={'/serachId'}>아이디/비밀번호 찾기</SearchLink>
     </BaseScreen>
   );

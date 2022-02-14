@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-
+/* 
 interface Prop {
   children?: any;
 }
-
 export const BtnShort = ({children}: Prop) => <Short>{children}</Short>;
 export const BtnMiddle = ({children}: Prop) => <Middle />;
 export const BtnLong = ({children}: Prop) => <Long />;
@@ -11,8 +10,8 @@ export const BtnLongLine = ({children}: Prop) => <LongLine />;
 export const BtnMain = ({children}: Prop) => <Btn>{children}</Btn>;
 export const BtnMain2 = ({children}: Prop) => <Btn2>{children}</Btn2>;
 export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
-
-export const Short = styled.button`
+ */
+export const ShortBtn = styled.button`
   display: block;
   width: 4.9167rem;
   height: 4rem;
@@ -26,7 +25,7 @@ export const Short = styled.button`
     background-color: ${props => props.theme.mainColor};
   }
 `;
-export const Middle = styled(Short)`
+export const MiddleBtn = styled(ShortBtn)`
   display: block;
   width: 6.1667rem;
   height: 4rem;
@@ -40,7 +39,7 @@ export const Middle = styled(Short)`
     background-color: ${props => props.theme.mainColor};
   }
 `;
-export const Long = styled(Short)`
+export const LongBtn = styled(ShortBtn)`
   display: block;
   width: 8.4167rem;
   height: 4rem;
@@ -54,7 +53,7 @@ export const Long = styled(Short)`
     background-color: ${props => props.theme.mainColor};
   }
 `;
-export const LongLine = styled(Short)`
+export const LongLine = styled(ShortBtn)`
   display: block;
   width: 26.5833rem;
   height: 4rem;
@@ -68,7 +67,7 @@ export const LongLine = styled(Short)`
     background-color: ${props => props.theme.mainColor};
   }
 `;
-export const Btn = styled.button`
+export const UnColoredBtn = styled.button`
   display: block;
   width: 26.5833rem;
   height: 4.3333rem;
@@ -79,7 +78,7 @@ export const Btn = styled.button`
   color: ${props => props.theme.mainColor};
   box-sizing: border-box;
 `;
-export const Btn2 = styled.button`
+export const ColoredBtn = styled.button`
   display: block;
   width: 26.5833rem;
   height: 4.3333rem;
@@ -90,7 +89,7 @@ export const Btn2 = styled.button`
   color: white;
   box-sizing: border-box;
 `;
-export const Btn3 = styled.button`
+export const BlockBtn = styled.button`
   display: block;
   width: 26.5833rem;
   height: 4.3333rem;

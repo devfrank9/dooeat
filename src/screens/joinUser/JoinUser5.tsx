@@ -1,15 +1,18 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
-import {TextAlign} from './JoinUser1';
-import {Common} from '../components/InputStyled';
+// Packages
 import styled from 'styled-components';
-import {Btn2} from '../components/BtnStyled';
-import {LinkStyle} from './JoinUser1';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+// Styles
+import {Common} from '../../styles/InputStyled';
+import {ColoredBtn} from '../../styles/BtnStyled';
+import {LinkStyle} from '../../styles/LinkStyled';
 
 const JoinUser5 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={5}/>
+      <NavProgress pageNumber={5} />
       <TextAlign>
         <p>회원님의</p>
         <p>현재 체중과 키는 얼마인가요?</p>
@@ -25,13 +28,25 @@ const JoinUser5 = () => {
         <Common placeholder="cm단위로 입력해주세요." />
       </InputAlign>
       <BtnAlign>
-        <Btn2>
+        <ColoredBtn>
           <LinkStyle to="/join-user6">다음</LinkStyle>
-        </Btn2>
+        </ColoredBtn>
       </BtnAlign>
     </BaseScreen>
   );
 };
+
+const TextAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  margin-top: 3.4167rem;
+  p {
+    font-size: 1.8333rem;
+    margin: 0;
+  }
+`;
 const BtnAlign = styled.div`
   margin-top: 13rem;
 `;

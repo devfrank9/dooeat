@@ -1,10 +1,14 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
-import {CheckNone} from '../components/InputStyled';
-import Agreement from '../components/Agreement';
+//packages
 import styled from 'styled-components';
-import {Btn2} from '../components/BtnStyled';
-import {Link} from 'react-router-dom';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+import Agreement from '../../components/Agreement';
+// Styles
+import {CheckNone} from '../../styles/InputStyled';
+import {ColoredBtn} from '../../styles/BtnStyled';
+import {LinkStyle} from '../../styles/LinkStyled';
 
 const JoinUser1 = () => {
   return (
@@ -21,22 +25,18 @@ const JoinUser1 = () => {
       </InputAlign>
       <Agreement />
       <BtnAlign>
-        <Btn2>
+        <ColoredBtn>
           <LinkStyle to="/join-user2">다음</LinkStyle>
-        </Btn2>
+        </ColoredBtn>
       </BtnAlign>
     </BaseScreen>
   );
 };
-export const LinkStyle = styled(Link)`
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-`;
+
 const BtnAlign = styled.div`
   margin-top: 3.4167rem;
 `;
-export const TextAlign = styled.div`
+const TextAlign = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

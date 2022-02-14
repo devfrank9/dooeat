@@ -1,10 +1,13 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
-import {TextAlign} from './JoinUser1';
-import {CheckNone} from '../components/InputStyled';
-import {Btn2} from '../components/BtnStyled';
-import {LinkStyle} from './JoinUser1';
+// Packages
 import styled from 'styled-components';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+// Styles
+import {ColoredBtn} from '../../styles/BtnStyled';
+import {CheckNone} from '../../styles/InputStyled';
+import {LinkStyle} from '../../styles/LinkStyled';
 
 const JoinUser2 = () => {
   return (
@@ -21,12 +24,24 @@ const JoinUser2 = () => {
       <InputAlign>
         <CheckNone placeholder="닉네임을 입력해주세요." />
       </InputAlign>
-      <Btn2>
+      <ColoredBtn>
         <LinkStyle to="/join-user3">다음</LinkStyle>
-      </Btn2>
+      </ColoredBtn>
     </BaseScreen>
   );
 };
+
+const TextAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  margin-top: 3.4167rem;
+  p {
+    font-size: 1.8333rem;
+    margin: 0;
+  }
+`;
 const PicAlign = styled.div`
   margin-top: 5.6667rem;
   margin-bottom: 2rem;

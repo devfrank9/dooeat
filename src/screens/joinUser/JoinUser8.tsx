@@ -1,15 +1,18 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
+// Packages
 import styled from 'styled-components';
-import BmiResult2 from '../components/BmiResult2';
-import {Btn, Btn2} from '../components/BtnStyled';
-import {LinkStyle} from './JoinUser1';
-import {LinkStyle2} from './JoinUser3';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+import BmiResult2 from '../../components/BmiResult2';
+// Styles
+import {UnColoredBtn, ColoredBtn} from '../../styles/BtnStyled';
+import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 
 const JoinUser8 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={8}/>
+      <NavProgress pageNumber={8} />
       <OverFlow>
         <Banner>
           <p>닉네임 님의 목표,</p>
@@ -26,17 +29,18 @@ const JoinUser8 = () => {
           <p>kg</p>
         </Goal>
         <BtnAlign>
-          <Btn2>
+          <ColoredBtn>
             <LinkStyle to="/">동네 운동 멘토 찾기</LinkStyle>
-          </Btn2>
-          <Btn>
+          </ColoredBtn>
+          <UnColoredBtn>
             <LinkStyle2 to="/">아니오, 괜찮습니다!</LinkStyle2>
-          </Btn>
+          </UnColoredBtn>
         </BtnAlign>
       </OverFlow>
     </BaseScreen>
   );
 };
+
 const BtnAlign = styled.div`
   margin-top: 4.3333rem;
   button:first-child {

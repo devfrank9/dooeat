@@ -1,14 +1,17 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
-import {TextAlign} from './JoinUser1';
+// Packages
 import styled from 'styled-components';
-import {Btn2} from '../components/BtnStyled';
-import {LinkStyle} from './JoinUser1';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+// Styles
+import {ColoredBtn} from '../../styles/BtnStyled';
+import {LinkStyle} from '../../styles/LinkStyled';
 
 const JoinUser7 = () => {
   return (
     <BaseScreen>
-      <NavProgress  pageNumber={7}/>
+      <NavProgress pageNumber={7} />
       <TextAlign>
         <p>회원님의</p>
         <p>목표 체중은 얼마인가요?</p>
@@ -22,13 +25,25 @@ const JoinUser7 = () => {
         <p>입니다.</p>
       </LastText>
       <BtnAlign>
-        <Btn2>
+        <ColoredBtn>
           <LinkStyle to="/join-user8">완료</LinkStyle>
-        </Btn2>
+        </ColoredBtn>
       </BtnAlign>
     </BaseScreen>
   );
 };
+
+const TextAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  margin-top: 3.4167rem;
+  p {
+    font-size: 1.8333rem;
+    margin: 0;
+  }
+`;
 const LastText = styled.div`
   display: flex;
   justify-content: center;

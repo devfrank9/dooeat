@@ -1,27 +1,32 @@
+// packages
 import styled from 'styled-components';
+// Screens
 import BaseScreen from './BaseScreen';
+// Components
 import {Logo} from '../components/Logo';
-import {Btn, Btn2} from '../components/BtnStyled';
-import {Link} from 'react-router-dom';
+// Styles
+import {UnColoredBtn, ColoredBtn} from '../styles/BtnStyled';
+import {LinkStyle, LinkStyle2} from '../styles/LinkStyled';
 
 const Main = () => {
   return (
     <BaseScreen>
       <Logo />
       <MainBtnAlign>
-        <Btn2>
+        <ColoredBtn>
           <LinkStyle to={'/login'}>로그인</LinkStyle>
-        </Btn2>
-        <Btn>
+        </ColoredBtn>
+        <UnColoredBtn>
           <LinkStyle2 to={'/join-user1'}>일반 회원 가입하기</LinkStyle2>
-        </Btn>
-        <Btn>
+        </UnColoredBtn>
+        <UnColoredBtn>
           <LinkStyle2 to={'/join-pro1'}>전문가 회원 가입하기</LinkStyle2>
-        </Btn>
+        </UnColoredBtn>
       </MainBtnAlign>
     </BaseScreen>
   );
 };
+
 const MainBtnAlign = styled.div`
   button:nth-child(1) {
     margin-top: 4.3333rem;
@@ -32,16 +37,6 @@ const MainBtnAlign = styled.div`
   button:nth-child(3) {
     margin-top: 1rem;
   }
-`;
-const LinkStyle = styled(Link)`
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-`;
-const LinkStyle2 = styled(Link)`
-  text-decoration: none;
-  color: ${props => props.theme.mainColor};
-  font-weight: bold;
 `;
 
 export default Main;

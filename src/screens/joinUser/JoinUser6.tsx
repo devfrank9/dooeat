@@ -1,30 +1,35 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
+// Packages
 import styled from 'styled-components';
-import BmiResult from '../components/BmiResult';
-import {Btn2} from '../components/BtnStyled';
-import {LinkStyle} from './JoinUser1';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+import BmiResult from '../../components/BmiResult';
+// Styles
+import {ColoredBtn} from '../../styles/BtnStyled';
+import {LinkStyle} from '../../styles/LinkStyled';
 
 const JoinUser6 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={6}/>
+      <NavProgress pageNumber={6} />
       <Subject>
         <p>BMI 계산 결과</p>
       </Subject>
       <BmiResult />
       <BtnAlign>
-        <Btn2>
+        <ColoredBtn>
           <LinkStyle to="/join-user7">다음</LinkStyle>
-        </Btn2>
+        </ColoredBtn>
       </BtnAlign>
     </BaseScreen>
   );
 };
+
 const BtnAlign = styled.div`
   margin-top: 3.3333rem;
 `;
-export const Subject = styled.div`
+const Subject = styled.div`
   margin-top: 6.8333rem;
   p {
     font-size: 2rem;

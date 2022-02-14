@@ -1,16 +1,18 @@
-import BaseScreen from './BaseScreen';
-import NavProgress from '../components/NavProgress';
-import {Btn, BtnLong, Btn2} from '../components/BtnStyled';
-import {TextAlign} from './JoinUser1';
+// Packages
 import styled from 'styled-components';
-import {CheckNone} from '../components/InputStyled';
-import {LinkStyle} from './JoinUser1';
-import {Link} from 'react-router-dom';
+// Screens
+import BaseScreen from '../BaseScreen';
+// Components
+import NavProgress from '../../components/NavProgress';
+// Styles
+import {UnColoredBtn, LongBtn, ColoredBtn} from '../../styles/BtnStyled';
+import {CheckNone} from '../../styles/InputStyled';
+import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 
 const JoinUser3 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={3}/>
+      <NavProgress pageNumber={3} />
       <TextAlign>
         <p>회원님의</p>
         <p>성별과 나이를 입력해주세요.</p>
@@ -19,20 +21,20 @@ const JoinUser3 = () => {
         <p>성별</p>
       </Subject>
       <BtnAlign>
-        <BtnLong>여자</BtnLong>
-        <BtnLong>남자</BtnLong>
+        <LongBtn>여자</LongBtn>
+        <LongBtn>남자</LongBtn>
       </BtnAlign>
       <Subject2>
         <p>나이</p>
       </Subject2>
       <CheckNone placeholder="나이를 입력해주세요." />
       <BtnAlign2>
-        <Btn>
+        <UnColoredBtn>
           <LinkStyle2 to="/join-user4">건너뛰기</LinkStyle2>
-        </Btn>
-        <Btn2>
+        </UnColoredBtn>
+        <ColoredBtn>
           <LinkStyle to="/join-user4">다음</LinkStyle>
-        </Btn2>
+        </ColoredBtn>
       </BtnAlign2>
       <Footer>
         <p>* 전문가 매칭 시 필요한 데이터 입니다.(선택입력)</p>
@@ -40,6 +42,17 @@ const JoinUser3 = () => {
     </BaseScreen>
   );
 };
+const TextAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  margin-top: 3.4167rem;
+  p {
+    font-size: 1.8333rem;
+    margin: 0;
+  }
+`;
 const BtnAlign = styled.div`
   display: flex;
   width: 100vw;
@@ -73,11 +86,7 @@ const Subject2 = styled.div`
     margin-top: 2.5rem;
   }
 `;
-export const LinkStyle2 = styled(Link)`
-  text-decoration: none;
-  color: ${props => props.theme.mainColor};
-`;
-export const Footer = styled.div`
+const Footer = styled.div`
   display: flex;
   width: 100vw;
   flex-direction: flex-start;

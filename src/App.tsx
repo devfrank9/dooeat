@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.css';
+import './styles/App.css';
 import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 import {
   ApolloClient,
@@ -17,14 +17,14 @@ import {useLocalStorage, useSessionStorage} from 'react-use-storage';
 // view 페이지
 import Main from './screens/Main';
 import Login from './screens/Login';
-import JoinUser1 from './screens/JoinUser1';
-import JoinUser2 from './screens/JoinUser2';
-import JoinUser3 from './screens/JoinUser3';
-import JoinUser4 from './screens/JoinUser4';
-import JoinUser5 from './screens/JoinUser5';
-import JoinUser6 from './screens/JoinUser6';
-import JoinUser7 from './screens/JoinUser7';
-import JoinUser8 from './screens/JoinUser8';
+import JoinUser1 from './screens/joinUser/JoinUser1';
+import JoinUser2 from './screens/joinUser/JoinUser2';
+import JoinUser3 from './screens/joinUser/JoinUser3';
+import JoinUser4 from './screens/joinUser/JoinUser4';
+import JoinUser5 from './screens/joinUser/JoinUser5';
+import JoinUser6 from './screens/joinUser/JoinUser6';
+import JoinUser7 from './screens/joinUser/JoinUser7';
+import JoinUser8 from './screens/joinUser/JoinUser8';
 import CompTest from './screens/CompTest';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
