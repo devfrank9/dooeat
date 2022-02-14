@@ -17,10 +17,10 @@ const Main = () => {
           <LinkStyle to={'/login'}>로그인</LinkStyle>
         </ColoredBtn>
         <UnColoredBtn>
-          <LinkStyle2 to={'/join-user1'}>일반 회원 가입하기</LinkStyle2>
+          <LinkStyle2 to={'/join-user/1'}>일반 회원 가입하기</LinkStyle2>
         </UnColoredBtn>
         <UnColoredBtn>
-          <LinkStyle2 to={'/join-pro1'}>전문가 회원 가입하기</LinkStyle2>
+          <LinkStyle2 to={'/join-pro/1'}>전문가 회원 가입하기</LinkStyle2>
         </UnColoredBtn>
       </MainBtnAlign>
     </BaseScreen>
