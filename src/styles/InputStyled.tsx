@@ -8,7 +8,7 @@ export const InputCheckErr = () => <CheckErr />;
 export const InputContent = () => <Content />;
  */
 export const Common = styled.input`
-  width: 26.5833rem;
+  width: 100vw;
   height: 4.3333rem;
   padding-left: 1.6667rem;
   border: 0.1rem solid rgb(223, 223, 223);
@@ -48,7 +48,7 @@ export const CommonShort = styled.input`
   }
 `;
 export const CheckNone = styled(Common)`
-  background-image: url('/image/Icon feather-check.png') no-repeat 95% 50%;
+  background: url('/image/Icon feather-check.png') no-repeat 95% 50%;
   box-sizing: border-box;
 `;
 export const CheckOk = styled(CheckNone)`

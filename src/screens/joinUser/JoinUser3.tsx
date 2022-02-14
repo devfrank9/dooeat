@@ -56,7 +56,7 @@ const TextAlign = styled.div`
 const BtnAlign = styled.div`
   display: flex;
   width: 100vw;
-  l & > BtnLong:nth-child() {
+  button {
     margin-right: 1rem;
   }
 `;

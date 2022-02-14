@@ -5,7 +5,7 @@ import BaseScreen from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
-import {CheckNone} from '../../styles/InputStyled';
+import {Select} from '../../styles/SelectStyled';
 import {UnColoredBtn, ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 
@@ -18,8 +18,12 @@ const JoinUser4 = () => {
         <p>사는 곳은 어디인가요?</p>
       </TextAlign>
       <InputAlign>
-        <CheckNone placeholder="(임시)광역시도" />
-        <CheckNone placeholder="(임시)시군구" />
+        <Select>
+          <option>광역시도</option>
+        </Select>
+        <Select>
+          <option>시군구</option>
+        </Select>
       </InputAlign>
       <BtnAlign>
         <UnColoredBtn>
@@ -55,7 +59,7 @@ const BtnAlign = styled.div`
 `;
 const InputAlign = styled.div`
   margin-top: 5.8333rem;
-  input {
+  select {
     margin-bottom: 1rem;
   }
 `;

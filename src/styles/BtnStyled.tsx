@@ -18,11 +18,14 @@ export const ShortBtn = styled.button`
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
+  font-size: 1.25rem;
   &:hover {
     background-color: ${props => props.theme.mainColor};
+    color: white;
   }
   &:active {
     background-color: ${props => props.theme.mainColor};
+    color: white;
   }
 `;
 export const MiddleBtn = styled(ShortBtn)`
@@ -55,6 +58,7 @@ export const LongBtn = styled(ShortBtn)`
 `;
 export const LongLine = styled(ShortBtn)`
   display: block;
+  font-size: 1.25rem;
   width: 26.5833rem;
   height: 4rem;
   border-radius: 0.5rem;

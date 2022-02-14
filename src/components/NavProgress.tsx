@@ -15,7 +15,7 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
             navigate(-1);
           }}
         >
-          <BackArrow src="image/Icon ionic-ios-arrow-round-back.png" alt="" />
+          <BackArrow src="/image/Icon ionic-ios-arrow-round-back.png" alt="" />
         </button>
       </ArrowContainer>
       <NumContainer>
@@ -27,6 +27,10 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
 const ArrowContainer = styled.div`
   display: flex;
   justify-content: flex-start;
+  button {
+    border: none;
+    background-color: inherit;
+  }
 `;
 const NumContainer = styled.div`
   display: flex;
@@ -36,6 +40,7 @@ const NumContainer = styled.div`
 const BackArrow = styled.img`
   width: 2rem;
   height: 1.3333rem;
+  box-sizing: border-box;
 `;
 const NavContainer = styled.div`
   display: flex;

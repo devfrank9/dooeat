@@ -18,14 +18,18 @@ const JoinUser5 = () => {
         <p>현재 체중과 키는 얼마인가요?</p>
       </TextAlign>
       <InputAlign>
-        <Subject>
-          <p>체중</p>
-        </Subject>
-        <Common placeholder="kg단위로 입력해주세요." />
-        <Subject>
-          <p>키</p>
-        </Subject>
-        <Common placeholder="cm단위로 입력해주세요." />
+        <ContentsAlign>
+          <Subject>
+            <p>체중</p>
+          </Subject>
+          <Common placeholder="kg단위로 입력해주세요." />
+        </ContentsAlign>
+        <ContentsAlign>
+          <Subject>
+            <p>키</p>
+          </Subject>
+          <Common placeholder="cm단위로 입력해주세요." />
+        </ContentsAlign>
       </InputAlign>
       <BtnAlign>
         <ColoredBtn>
@@ -35,7 +39,9 @@ const JoinUser5 = () => {
     </BaseScreen>
   );
 };
-
+const ContentsAlign = styled.div`
+  margin-bottom: 2.1667rem;
+`;
 const TextAlign = styled.div`
   display: flex;
   flex-direction: column;
