@@ -84,3 +84,58 @@ export const TextArea = styled.input`
     color: transparent;
   }
 `;
+export const UrlInputAdd = styled.input`
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  padding-left: 1rem;
+  height: 4rem;
+  border: 0.1rem solid rgb(223, 223, 223);
+  border-radius: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('/image/Icon feather-plus-circle.png') no-repeat 95% 50%;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  font-size: 1.25rem;
+  &::-webkit-input-placeholder {
+    font-size: 1.1667rem;
+    opacity: 0.5;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+`;
+export const UrlInputDel = styled.input`
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  padding-left: 1rem;
+  height: 4rem;
+  border: 0.1rem solid ${props => props.theme.mainColor};
+  border-radius: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('/image/Icon ionic-ios-close-circle-outline.png') no-repeat
+    95% 50%;
+  box-sizing: border-box;
+  background-color: rgb(255, 249, 249);
+  color: ${props => props.theme.mainColor};
+  font-size: 1.25rem;
+  &::-webkit-input-placeholder {
+    font-size: 1.1667rem;
+    opacity: 0.5;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+`;
