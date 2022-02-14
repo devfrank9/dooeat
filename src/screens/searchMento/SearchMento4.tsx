@@ -81,7 +81,7 @@ const TextBox = styled.div`
   border: 0.1rem solid rgb(252, 216, 224);
   border-radius: 0.5rem;
   font-size: 1.5rem;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 `;
 const DateInput = styled.input`
   display: none;

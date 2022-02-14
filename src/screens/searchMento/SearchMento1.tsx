@@ -61,7 +61,7 @@ const DisplayNone = styled(LongBtn)`
 `;
 const InputAlign = styled.div`
   margin-top: 0.4167rem;
-  margin-bottom: 20.6667rem;
+  margin-bottom: 18rem;
 `;
 
 export default SearchMento1;

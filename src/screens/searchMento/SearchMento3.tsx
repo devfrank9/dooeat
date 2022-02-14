@@ -59,7 +59,7 @@ const SearchMento3 = () => {
   );
 };
 const BtnAlign = styled.div`
-  margin-top: 6rem;
+  margin-top: 4rem;
 `;
 const SelectBoxAlign = styled.div`
   margin-top: 1.3333rem;

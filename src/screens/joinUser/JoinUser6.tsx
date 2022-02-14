@@ -30,10 +30,10 @@ const BtnAlign = styled.div`
   margin-top: 3.3333rem;
 `;
 const Subject = styled.div`
-  margin-top: 6.8333rem;
+  margin-top: 3rem;
   p {
     font-size: 2rem;
-    margin-bottom: 6.5833rem;
+    margin-bottom: 3rem;
   }
 `;
 
