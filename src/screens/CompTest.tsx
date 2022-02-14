@@ -1,4 +1,4 @@
-import {
+/*  import {
   Common,
   InputCommonShort,
   InputCheckNone,
@@ -6,19 +6,19 @@ import {
   InputCheckErr,
   InputContent,
 } from '../styles/InputStyled';
+*/
 import BaseScreen from './BaseScreen';
-
 import {SelectTest} from '../styles/SelectStyled';
 
 const CompTest = () => {
   return (
     <BaseScreen>
-      <Common placeholder="hidasdfsf" />
+      {/*  <Common placeholder="hidasdfsf" />
       <InputCommonShort />
       <InputCheckNone />
       <InputCheckOk />
       <InputCheckErr />
-      <InputContent />
+      <InputContent /> */}
       <SelectTest></SelectTest>
     </BaseScreen>
   );
