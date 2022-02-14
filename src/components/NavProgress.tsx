@@ -44,7 +44,7 @@ const BackArrow = styled.img`
 `;
 const NavContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 120vw;
   align-items: center;
   p {
     font-size: 1.3333rem;

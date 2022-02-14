@@ -55,7 +55,6 @@ const SearchMento2 = () => {
 };
 
 const TextAlign = styled.div`
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 110vw;
@@ -77,6 +76,7 @@ const BtnAlignIndex = styled.div`
 `;
 const IndexBtnAlign = styled.div`
   display: flex;
+  width: 110vw;
   button {
     margin-right: 0.6667rem;
   }

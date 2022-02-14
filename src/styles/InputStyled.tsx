@@ -64,7 +64,7 @@ export const Content = styled(Common)`
   }
 `;
 export const TextArea = styled.input`
-  width: 26.5833rem;
+  width: 100vw;
   height: 6.6667rem;
   padding-left: 1.5rem;
   border-radius: 0.5rem;
