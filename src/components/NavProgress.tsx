@@ -1,12 +1,22 @@
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 interface Prop {
-    pageNumber? : number
+  pageNumber?: number;
 }
-const NavProgress = ({pageNumber = 1}) => {
+
+const NavProgress = ({pageNumber = 1}: Prop) => {
+  let navigate = useNavigate();
+
   return (
     <NavContainer>
       <ArrowContainer>
-        <BackArrow src="image/Icon ionic-ios-arrow-round-back.png" alt="" />
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <BackArrow src="image/Icon ionic-ios-arrow-round-back.png" alt="" />
+        </button>
       </ArrowContainer>
       <NumContainer>
         <p>{pageNumber}/8</p>
