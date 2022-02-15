@@ -48,7 +48,7 @@ const DisplayNone = styled(LongBtn)`
 const BtnAlign = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 130vw;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   margin-top: 2.5rem;
@@ -61,7 +61,7 @@ const TextAlign = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 108vw;
+  width: 100vw;
   margin-top: 3.4167rem;
   margin-bottom: 2.5rem;
   p {
