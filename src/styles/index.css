@@ -132,16 +132,12 @@ table {
   border-spacing: 0;
 }
 body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 3rem 5rem;
-  border: 0;
-  font-size: 100%;
+  width: 100vw;
+  height: 100vh;
   font: inherit;
-  vertical-align: baseline;
   font-family: 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  over-flow-x: hidden;
+  padding: 0 2.3rem;
+  overflow-x: hidden;
 }

@@ -25,8 +25,9 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
   );
 };
 const ArrowContainer = styled.div`
+  position: absolute;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
   button {
     border: none;
     background-color: inherit;
@@ -44,8 +45,9 @@ const BackArrow = styled.img`
 `;
 const NavContainer = styled.div`
   display: flex;
-  width: 120vw;
+  width: 100vw;
   align-items: center;
+  margin-top: 2.5833rem;
   p {
     font-size: 1.3333rem;
   }
