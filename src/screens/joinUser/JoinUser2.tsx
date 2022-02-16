@@ -1,63 +1,59 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {CheckNone} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {TextAlign} from './JoinUser1';
 
 const JoinUser2 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={2} />
-      <TextAlign>
-        <p>회원님의</p>
-        <p>활동 정보를 입력해주세요.</p>
-      </TextAlign>
-      <PicAlign>
-        <input type="file" id="fileinput" />
-        <label htmlFor="fileinput" />
-      </PicAlign>
-      <InputAlign>
+      <AlignBase>
+        <NavProgress pageNumber={2} />
+        <TextAlign>
+          <p>회원님의</p>
+          <p>활동 정보를 입력해주세요.</p>
+        </TextAlign>
+        <div style={{height: '68px'}} />
+        <PicAlign>
+          <input type="file" id="fileinput" />
+          <label htmlFor="fileinput" />
+        </PicAlign>
+        <div style={{height: '24px'}} />
         <CheckNone placeholder="닉네임을 입력해주세요." />
-      </InputAlign>
-      <ColoredBtn>
-        <LinkStyle to="/join-user/3">다음</LinkStyle>
-      </ColoredBtn>
+        <div style={{flex: 5}} />
+        <ColoredBtn>
+          <LinkStyle to="/join-user/3">다음</LinkStyle>
+        </ColoredBtn>
+        <div style={{flex: 0.55}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
-const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  margin-top: 3.4167rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
-  }
-`;
 const PicAlign = styled.div`
-  margin-top: 5.6667rem;
-  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  background-color: #f5f5f5;
   input {
     display: none;
   }
   input + label {
     display: inline-block;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 5rem;
-    background-color: #f5f5f5;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background: url('/image/Icon feather-plus.png') no-repeat 50% 50%;
   }
-`;
-const InputAlign = styled.div`
-  margin-bottom: 15rem;
 `;
 
 export default JoinUser2;

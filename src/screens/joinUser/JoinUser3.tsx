@@ -1,100 +1,76 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
+import Footer from '../../components/Footer';
 // Styles
 import {UnColoredBtn, LongBtn, ColoredBtn} from '../../styles/BtnStyled';
-import {CheckNone} from '../../styles/InputStyled';
+import {Common} from '../../styles/InputStyled';
 import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
+import {TextAlign} from './JoinUser1';
 
 const JoinUser3 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={3} />
-      <TextAlign>
-        <p>회원님의</p>
-        <p>성별과 나이를 입력해주세요.</p>
-      </TextAlign>
-      <Subject>
-        <p>성별</p>
-      </Subject>
-      <BtnAlign>
-        <LongBtn>여자</LongBtn>
-        <LongBtn>남자</LongBtn>
-      </BtnAlign>
-      <Subject2>
-        <p>나이</p>
-      </Subject2>
-      <CheckNone placeholder="나이를 입력해주세요." />
-      <BtnAlign2>
+      <AlignBase>
+        <NavProgress pageNumber={3} />
+        <TextAlign>
+          <p>회원님의</p>
+          <p>
+            <strong>성별과 나이</strong>를 입력해주세요.
+          </p>
+        </TextAlign>
+        <div style={{flex: 1}} />
+        <Subject>성별</Subject>
+        <BtnAlign>
+          <LongBtn>여자</LongBtn>
+          <LongBtn>남자</LongBtn>
+        </BtnAlign>
+        <div style={{height: '30px'}} />
+        <Subject>나이</Subject>
+        <div style={{height: '10px'}} />
+        <div style={{position: 'relative'}}>
+          <Age>세</Age>
+          <AgeInput placeholder="나이를 입력해주세요." />
+        </div>
+        <div style={{flex: 1.6}} />
         <UnColoredBtn>
           <LinkStyle2 to="/join-user/4">건너뛰기</LinkStyle2>
         </UnColoredBtn>
+        <div style={{height: '12px'}} />
         <ColoredBtn>
           <LinkStyle to="/join-user/4">다음</LinkStyle>
         </ColoredBtn>
-      </BtnAlign2>
-      <Footer>
-        <p>* 전문가 매칭 시 필요한 데이터 입니다.(선택입력)</p>
-      </Footer>
+        <Footer />
+        <div style={{flex: 1}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  margin-top: 3.4167rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
-  }
+const Age = styled.label`
+  position: absolute;
+  top: 15px;
+  right: 31px;
+  font-size: 15px;
+  font-weight: 500;
+  color: ${prop => prop.theme.mainColor};
+`;
+const AgeInput = styled(Common)`
+  padding-left: 30px;
 `;
 const BtnAlign = styled.div`
   display: flex;
-  width: 100vw;
+  margin: 0 1px;
   button {
-    margin-right: 1rem;
+    margin-top: 10px;
+    margin-right: 12px;
   }
 `;
-const BtnAlign2 = styled.div`
-  margin-top: 6rem;
-  button {
-    margin-bottom: 1rem;
-  }
-`;
-export const Subject = styled.div`
-  display: flex;
-  width: 100vw;
-  justify-content: flex-start;
-  margin: 0;
-  p {
-    font-size: 1.5rem;
-    margin-top: 5.8333rem;
-  }
-`;
-const Subject2 = styled.div`
-  display: flex;
-  width: 100vw;
-  justify-content: flex-start;
-  margin: 0;
-  p {
-    font-size: 1.5rem;
-    margin-top: 2.5rem;
-  }
-`;
-const Footer = styled.div`
-  display: flex;
-  width: 100vw;
-  flex-direction: flex-start;
-  p {
-    margin: 0;
-    color: blue;
-    font-size: 1.0833rem;
-  }
+export const Subject = styled.p`
+  margin: 0 1px;
+  font-size: 18px;
 `;
 
 export default JoinUser3;

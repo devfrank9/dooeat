@@ -1,72 +1,58 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
 import {Common} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {TextAlign} from './JoinUser1';
+import {Subject} from './JoinUser3';
 
 const JoinUser5 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={5} />
-      <TextAlign>
-        <p>회원님의</p>
-        <p>현재 체중과 키는 얼마인가요?</p>
-      </TextAlign>
-      <InputAlign>
-        <ContentsAlign>
-          <Subject>
-            <p>체중</p>
-          </Subject>
-          <Common placeholder="kg단위로 입력해주세요." />
-        </ContentsAlign>
-        <ContentsAlign>
-          <Subject>
-            <p>키</p>
-          </Subject>
-          <Common placeholder="cm단위로 입력해주세요." />
-        </ContentsAlign>
-      </InputAlign>
-      <BtnAlign>
+      <AlignBase>
+        <NavProgress pageNumber={5} />
+        <TextAlign>
+          <p>회원님의</p>
+          <p>현재 체중과 키는 얼마인가요?</p>
+        </TextAlign>
+        <div style={{height: '70px'}} />
+        <Subject>체중</Subject>
+        <div style={{height: '10px'}} />
+        <div style={{position: 'relative'}}>
+          <Label>kg</Label>
+          <Input placeholder="kg단위로 입력해주세요." />
+        </div>
+        <div style={{height: '30px'}} />
+        <Subject>키</Subject>
+        <div style={{height: '10px'}} />
+        <div style={{position: 'relative'}}>
+          <Label>cm</Label>
+          <Input placeholder="cm단위로 입력해주세요." />
+        </div>
+        <div style={{flex: 1.7}} />
         <ColoredBtn>
           <LinkStyle to="/join-user/6">다음</LinkStyle>
         </ColoredBtn>
-      </BtnAlign>
+        <div style={{flex: 1}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-const ContentsAlign = styled.div`
-  margin-bottom: 2.1667rem;
+const Label = styled.label`
+  position: absolute;
+  top: 15px;
+  right: 31px;
+  font-size: 15px;
+  font-weight: 500;
+  color: ${prop => prop.theme.mainColor};
 `;
-const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  margin-top: 3.4167rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
-  }
-`;
-const BtnAlign = styled.div`
-  margin-top: 13rem;
-`;
-const InputAlign = styled.div`
-  margin-top: 3.0833rem;
-`;
-const Subject = styled.div`
-  display: flex;
-  width: 100vw;
-  justify-content: flex-start;
-  margin: 0;
-  p {
-    font-size: 1.5rem;
-  }
+const Input = styled(Common)`
+  padding-left: 30px;
 `;
 
 export default JoinUser5;
