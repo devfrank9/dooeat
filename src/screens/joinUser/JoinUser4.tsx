@@ -6,7 +6,7 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 import Footer from '../../components/Footer';
 // Styles
-import DropDown, {Select} from '../../styles/SelectStyled';
+import DropDown from '../../styles/SelectStyled';
 import {UnColoredBtn, ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 import {TextAlign} from './JoinUser1';
