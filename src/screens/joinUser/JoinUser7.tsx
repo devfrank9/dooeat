@@ -1,79 +1,93 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {TextAlign} from './JoinUser1';
 
 const JoinUser7 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={7} />
-      <TextAlign>
-        <p>회원님의</p>
-        <p>목표 체중은 얼마인가요?</p>
-      </TextAlign>
-      <Scale />
-      <MiddleText>
-        <p>나의 목표 체중은</p>
-      </MiddleText>
-      <LastText>
-        <input type="text" />
-        <p>입니다.</p>
-      </LastText>
-      <BtnAlign>
+      <AlignBase>
+        <NavProgress pageNumber={7} />
+        <TextAlign>
+          <p>회원님의</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: 500}}>목표 체중</p>
+            <p>은 얼마인가요?</p>
+          </div>
+        </TextAlign>
+        <div style={{flex: 0.9}} />
+        <Scale />
+        <div style={{height: '36.9px'}} />
+        <LastText>
+          <p style={{fontSize: '20px', fontWeight: 400}}>나의 목표 체중은</p>
+          <div style={{marginBottom: '14px'}} />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{position: 'relative'}}>
+              <Label>kg</Label>
+              <KgInput placeholder="입력해주세요." type="text" />
+            </div>
+            <p style={{fontSize: '20px', fontWeight: 300}}> 입니다.</p>
+          </div>
+        </LastText>
+        <div style={{flex: 0.5}} />
         <ColoredBtn>
           <LinkStyle to="/join-user/8">완료</LinkStyle>
         </ColoredBtn>
-      </BtnAlign>
+        <div style={{flex: 1.1}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
-const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  margin-top: 3.4167rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
+const Label = styled.label`
+  position: absolute;
+  right: 11.4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: ${prop => prop.theme.mainColor};
+`;
+const KgInput = styled.input`
+  width: 153.6px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid rgb(239, 239, 239);
+  padding-bottom: 5px;
+  &::-webkit-input-placeholder {
+    font-size: 16px;
+    opacity: 0.5;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
   }
 `;
 const LastText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  input {
-    display: flex;
-    width: 12.8333rem;
-  }
+  text-align: center;
   p {
-    font-size: 1.6667rem;
-  }
-`;
-const BtnAlign = styled.div`
-  margin-top: 4.4167rem;
-`;
-const MiddleText = styled.div`
-  margin-top: 3.0833rem;
-  p {
-    font-size: 1.6667rem;
   }
 `;
 const Scale = styled.div`
-  margin-top: 7.5rem;
   background-color: rgb(252, 216, 224);
   background-image: url('/image/group 3.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 17.3333rem;
-  height: 17.3333rem;
-  border-radius: 9rem;
+  width: 208px;
+  height: 208px;
+  border-radius: 104px;
+  margin: 0 auto;
 `;
 
 export default JoinUser7;

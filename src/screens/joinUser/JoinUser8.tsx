@@ -1,7 +1,7 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 import BmiResult2 from '../../components/BmiResult2';
@@ -12,83 +12,109 @@ import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 const JoinUser8 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={8} />
-      <OverFlow>
-        <Banner>
-          <p>닉네임 님의 목표,</p>
-          <p>함께 이뤄드릴께요!</p>
-        </Banner>
+      <AlignBase>
+        <NavProgress pageNumber={8} />
+        <div style={{position: 'relative', width: '100%'}}>
+          <p style={{fontSize: '24px', textAlign: 'center', fontWeight: 400}}>
+            닉네임 님의 목표,
+          </p>
+          <UnderLine>함께 이뤄드릴께요!</UnderLine>
+        </div>
         <BmiResult2 />
         <Arrow>
           <img src="/image/Icon awesome-arrow-down.png" alt="" />
         </Arrow>
         <BmiResult2 />
-        <Goal>
+        <TextAlign>
           <p>총 감량 목표</p>
-          <p>7</p>
-          <p>kg</p>
-        </Goal>
-        <BtnAlign>
-          <ColoredBtn>
-            <LinkStyle to="/search-mento/1">동네 운동 멘토 찾기</LinkStyle>
-          </ColoredBtn>
-          <UnColoredBtn>
-            <LinkStyle2 to="/">아니오, 괜찮습니다!</LinkStyle2>
-          </UnColoredBtn>
-        </BtnAlign>
-      </OverFlow>
+          <div
+            style={{
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Label>kg</Label>
+            <KgInput placeholder="입력해주세요." type="text" value={7} />
+          </div>
+        </TextAlign>
+        <ColoredBtn>
+          <LinkStyle to="/search-mento/1">동네 운동 멘토 찾기</LinkStyle>
+        </ColoredBtn>
+        <div style={{height: '12px'}} />
+        <UnColoredBtn>
+          <LinkStyle2 to="/meal">아니오, 괜찮습니다!</LinkStyle2>
+        </UnColoredBtn>
+        <div style={{height: '38px'}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
-const BtnAlign = styled.div`
-  margin-top: 4.3333rem;
-  button:first-child {
-    margin-bottom: 1rem;
+const Label = styled.label`
+  position: absolute;
+  right: 11.4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: ${prop => prop.theme.mainColor};
+`;
+const KgInput = styled.input`
+  width: 91.5px;
+  font-size: 30px;
+  border: none;
+  border-bottom: 1px solid rgb(239, 239, 239);
+  padding-right: 20px;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
   }
 `;
-const Goal = styled.div`
+const TextAlign = styled.div`
   display: flex;
+  color: ${prop => prop.theme.mainColor};
+  font-size: 20px;
+  font-weight: 500;
   align-items: center;
   justify-content: center;
+  margin-top: 42px;
+  margin-bottom: 50px;
+  p:nth-child(2) {
+    font-size: 30px;
+    color: black;
+    margin: 0 18px;
+  }
+  p:nth-child(3) {
+    font-size: 16px;
+  }
+`;
+const UnderLine = styled.p`
   text-align: center;
-  font-size: 2.5rem;
-  margin-top: 4.0833rem;
-  p:first-child {
-    font-size: 1.6667rem;
-    color: ${prop => prop.theme.mainColor};
-    margin-right: 1.1667rem;
+  font-size: 24px;
+  position: relative;
+  font-weight: 500;
+  &::after {
+    border-radius: 12px;
+    content: '';
+    width: 100%;
+    height: 12px;
+    background: rgb(252, 216, 224);
+    position: absolute;
+    bottom: 0.1rem;
+    left: 0;
+    z-index: -1;
   }
-  p:last-child {
-    font-size: 1.3333rem;
-    color: ${prop => prop.theme.mainColor};
-    margin-left: 1.1667rem;
-  }
+  margin-bottom: 30px;
 `;
 const Arrow = styled.div`
-  margin: 3.6667rem;
+  margin: 44px;
   text-align: center;
   img {
-    width: 2.6667rem;
-    height: 2.6667rem;
+    width: 30.7px;
+    height: 31.5px;
   }
-`;
-const Banner = styled.div`
-  text-align: center;
-  margin-top: 5.8333rem;
-  p {
-    font-size: 2rem;
-  }
-  p:last-child {
-    text-decoration: dashed;
-  }
-`;
-const OverFlow = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-y: scroll;
-  height: 100%;
 `;
 
 export default JoinUser8;

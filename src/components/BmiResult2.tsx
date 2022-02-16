@@ -5,7 +5,16 @@ const BmiResult2 = () => {
     <ContentBox>
       <Header>
         <p>현재 체중</p>
-        <p>kg</p>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Label>kg</Label>
+          <KgInput placeholder="입력해주세요." type="text" value={55} />
+        </div>
       </Header>
       <BmiCalc>
         <p>현재 BMI</p>
@@ -28,18 +37,39 @@ const BmiResult2 = () => {
         <div>25</div>
         <div>30</div>
       </BmiIndicator>
+      <div style={{flex: 1}}></div>
     </ContentBox>
   );
 };
+const Label = styled.label`
+  position: absolute;
+  font-size: 15px;
+  font-weight: 500;
+  color: ${prop => prop.theme.mainColor};
+  left: 60%;
+  bottom: 5px;
+`;
+const KgInput = styled.input`
+  width: 91.5px;
+  font-size: 30px;
+  border: none;
+  border-bottom: 1px solid rgb(239, 239, 239);
+  padding-left: 25px;
+  margin-top: 8.1px;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+`;
 const Header = styled.div`
   margin-top: 40px;
   p {
     text-align: center;
     font-size: 20px;
     font-weight: 500;
-  }
-  p:last-child {
-    color: ${prop => prop.theme.mainColor};
   }
 `;
 const BmiCalc = styled.div`
@@ -107,6 +137,7 @@ const BmiIndicator = styled.div`
   padding: 0 10px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 42px;
   div {
     flex: 1;
     min-width: 60px;
