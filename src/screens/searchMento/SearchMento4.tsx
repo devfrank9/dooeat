@@ -1,38 +1,32 @@
 import styled from 'styled-components';
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {Subject, TextAlign} from './SearchMento2';
 
 const SearchMento4 = () => {
   return (
     <BaseScreen>
-      <TextAlign>
-        <p>회원님의</p>
-        <p>목표 기간을 설정해주세요.</p>
-      </TextAlign>
-      <SelectAlign>
-        <SelcetTextAlign>
+      <AlignBase>
+        <div style={{flex: 0.8}} />
+        <TextAlign>
+          <p>회원님의</p>
+          <p>목표 기간을 설정해주세요.</p>
+        </TextAlign>
+        <Subject>
           <p>1. 시작일</p>
-          <IndexBtnAlign>
-            <SelectBoxAlign>
-              <DateLabel htmlFor="date">
-                날짜선택
-                <DateInput type="date" id="date" />
-              </DateLabel>
-            </SelectBoxAlign>
-          </IndexBtnAlign>
-        </SelcetTextAlign>
-        <SelcetTextAlign>
+        </Subject>
+        <DateLabel htmlFor="date">
+          날짜선택
+          <DateInput type="date" id="date" />
+        </DateLabel>
+        <Subject>
           <p>2. 종료일</p>
-          <IndexBtnAlign>
-            <SelectBoxAlign>
-              <DateLabel htmlFor="date">
-                날짜선택
-                <DateInput type="date" id="date" />
-              </DateLabel>
-            </SelectBoxAlign>
-          </IndexBtnAlign>
-        </SelcetTextAlign>
+        </Subject>
+        <DateLabel htmlFor="date">
+          날짜선택
+          <DateInput type="date" id="date" />
+        </DateLabel>
         <TextBox>
           <p>건강한 다이어트를 위한</p>
           <p>적정 감량 속도는</p>
@@ -43,30 +37,48 @@ const SearchMento4 = () => {
             <p> 정도 입니다.</p>
           </Inline>
         </TextBox>
+        <div style={{flex: 1.4}} />
         <ColoredBtn>
           <LinkStyle to="/">전문가 추천 받으러 가기</LinkStyle>
         </ColoredBtn>
-      </SelectAlign>
+        <div style={{flex: 0.3}} />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
+const DateLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border: 1px solid ${props => props.theme.mainColor};
+  border-radius: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  background-color: rgb(255, 249, 249);
+  color: ${props => props.theme.mainColor};
+  font-size: 15px;
+  margin-bottom: 30px;
+`;
 const Inline = styled.div`
   display: flex;
 `;
 const UnderLine = styled.p`
-  font-size: 1.5rem;
+  font-size: 16px;
   position: relative;
   display: inline;
+  font-weight: 700;
   &::after {
     content: '';
     width: 100%;
-    height: 0.8rem;
-    margin-bottom: 0.1rem;
-    background: rgb(252, 216, 224);
+    height: 16px;
+    border-radius: 8px;
+    background: rgb(252, 228, 234);
     position: absolute;
     display: inline-block;
-    bottom: 0.1rem;
+    bottom: -3px;
     left: 0;
     z-index: -1;
   }
@@ -76,65 +88,15 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 26.5833rem;
-  height: 11.9167rem;
-  border: 0.1rem solid rgb(252, 216, 224);
-  border-radius: 0.5rem;
-  font-size: 1.5rem;
-  margin-bottom: 4rem;
+  height: 143px;
+  border: 1px solid rgb(252, 216, 224);
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 20px;
 `;
 const DateInput = styled.input`
   display: none;
-`;
-const DateLabel = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26.5833rem;
-  height: 4rem;
-  border: 0.1rem solid ${props => props.theme.mainColor};
-  border-radius: 0.5rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
-  color: ${props => props.theme.mainColor};
-  font-size: 1.25rem;
-`;
-const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 110vw;
-  margin-top: 3.4167rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
-  }
-`;
-const SelectAlign = styled.div`
-  display: border;
-  margin-top: 3.3333rem;
-  p {
-    margin: 0;
-  }
-`;
-const SelcetTextAlign = styled.div`
-  margin-bottom: 2.5rem;
-  font-size: 1.3333rem;
-  p:nth-child(1) {
-    font-weight: bold;
-  }
-`;
-const IndexBtnAlign = styled.div`
-  display: flex;
-  button {
-    margin-right: 0.6667rem;
-  }
-`;
-const SelectBoxAlign = styled.div`
-  margin-top: 1.3333rem;
 `;
 
 export default SearchMento4;

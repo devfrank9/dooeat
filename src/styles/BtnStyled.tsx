@@ -12,12 +12,14 @@ export const BtnMain2 = ({children}: Prop) => <Btn2>{children}</Btn2>;
 export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
  */
 export const ShortBtn = styled.button`
-  width: 100vw;
-  height: 4rem;
-  border-radius: 0.5rem;
+  display: block;
+  width: 59px;
+  height: 48px;
+  border-radius: 6px;
   border: none;
-  background-color: #f5f5f5;
-  font-size: 1.25rem;
+  background-color: rgb(245, 245, 245);
+  font-size: 15px;
+  font-weight: 400;
   &:hover {
     background-color: ${props => props.theme.mainColor};
     color: white;
@@ -28,46 +30,27 @@ export const ShortBtn = styled.button`
   }
 `;
 export const MiddleBtn = styled(ShortBtn)`
-  display: block;
-  width: 6.1667rem;
-  height: 4rem;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #f5f5f5;
-  &:hover {
-    background-color: ${props => props.theme.mainColor};
-  }
-  &:active {
-    background-color: ${props => props.theme.mainColor};
-  }
+  width: 74px;
 `;
 export const LongBtn = styled(ShortBtn)`
-  display: block;
-  width: 120px;
-  height: 48px;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #f5f5f5;
-  font-size: 15px;
-  &:hover {
-    background-color: ${props => props.theme.mainColor};
-  }
-  &:active {
-    background-color: ${props => props.theme.mainColor};
-  }
+  width: 101px;
 `;
-export const LongLine = styled(ShortBtn)`
+export const LongLine = styled.button`
   display: block;
-  font-size: 1.25rem;
-  height: 4rem;
-  border-radius: 0.5rem;
+  width: 59px;
+  height: 52px;
+  border-radius: 6px;
   border: none;
-  background-color: #f5f5f5;
+  background-color: rgb(245, 245, 245);
+  font-size: 15px;
+  font-weight: 400;
   &:hover {
     background-color: ${props => props.theme.mainColor};
+    color: white;
   }
   &:active {
     background-color: ${props => props.theme.mainColor};
+    color: white;
   }
 `;
 export const UnColoredBtn = styled.button`

@@ -65,18 +65,16 @@ export const Content = styled(Common)`
     z-index: 999px;
   }
 `;
-export const TextArea = styled.input`
-  width: 100vw;
-  height: 6.6667rem;
-  padding-left: 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 1.25rem;
-  border: 0.1rem solid rgb(223, 223, 223);
-  display: block;
+export const TextArea = styled.textarea`
+  height: 80px;
+  padding-left: 18px;
+  padding-top: 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  border: 1px solid rgb(223, 223, 223);
   box-sizing: border-box;
-  padding-bottom: 3rem;
   &::-webkit-input-placeholder {
-    font-size: 1.1667rem;
+    font-size: 14px;
     opacity: 0.5;
   }
   &:focus {

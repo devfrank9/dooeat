@@ -137,7 +137,6 @@ const BmiIndicator = styled.div`
   padding: 0 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 42px;
   div {
     flex: 1;
     min-width: 60px;
