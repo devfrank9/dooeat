@@ -20,3 +20,13 @@ export const FileLabel = styled.label`
 export const FileInput = styled.input`
   display: none;
 `;
+export const FileRectengle = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 10rem;
+  border: 0.1rem solid rgb(223, 223, 223);
+  border-radius: 1rem;
+  background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
+`;

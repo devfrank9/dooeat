@@ -13,12 +13,14 @@ const Agreement = () => {
         <input type="checkbox" id="check2" />
         <label htmlFor="check2" />
         <p>개인정보처리방침</p>
+        <div style={{flex: 1}} />
         <LinkStyle to="/agree1">보기</LinkStyle>
       </CheckInput>
       <CheckInput>
         <input type="checkbox" id="check3" />
         <label htmlFor="check3" />
         <p>서비스이용약관</p>
+        <div style={{flex: 1}} />
         <LinkStyle to="/agree1">보기</LinkStyle>
       </CheckInput>
     </AgreementAlign>
@@ -26,36 +28,43 @@ const Agreement = () => {
 };
 
 const LinkStyle = styled(Link)`
+  font-size: 14px;
   color: rgb(151, 151, 151);
 `;
 const AgreementAlign = styled.div`
   display: flex;
-  width: 100vw;
   flex-direction: column;
 `;
 const CheckInput = styled.div`
   display: flex;
   align-items: center;
-  width: 100vw;
+  &:first-child {
+    margin-bottom: 16px;
+  }
+  &:last-child {
+    margin-top: 16px;
+  }
   p {
-    margin: 1.3333rem;
-    font-size: 1.25rem;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
   }
   input {
     display: none;
   }
   input + label {
     display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    border: 0.0833rem solid rgb(223, 223, 223);
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgb(223, 223, 223);
     position: relative;
+    margin-right: 16px;
   }
   input:checked + label::after {
     content: '✔';
-    font-size: 25px;
-    width: 30px;
-    height: 30px;
+    font-size: 15px;
+    width: 24px;
+    height: 24px;
     text-align: center;
     position: absolute;
     left: 0;

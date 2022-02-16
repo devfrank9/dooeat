@@ -8,17 +8,19 @@ export const InputCheckErr = () => <CheckErr />;
 export const InputContent = () => <Content />;
  */
 export const Common = styled.input`
-  width: 100vw;
-  height: 4.3333rem;
-  padding-left: 1.6667rem;
+  width: 100%;
+  height: 52px;
+  padding-left: 20px;
   border: 0.1rem solid rgb(223, 223, 223);
-  font-size: 1.25rem;
+  font-size: 15px;
   border-radius: 0.5rem;
   display: block;
   box-sizing: border-box;
   &::-webkit-input-placeholder {
-    font-size: 1.1667rem;
-    opacity: 0.5;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    opacity: 0.8;
   }
   &:focus {
     outline: none;
@@ -86,10 +88,10 @@ export const TextArea = styled.input`
 `;
 export const UrlInputAdd = styled.input`
   display: flex;
-  width: 100vw;
+  width: 88.6vw;
+  height: 6.4vh;
   align-items: center;
   padding-left: 1rem;
-  height: 4rem;
   border: 0.1rem solid rgb(223, 223, 223);
   border-radius: 0.5rem;
   -webkit-appearance: none;
@@ -113,10 +115,10 @@ export const UrlInputAdd = styled.input`
 `;
 export const UrlInputDel = styled.input`
   display: flex;
-  width: 100vw;
+  width: 88.6vw;
+  height: 6.4vh;
   align-items: center;
   padding-left: 1rem;
-  height: 4rem;
   border: 0.1rem solid ${props => props.theme.mainColor};
   border-radius: 0.5rem;
   -webkit-appearance: none;

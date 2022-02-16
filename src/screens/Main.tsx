@@ -7,35 +7,39 @@ import {Logo} from '../components/Logo';
 // Styles
 import {UnColoredBtn, ColoredBtn} from '../styles/BtnStyled';
 import {LinkStyle, LinkStyle2} from '../styles/LinkStyled';
+import {AlignBase, Space} from './BaseScreen';
 
 const Main = () => {
   return (
     <BaseScreen>
-      <Logo />
-      <MainBtnAlign>
-        <ColoredBtn>
-          <LinkStyle to={'/login'}>로그인</LinkStyle>
-        </ColoredBtn>
-        <UnColoredBtn>
-          <LinkStyle2 to={'/join-user/1'}>일반 회원 가입하기</LinkStyle2>
-        </UnColoredBtn>
-        <UnColoredBtn>
-          <LinkStyle2 to={'/join-pro/1'}>전문가 회원 가입하기</LinkStyle2>
-        </UnColoredBtn>
-      </MainBtnAlign>
+      <AlignBase>
+        <div style={{flex: 0.75}} />
+        <Logo />
+        <BtnAlign>
+          <ColoredBtn>
+            <LinkStyle to={'/login'}>로그인</LinkStyle>
+          </ColoredBtn>
+          <UnColoredBtn>
+            <LinkStyle2 to={'/join-user/1'}>일반 회원 가입하기</LinkStyle2>
+          </UnColoredBtn>
+          <UnColoredBtn>
+            <LinkStyle2 to={'/join-pro/1'}>전문가 회원 가입하기</LinkStyle2>
+          </UnColoredBtn>
+        </BtnAlign>
+        <Space />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
-const MainBtnAlign = styled.div`
+const BtnAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 52px;
   button:nth-child(1) {
-    margin-top: 4.3333rem;
+    margin-bottom: 45px;
   }
   button:nth-child(2) {
-    margin-top: 3.75rem;
-  }
-  button:nth-child(3) {
-    margin-top: 1rem;
+    margin-bottom: 12px;
   }
 `;
 

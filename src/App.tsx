@@ -17,6 +17,7 @@ import {useLocalStorage, useSessionStorage} from 'react-use-storage';
 // view 페이지
 import Main from './screens/Main';
 import Login from './screens/Login';
+import SearchId from './screens/SearchId';
 import JoinUser1 from './screens/joinUser/JoinUser1';
 import JoinUser2 from './screens/joinUser/JoinUser2';
 import JoinUser3 from './screens/joinUser/JoinUser3';
@@ -38,6 +39,7 @@ import JoinPro5 from './screens/joinPro/JoinPro5';
 import JoinPro6 from './screens/joinPro/JoinPro6';
 import JoinPro7 from './screens/joinPro/JoinPro7';
 import JoinPro8 from './screens/joinPro/JoinPro8';
+import MealMain from './screens/meal/MealMain';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -114,6 +116,7 @@ function Screens() {
         <Routes location={location}>
           <Route path={'/'} element={<Main />} />
           <Route path={'/login'} element={<Login />} />
+          <Route path={'/search'} element={<SearchId />} />
           <Route path={'/join-user/1'} element={<JoinUser1 />} />
           <Route path={'/join-user/2'} element={<JoinUser2 />} />
           <Route path={'/join-user/3'} element={<JoinUser3 />} />
@@ -122,7 +125,6 @@ function Screens() {
           <Route path={'/join-user/6'} element={<JoinUser6 />} />
           <Route path={'/join-user/7'} element={<JoinUser7 />} />
           <Route path={'/join-user/8'} element={<JoinUser8 />} />
-          <Route path={'/join-pro1'} element={<Main />} />
           <Route path={'/test'} element={<CompTest />} />
           <Route path={'/search-mento/1'} element={<SearchMento1 />} />
           <Route path={'/search-mento/2'} element={<SearchMento2 />} />
@@ -136,6 +138,7 @@ function Screens() {
           <Route path={'/join-pro/6'} element={<JoinPro6 />} />
           <Route path={'/join-pro/7'} element={<JoinPro7 />} />
           <Route path={'/join-pro/8'} element={<JoinPro8 />} />
+          <Route path={'/meal'} element={<MealMain />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

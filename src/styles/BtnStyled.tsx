@@ -43,11 +43,12 @@ export const MiddleBtn = styled(ShortBtn)`
 `;
 export const LongBtn = styled(ShortBtn)`
   display: block;
-  width: 8.4167rem;
-  height: 4rem;
+  width: 120px;
+  height: 48px;
   border-radius: 0.5rem;
   border: none;
   background-color: #f5f5f5;
+  font-size: 15px;
   &:hover {
     background-color: ${props => props.theme.mainColor};
   }
@@ -70,34 +71,30 @@ export const LongLine = styled(ShortBtn)`
   }
 `;
 export const UnColoredBtn = styled.button`
-  display: block;
-  width: 26.5833rem;
-  height: 4.3333rem;
-  border: 0.1rem solid ${props => props.theme.mainColor};
+  height: 52px;
+  border: 1px solid ${props => props.theme.mainColor};
   border-radius: 3rem;
   background-color: inherit;
-  font-size: 1.3333rem;
   color: ${props => props.theme.mainColor};
+  font-size: 16px;
   box-sizing: border-box;
+  font-weight: 600;
 `;
 export const ColoredBtn = styled.button`
-  display: block;
-  width: 26.5833rem;
-  height: 4.3333rem;
-  border: 0.1rem solid white;
+  height: 52px;
+  border: 1px solid white;
   border-radius: 3rem;
   background-color: ${props => props.theme.mainColor};
-  font-size: 1.3333rem;
+  font-size: 16px;
   color: white;
   box-sizing: border-box;
+  font-weight: 600;
 `;
 export const BlockBtn = styled.button`
-  display: block;
-  width: 26.5833rem;
-  height: 4.3333rem;
+  height: 6.4vh;
   border: none;
   border-radius: 3rem;
   background-color: #f5f5f5;
-  font-size: 1.3333rem;
+  font-size: 1rem;
   box-sizing: border-box;
 `;

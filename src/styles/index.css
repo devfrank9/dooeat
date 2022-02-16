@@ -91,7 +91,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -131,13 +130,16 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body {
-  width: 100vw;
-  height: 100vh;
+body,
+html {
   font: inherit;
   font-family: 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 2.3rem;
-  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+}
+.app {
+  width: 100vw;
+  height: 100vh;
 }

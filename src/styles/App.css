@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-
+button {
+  -webkit-appearance: none;
+  padding: 0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,7 +40,6 @@
   }
 }
 
-
 .fade-enter {
   opacity: 0;
   transform: translate(0, 25px);
@@ -60,10 +62,10 @@
   transition: opacity 250ms ease-out, transform 300ms ease;
 }
 
-
-.ck.ck-editor.ck-reset{
-  width:100%;
+.ck.ck-editor.ck-reset {
+  width: 100%;
 }
-.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable,
+.ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
   min-height: 200px;
 }

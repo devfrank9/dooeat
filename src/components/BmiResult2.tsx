@@ -9,7 +9,7 @@ const BmiResult2 = () => {
       </Header>
       <BmiCalc>
         <p>현재 BMI</p>
-        <p>20.29(test)</p>
+        <p>20.29</p>
       </BmiCalc>
       <HealthResult>
         <p>정상</p>
@@ -32,89 +32,94 @@ const BmiResult2 = () => {
   );
 };
 const Header = styled.div`
-  margin-top: 3.3333rem;
+  margin-top: 40px;
   p {
     text-align: center;
-    font-size: 1.6667rem;
+    font-size: 20px;
+    font-weight: 500;
   }
   p:last-child {
     color: ${prop => prop.theme.mainColor};
   }
 `;
 const BmiCalc = styled.div`
-  margin-top: 3.3333rem;
+  margin-top: 40px;
   p:first-child {
     text-align: center;
-    font-size: 1.6667rem;
+    font-size: 20px;
+    font-weight: 500;
   }
   p:last-child {
     text-align: center;
-    font-size: 2.6667rem;
+    font-size: 32px;
     color: rgb(51, 51, 51);
+    font-weight: 600;
   }
 `;
 const HealthResult = styled.div`
-  margin-top: 0.3333rem;
+  margin-top: 4px;
   p {
     text-align: center;
-    font-size: 1.3333rem;
+    font-size: 16px;
     color: ${prop => prop.theme.mainColor};
+    font-weight: bold;
   }
 `;
 const BmiGraph = styled.div`
   display: flex;
-  height: 3.333rem;
-  padding: 0 0.8333rem;
-  margin-top: 9.25rem;
+  height: 40px;
+  padding: 0 10px;
+  margin-top: 101px;
   align-items: center;
   justify-content: center;
   div {
-    width: 5rem;
-    height: 3.3333rem;
+    flex: 1;
+    min-width: 60px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.1667rem;
+    font-size: 14px;
+    font-weight: 300;
   }
   div:nth-child(1) {
     background-color: rgb(236, 236, 236);
     color: black;
+    border-radius: 6px 0px 0px 6px;
   }
   div:nth-child(2) {
     background-color: ${prop => prop.theme.mainColor};
   }
   div:nth-child(3) {
-    background-color: rgb(185, 185, 185);
+    background-color: rgb(180, 180, 180);
   }
   div:nth-child(4) {
     background-color: rgb(148, 148, 148);
   }
   div:nth-child(5) {
-    background-color: rgb(90, 90, 90);
+    background-color: rgb(51, 51, 51);
+    border-radius: 0px 6px 6px 0px;
   }
 `;
 const BmiIndicator = styled.div`
   display: flex;
-  padding: 0 0.8333rem;
+  padding: 0 10px;
   align-items: center;
   justify-content: center;
   div {
-    width: 5rem;
-    height: 3.3333rem;
+    flex: 1;
+    min-width: 60px;
     display: flex;
     align-items: center;
-    color: black;
-    font-size: 1.1667rem;
+    font-size: 14px;
+    font-weight: 300;
   }
 `;
 const ContentBox = styled.div`
-  padding: 0 auto;
-  margin: 0;
-  width: 26.5833rem;
-  height: 38.9167rem;
-  box-shadow: 0pt 3pt 10pt 0pt rgb(0, 0, 0, 0.1);
-  border-radius: 2rem;
+  height: 467px;
+  box-shadow: 0px 3px 10px 0px rgb(0, 0, 0, 0.1);
+  border-radius: 12px;
 `;
 
 export default BmiResult2;

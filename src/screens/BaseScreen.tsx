@@ -18,8 +18,18 @@ const BaseScreen = ({children}: Prop) => {
 
 const Base = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
+export const AlignBase = styled.div`
+  flex: 1;
+  display: flex;
+  padding: 0 28px;
+  flex-direction: column;
+`;
+export const Space = styled.div`
+  flex: 1;
 `;
 
 export default BaseScreen;

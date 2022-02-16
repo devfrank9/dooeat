@@ -8,33 +8,39 @@ import {Logo} from '../components/Logo';
 // Styles
 import {Common} from '../styles/InputStyled';
 import {ColoredBtn} from '../styles/BtnStyled';
+import {AlignBase, Space} from './BaseScreen';
 
 const Login = () => {
   return (
     <BaseScreen>
-      <Logo />
-      <InputAlign>
-        <Common placeholder="이메일을 입력해주세요" />
-        <Common placeholder="비밀번호를 입력해주세요" />
-      </InputAlign>
-      <ColoredBtn>두잇두잇 시작하기</ColoredBtn>
-      <SearchLink to={'/serachId'}>아이디/비밀번호 찾기</SearchLink>
+      <AlignBase>
+        <div style={{flex: 2}} />
+        <Logo />
+        <InputAlign>
+          <Common placeholder="이메일을 입력해주세요" />
+          <Common placeholder="비밀번호를 입력해주세요" />
+        </InputAlign>
+        <ColoredBtn>두잇두잇 시작하기</ColoredBtn>
+        <SearchLink to={'/search'}>아이디 / 비밀번호 찾기</SearchLink>
+        <Space />
+      </AlignBase>
     </BaseScreen>
   );
 };
-
 const InputAlign = styled.div`
-  input:nth-child(1) {
-    margin-top: 4.3333rem;
-  }
-  input:nth-child(2) {
-    margin-top: 1rem;
-    margin-bottom: 10.8333rem;
+  margin-top: 52px;
+  margin-bottom: 130px;
+  input:first-child {
+    margin-bottom: 12px;
   }
 `;
 const SearchLink = styled(Link)`
   color: rgb(151, 151, 151);
-  margin-top: 1.6667rem;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.8;
 `;
 
 export default Login;

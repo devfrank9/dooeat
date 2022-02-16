@@ -10,13 +10,11 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
   return (
     <NavContainer>
       <ArrowContainer>
-        <button
+        <BackArrow
           onClick={() => {
             navigate(-1);
           }}
-        >
-          <BackArrow src="/image/Icon ionic-ios-arrow-round-back.png" alt="" />
-        </button>
+        />
       </ArrowContainer>
       <NumContainer>
         <p>{pageNumber}/8</p>
@@ -25,32 +23,35 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
   );
 };
 const ArrowContainer = styled.div`
-  position: absolute;
   display: flex;
   align-items: center;
-  button {
-    border: none;
-    background-color: inherit;
-  }
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: 30px;
 `;
 const NumContainer = styled.div`
+  position: absolute;
+  width: 100%;
   display: flex;
-  width: 100vw;
+  align-items: center;
   justify-content: center;
+  height: 19px;
+  font-size: 16px;
 `;
-const BackArrow = styled.img`
-  width: 2rem;
-  height: 1.3333rem;
-  box-sizing: border-box;
+const BackArrow = styled.button`
+  border: none;
+  background-color: inherit;
+  background: url('/image/Icon ionic-ios-arrow-round-back.png') no-repeat 50%
+    50%;
+  width: 24px;
+  height: 16px;
 `;
 const NavContainer = styled.div`
   display: flex;
-  width: 100vw;
   align-items: center;
-  margin-top: 2.5833rem;
-  p {
-    font-size: 1.3333rem;
-  }
+  height: 10%;
+  margin: 0 -28px;
 `;
 
 export default NavProgress;
