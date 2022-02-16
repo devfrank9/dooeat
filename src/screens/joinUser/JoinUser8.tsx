@@ -18,7 +18,9 @@ const JoinUser8 = () => {
           <p style={{fontSize: '24px', textAlign: 'center', fontWeight: 400}}>
             닉네임 님의 목표,
           </p>
-          <UnderLine>함께 이뤄드릴께요!</UnderLine>
+          <Inline>
+            <UnderLine>함께 이뤄드릴께요!</UnderLine>
+          </Inline>
         </div>
         <BmiResult2 />
         <Arrow>
@@ -51,6 +53,10 @@ const JoinUser8 = () => {
     </BaseScreen>
   );
 };
+const Inline = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const Label = styled.label`
   position: absolute;
   right: 11.4px;
