@@ -12,4 +12,5 @@ export const theme: DefaultTheme = {
   fontColor1: '#333333',
   fontColor2: '#979797',
   fontColor3: '#FFFFFF',
+  roboto: '"Roboto", sans-serif',
 };

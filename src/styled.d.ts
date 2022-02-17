@@ -13,5 +13,6 @@ declare module 'styled-components' {
     fontColor1: string;
     fontColor2: string;
     fontColor3: string;
+    roboto: string;
   }
 }
