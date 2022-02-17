@@ -50,7 +50,7 @@ const BackArrow = styled.button`
 const NavContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 10%;
+  height: 80px;
   margin: 0 -28px;
 `;
 
