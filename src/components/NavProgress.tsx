@@ -12,7 +12,7 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
       <ArrowContainer>
         <BackArrow
           onClick={() => {
-              console.log(1);
+            console.log(1);
             navigate(-1);
           }}
         />
@@ -33,12 +33,12 @@ const ArrowContainer = styled.div`
 `;
 const NumContainer = styled.div`
   position: absolute;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 19px;
   font-size: 16px;
+  left: 50%;
 `;
 const BackArrow = styled.div`
   border: none;
@@ -47,7 +47,7 @@ const BackArrow = styled.div`
     50%;
   width: 24px;
   height: 16px;
-  z-index:9;
+  z-index: 9;
 `;
 const NavContainer = styled.div`
   display: flex;
