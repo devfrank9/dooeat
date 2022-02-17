@@ -26,11 +26,13 @@ const JoinUser2 = () => {
         </PicAlign>
         <div style={{height: '24px'}} />
         <CheckNone placeholder="닉네임을 입력해주세요." />
-        <div style={{flex: 5}} />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/3">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.55}} />
+        <div style={{flex: 1}} />
+        <LinkStyle to="/join-user/3">
+          <ColoredBtn>
+            다음
+          </ColoredBtn>
+        </LinkStyle>
+        <div style={{height:30}} />
       </AlignBase>
     </BaseScreen>
   );

@@ -1,5 +1,6 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {DummySelect} from "../lib/Dummys";
 
 export const SelectTest = () => <Select></Select>;
 
@@ -22,42 +23,39 @@ export const Select = styled.select`
     display: none;
   }
 `;
-/* interface Prop {
-  items: {id: number; name: string}[];
-  value: string;
-  onChange: (value: string) => void;
-} */
+interface Prop {
+  items?: {id: number; name: string}[];
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+}
 
-const DropDown = () => {
+const DropDown = ({items, value, onChange, placeholder = '선택해주세요'} : Prop) => {
   const [isActive, setIsActive] = useState(false);
-  const [item, setItem] = useState([null]);
-  const example = [
-    {id: 1, name: '울릉도'},
-    {id: 2, name: '동남쪽'},
-    {id: 3, name: '뱃길따라'},
-    {id: 4, name: '이백리'},
-  ];
+  const [item, setItem] = useState("");
+  const example = items ? items : DummySelect;
 
   const onActiveToggle = useCallback(() => {
     setIsActive(prev => !prev);
   }, []);
 
-  const onSelectItem = useCallback(e => {
+  const onSelectItem = (e : any) => {
     const targetId = e.target.id;
+
     if (targetId === 'item_name') {
       setItem(e.target.parentElement.innertText);
     } else if (targetId === 'item') {
-      setItem(e.target.innertText);
+      setItem(e.target.innerText);
     }
     setIsActive(prev => !prev);
-  }, []);
+  };
 
   return (
     <DropdownContainer>
       <DropdownBody onClick={onActiveToggle} isActive={isActive}>
         {item ? (
           <>
-            <ItemName>{item}</ItemName>
+            <DropdownSelect>{item}</DropdownSelect>
           </>
         ) : (
           <>
@@ -118,6 +116,7 @@ const DropdownItemContainer = styled.li`
   &:last-child {
     border-bottom: none;
   }
+  background-color:white;
 `;
 
 const ItemName = styled.p`

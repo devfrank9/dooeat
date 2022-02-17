@@ -21,20 +21,24 @@ const JoinUser4 = () => {
           <p>사는 곳은 어디인가요?</p>
         </TextAlign>
         <SelectAlign>
-          <DropDown />
+          <DropDown placeholder={'광역시도'}/>
           <div style={{height: '12px'}} />
-          <DropDown />
+          <DropDown placeholder={'시군구'}/>
         </SelectAlign>
-        <div style={{flex: 3}} />
-        <UnColoredBtn>
-          <LinkStyle2 to="/join-user/5">건너뛰기</LinkStyle2>
-        </UnColoredBtn>
+        <div style={{flex: 1}} />
+        <LinkStyle2 to="/join-user/5">
+          <UnColoredBtn>
+            건너뛰기
+          </UnColoredBtn>
+        </LinkStyle2>
         <div style={{height: '12px'}} />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/5">다음</LinkStyle>
-        </ColoredBtn>
+        <LinkStyle to="/join-user/5">
+          <ColoredBtn>
+            다음
+          </ColoredBtn>
+        </LinkStyle>
         <Footer />
-        <div style={{flex: 1.1}} />
+        <div style={{height: 81}} />
       </AlignBase>
     </BaseScreen>
   );

@@ -9,6 +9,7 @@ import Agreement from '../../components/Agreement';
 import {CheckNone} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import CheckInput from "../../components/CheckInput";
 
 const JoinUser1 = () => {
   return (
@@ -20,17 +21,19 @@ const JoinUser1 = () => {
           <p>아이디 정보를 입력해주세요.</p>
         </TextAlign>
         <InputAlign>
-          <CheckNone placeholder="이메일을 입력해주세요" />
-          <CheckNone placeholder="비밀번호를 입력해주세요." />
-          <CheckNone placeholder="비밀번호를 다시 한번 입력해주세요." />
+          <CheckInput placeholder="이메일을 입력해주세요" />
+          <CheckInput placeholder="비밀번호를 입력해주세요." />
+          <CheckInput placeholder="비밀번호를 다시 한번 입력해주세요." />
         </InputAlign>
-        <div style={{flex: 2}} />
+        <div style={{flex: 1}} />
         <Agreement />
         <BtnAlign />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/2">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.37}} />
+        <LinkStyle to="/join-user/2">
+          <ColoredBtn>
+            다음
+          </ColoredBtn>
+        </LinkStyle>
+        <div style={{height:30}} />
       </AlignBase>
     </BaseScreen>
   );

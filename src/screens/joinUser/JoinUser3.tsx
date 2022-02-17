@@ -22,11 +22,11 @@ const JoinUser3 = () => {
             <strong>성별과 나이</strong>를 입력해주세요.
           </p>
         </TextAlign>
-        <div style={{flex: 1}} />
+        <div style={{height: 41}} />
         <Subject>성별</Subject>
         <BtnAlign>
-          <LongBtn>여자</LongBtn>
-          <LongBtn>남자</LongBtn>
+          <LongBtn style={{fontFamily : 'Noto Sans KR'}}>여자</LongBtn>
+          <LongBtn style={{fontFamily : 'Noto Sans KR'}}>남자</LongBtn>
         </BtnAlign>
         <div style={{height: '30px'}} />
         <Subject>나이</Subject>
@@ -35,16 +35,20 @@ const JoinUser3 = () => {
           <Age>세</Age>
           <AgeInput placeholder="나이를 입력해주세요." />
         </div>
-        <div style={{flex: 1.6}} />
-        <UnColoredBtn>
-          <LinkStyle2 to="/join-user/4">건너뛰기</LinkStyle2>
-        </UnColoredBtn>
-        <div style={{height: '12px'}} />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/4">다음</LinkStyle>
-        </ColoredBtn>
-        <Footer />
         <div style={{flex: 1}} />
+        <LinkStyle2 to="/join-user/4">
+          <UnColoredBtn>
+            건너뛰기
+          </UnColoredBtn>
+        </LinkStyle2>
+        <div style={{height: '12px'}} />
+        <LinkStyle to="/join-user/4">
+          <ColoredBtn>
+            다음
+          </ColoredBtn>
+        </LinkStyle>
+        <Footer />
+        <div style={{height:81}}/>
       </AlignBase>
     </BaseScreen>
   );

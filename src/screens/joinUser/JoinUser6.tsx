@@ -16,11 +16,11 @@ const JoinUser6 = () => {
         <NavProgress pageNumber={6} />
         <Subject>BMI 계산 결과</Subject>
         <BmiResult />
-        <div style={{flex: 0.36}} />
+        <div style={{flex: 1}} />
         <ColoredBtn>
           <LinkStyle to="/join-user/7">다음</LinkStyle>
         </ColoredBtn>
-        <div style={{flex: 1}} />
+        <div style={{height: 113}} />
       </AlignBase>
     </BaseScreen>
   );

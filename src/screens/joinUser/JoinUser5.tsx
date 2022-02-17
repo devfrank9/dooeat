@@ -38,7 +38,7 @@ const JoinUser5 = () => {
         <ColoredBtn>
           <LinkStyle to="/join-user/6">다음</LinkStyle>
         </ColoredBtn>
-        <div style={{flex: 1}} />
+        <div style={{height: 113}} />
       </AlignBase>
     </BaseScreen>
   );

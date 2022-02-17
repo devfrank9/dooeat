@@ -41,13 +41,17 @@ const JoinUser8 = () => {
             <KgInput placeholder="입력해주세요." type="text" value={7} />
           </div>
         </TextAlign>
-        <ColoredBtn>
-          <LinkStyle to="/search-mento/1">동네 운동 멘토 찾기</LinkStyle>
-        </ColoredBtn>
+        <LinkStyle to="/search-mento/1">
+          <ColoredBtn>
+            동네 운동 멘토 찾기
+          </ColoredBtn>
+        </LinkStyle>
         <div style={{height: '12px'}} />
+        <LinkStyle2 to="/meal">
         <UnColoredBtn>
-          <LinkStyle2 to="/meal">아니오, 괜찮습니다!</LinkStyle2>
+          아니오, 괜찮습니다!
         </UnColoredBtn>
+        </LinkStyle2>
         <div style={{height: '38px'}} />
       </AlignBase>
     </BaseScreen>

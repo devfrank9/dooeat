@@ -14,14 +14,14 @@ const Agreement = () => {
         <label htmlFor="check2" />
         <p>개인정보처리방침</p>
         <div style={{flex: 1}} />
-        <LinkStyle to="/agree1">보기</LinkStyle>
+        <LinkStyle to="/agree1" style={{width:35}}>보기</LinkStyle>
       </CheckInput>
       <CheckInput>
         <input type="checkbox" id="check3" />
         <label htmlFor="check3" />
         <p>서비스이용약관</p>
         <div style={{flex: 1}} />
-        <LinkStyle to="/agree1">보기</LinkStyle>
+        <LinkStyle to="/agree1" style={{width:35}}>보기</LinkStyle>
       </CheckInput>
     </AgreementAlign>
   );

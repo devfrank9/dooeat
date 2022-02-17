@@ -12,6 +12,7 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
       <ArrowContainer>
         <BackArrow
           onClick={() => {
+              console.log(1);
             navigate(-1);
           }}
         />
@@ -39,13 +40,14 @@ const NumContainer = styled.div`
   height: 19px;
   font-size: 16px;
 `;
-const BackArrow = styled.button`
+const BackArrow = styled.div`
   border: none;
   background-color: inherit;
   background: url('/image/Icon ionic-ios-arrow-round-back.png') no-repeat 50%
     50%;
   width: 24px;
   height: 16px;
+  z-index:9;
 `;
 const NavContainer = styled.div`
   display: flex;

@@ -45,7 +45,7 @@ const JoinUser7 = () => {
         <ColoredBtn>
           <LinkStyle to="/join-user/8">완료</LinkStyle>
         </ColoredBtn>
-        <div style={{flex: 1.1}} />
+        <div style={{height: 113}} />
       </AlignBase>
     </BaseScreen>
   );

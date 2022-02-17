@@ -63,6 +63,7 @@ const KgInput = styled.input`
   &:focus::-webkit-input-placeholder {
     color: transparent;
   }
+  font-family:'Roboto'
 `;
 const Header = styled.div`
   margin-top: 40px;
