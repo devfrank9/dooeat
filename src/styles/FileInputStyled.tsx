@@ -13,7 +13,7 @@ export const FileLabel = styled.label`
   appearance: none;
   background: url('/image/Icon feather-plus-circle.png') no-repeat 95% 50%;
   box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
+  background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};
   font-size: 1.25rem;
 `;
@@ -26,7 +26,7 @@ export const FileRectengle = styled.label`
   justify-content: center;
   width: 10rem;
   height: 10rem;
-  border: 0.1rem solid rgb(223, 223, 223);
+  border: 0.1rem solid ${props => props.theme.btnColor2};
   border-radius: 1rem;
   background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
 `;

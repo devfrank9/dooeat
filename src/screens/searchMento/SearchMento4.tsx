@@ -57,7 +57,7 @@ const DateLabel = styled.label`
   -moz-appearance: none;
   appearance: none;
   box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
+  background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};
   font-size: 15px;
   margin-bottom: 30px;
@@ -89,7 +89,7 @@ const TextBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 143px;
-  border: 1px solid rgb(252, 216, 224);
+  border: 1px solid ${props => props.theme.pointColor2};
   border-radius: 8px;
   font-size: 18px;
   font-weight: 300;

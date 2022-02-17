@@ -6,14 +6,14 @@ export const SelectTest = () => <Select></Select>;
 export const Select = styled.select`
   width: 100%;
   height: 48px;
-  border: 1px solid rgb(252, 216, 224);
+  border: 1px solid ${props => props.theme.pointColor2};
   border-radius: 8px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url('/image/Icon ionic-ios-arrow-up.png') no-repeat 95% 50%;
   box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
+  background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};
   font-size: 15px;
   padding-left: 30px;
@@ -89,9 +89,9 @@ const DropdownBody = styled.div<{isActive: boolean}>`
   align-items: center;
   height: 48px;
   padding-left: 30px;
-  border: 1px solid rgb(252, 216, 224);
+  border: 1px solid ${props => props.theme.pointColor2};
   color: ${prop => prop.theme.mainColor};
-  background-color: rgb(255, 249, 249);
+  background-color: ${props => props.theme.pointColor3};
   border-radius: ${props => (!props.isActive ? '8px' : `8px 8px 0px 0px`)};
 `;
 
@@ -101,9 +101,8 @@ const DropdownSelect = styled.p`
 
 const DropdownMenu = styled.ul<{isActive: boolean}>`
   display: ${props => (props.isActive ? `block` : `none`)};
-  background-color: white;
   position: absolute;
-  border: 1px solid rgb(252, 216, 224);
+  border: 1px solid ${props => props.theme.pointColor2};
   border-radius: 0 0 8px 8px;
   box-sizing: border-box;
 `;
@@ -112,7 +111,7 @@ const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid ${props => props.theme.btnColor1};
   border-top: none;
   height: 48px;
   min-width: 319px;

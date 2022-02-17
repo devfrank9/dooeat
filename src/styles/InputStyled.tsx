@@ -11,7 +11,7 @@ export const Common = styled.input`
   width: 100%;
   height: 52px;
   padding-left: 20px;
-  border: 0.1rem solid rgb(223, 223, 223);
+  border: 0.1rem solid ${props => props.theme.btnColor2};
   font-size: 15px;
   border-radius: 0.5rem;
   display: block;
@@ -21,26 +21,6 @@ export const Common = styled.input`
     font-weight: 300;
     line-height: 20px;
     opacity: 0.8;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:focus::-webkit-input-placeholder {
-    color: transparent;
-  }
-`;
-export const CommonShort = styled.input`
-  width: 8.3333rem;
-  height: 4.3333rem;
-  padding-left: 1.6667rem;
-  border: 0.1rem solid rgb(223, 223, 223);
-  font-size: 1.25rem;
-  border-radius: 0.5rem;
-  display: block;
-  box-sizing: border-box;
-  &::-webkit-input-placeholder {
-    font-size: 1.1667rem;
-    opacity: 0.5;
   }
   &:focus {
     outline: none;
@@ -71,7 +51,7 @@ export const TextArea = styled.textarea`
   padding-top: 16px;
   border-radius: 8px;
   font-size: 15px;
-  border: 1px solid rgb(223, 223, 223);
+  border: 1px solid ${props => props.theme.btnColor2};
   box-sizing: border-box;
   &::-webkit-input-placeholder {
     font-size: 14px;
@@ -90,15 +70,15 @@ export const UrlInputAdd = styled.input`
   height: 6.4vh;
   align-items: center;
   padding-left: 1rem;
-  border: 0.1rem solid rgb(223, 223, 223);
+  border: 0.1rem solid ${props => props.theme.btnColor2};
   border-radius: 0.5rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url('/image/Icon feather-plus-circle.png') no-repeat 95% 50%;
   box-sizing: border-box;
-  background-color: white;
-  color: black;
+  background-color: inherit;
+  color: ${props => props.theme.fontColor1};
   font-size: 1.25rem;
   &::-webkit-input-placeholder {
     font-size: 1.1667rem;
@@ -125,7 +105,7 @@ export const UrlInputDel = styled.input`
   background: url('/image/Icon ionic-ios-close-circle-outline.png') no-repeat
     95% 50%;
   box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
+  background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};
   font-size: 1.25rem;
   &::-webkit-input-placeholder {

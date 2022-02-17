@@ -43,7 +43,7 @@ const PicAlign = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 60px;
-  background-color: #f5f5f5;
+  background-color: ${props => props.theme.btnColor1};
   input {
     display: none;
   }

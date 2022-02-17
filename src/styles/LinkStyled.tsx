@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const LinkStyle = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: ${props => props.theme.fontColor3};
   font-weight: 500;
   font-size: 16px;
 `;

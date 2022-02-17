@@ -17,16 +17,16 @@ export const ShortBtn = styled.button`
   height: 48px;
   border-radius: 6px;
   border: none;
-  background-color: rgb(245, 245, 245);
+  background-color: ${prop => prop.theme.btnColor1};
   font-size: 15px;
   font-weight: 400;
   &:hover {
-    background-color: ${props => props.theme.mainColor};
-    color: white;
+    background-color: ${prop => prop.theme.mainColor};
+    color: ${prop => prop.theme.fontColor3};
   }
   &:active {
     background-color: ${props => props.theme.mainColor};
-    color: white;
+    color: ${prop => prop.theme.fontColor3};
   }
 `;
 export const MiddleBtn = styled(ShortBtn)`
@@ -41,16 +41,16 @@ export const LongLine = styled.button`
   height: 52px;
   border-radius: 6px;
   border: none;
-  background-color: rgb(245, 245, 245);
+  background-color: ${prop => prop.theme.btnColor1};
   font-size: 15px;
   font-weight: 400;
   &:hover {
     background-color: ${props => props.theme.mainColor};
-    color: white;
+    color: ${prop => prop.theme.fontColor3};
   }
   &:active {
     background-color: ${props => props.theme.mainColor};
-    color: white;
+    color: ${prop => prop.theme.fontColor3};
   }
 `;
 export const UnColoredBtn = styled.button`
@@ -65,11 +65,11 @@ export const UnColoredBtn = styled.button`
 `;
 export const ColoredBtn = styled.button`
   height: 52px;
-  border: 1px solid white;
+  border: 1px solid ${prop => prop.theme.fontColor3};
   border-radius: 3rem;
   background-color: ${props => props.theme.mainColor};
   font-size: 16px;
-  color: white;
+  color: ${prop => prop.theme.fontColor3};
   box-sizing: border-box;
   font-weight: 600;
 `;
@@ -77,7 +77,7 @@ export const BlockBtn = styled.button`
   height: 6.4vh;
   border: none;
   border-radius: 3rem;
-  background-color: #f5f5f5;
+  background-color: ${prop => prop.theme.btnColor1};
   font-size: 1rem;
   box-sizing: border-box;
 `;

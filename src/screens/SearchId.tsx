@@ -43,7 +43,7 @@ const Banner = styled.div`
   align-items: center;
   margin: 0 -28px;
   background-color: ${prop => prop.theme.mainColor};
-  color: white;
+  color: ${props => props.theme.fontColor3};
   font-size: 15px;
   font-weight: 300;
   p:nth-child(1) {

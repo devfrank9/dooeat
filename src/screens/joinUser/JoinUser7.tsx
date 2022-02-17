@@ -80,7 +80,7 @@ const LastText = styled.div`
   }
 `;
 const Scale = styled.div`
-  background-color: rgb(252, 216, 224);
+  background-color: ${props => props.theme.pointColor2};
   background-image: url('/image/group 3.png');
   background-repeat: no-repeat;
   background-position: center;

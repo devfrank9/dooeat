@@ -35,7 +35,7 @@ const InputAlign = styled.div`
   }
 `;
 const SearchLink = styled(Link)`
-  color: rgb(151, 151, 151);
+  color: ${props => props.theme.btnColor4};
   margin-top: 20px;
   text-align: center;
   font-size: 14px;

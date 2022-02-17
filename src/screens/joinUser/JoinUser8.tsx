@@ -89,7 +89,7 @@ const TextAlign = styled.div`
   margin-bottom: 50px;
   p:nth-child(2) {
     font-size: 30px;
-    color: black;
+    color: ${props => props.theme.fontColor1};
     margin: 0 18px;
   }
   p:nth-child(3) {
@@ -106,7 +106,7 @@ const UnderLine = styled.p`
     content: '';
     width: 100%;
     height: 12px;
-    background: rgb(252, 216, 224);
+    background: ${props => props.theme.pointColor2};
     position: absolute;
     bottom: 0.1rem;
     left: 0;
