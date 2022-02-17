@@ -19,8 +19,10 @@ const BaseScreen = ({children}: Prop) => {
 const Base = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
+  max-width: 480px;
 `;
 export const AlignBase = styled.div`
   flex: 1;

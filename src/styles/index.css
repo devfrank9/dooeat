@@ -138,6 +138,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
 .app {
   width: 100vw;
