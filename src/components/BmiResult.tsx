@@ -32,6 +32,7 @@ const BmiResult = () => {
 const Header = styled.div`
   margin-top: 44px;
   p {
+    font-family: ${prop => prop.theme.roboto};
     text-align: center;
     font-size: 15px;
     font-weight: 400;
@@ -45,6 +46,7 @@ const BmiCalc = styled.div`
     font-size: 32px;
     font-weight: 500;
     color: rgb(51, 51, 51);
+    font-family: ${prop => prop.theme.roboto};
   }
 `;
 const HealthResult = styled.div`
@@ -97,6 +99,7 @@ const BmiIndicator = styled.div`
   padding: 0 10px;
   align-items: center;
   justify-content: center;
+  font-family: ${prop => prop.theme.roboto};
   div {
     flex: 1;
     min-width: 60px;

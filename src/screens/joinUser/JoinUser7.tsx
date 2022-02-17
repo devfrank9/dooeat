@@ -56,6 +56,7 @@ const Label = styled.label`
   font-size: 15px;
   font-weight: 500;
   color: ${prop => prop.theme.mainColor};
+  font-family: ${prop => prop.theme.roboto};
 `;
 const KgInput = styled.input`
   width: 153.6px;

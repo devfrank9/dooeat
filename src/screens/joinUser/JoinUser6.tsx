@@ -31,6 +31,7 @@ const Subject = styled.p`
   font-weight: 500;
   margin-bottom: 79px;
   margin-top: 52px;
+  font-family: ${prop => prop.theme.roboto};
 `;
 
 export default JoinUser6;

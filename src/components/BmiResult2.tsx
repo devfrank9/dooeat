@@ -48,6 +48,7 @@ const Label = styled.label`
   color: ${prop => prop.theme.mainColor};
   left: 60%;
   bottom: 5px;
+  font-family: ${prop => prop.theme.roboto};
 `;
 const KgInput = styled.input`
   width: 91.5px;
@@ -63,7 +64,7 @@ const KgInput = styled.input`
   &:focus::-webkit-input-placeholder {
     color: transparent;
   }
-  font-family:'Roboto'
+  font-family: 'Roboto';
 `;
 const Header = styled.div`
   margin-top: 40px;
@@ -75,6 +76,7 @@ const Header = styled.div`
 `;
 const BmiCalc = styled.div`
   margin-top: 40px;
+  font-family: ${prop => prop.theme.roboto};
   p:first-child {
     text-align: center;
     font-size: 20px;
@@ -138,6 +140,7 @@ const BmiIndicator = styled.div`
   padding: 0 10px;
   align-items: center;
   justify-content: center;
+  font-family: ${prop => prop.theme.roboto};
   div {
     flex: 1;
     min-width: 60px;

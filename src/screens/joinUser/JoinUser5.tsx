@@ -50,6 +50,7 @@ const Label = styled.label`
   font-size: 15px;
   font-weight: 500;
   color: ${prop => prop.theme.mainColor};
+  font-family: ${prop => prop.theme.roboto};
 `;
 const Input = styled(Common)`
   padding-left: 30px;

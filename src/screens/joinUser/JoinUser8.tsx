@@ -42,15 +42,11 @@ const JoinUser8 = () => {
           </div>
         </TextAlign>
         <LinkStyle to="/search-mento/1">
-          <ColoredBtn>
-            동네 운동 멘토 찾기
-          </ColoredBtn>
+          <ColoredBtn>동네 운동 멘토 찾기</ColoredBtn>
         </LinkStyle>
         <div style={{height: '12px'}} />
         <LinkStyle2 to="/meal">
-        <UnColoredBtn>
-          아니오, 괜찮습니다!
-        </UnColoredBtn>
+          <UnColoredBtn>아니오, 괜찮습니다!</UnColoredBtn>
         </LinkStyle2>
         <div style={{height: '38px'}} />
       </AlignBase>
@@ -67,6 +63,7 @@ const Label = styled.label`
   font-size: 15px;
   font-weight: 500;
   color: ${prop => prop.theme.mainColor};
+  font-family: ${prop => prop.theme.roboto};
 `;
 const KgInput = styled.input`
   width: 91.5px;
