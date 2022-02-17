@@ -66,12 +66,11 @@ export const TextArea = styled.textarea`
 `;
 export const UrlInputAdd = styled.input`
   display: flex;
-  width: 88.6vw;
-  height: 6.4vh;
+  height: 52px;
   align-items: center;
-  padding-left: 1rem;
-  border: 0.1rem solid ${props => props.theme.btnColor2};
-  border-radius: 0.5rem;
+  padding-left: 19px;
+  border: 1px solid ${props => props.theme.btnColor2};
+  border-radius: 8px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -79,10 +78,11 @@ export const UrlInputAdd = styled.input`
   box-sizing: border-box;
   background-color: inherit;
   color: ${props => props.theme.fontColor1};
-  font-size: 1.25rem;
+  font-size: 15px;
   &::-webkit-input-placeholder {
-    font-size: 1.1667rem;
+    font-size: 14px;
     opacity: 0.5;
+    font-weight: 300;
   }
   &:focus {
     outline: none;
@@ -93,12 +93,11 @@ export const UrlInputAdd = styled.input`
 `;
 export const UrlInputDel = styled.input`
   display: flex;
-  width: 88.6vw;
-  height: 6.4vh;
+  height: 52px;
   align-items: center;
-  padding-left: 1rem;
-  border: 0.1rem solid ${props => props.theme.mainColor};
-  border-radius: 0.5rem;
+  padding-left: 19px;
+  border: 1px solid ${props => props.theme.mainColor};
+  border-radius: 8px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -107,10 +106,11 @@ export const UrlInputDel = styled.input`
   box-sizing: border-box;
   background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};
-  font-size: 1.25rem;
+  font-size: 15px;
   &::-webkit-input-placeholder {
-    font-size: 1.1667rem;
+    font-size: 14px;
     opacity: 0.5;
+    font-weight: 300;
   }
   &:focus {
     outline: none;

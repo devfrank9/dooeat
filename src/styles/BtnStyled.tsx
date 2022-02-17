@@ -37,8 +37,7 @@ export const LongBtn = styled(ShortBtn)`
 `;
 export const LongLine = styled.button`
   display: block;
-  width: 59px;
-  height: 52px;
+  height: 48px;
   border-radius: 6px;
   border: none;
   background-color: ${prop => prop.theme.btnColor1};

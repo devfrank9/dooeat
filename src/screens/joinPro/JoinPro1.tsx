@@ -1,7 +1,7 @@
 // Packages
 import styled from 'styled-components';
 // Screens
-import BaseScreen from '../BaseScreen';
+import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 import Agreement from '../../components/Agreement';
@@ -12,34 +12,36 @@ import {LinkStyle} from '../../styles/LinkStyled';
 const JoinPro1 = () => {
   return (
     <BaseScreen>
-      <NavProgress pageNumber={1} />
-      <TextAlign>
-        <p>전문가님의</p>
-        <p>정확한 정보가 필요합니다.</p>
-      </TextAlign>
-      <Agreement />
-      <BtnAlign>
-        <ColoredBtn>
+      <AlignBase>
+        <NavProgress pageNumber={1} />
+        <TextAlign>
+          <p>전문가님의</p>
+          <p>정확한 정보가 필요합니다.</p>
+        </TextAlign>
+        <Agreement />
+        <AbsoluteColBtn>
           <LinkStyle to="/join-pro/2">휴대폰 본인 확인</LinkStyle>
-        </ColoredBtn>
-      </BtnAlign>
+        </AbsoluteColBtn>
+      </AlignBase>
     </BaseScreen>
   );
 };
-const BtnAlign = styled.div`
-  margin-top: 22.25rem;
-`;
 const TextAlign = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  margin-top: 3.4167rem;
-  margin-bottom: 2rem;
-  p {
-    font-size: 1.8333rem;
-    margin: 0;
-  }
+  font-size: 22px;
+  margin: 0 10px;
+  font-weight: 400;
+  line-height: 33px;
+  margin-left: 10px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+`;
+export const AbsoluteColBtn = styled(ColoredBtn)`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 85%;
 `;
 
 export default JoinPro1;
