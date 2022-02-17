@@ -6,10 +6,9 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 import Agreement from '../../components/Agreement';
 // Styles
-import {CheckNone} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import CheckInput from "../../components/CheckInput";
+import CheckInput from '../../components/CheckInput';
 
 const JoinUser1 = () => {
   return (
@@ -29,11 +28,9 @@ const JoinUser1 = () => {
         <Agreement />
         <BtnAlign />
         <LinkStyle to="/join-user/2">
-          <ColoredBtn>
-            다음
-          </ColoredBtn>
+          <ColoredBtn>다음</ColoredBtn>
         </LinkStyle>
-        <div style={{height:30}} />
+        <div style={{height: 30}} />
       </AlignBase>
     </BaseScreen>
   );

@@ -42,6 +42,7 @@ export const AbsoluteColBtn = styled(ColoredBtn)`
   transform: translateX(-50%);
   bottom: 30px;
   width: 85%;
+  max-width: 480px;
 `;
 
 export default JoinPro1;
