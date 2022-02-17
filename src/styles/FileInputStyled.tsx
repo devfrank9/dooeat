@@ -55,10 +55,10 @@ export const FileRectengle = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10rem;
-  height: 10rem;
-  border: 0.1rem solid ${props => props.theme.btnColor2};
-  border-radius: 1rem;
+  width: 150px;
+  height: 150px;
+  border: 1px solid ${props => props.theme.btnColor2};
+  border-radius: 10px;
   background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
 `;
 

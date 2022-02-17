@@ -56,6 +56,7 @@ export const TextArea = styled.textarea`
   &::-webkit-input-placeholder {
     font-size: 14px;
     opacity: 0.5;
+    font-weight: 300;
   }
   &:focus {
     outline: none;
