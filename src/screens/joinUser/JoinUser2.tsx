@@ -8,7 +8,7 @@ import NavProgress from '../../components/NavProgress';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {CheckNone} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import {TextAlign} from './JoinUser1';
+import {AbsoluteColBtn, TextAlign} from './JoinUser1';
 
 const JoinUser2 = () => {
   return (
@@ -26,13 +26,11 @@ const JoinUser2 = () => {
         </PicAlign>
         <div style={{height: '24px'}} />
         <CheckNone placeholder="닉네임을 입력해주세요." />
-        <div style={{flex: 1}} />
+        <div style={{height: '41px'}} />
         <LinkStyle to="/join-user/3">
-          <ColoredBtn>
-            다음
-          </ColoredBtn>
+          <AbsoluteColBtn>다음</AbsoluteColBtn>
         </LinkStyle>
-        <div style={{height:30}} />
+        <div style={{height: 30}} />
       </AlignBase>
     </BaseScreen>
   );

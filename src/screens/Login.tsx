@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 2}} />
+        <div style={{height: '147px'}} />
         <Logo />
         <InputAlign>
           <Common placeholder="이메일을 입력해주세요" />

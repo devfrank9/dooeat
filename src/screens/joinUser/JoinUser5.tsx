@@ -6,10 +6,9 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 // Styles
 import {Common} from '../../styles/InputStyled';
-import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import {TextAlign} from './JoinUser1';
-import {Subject} from './JoinUser3';
+import {AbsoluteColBtn2, Subject} from './JoinUser3';
 
 const JoinUser5 = () => {
   return (
@@ -35,9 +34,9 @@ const JoinUser5 = () => {
           <Input placeholder="cm단위로 입력해주세요." />
         </div>
         <div style={{flex: 1.7}} />
-        <ColoredBtn>
+        <AbsoluteColBtn2>
           <LinkStyle to="/join-user/6">다음</LinkStyle>
-        </ColoredBtn>
+        </AbsoluteColBtn2>
         <div style={{height: 113}} />
       </AlignBase>
     </BaseScreen>

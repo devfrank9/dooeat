@@ -24,17 +24,35 @@ const JoinUser1 = () => {
           <CheckInput placeholder="비밀번호를 입력해주세요." />
           <CheckInput placeholder="비밀번호를 다시 한번 입력해주세요." />
         </InputAlign>
-        <div style={{flex: 1}} />
-        <Agreement />
+        <AgreementAlign>
+          <Agreement />
+        </AgreementAlign>
         <BtnAlign />
         <LinkStyle to="/join-user/2">
-          <ColoredBtn>다음</ColoredBtn>
+          <AbsoluteColBtn>다음</AbsoluteColBtn>
         </LinkStyle>
-        <div style={{height: 30}} />
       </AlignBase>
     </BaseScreen>
   );
 };
+const AgreementAlign = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 123px;
+  width: 85%;
+  max-width: 480px;
+`;
+export const AbsoluteColBtn = styled(ColoredBtn)`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 85%;
+  max-width: 480px;
+`;
 const BtnAlign = styled.div`
   margin-bottom: 40px;
 `;

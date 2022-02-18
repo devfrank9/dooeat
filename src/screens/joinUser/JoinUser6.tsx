@@ -13,14 +13,18 @@ const JoinUser6 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <NavProgress pageNumber={6} />
-        <Subject>BMI 계산 결과</Subject>
-        <BmiResult />
-        <div style={{flex: 1}} />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/7">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{height: 113}} />
+        <div
+          style={{display: 'flex', flexDirection: 'column', height: '100vh'}}
+        >
+          <NavProgress pageNumber={6} />
+          <Subject>BMI 계산 결과</Subject>
+          <BmiResult />
+          <div style={{height: 40}} />
+          <ColoredBtn>
+            <LinkStyle to="/join-user/7">다음</LinkStyle>
+          </ColoredBtn>
+          <div style={{height: 113}} />
+        </div>
       </AlignBase>
     </BaseScreen>
   );

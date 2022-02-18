@@ -7,9 +7,9 @@ import NavProgress from '../../components/NavProgress';
 import Footer from '../../components/Footer';
 // Styles
 import DropDown from '../../styles/SelectStyled';
-import {UnColoredBtn, ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
 import {TextAlign} from './JoinUser1';
+import {AbsoluteColBtn2, AbsoluteUnColBtn} from './JoinUser3';
 
 const JoinUser4 = () => {
   return (
@@ -21,28 +21,34 @@ const JoinUser4 = () => {
           <p>사는 곳은 어디인가요?</p>
         </TextAlign>
         <SelectAlign>
-          <DropDown placeholder={'광역시도'}/>
+          <DropDown placeholder={'광역시도'} />
           <div style={{height: '12px'}} />
-          <DropDown placeholder={'시군구'}/>
+          <DropDown placeholder={'시군구'} />
         </SelectAlign>
         <div style={{flex: 1}} />
         <LinkStyle2 to="/join-user/5">
-          <UnColoredBtn>
-            건너뛰기
-          </UnColoredBtn>
+          <AbsoluteUnColBtn>건너뛰기</AbsoluteUnColBtn>
         </LinkStyle2>
         <div style={{height: '12px'}} />
         <LinkStyle to="/join-user/5">
-          <ColoredBtn>
-            다음
-          </ColoredBtn>
+          <AbsoluteColBtn2>다음</AbsoluteColBtn2>
         </LinkStyle>
-        <Footer />
-        <div style={{height: 81}} />
+        <FooterAlign>
+          <Footer />
+        </FooterAlign>
       </AlignBase>
     </BaseScreen>
   );
 };
+const FooterAlign = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 82px;
+  width: 85%;
+  max-width: 480px;
+`;
 const SelectAlign = styled.div`
   margin-top: 70px;
 `;

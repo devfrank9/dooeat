@@ -13,7 +13,7 @@ const Main = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 0.75}} />
+        <div style={{height: '147px'}} />
         <Logo />
         <BtnAlign>
           <ColoredBtn>

@@ -13,39 +13,43 @@ const JoinUser7 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <NavProgress pageNumber={7} />
-        <TextAlign>
-          <p>회원님의</p>
-          <div style={{display: 'flex'}}>
-            <p style={{fontWeight: 500}}>목표 체중</p>
-            <p>은 얼마인가요?</p>
-          </div>
-        </TextAlign>
-        <div style={{flex: 0.9}} />
-        <Scale />
-        <div style={{height: '36.9px'}} />
-        <LastText>
-          <p style={{fontSize: '20px', fontWeight: 400}}>나의 목표 체중은</p>
-          <div style={{marginBottom: '14px'}} />
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{position: 'relative'}}>
-              <Label>kg</Label>
-              <KgInput placeholder="입력해주세요." type="text" />
+        <div
+          style={{display: 'flex', flexDirection: 'column', height: '100vh'}}
+        >
+          <NavProgress pageNumber={7} />
+          <TextAlign>
+            <p>회원님의</p>
+            <div style={{display: 'flex'}}>
+              <p style={{fontWeight: 500}}>목표 체중</p>
+              <p>은 얼마인가요?</p>
             </div>
-            <p style={{fontSize: '20px', fontWeight: 300}}> 입니다.</p>
-          </div>
-        </LastText>
-        <div style={{flex: 0.5}} />
-        <ColoredBtn>
-          <LinkStyle to="/join-user/8">완료</LinkStyle>
-        </ColoredBtn>
-        <div style={{height: 113}} />
+          </TextAlign>
+          <div style={{flex: 0.9}} />
+          <Scale />
+          <div style={{height: '36.9px'}} />
+          <LastText>
+            <p style={{fontSize: '20px', fontWeight: 400}}>나의 목표 체중은</p>
+            <div style={{marginBottom: '14px'}} />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div style={{position: 'relative'}}>
+                <Label>kg</Label>
+                <KgInput placeholder="입력해주세요." type="text" />
+              </div>
+              <p style={{fontSize: '20px', fontWeight: 300}}> 입니다.</p>
+            </div>
+          </LastText>
+          <div style={{flex: 0.5}} />
+          <ColoredBtn>
+            <LinkStyle to="/join-user/8">완료</LinkStyle>
+          </ColoredBtn>
+          <div style={{height: 113}} />
+        </div>
       </AlignBase>
     </BaseScreen>
   );
