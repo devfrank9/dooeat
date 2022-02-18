@@ -6,7 +6,7 @@ const Footer = () => {
   );
 };
 
-const FooterStyle = styled.p`
+export const FooterStyle = styled.p`
   font-size: 13px;
   color: cornflowerblue;
   margin-top: 12px;

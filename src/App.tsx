@@ -26,7 +26,6 @@ import JoinUser5 from './screens/joinUser/JoinUser5';
 import JoinUser6 from './screens/joinUser/JoinUser6';
 import JoinUser7 from './screens/joinUser/JoinUser7';
 import JoinUser8 from './screens/joinUser/JoinUser8';
-import CompTest from './screens/CompTest';
 import SearchMento1 from './screens/searchMento/SearchMento1';
 import SearchMento2 from './screens/searchMento/SearchMento2';
 import SearchMento3 from './screens/searchMento/SearchMento3';
@@ -41,6 +40,12 @@ import JoinPro7 from './screens/joinPro/JoinPro7';
 import JoinPro8 from './screens/joinPro/JoinPro8';
 import MealMain from './screens/meal/MealMain';
 import MealEdit from './screens/meal/MealEdit';
+import HealthMain from './screens/health/HealthMain';
+import UserProMain from './screens/userPro/UserProMain';
+import UserProProfile from './screens/userPro/UserProProfile';
+import UserProStory from './screens/userPro/UserProStory';
+import UserProApply from './screens/userPro/UserProApply';
+import UserProReview from './screens/userPro/UserProReview';
 import {createGlobalStyle} from 'styled-components';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
@@ -127,7 +132,6 @@ function Screens() {
           <Route path={'/join-user/6'} element={<JoinUser6 />} />
           <Route path={'/join-user/7'} element={<JoinUser7 />} />
           <Route path={'/join-user/8'} element={<JoinUser8 />} />
-          <Route path={'/test'} element={<CompTest />} />
           <Route path={'/search-mento/1'} element={<SearchMento1 />} />
           <Route path={'/search-mento/2'} element={<SearchMento2 />} />
           <Route path={'/search-mento/3'} element={<SearchMento3 />} />
@@ -140,8 +144,14 @@ function Screens() {
           <Route path={'/join-pro/6'} element={<JoinPro6 />} />
           <Route path={'/join-pro/7'} element={<JoinPro7 />} />
           <Route path={'/join-pro/8'} element={<JoinPro8 />} />
-          <Route path={'/meal'} element={<MealMain />} />
-          <Route path={'/meal/edit'} element={<MealEdit />} />
+          <Route path={'/user/meal'} element={<MealMain />} />
+          <Route path={'/user/meal/edit'} element={<MealEdit />} />
+          <Route path={'/user/health'} element={<HealthMain />} />
+          <Route path={'/user/pro'} element={<UserProMain />} />
+          <Route path={'/user/pro/profile'} element={<UserProProfile />} />
+          <Route path={'/user/pro/profile/story'} element={<UserProStory />} />
+          <Route path={'/user/pro/profile/apply'} element={<UserProApply />} />
+          <Route path={'/user/pro/profile/review'} element={<UserProReview />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
