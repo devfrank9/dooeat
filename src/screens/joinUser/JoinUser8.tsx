@@ -45,7 +45,7 @@ const JoinUser8 = () => {
           <ColoredBtn>동네 운동 멘토 찾기</ColoredBtn>
         </LinkStyle>
         <div style={{height: '12px'}} />
-        <LinkStyle2 to="/meal">
+        <LinkStyle2 to="/user/meal">
           <UnColoredBtn>아니오, 괜찮습니다!</UnColoredBtn>
         </LinkStyle2>
         <div style={{height: '38px'}} />

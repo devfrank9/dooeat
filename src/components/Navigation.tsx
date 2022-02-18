@@ -4,19 +4,19 @@ import {Link} from 'react-router-dom';
 export const Navigation = () => {
   return (
     <NavContainer>
-      <Link to="/meal">
+      <Link to="/user/meal">
         <button>
           <img src="/image/Icon awesome-apple-alt.png" alt="" />
           <p>식단</p>
         </button>
       </Link>
-      <Link to="/health">
+      <Link to="/user/health">
         <button>
           <img src="/image/exercise.png" alt="" />
           <p>운동</p>
         </button>
       </Link>
-      <Link to="/user-pro">
+      <Link to="/user/pro">
         <button>
           <img src="/image/Icon material-person-pin.png" alt="" />
           <p>전문가</p>

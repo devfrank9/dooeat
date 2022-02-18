@@ -37,7 +37,7 @@ const SearchMento4 = () => {
           </Inline>
         </TextBox>
         <BtnFix>
-          <LinkStyle to="/">전문가 추천 받으러 가기</LinkStyle>
+          <LinkStyle to="/user/pro">전문가 추천 받으러 가기</LinkStyle>
         </BtnFix>
       </AlignBase>
     </BaseScreen>
