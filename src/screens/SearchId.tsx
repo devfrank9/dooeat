@@ -18,14 +18,22 @@ const SearchId = () => {
         </LabelAlign>
         <CheckNone placeholder="이메일을 입력해주세요" />
         <div style={{flex: 1}} />
-        <ColoredBtn>
+        <AbsoluteColBtn>
           <LinkStyle to={'/'}>전송</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 1}} />
+        </AbsoluteColBtn>
       </AlignBase>
     </BaseScreen>
   );
 };
+const AbsoluteColBtn = styled(ColoredBtn)`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 113px;
+  width: 85%;
+  max-width: 480px;
+`;
 const LabelAlign = styled.div`
   margin-top: 56px;
   margin-bottom: 12px;

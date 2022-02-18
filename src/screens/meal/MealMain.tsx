@@ -41,7 +41,6 @@ const mealMain = () => {
         </FileAlign>
         <Subject>하루 물 섭취 권장량 2L</Subject>
         <WaterBlock />
-        <div style={{height: '65.2px'}}></div>
         <Navigation />
       </AlignBase>
     </BaseScreen>

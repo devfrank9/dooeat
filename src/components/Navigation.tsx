@@ -10,13 +10,13 @@ export const Navigation = () => {
           <p>식단</p>
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/health">
         <button>
           <img src="/image/exercise.png" alt="" />
           <p>운동</p>
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/user-pro">
         <button>
           <img src="/image/Icon material-person-pin.png" alt="" />
           <p>전문가</p>
@@ -39,7 +39,8 @@ export const Navigation = () => {
 };
 const NavContainer = styled.div`
   position: fixed;
-  width: 100%;
+  width: 100vw;
+  max-width: 480px;
   height: 69.7px;
   bottom: 0%;
   display: flex;
