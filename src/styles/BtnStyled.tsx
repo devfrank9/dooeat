@@ -60,7 +60,8 @@ export const UnColoredBtn = styled.button`
   color: ${props => props.theme.mainColor};
   font-size: 16px;
   box-sizing: border-box;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
 `;
 export const ColoredBtn = styled.button`
   height: 52px;
@@ -70,7 +71,8 @@ export const ColoredBtn = styled.button`
   font-size: 16px;
   color: ${prop => prop.theme.fontColor3};
   box-sizing: border-box;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
 `;
 export const BlockBtn = styled.button`
   height: 6.4vh;

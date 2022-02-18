@@ -2,14 +2,13 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import styled from 'styled-components';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
-import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {BtnFix} from './SearchMento1';
 
 const SearchMento2 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 0.8}} />
         <TextAlign>
           <p>회원님의</p>
           <p>식습관을 알려주세요!</p>
@@ -37,11 +36,9 @@ const SearchMento2 = () => {
         </BtnAlign>
         <Subject>4. 특이사항이 있다면 알려주세요!</Subject>
         <TextArea placeholder="내용을 입력해주세요" />
-        <div style={{flex: 0.8}} />
-        <ColoredBtn>
+        <BtnFix>
           <LinkStyle to="/search-mento/3">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.3}} />
+        </BtnFix>
       </AlignBase>
     </BaseScreen>
   );
@@ -68,6 +65,7 @@ export const TextAlign = styled.div`
   line-height: 33px;
   margin-left: 10px;
   margin-bottom: 40px;
+  margin-top: 80px;
 `;
 
 export default SearchMento2;
