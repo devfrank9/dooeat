@@ -24,7 +24,9 @@ const JoinPro2 = () => {
           <CheckNone placeholder="비밀번호를 입력해주세요." />
           <CheckNone placeholder="비밀번호를 다시 한번 입력해주세요." />
         </InputAlign>
-        <Agreement />
+        <AgreementAlign>
+          <Agreement />
+        </AgreementAlign>
         <AbsoluteColBtn>
           <LinkStyle to="/join-pro/3">다음</LinkStyle>
         </AbsoluteColBtn>
@@ -32,6 +34,15 @@ const JoinPro2 = () => {
     </BaseScreen>
   );
 };
+const AgreementAlign = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 123px;
+  width: 85%;
+  max-width: 480px;
+`;
 const InputAlign = styled.div`
   input:first-child {
     margin-bottom: 12px;
