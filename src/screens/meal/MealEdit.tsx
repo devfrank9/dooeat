@@ -57,7 +57,7 @@ const MealEdit = () => {
           <p>식사 기록을 내 전문가와 공유</p>
           <div style={{flex: 1}} />
         </CheckInput>
-        <LinkStyle to="/meal">
+        <LinkStyle to="/user/meal">
           <Btn>기록하기</Btn>
         </LinkStyle>
       </AlignBase>

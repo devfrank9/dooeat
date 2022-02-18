@@ -17,22 +17,22 @@ const mealMain = () => {
         <SelectDate />
         <Subject>식단 입력</Subject>
         <FileAlign>
-          <Link to="/meal/edit">
+          <Link to="/user/meal/edit">
             <FileRectengle>
               <FileInput />
             </FileRectengle>
           </Link>
-          <Link to="/meal/edit">
+          <Link to="/user/meal/edit">
             <FileRectengle>
               <FileInput />
             </FileRectengle>
           </Link>
-          <Link to="/meal/edit">
+          <Link to="/user/meal/edit">
             <FileRectengle>
               <FileInput />
             </FileRectengle>
           </Link>
-          <Link to="/meal/edit">
+          <Link to="/user/meal/edit">
             <Preview>
               <div>점심</div>
               <img src="/image/smile.png" alt="" />
