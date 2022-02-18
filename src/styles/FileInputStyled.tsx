@@ -1,31 +1,31 @@
 import styled from 'styled-components';
 import {useState} from 'react';
 
-interface config {
-  Headers: string;
+interface Prop {
+  file?: string;
 }
 
 const ImgUpload = () => {
   const [files, setFiles] = useState('');
-
-  const onLoadFile = (event: {target: {files: any}}) => {
-    const file = event.target.files;
-    const formdata = new FormData();
-    formdata.append('uploadImage', files[0]);
-    console.log(file);
-    setFiles(file);
-    const config = {
-      Headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
+  const saveFile = (e: any) => {
+    setFiles(URL.createObjectURL(e.target.files[0]));
+  };
+  const deleteFile = (e: any) => {
+    URL.revokeObjectURL(files);
+    setFiles('');
   };
 
   return (
     <>
-      <FileLabel htmlFor="file1"></FileLabel>
-      <FileInput type="file" id="file1" accept="img/*" onChange={onLoadFile} />
-      <div className="img__box"></div>
+      <FileLabel htmlFor="file1" />
+      <FileInput type="file" id="file1" accept="image/*" onChange={saveFile} />
+      {files && (
+        <img
+          alt="sample"
+          src={files}
+          style={{margin: '0 auto', width: '150px', height: '150px'}}
+        />
+      )}
     </>
   );
 };

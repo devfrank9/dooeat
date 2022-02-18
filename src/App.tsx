@@ -40,13 +40,15 @@ import JoinPro7 from './screens/joinPro/JoinPro7';
 import JoinPro8 from './screens/joinPro/JoinPro8';
 import MealMain from './screens/meal/MealMain';
 import MealEdit from './screens/meal/MealEdit';
-import HealthMain from './screens/health/HealthMain';
 import UserProMain from './screens/userPro/UserProMain';
 import UserProProfile from './screens/userPro/UserProProfile';
 import UserProStory from './screens/userPro/UserProStory';
 import UserProApply from './screens/userPro/UserProApply';
 import UserProReview from './screens/userPro/UserProReview';
+import HealthMain from './screens/health/HealthMain';
+import HealthMain2 from './screens/health/HealthMain2';
 import {createGlobalStyle} from 'styled-components';
+import ScaleGraph from './screens/health/ScaleGraph';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -147,11 +149,13 @@ function Screens() {
           <Route path={'/user/meal'} element={<MealMain />} />
           <Route path={'/user/meal/edit'} element={<MealEdit />} />
           <Route path={'/user/health'} element={<HealthMain />} />
+          <Route path={'/user/health2'} element={<HealthMain2 />} />
           <Route path={'/user/pro'} element={<UserProMain />} />
           <Route path={'/user/pro/profile'} element={<UserProProfile />} />
           <Route path={'/user/pro/profile/story'} element={<UserProStory />} />
-          <Route path={'/user/pro/profile/apply'} element={<UserProApply />} />
-          <Route path={'/user/pro/profile/review'} element={<UserProReview />} />
+          <Route path={'/user/pro/apply'} element={<UserProApply />} />
+          <Route path={'/user/pro/review'} element={<UserProReview />} />
+          <Route path={'/scale-graph'} element={<ScaleGraph />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

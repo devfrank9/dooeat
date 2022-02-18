@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {useCallback, useState} from 'react';
+import {url} from 'inspector';
 
 export const Navigation = () => {
+  const [isActive, setIsActive] = useState(false);
+  const onActiveToggle = useCallback(() => {
+    setIsActive(prev => !prev);
+  }, []);
+
   return (
     <NavContainer>
       <Link to="/user/meal">
         <button>
-          <img src="/image/Icon awesome-apple-alt.png" alt="" />
+          <Img1 isActive={isActive} onClick={onActiveToggle} />
           <p>식단</p>
         </button>
       </Link>
@@ -37,6 +44,12 @@ export const Navigation = () => {
     </NavContainer>
   );
 };
+const Img1 = styled.img<{isActive: boolean}>`
+  src: ${prop =>
+    prop.isActive ? `url('/image/nav1.png)` : `url('/image/nav1_un.png)`};
+  position: fixed;
+  bottom: 40.2px;
+`;
 const NavContainer = styled.div`
   position: fixed;
   width: 100vw;
