@@ -9,7 +9,6 @@ const SearchMento1 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 1.6}} />
         <TextAlign>
           <p>관심있는</p>
           <p>운동분야를 선택해주세요.</p>
@@ -28,21 +27,29 @@ const SearchMento1 = () => {
         <InputAlign>
           <Common placeholder="기타 (별도 입력 해주세요.)" />
         </InputAlign>
-        <div style={{flex: 2.8}} />
-        <ColoredBtn>
+        <BtnFix>
           <LinkStyle to="/search-mento/2">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.3}} />
+        </BtnFix>
       </AlignBase>
     </BaseScreen>
   );
 };
+export const BtnFix = styled(ColoredBtn)`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 85%;
+  max-width: 480px;
+`;
 const TextAlign = styled.div`
   font-size: 22px;
   margin: 0 10px;
   font-weight: 400;
   line-height: 33px;
   margin-left: 10px;
+  margin-top: 151px;
 `;
 const BtnAlign = styled.div`
   display: flex;

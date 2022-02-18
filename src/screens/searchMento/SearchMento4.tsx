@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import {Subject, TextAlign} from './SearchMento2';
+import {BtnFix} from './SearchMento1';
 
 const SearchMento4 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 0.8}} />
         <TextAlign>
           <p>회원님의</p>
           <p>목표 기간을 설정해주세요.</p>
@@ -37,11 +36,9 @@ const SearchMento4 = () => {
             <p> 정도 입니다.</p>
           </Inline>
         </TextBox>
-        <div style={{flex: 1.4}} />
-        <ColoredBtn>
+        <BtnFix>
           <LinkStyle to="/">전문가 추천 받으러 가기</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.3}} />
+        </BtnFix>
       </AlignBase>
     </BaseScreen>
   );
@@ -89,7 +86,6 @@ const TextBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 143px;
-  border: 1px solid ${props => props.theme.pointColor2};
   border-radius: 8px;
   font-size: 18px;
   font-weight: 300;

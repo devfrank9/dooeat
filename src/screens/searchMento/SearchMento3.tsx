@@ -1,14 +1,13 @@
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import {Subject, TextAlign} from './SearchMento2';
 import DropDown from '../../styles/SelectStyled';
+import {BtnFix} from './SearchMento1';
 
 const SearchMento3 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <div style={{flex: 0.8}} />
         <TextAlign>
           <p>회원님의</p>
           <p>운동습관을 알려주세요!</p>
@@ -30,11 +29,9 @@ const SearchMento3 = () => {
           포함)
         </Subject>
         <DropDown />
-        <div style={{flex: 1.4}} />
-        <ColoredBtn>
+        <BtnFix>
           <LinkStyle to="/search-mento/4">다음</LinkStyle>
-        </ColoredBtn>
-        <div style={{flex: 0.3}} />
+        </BtnFix>
       </AlignBase>
     </BaseScreen>
   );
