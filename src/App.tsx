@@ -51,9 +51,11 @@ const appClient = new ApolloClient({
     watchQuery: {
       fetchPolicy: 'no-cache',
       errorPolicy: 'all',
+      nextFetchPolicy:'no-cache',
+      refetchWritePolicy:'overwrite'
     },
     query: {
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       errorPolicy: 'all',
     },
     mutate: {

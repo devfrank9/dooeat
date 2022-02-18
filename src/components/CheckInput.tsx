@@ -1,15 +1,16 @@
 import {CheckErr, CheckNone, CheckOk} from "../styles/InputStyled";
+import {useState} from "react";
 
-interface Prop extends React.HTMLProps<HTMLInputElement> {
+interface Prop extends React.InputHTMLAttributes<HTMLInputElement> {
     status? : 'err' | 'succ' | 'none',
 }
 
 export default (props : Prop) => {
-    const ComInput = (props.status == 'err') ? CheckErr : (props.status == 'succ') ? CheckOk : CheckNone;
-
+    const image = ((props.status == 'err') ? '/image/rIcon feather-check.png' : (props.status == 'succ') ? '/image/gIcon feather-check.png' : '/image/Icon feather-check.png')
     return (
         // @ts-ignore
-        <ComInput {...props}/>
+        <CheckNone {...props}
+                   style={{backgroundImage : `url('${image}')`}}/>
     )
 
 }
