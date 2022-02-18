@@ -13,7 +13,7 @@ export const Navigation = () => {
     <NavContainer>
       <Link to="/user/meal">
         <button>
-          <Img1 isActive={isActive} onClick={onActiveToggle} />
+          <img src="/image/exercise.png" alt="" />
           <p>식단</p>
         </button>
       </Link>
