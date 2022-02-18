@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 
@@ -27,15 +27,19 @@ export const StatusBar2 = ({
   Subject = '오늘',
   Img = '/image/Icon ionic-ios-close.png',
 }: Prop) => {
+  let navigate = useNavigate();
   return (
     <Container>
       <StatusText>{Subject}</StatusText>
       <StatusMyInfo2>
-        <Link to="/meal">
-          <button>
-            <img src={Img} alt="." />
-          </button>
-        </Link>
+        <button
+          onClick={() => {
+            console.log(1);
+            navigate(-1);
+          }}
+        >
+          <img src={Img} alt="." />
+        </button>
       </StatusMyInfo2>
     </Container>
   );
