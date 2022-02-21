@@ -1,54 +1,58 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {useCallback, useState} from 'react';
-import {url} from 'inspector';
+import {useState} from 'react';
 
 export const Navigation = () => {
-  const [isActive, setIsActive] = useState(false);
-  const onActiveToggle = useCallback(() => {
-    setIsActive(prev => !prev);
-  }, []);
+  const [isActive, setIsActive] = useState(1);
 
   return (
     <NavContainer>
-      <Link to="/user/meal">
+      <Link to="/user/meal" onClick={() => setIsActive(1)}>
         <button>
-          <img src="/image/exercise.png" alt="" />
-          <p>식단</p>
+          <Img1
+            src={isActive === 1 ? '/image/nav3.png' : '/image/nav3_un.png'}
+            alt=""
+          />
         </button>
       </Link>
-      <Link to="/user/health">
+      <Link to="/user/health " onClick={() => setIsActive(2)}>
         <button>
-          <img src="/image/exercise.png" alt="" />
-          <p>운동</p>
+          <Img1
+            src={isActive === 2 ? '/image/nav4.png' : '/image/nav4_un.png'}
+            alt=""
+          />
         </button>
       </Link>
-      <Link to="/user/pro">
+      <Link to="/user/pro" onClick={() => setIsActive(3)}>
         <button>
-          <img src="/image/Icon material-person-pin.png" alt="" />
-          <p>전문가</p>
+          <Img1
+            src={isActive === 3 ? '/image/nav5.png' : '/image/nav5_un.png'}
+            alt=""
+          />
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/" onClick={() => setIsActive(4)}>
         <button>
-          <img src="/image/Icon ionic-ios-chatboxes.png" alt="" />
-          <p>커뮤니티</p>
+          <Img1
+            src={isActive === 4 ? '/image/nav6.png' : '/image/nav6_un.png'}
+            alt=""
+          />
         </button>
       </Link>
-      <Link to="/">
+      <Link to="/" onClick={() => setIsActive(5)}>
         <button>
-          <img src="/image/Icon metro-shopping-basket.png" alt="" />
-          <p>쇼핑몰</p>
+          <Img1
+            src={isActive === 5 ? '/image/nav7.png' : '/image/nav7_un.png'}
+            alt=""
+          />
         </button>
       </Link>
     </NavContainer>
   );
 };
-const Img1 = styled.img<{isActive: boolean}>`
-  src: ${prop =>
-    prop.isActive ? `url('/image/nav1.png)` : `url('/image/nav1_un.png)`};
+const Img1 = styled.img`
   position: fixed;
-  bottom: 40.2px;
+  bottom: 0;
 `;
 const NavContainer = styled.div`
   position: fixed;
@@ -73,7 +77,7 @@ const NavContainer = styled.div`
   }
   img {
     position: fixed;
-    bottom: 40.2px;
+    bottom: 0;
   }
   p {
     position: fixed;
