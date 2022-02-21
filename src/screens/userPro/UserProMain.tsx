@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore, {Pagination} from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+SwiperCore.use([Pagination]);
 
 const UserProMain = () => {
   return (
@@ -12,23 +19,53 @@ const UserProMain = () => {
         <div style={{height: '110px'}} />
         <Search placeholder="원하시는 전문가를 검색해보세요." />
         <Subject>추천 전문가</Subject>
-        <RecommendPro>
-          <button />
-          <Link to="/user/pro/profile">
-            <img src="/image/people.png" alt="" />
-          </Link>
-          <p>#헬스 # 크로스핏</p>
-          <p>홍길동 전문가</p>
-          <p>건강한 바디프로필 문화를 선도하는</p>
-          <p>경력 10년의 배테랑 전문가 입니다.</p>
-          <p>서울시 금천구</p>
-        </RecommendPro>
-        <Indicator>
-          <div />
-          <div />
-          <div />
-          <div />
-        </Indicator>
+        <div style={{display: 'flex'}}>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={0.8}
+            pagination={{clickable: true}}
+          >
+            <SwiperSlide>
+              <RecommendPro>
+                <button />
+                <Link to="/user/pro/profile">
+                  <img src="/image/people.png" alt="" />
+                </Link>
+                <p>#헬스 # 크로스핏</p>
+                <p>홍길동 전문가</p>
+                <p>건강한 바디프로필 문화를 선도하는</p>
+                <p>경력 10년의 배테랑 전문가 입니다.</p>
+                <p>서울시 금천구</p>
+              </RecommendPro>
+            </SwiperSlide>
+            <SwiperSlide>
+              <RecommendPro>
+                <button />
+                <Link to="/user/pro/profile">
+                  <img src="/image/people.png" alt="" />
+                </Link>
+                <p>#헬스 # 크로스핏</p>
+                <p>홍길동 전문가</p>
+                <p>건강한 바디프로필 문화를 선도하는</p>
+                <p>경력 10년의 배테랑 전문가 입니다.</p>
+                <p>서울시 금천구</p>
+              </RecommendPro>
+            </SwiperSlide>
+            <SwiperSlide>
+              <RecommendPro>
+                <button />
+                <Link to="/user/pro/profile">
+                  <img src="/image/people.png" alt="" />
+                </Link>
+                <p>#헬스 # 크로스핏</p>
+                <p>홍길동 전문가</p>
+                <p>건강한 바디프로필 문화를 선도하는</p>
+                <p>경력 10년의 배테랑 전문가 입니다.</p>
+                <p>서울시 금천구</p>
+              </RecommendPro>
+            </SwiperSlide>
+          </Swiper>
+        </div>
         <RecommendAlign>
           <Subject style={{margin: 0}}>100명의 전문가</Subject>
           <select>
@@ -153,21 +190,6 @@ const RecommendAlign = styled.div`
     font-weight: 600;
     border-radius: 6px;
     background-color: inherit;
-  }
-`;
-const Indicator = styled.div`
-  display: flex;
-  margin: 0 auto;
-  margin-top: 16px;
-  div {
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    background-color: ${prop => prop.theme.pointColor2};
-    margin-right: 10px;
-  }
-  div:nth-child(2) {
-    background-color: ${prop => prop.theme.pointColor1};
   }
 `;
 const RecommendPro = styled.div`

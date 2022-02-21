@@ -53,6 +53,7 @@ const BtnAlign = styled.div`
   justify-content: flex-start;
   height: 48px;
   margin-bottom: 30px;
+  margin-right: -20px;
   button {
     margin-right: 8px;
   }
