@@ -226,6 +226,7 @@ const Subject = styled.div`
   margin-bottom: 12px;
 `;
 const Search = styled.input`
+  padding-right: 50px;
   height: 48px;
   padding-left: 20px;
   border: 1px solid ${props => props.theme.btnColor2};

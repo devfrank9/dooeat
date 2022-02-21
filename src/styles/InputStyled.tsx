@@ -11,6 +11,7 @@ export const Common = styled.input`
   width: 100%;
   height: 52px;
   padding-left: 20px;
+  padding-right: 50px;
   border: 0.1rem solid ${props => props.theme.btnColor2};
   font-size: 15px;
   border-radius: 0.5rem;

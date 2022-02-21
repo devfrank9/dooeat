@@ -8,8 +8,10 @@ const UserProProfile = () => {
     <BaseScreen>
       <AlignBase>
         <StatusBar3 Subject="전문가 정보" />
-        <div style={{position: 'relative'}}>
+        <div style={{position: 'relative', width: '100%'}}>
           <BackImg />
+        </div>
+        <div style={{position: 'relative'}}>
           <ProfileImg src="/image/people.png" alt="" />
         </div>
         <ContentAlgin>
@@ -71,10 +73,13 @@ const UserProProfile = () => {
             <p>닉네임</p>
             <p>2021/12/30</p>
           </Reviewer>
-          <img src="/image/follows me.png" alt="" />
           <Review>
-            나의 신체 특성부터 분석을 해주시고 나에게 맞는 운동을 추천해주시기
-            때문에. 단시간에 높은 효과를 얻을 수 있었습니다.
+            <img src="/image/follows me.png" alt="" />
+            <p style={{marginTop: '12px'}}>
+              나의 신체 특성부터 분석을 해주시고 나에게 맞는
+            </p>
+            <p>운동을 추천해주시기 때문에. 단시간에 높은 효과</p>
+            <p>를 얻을 수 있었습니다.</p>
           </Review>
         </ReviewAlign>
         <BtnAlign>
@@ -119,11 +124,17 @@ const BtnAlign = styled.div`
   }
   margin-bottom: 30px;
 `;
-const Review = styled.p`
-  font-size: 15px;
-  line-height: 24px;
+const Review = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 10px;
+  p {
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 400;
+  }
   margin-bottom: 30px;
-  margin-top: 12px;
 `;
 const Reviewer = styled.div`
   margin: 0 12px;
@@ -132,7 +143,7 @@ const Reviewer = styled.div`
   justify-content: space-between;
   p:first-child {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
   }
   p:last-child {
     font-size: 14px;
@@ -238,7 +249,7 @@ const TextAlign = styled.div`
     color: ${prop => prop.theme.mainColor};
     font-size: 14px;
     font-weight: 300;
-    margin-top: 30px;
+    margin-top: 86px;
   }
   p:nth-child(2) {
     font-size: 18px;
@@ -257,17 +268,21 @@ const TextAlign = styled.div`
 `;
 const ContentAlgin = styled.div`
   position: relative;
+  bottom: 44px;
+  z-index: 3;
+  background-color: white;
+  margin: 0 -28px;
+  border-radius: 34px 34px 0 0;
   button {
     position: absolute;
     width: 40px;
     height: 40px;
     background: url('/image/Icon awesome-bookmark.png') no-repeat 50% 50%;
     border: none;
-    right: 4px;
-    top: 8px;
+    right: 30px;
+    top: 30px;
   }
   border-bottom: 1px solid ${prop => prop.theme.btnColor2};
-  margin-bottom: 30px;
 `;
 const ProfileImg = styled.img`
   width: 100px;
@@ -278,14 +293,14 @@ const ProfileImg = styled.img`
   margin: 0 auto;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 5;
 `;
 const BackImg = styled.div`
+  margin: 0 -28px;
   height: 440px;
   background: url('/image/hi.png') no-repeat 50% 50%;
   z-index: -6;
-  max-width: 480px;
-  margin: 0 -28px;
+  background-size: cover;
 `;
 
 export default UserProProfile;
