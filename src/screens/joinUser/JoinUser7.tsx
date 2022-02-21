@@ -28,7 +28,17 @@ const JoinUser7 = () => {
           <Scale />
           <div style={{height: '36.9px'}} />
           <LastText>
-            <p style={{fontSize: '20px', fontWeight: 400}}>나의 목표 체중은</p>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: '20px',
+                fontWeight: 400,
+                justifyContent: 'center',
+              }}
+            >
+              <p style={{marginRight: '6px'}}>나의</p>
+              <p style={{fontWeight: '500'}}>목표 체중</p>은
+            </div>
             <div style={{marginBottom: '14px'}} />
             <div
               style={{

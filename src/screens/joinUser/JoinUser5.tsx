@@ -17,7 +17,9 @@ const JoinUser5 = () => {
         <NavProgress pageNumber={5} />
         <TextAlign>
           <p>회원님의</p>
-          <p>현재 체중과 키는 얼마인가요?</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>현재 체중과 키</p>는 얼마인가요?
+          </div>
         </TextAlign>
         <div style={{height: '70px'}} />
         <Subject>체중</Subject>

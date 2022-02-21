@@ -18,7 +18,9 @@ const JoinUser4 = () => {
         <NavProgress pageNumber={4} />
         <TextAlign>
           <p>회원님의</p>
-          <p>사는 곳은 어디인가요?</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>사는 곳</p>은 어디인가요?
+          </div>
         </TextAlign>
         <SelectAlign>
           <DropDown placeholder={'광역시도'} />

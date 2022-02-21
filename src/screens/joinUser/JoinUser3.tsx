@@ -18,9 +18,9 @@ const JoinUser3 = () => {
         <NavProgress pageNumber={3} />
         <TextAlign>
           <p>회원님의</p>
-          <p>
-            <strong>성별과 나이</strong>를 입력해주세요.
-          </p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>성별과 나이</p>를 입력해주세요.
+          </div>
         </TextAlign>
         <div style={{height: 41}} />
         <Subject>성별</Subject>

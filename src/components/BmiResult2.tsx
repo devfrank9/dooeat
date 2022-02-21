@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-const BmiResult2 = () => {
+interface Prop {
+  HeaderText?: string;
+  HeaderColor: string;
+}
+
+const BmiResult2 = ({HeaderText, HeaderColor}: Prop) => {
   return (
     <ContentBox>
-      <Header>
-        <p>현재 체중</p>
+      <Header HeaderColor={HeaderColor}>
+        <p>{HeaderText}</p>
         <div
           style={{
             position: 'relative',
@@ -16,7 +21,7 @@ const BmiResult2 = () => {
           <KgInput placeholder="입력해주세요." type="text" value={55} />
         </div>
       </Header>
-      <BmiCalc>
+      <BmiCalc HeaderColor={HeaderColor}>
         <p>현재 BMI</p>
         <p>20.29</p>
       </BmiCalc>
@@ -66,27 +71,26 @@ const KgInput = styled.input`
   }
   font-family: 'Roboto';
 `;
-const Header = styled.div`
+const Header = styled.div<Prop>`
   margin-top: 40px;
   p {
     text-align: center;
     font-size: 20px;
     font-weight: 500;
+    color: ${prop => prop.HeaderColor};
   }
 `;
-const BmiCalc = styled.div`
+const BmiCalc = styled.div<Prop>`
   margin-top: 40px;
-  font-family: ${prop => prop.theme.roboto};
-  p:first-child {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 500;
-  }
+  text-align: center;
+  font-size: 20px;
+  color: ${prop => prop.HeaderColor};
   p:last-child {
     text-align: center;
     font-size: 32px;
     color: rgb(51, 51, 51);
-    font-weight: 600;
+    font-family: ${prop => prop.theme.roboto};
+    margin-top: 14px;
   }
 `;
 const HealthResult = styled.div`
@@ -95,7 +99,7 @@ const HealthResult = styled.div`
     text-align: center;
     font-size: 16px;
     color: ${prop => prop.theme.mainColor};
-    font-weight: bold;
+    font-weight: 700;
   }
 `;
 const BmiGraph = styled.div`

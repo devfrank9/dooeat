@@ -22,11 +22,11 @@ const JoinUser8 = () => {
             <UnderLine>함께 이뤄드릴께요!</UnderLine>
           </Inline>
         </div>
-        <BmiResult2 />
+        <BmiResult2 HeaderText="현재 체중" HeaderColor="black" />
         <Arrow>
           <img src="/image/Icon awesome-arrow-down.png" alt="" />
         </Arrow>
-        <BmiResult2 />
+        <BmiResult2 HeaderText="목표 체중" HeaderColor="rgb(239,144,167)" />
         <TextAlign>
           <p>총 감량 목표</p>
           <div
