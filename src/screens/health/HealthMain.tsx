@@ -13,7 +13,7 @@ const HealthMain = () => {
         <div style={{height: '110px'}} />
         <SelectDate />
         <KgBanner>
-          <Link to="/scale-graph">
+          <Link to="/user/health/scale-graph">
             <Scale />
           </Link>
           <BannerTextAlign>
