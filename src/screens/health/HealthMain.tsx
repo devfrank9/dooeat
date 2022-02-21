@@ -30,6 +30,7 @@ const HealthMain = () => {
         <Subject>눈바디</Subject>
         <ImgAlign>
           <img src="/image/body.png" alt="" />
+          <div style={{width: '16px'}} />
           <img src="/image/body2.png" alt="" />
         </ImgAlign>
         <div style={{height: '30px'}} />
@@ -55,12 +56,26 @@ const HealthMain = () => {
           <ExerciseKind2>러닝머신</ExerciseKind2>
           <ExcerciseInfo2>40분</ExcerciseInfo2>
         </BtnAlign>
+        <Link to="/user/health/edit">
+          <EditBtn>
+            <img src="/image/healthEdit.png" alt="" />
+          </EditBtn>
+        </Link>
         <div style={{height: '102px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>
   );
 };
+const EditBtn = styled.div`
+  position: fixed;
+  bottom: 90px;
+  right: 15px;
+  img {
+    width: 66px;
+    height: 66px;
+  }
+`;
 const LongExKind = styled.div`
   display: flex;
   align-items: center;
@@ -95,6 +110,7 @@ const ExcerciseInfo = styled.div`
   height: 48px;
   border: 1px solid ${prop => prop.theme.pointColor2};
   font-size: 15px;
+  flex: 1;
 `;
 const ExerciseKind = styled.div`
   display: flex;
@@ -107,7 +123,6 @@ const ExerciseKind = styled.div`
   height: 48px;
   border: 1px solid ${prop => prop.theme.pointColor2};
   margin-right: 8px;
-  flex: 1;
   font-size: 15px;
 `;
 const ExerciseKind2 = styled(ExerciseKind)`
@@ -123,7 +138,7 @@ const BtnAlign = styled.div`
 `;
 const ImgAlign = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   img {
     width: 152px;
     height: 152px;

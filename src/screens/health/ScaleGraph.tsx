@@ -35,7 +35,6 @@ const ScaleGraph = () => {
 };
 const GraphBtn = styled.div<{isActive: boolean}>`
   position: relative;
-  width: 319px;
   height: ${prop => (prop.isActive ? '52px' : '320px')};
   box-shadow: 0rem 0.1rem 0.5rem 0rem rgb(223, 223, 223, 0.8);
   border-radius: 12px;
@@ -56,7 +55,7 @@ const GraphBtn = styled.div<{isActive: boolean}>`
   background: ${prop =>
     prop.isActive
       ? `url("/image/Icon ionic-ios-arrow-down.png") no-repeat 90%`
-      : `url("/image/Icon ionic-ios-arrow-down.png") no-repeat 50%`};
+      : `url("/image/Icon ionic-ios-arrow-down.png") no-repeat 90% 10%`};
 `;
 const SetDate = styled.div`
   margin-top: 20px;
