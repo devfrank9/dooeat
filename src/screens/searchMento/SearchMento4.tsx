@@ -10,7 +10,9 @@ const SearchMento4 = () => {
       <AlignBase>
         <TextAlign>
           <p>회원님의</p>
-          <p>목표 기간을 설정해주세요.</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>목표 기간</p>을 설정해주세요.
+          </div>
         </TextAlign>
         <Subject>
           <p>1. 시작일</p>
@@ -26,16 +28,18 @@ const SearchMento4 = () => {
           날짜선택
           <DateInput type="date" id="date" />
         </DateLabel>
-        <TextBox>
-          <p>건강한 다이어트를 위한</p>
-          <p>적정 감량 속도는</p>
-          <Inline>
-            <UnderLine>
-              <strong>1주일에 0.5~1kg </strong>
-            </UnderLine>
-            <p> 정도 입니다.</p>
-          </Inline>
-        </TextBox>
+        <div style={{display: 'flex'}}>
+          <TextBox>
+            <p>건강한 다이어트를 위한</p>
+            <p>적정 감량 속도는</p>
+            <Inline>
+              <UnderLine>
+                <strong>1주일에 0.5~1kg </strong>
+              </UnderLine>
+              <p> 정도 입니다.</p>
+            </Inline>
+          </TextBox>
+        </div>
         <BtnFix>
           <LinkStyle to="/user/pro">전문가 추천 받으러 가기</LinkStyle>
         </BtnFix>
@@ -85,7 +89,8 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 143px;
+  flex: 1;
+  min-height: 143px;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 300;

@@ -11,7 +11,9 @@ const SearchMento2 = () => {
       <AlignBase>
         <TextAlign>
           <p>회원님의</p>
-          <p>식습관을 알려주세요!</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>식습관</p>을 알려주세요!
+          </div>
         </TextAlign>
         <Subject>1. 하루 몇 끼를 드시나요?</Subject>
         <BtnAlign>
@@ -51,6 +53,10 @@ const BtnAlign = styled.div`
   justify-content: space-evenly;
   height: 48px;
   margin-bottom: 30px;
+  flex: 1;
+  button {
+    margin-right: 8px;
+  }
 `;
 export const Subject = styled.p`
   margin: 0 1px;

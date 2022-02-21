@@ -11,7 +11,9 @@ const SearchMento1 = () => {
       <AlignBase>
         <TextAlign>
           <p>관심있는</p>
-          <p>운동분야를 선택해주세요.</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>운동분야</p>를 선택해주세요.
+          </div>
         </TextAlign>
         <BtnAlign>
           <LongBtn>헬스</LongBtn>
@@ -57,8 +59,9 @@ const BtnAlign = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  height: 160px;
   button {
+    margin-right: 8px;
+    margin-bottom: 8px;
   }
 `;
 const DisplayNone = styled(LongBtn)`

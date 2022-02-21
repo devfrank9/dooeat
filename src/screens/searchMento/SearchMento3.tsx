@@ -10,7 +10,9 @@ const SearchMento3 = () => {
       <AlignBase>
         <TextAlign>
           <p>회원님의</p>
-          <p>운동습관을 알려주세요!</p>
+          <div style={{display: 'flex'}}>
+            <p style={{fontWeight: '500'}}>운동습관</p>을 알려주세요!
+          </div>
         </TextAlign>
         <Subject>
           <p>1. 1주일 동안 격렬한 활동한 날은 며칠인가요?</p>
