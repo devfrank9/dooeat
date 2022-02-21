@@ -21,10 +21,12 @@ const MealEdit = () => {
           <FileRectengle>
             <FileInput />
           </FileRectengle>
-          <Preview>
-            <div>점심</div>
-            <img src="/image/exe.png" alt="" />
-          </Preview>
+          <div style={{display: 'flex', alignContent: 'center'}}>
+            <Preview>
+              <div>점심</div>
+              <img src="/image/exe.png" alt="" />
+            </Preview>
+          </div>
         </FileAlign>
         <div style={{height: '30px'}} />
         <Subject>타입</Subject>
@@ -106,9 +108,13 @@ const BtnAlign = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 48px;
   margin-bottom: 30px;
+  margin-right: -10px;
+  button {
+    margin-right: 6px;
+  }
 `;
 const FileAlign = styled.div`
   display: flex;

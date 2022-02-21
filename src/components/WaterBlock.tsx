@@ -29,13 +29,13 @@ export const WaterBlock = () => {
 const AlignGlass = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 48.2px;
-  height: 144px;
+  justify-content: flex-start;
+  margin: 0 35px;
   button {
-    margin-right: 15px;
+    margin: 0 10.875px;
+    margin-bottom: 20px;
   }
+  margin-bottom: 10px;
 `;
 const FillGlassWater = styled.button`
   width: 40px;
@@ -79,6 +79,4 @@ const Container = styled.div`
   border: 1px solid rgb(223, 223, 223);
   box-shadow: 0pt 3pt 10pt 0pt rgb(0, 0, 0, 0.1);
   border-radius: 12px;
-  margin-bottom: 65.2px;
-  height: 272px;
 `;

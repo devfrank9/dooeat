@@ -16,31 +16,34 @@ const mealMain = () => {
         <div style={{height: '110px'}}></div>
         <SelectDate />
         <Subject>식단 입력</Subject>
-        <FileAlign>
-          <Link to="/user/meal/edit">
-            <FileRectengle>
-              <FileInput />
-            </FileRectengle>
-          </Link>
-          <Link to="/user/meal/edit">
-            <FileRectengle>
-              <FileInput />
-            </FileRectengle>
-          </Link>
-          <Link to="/user/meal/edit">
-            <FileRectengle>
-              <FileInput />
-            </FileRectengle>
-          </Link>
-          <Link to="/user/meal/edit">
-            <Preview>
-              <div>점심</div>
-              <img src="/image/smile.png" alt="" />
-            </Preview>
-          </Link>
-        </FileAlign>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <FileAlign>
+            <Link to="/user/meal/edit">
+              <FileRectengle>
+                <FileInput />
+              </FileRectengle>
+            </Link>
+            <Link to="/user/meal/edit">
+              <FileRectengle>
+                <FileInput />
+              </FileRectengle>
+            </Link>
+            <Link to="/user/meal/edit">
+              <FileRectengle>
+                <FileInput />
+              </FileRectengle>
+            </Link>
+            <Link to="/user/meal/edit">
+              <Preview>
+                <div>점심</div>
+                <img src="/image/smile.png" alt="" />
+              </Preview>
+            </Link>
+          </FileAlign>
+        </div>
         <Subject>하루 물 섭취 권장량 2L</Subject>
         <WaterBlock />
+        <div style={{height: '135px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>
@@ -53,11 +56,10 @@ const Subject = styled.div`
   margin-bottom: 12px;
 `;
 const FileAlign = styled.div`
+  width: 319px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
-  flex: 1;
   label {
     margin-bottom: 18px;
   }
