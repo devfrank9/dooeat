@@ -31,9 +31,7 @@ const JoinPro7 = () => {
           <DisplayNone />
         </BtnAlign>
         <div style={{height: '9px'}} />
-        <InputAlign>
-          <Common placeholder="기타 (별도 입력 해주세요.)" />
-        </InputAlign>
+        <Common placeholder="기타 (별도 입력 해주세요.)" />
         <AbsoluteColBtn>
           <LinkStyle to="/join-pro/8">다음</LinkStyle>
         </AbsoluteColBtn>
@@ -41,16 +39,14 @@ const JoinPro7 = () => {
     </BaseScreen>
   );
 };
-const InputAlign = styled.div`
-  margin: 0 5px;
-`;
 
 const BtnAlign = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 160px;
+  justify-content: space-between;
+  button {
+    margin-bottom: 8px;
+  }
 `;
 const TextAlign = styled.div`
   font-size: 22px;

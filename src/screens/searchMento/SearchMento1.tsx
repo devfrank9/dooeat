@@ -57,10 +57,8 @@ const BtnAlign = styled.div`
   display: flex;
   margin-top: 30px;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   button {
-    margin-right: 8px;
     margin-bottom: 8px;
   }
 `;

@@ -50,10 +50,9 @@ const BtnAlign = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   height: 48px;
   margin-bottom: 30px;
-  flex: 1;
   button {
     margin-right: 8px;
   }

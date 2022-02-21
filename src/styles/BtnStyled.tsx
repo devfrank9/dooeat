@@ -13,8 +13,7 @@ export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
  */
 export const ShortBtn = styled.button`
   display: block;
-  min-width: 59px;
-  flex: 1;
+  width: 59px;
   height: 48px;
   border-radius: 6px;
   border: none;
@@ -31,12 +30,10 @@ export const ShortBtn = styled.button`
   }
 `;
 export const MiddleBtn = styled(ShortBtn)`
-  min-width: 74px;
-  flex: 1;
+  width: 74px;
 `;
 export const LongBtn = styled(ShortBtn)`
-  min-width: 101px;
-  flex: 1;
+  width: 101px;
 `;
 export const LongLine = styled.button`
   display: block;
