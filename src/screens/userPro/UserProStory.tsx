@@ -19,18 +19,18 @@ const UserProStory = () => {
           <div style={{height: '42px'}} />
         </TextAlign>
         <PicAlign>
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
-          <img src="/image/hi.png" alt="" />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
         </PicAlign>
         <div style={{height: '8px'}} />
       </AlignBase>
@@ -41,12 +41,21 @@ const PicAlign = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  img {
-    width: 103px;
-    height: 103px;
+  div {
+    display: block;
+    min-width: 103px;
+    width: 32.29%;
+    padding-bottom: 32.29%;
     border-radius: 6px;
-    flex: 1;
-    margin-right: 5px;
+    margin-bottom: 5px;
+    background: url('/image/hi.png') no-repeat 50% 50%;
+    background-size: cover;
+  }
+  img {
+    display: block;
+    min-width: 103px;
+    width: 32.29%;
+    border-radius: 6px;
     margin-bottom: 5px;
   }
 `;

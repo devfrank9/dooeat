@@ -1,13 +1,13 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {StatusBar3} from '../../components/StatusBar';
+import {StatusBar} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserProProfile = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar3 Subject="전문가 정보" />
+        <StatusBar Subject="프로필" />
         <div style={{position: 'relative', width: '100%'}}>
           <BackImg />
         </div>
@@ -298,7 +298,6 @@ const ProfileImg = styled.img`
 const BackImg = styled.div`
   margin: 0 -28px;
   height: 440px;
-  background: url('/image/hi.png') no-repeat 50% 50%;
   z-index: -6;
   background-size: cover;
 `;
