@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
-import {Common, TextArea} from '../../styles/InputStyled';
+import {Time, TextArea} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
@@ -14,19 +14,15 @@ const MealEdit = () => {
         <StatusBar2 Subject="식단입력" />
         <div style={{height: '110px'}} />
         <Subject>식사 시간</Subject>
-        <Common placeholder="시간을 입력해주세요." />
+        <Time placeholder="시간을 입력해주세요." type="time" />
         <div style={{height: '30px'}} />
         <Subject>식단 사진</Subject>
         <FileAlign>
-          <FileRectengle>
-            <FileInput />
-          </FileRectengle>
-          <div style={{display: 'flex', alignContent: 'center'}}>
-            <Preview>
-              <div>점심</div>
-              <img src="/image/exe.png" alt="" />
-            </Preview>
-          </div>
+          <FileRectengle />
+          <Preview>
+            <div>점심</div>
+            <img src="/image/exe.png" alt="" />
+          </Preview>
         </FileAlign>
         <div style={{height: '30px'}} />
         <Subject>타입</Subject>
@@ -118,25 +114,24 @@ const BtnAlign = styled.div`
 `;
 const FileAlign = styled.div`
   display: flex;
-  label {
-    margin-right: 12px;
-  }
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 const Subject = styled.div`
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 12px;
 `;
-const Preview = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const Preview = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
+  display: block;
+  min-width: 150px;
+  width: 47.022%;
+  padding-bottom: 47.022%;
   border: 1px solid ${props => props.theme.btnColor2};
   border-radius: 10px;
   background: url('/image/321.png') no-repeat 50% 50%;
+  background-size: cover;
   div {
     position: absolute;
     width: 68px;

@@ -7,6 +7,19 @@ export const InputCheckOk = () => <CheckOk />;
 export const InputCheckErr = () => <CheckErr />;
 export const InputContent = () => <Content />;
  */
+export const Time = styled.input`
+  width: 100%;
+  height: 52px;
+  border: 0.1rem solid ${props => props.theme.btnColor2};
+  font-size: 15px;
+  border-radius: 0.5rem;
+  display: block;
+  box-sizing: border-box;
+  input + span {
+    padding-right: 20px;
+  }
+`;
+
 export const Common = styled.input`
   width: 100%;
   height: 52px;

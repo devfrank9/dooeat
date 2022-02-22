@@ -12,6 +12,7 @@ const HealthMain = () => {
         <StatusBar Subject="오늘" Img="/image/myInfo.png" />
         <div style={{height: '110px'}} />
         <SelectDate />
+
         <KgBanner>
           <Link to="/user/health/scale-graph">
             <Scale />
@@ -23,6 +24,7 @@ const HealthMain = () => {
             <p>입니다</p>
           </BannerTextAlign>
         </KgBanner>
+
         <div style={{height: '30px'}} />
         <Subject>하루 운동량 분석</Subject>
         <HealthKind>헬스</HealthKind>
@@ -30,7 +32,6 @@ const HealthMain = () => {
         <Subject>눈바디</Subject>
         <ImgAlign>
           <img src="/image/body.png" alt="" />
-          <div style={{width: '16px'}} />
           <img src="/image/body2.png" alt="" />
         </ImgAlign>
         <div style={{height: '30px'}} />
@@ -56,25 +57,22 @@ const HealthMain = () => {
           <ExerciseKind2>러닝머신</ExerciseKind2>
           <ExcerciseInfo2>40분</ExcerciseInfo2>
         </BtnAlign>
-        <Link to="/user/health/edit">
-          <EditBtn>
-            <img src="/image/healthEdit.png" alt="" />
-          </EditBtn>
-        </Link>
+        <div style={{position: 'relative'}}>
+          <EditBtn to="/user/health/edit" />
+        </div>
         <div style={{height: '102px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>
   );
 };
-const EditBtn = styled.div`
+const EditBtn = styled(Link)`
   position: fixed;
   bottom: 90px;
-  right: 15px;
-  img {
-    width: 66px;
-    height: 66px;
-  }
+  background: url('/image/healthEdit.png') no-repeat;
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
 `;
 const LongExKind = styled.div`
   display: flex;
@@ -138,10 +136,11 @@ const BtnAlign = styled.div`
 `;
 const ImgAlign = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   img {
-    width: 152px;
-    height: 152px;
+    display: block;
+    min-width: 150px;
+    width: 47.022%;
     border-radius: 10px;
     opacity: 0.9;
   }
