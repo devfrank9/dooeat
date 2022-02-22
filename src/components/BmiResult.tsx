@@ -30,7 +30,8 @@ const BmiResult = () => {
   );
 };
 const Header = styled.div`
-  margin-top: 44px;
+  position: relative;
+  top: 12.22%;
   p {
     font-family: ${prop => prop.theme.roboto};
     text-align: center;
@@ -40,7 +41,8 @@ const Header = styled.div`
   }
 `;
 const BmiCalc = styled.div`
-  margin-top: 16px;
+  position: relative;
+  top: 14%;
   p {
     text-align: center;
     font-size: 32px;
@@ -50,7 +52,8 @@ const BmiCalc = styled.div`
   }
 `;
 const HealthResult = styled.div`
-  margin-top: 4px;
+  position: relative;
+  top: 16.11%;
   p {
     text-align: center;
     font-size: 16px;
@@ -59,10 +62,11 @@ const HealthResult = styled.div`
   }
 `;
 const BmiGraph = styled.div`
+  position: relative;
+  top: 50%;
   display: flex;
   height: 40px;
   padding: 0 10px;
-  margin-top: 111px;
   align-items: center;
   justify-content: center;
   div {
@@ -95,6 +99,8 @@ const BmiGraph = styled.div`
   }
 `;
 const BmiIndicator = styled.div`
+  position: relative;
+  top: 50%;
   display: flex;
   padding: 0 10px;
   align-items: center;
@@ -110,10 +116,11 @@ const BmiIndicator = styled.div`
   }
 `;
 const ContentBox = styled.div`
+  position: relative;
   padding: 0 auto;
   margin: 0;
   width: 100%;
-  height: 360px;
+  flex: 1;
   box-shadow: 0px 3px 10px 0px rgb(0, 0, 0, 0.1);
   border-radius: 12px;
 `;

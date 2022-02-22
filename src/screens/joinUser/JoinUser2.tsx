@@ -5,7 +5,6 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
-import {ColoredBtn} from '../../styles/BtnStyled';
 import {CheckNone} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import {AbsoluteColBtn, TextAlign} from './JoinUser1';
@@ -20,17 +19,17 @@ const JoinUser2 = () => {
           <p>활동 정보를 입력해주세요.</p>
         </TextAlign>
         <div style={{height: '68px'}} />
-        <PicAlign>
-          <input type="file" id="fileinput" />
-          <label htmlFor="fileinput" />
-        </PicAlign>
+        <div style={{width: '100%'}}>
+          <PicAlign>
+            <input type="file" id="fileinput" />
+            <label htmlFor="fileinput" />
+          </PicAlign>
+        </div>
         <div style={{height: '24px'}} />
         <CheckNone placeholder="닉네임을 입력해주세요." />
-        <div style={{height: '41px'}} />
         <LinkStyle to="/join-user/3">
           <AbsoluteColBtn>다음</AbsoluteColBtn>
         </LinkStyle>
-        <div style={{height: 30}} />
       </AlignBase>
     </BaseScreen>
   );
