@@ -26,7 +26,7 @@ const JoinPro8 = () => {
           <LongLine>무관</LongLine>
         </InputAlign>
         <AbsoluteColBtn>
-          <LinkStyle to="/pro">완료</LinkStyle>
+          <LinkStyle to="/pro/profile">완료</LinkStyle>
         </AbsoluteColBtn>
       </AlignBase>
     </BaseScreen>

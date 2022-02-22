@@ -6,6 +6,7 @@ import JoinPro4 from './JoinPro4';
 import JoinPro5 from './JoinPro5';
 import JoinPro6 from './JoinPro6';
 import JoinPro7 from './JoinPro7';
+import JoinPro8 from './JoinPro8';
 
 function JoinPro() {
   return (
@@ -17,6 +18,7 @@ function JoinPro() {
       <Route path="5" element={<JoinPro5 />} />
       <Route path="6" element={<JoinPro6 />} />
       <Route path="7" element={<JoinPro7 />} />
+      <Route path="8" element={<JoinPro8 />} />
     </Routes>
   );
 }
