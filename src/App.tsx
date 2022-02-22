@@ -25,6 +25,7 @@ import UserMeal from './screens/meal/UserMeal';
 import UserPro from './screens/userPro/UserPro';
 import UserHealth from './screens/health/UserHealth';
 import {createGlobalStyle} from 'styled-components';
+import ProProfile from './screens/proProfile/ProProfileRouter';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -110,6 +111,7 @@ function Screens() {
           <Route path={'/user/meal/*'} element={<UserMeal />} />
           <Route path={'/user/health/*'} element={<UserHealth />} />
           <Route path={'/user/pro/*'} element={<UserPro />} />
+          <Route path={'/pro/profile/*'} element={<ProProfile />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
