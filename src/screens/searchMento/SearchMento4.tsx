@@ -8,41 +8,45 @@ const SearchMento4 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <TextAlign>
-          <p>회원님의</p>
+        <div
+          style={{display: 'flex', flexDirection: 'column', height: '100vh'}}
+        >
+          <TextAlign>
+            <p>회원님의</p>
+            <div style={{display: 'flex'}}>
+              <p style={{fontWeight: '500'}}>목표 기간</p>을 설정해주세요.
+            </div>
+          </TextAlign>
+          <Subject>
+            <p>1. 시작일</p>
+          </Subject>
+          <DateLabel htmlFor="date">
+            날짜선택
+            <DateInput type="date" id="date" />
+          </DateLabel>
+          <Subject>
+            <p>2. 종료일</p>
+          </Subject>
+          <DateLabel htmlFor="date">
+            날짜선택
+            <DateInput type="date" id="date" />
+          </DateLabel>
           <div style={{display: 'flex'}}>
-            <p style={{fontWeight: '500'}}>목표 기간</p>을 설정해주세요.
+            <TextBox>
+              <p>건강한 다이어트를 위한</p>
+              <p>적정 감량 속도는</p>
+              <Inline>
+                <UnderLine>
+                  <strong>1주일에 0.5~1kg </strong>
+                </UnderLine>
+                <p> 정도 입니다.</p>
+              </Inline>
+            </TextBox>
           </div>
-        </TextAlign>
-        <Subject>
-          <p>1. 시작일</p>
-        </Subject>
-        <DateLabel htmlFor="date">
-          날짜선택
-          <DateInput type="date" id="date" />
-        </DateLabel>
-        <Subject>
-          <p>2. 종료일</p>
-        </Subject>
-        <DateLabel htmlFor="date">
-          날짜선택
-          <DateInput type="date" id="date" />
-        </DateLabel>
-        <div style={{display: 'flex'}}>
-          <TextBox>
-            <p>건강한 다이어트를 위한</p>
-            <p>적정 감량 속도는</p>
-            <Inline>
-              <UnderLine>
-                <strong>1주일에 0.5~1kg </strong>
-              </UnderLine>
-              <p> 정도 입니다.</p>
-            </Inline>
-          </TextBox>
+          <BtnFix>
+            <LinkStyle to="/user/pro">전문가 추천 받으러 가기</LinkStyle>
+          </BtnFix>
         </div>
-        <BtnFix>
-          <LinkStyle to="/user/pro">전문가 추천 받으러 가기</LinkStyle>
-        </BtnFix>
       </AlignBase>
     </BaseScreen>
   );
@@ -95,6 +99,8 @@ const TextBox = styled.div`
   font-size: 18px;
   font-weight: 300;
   margin-top: 20px;
+  min-width: 311px;
+  width: 83%;
 `;
 const DateInput = styled.input`
   display: none;

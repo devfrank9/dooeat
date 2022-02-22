@@ -9,29 +9,34 @@ const SearchMento1 = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <TextAlign>
-          <p>관심있는</p>
-          <div style={{display: 'flex'}}>
-            <p style={{fontWeight: '500'}}>운동분야</p>를 선택해주세요.
-          </div>
-        </TextAlign>
-        <BtnAlign>
-          <LongBtn>헬스</LongBtn>
-          <LongBtn>요가</LongBtn>
-          <LongBtn>필라테스</LongBtn>
-          <LongBtn>크로스핏</LongBtn>
-          <LongBtn>복싱</LongBtn>
-          <LongBtn>주짓수</LongBtn>
-          <LongBtn>수영</LongBtn>
-          <LongBtn>기타</LongBtn>
-          <DisplayNone />
-        </BtnAlign>
-        <InputAlign>
-          <Common placeholder="기타 (별도 입력 해주세요.)" />
-        </InputAlign>
-        <BtnFix>
-          <LinkStyle to="/search-mento/2">다음</LinkStyle>
-        </BtnFix>
+        <div
+          style={{display: 'flex', flexDirection: 'column', height: '100vh'}}
+        >
+          <TextAlign>
+            <p>관심있는</p>
+            <div style={{display: 'flex'}}>
+              <p style={{fontWeight: '500'}}>운동분야</p>를 선택해주세요.
+            </div>
+          </TextAlign>
+          <BtnAlign>
+            <LongBtn>헬스</LongBtn>
+            <LongBtn>요가</LongBtn>
+            <LongBtn>필라테스</LongBtn>
+            <LongBtn>크로스핏</LongBtn>
+            <LongBtn>복싱</LongBtn>
+            <LongBtn>주짓수</LongBtn>
+            <LongBtn>수영</LongBtn>
+            <LongBtn>기타</LongBtn>
+            <DisplayNone />
+          </BtnAlign>
+          <InputAlign>
+            <Common placeholder="기타 (별도 입력 해주세요.)" />
+          </InputAlign>
+          <div style={{flex: '0.5'}}></div>
+          <BtnFix>
+            <LinkStyle to="/search-mento/2">다음</LinkStyle>
+          </BtnFix>
+        </div>
       </AlignBase>
     </BaseScreen>
   );
@@ -58,6 +63,7 @@ const BtnAlign = styled.div`
   margin-top: 30px;
   flex-wrap: wrap;
   justify-content: space-between;
+  height: auto;
   button {
     margin-bottom: 8px;
   }

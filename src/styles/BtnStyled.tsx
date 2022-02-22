@@ -13,8 +13,10 @@ export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
  */
 export const ShortBtn = styled.button`
   display: block;
-  width: 59px;
-  height: 48px;
+  min-width: 59px;
+  width: 18.495%;
+  min-height: 48px;
+  height: 15.05%;
   border-radius: 6px;
   border: none;
   background-color: ${prop => prop.theme.btnColor1};
@@ -30,10 +32,16 @@ export const ShortBtn = styled.button`
   }
 `;
 export const MiddleBtn = styled(ShortBtn)`
-  width: 74px;
+  min-width: 74px;
+  width: 23.2%;
+  min-height: 48px;
+  height: 15.05%;
 `;
 export const LongBtn = styled(ShortBtn)`
-  width: 101px;
+  min-width: 101px;
+  width: 31.66%;
+  min-height: 48px;
+  height: 15.05%;
 `;
 export const LongLine = styled.button`
   display: block;
