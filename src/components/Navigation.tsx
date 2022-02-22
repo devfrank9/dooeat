@@ -2,6 +2,46 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
+export const Navigation2 = () => {
+  const [isActive, setIsActive] = useState(1);
+  return (
+    <NavContainer>
+      <Link to="/user/meal" onClick={() => setIsActive(1)}>
+        <button style={{width: '94px'}}>
+          <Img1
+            src={isActive === 1 ? '/image/nav2.png' : '/image/nav2_un.png'}
+            alt=""
+          />
+        </button>
+      </Link>
+      <Link to="/user/health " onClick={() => setIsActive(2)}>
+        <button style={{width: '94px'}}>
+          <Img1
+            src={isActive === 2 ? '/image/nav1.png' : '/image/nav1_un.png'}
+            alt=""
+          />
+        </button>
+      </Link>
+      <Link to="/user/pro" onClick={() => setIsActive(3)}>
+        <button style={{width: '94px'}}>
+          <Img1
+            src={isActive === 3 ? '/image/nav6.png' : '/image/nav6_un.png'}
+            alt=""
+          />
+        </button>
+      </Link>
+      <Link to="/" onClick={() => setIsActive(4)}>
+        <button style={{width: '94px'}}>
+          <Img1
+            src={isActive === 4 ? '/image/nav7.png' : '/image/nav7_un.png'}
+            alt=""
+          />
+        </button>
+      </Link>
+    </NavContainer>
+  );
+};
+
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(1);
 
