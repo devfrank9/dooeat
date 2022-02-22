@@ -22,7 +22,7 @@ const UserProMain = () => {
         <div style={{display: 'flex'}}>
           <Swiper
             spaceBetween={20}
-            slidesPerView={0.8}
+            slidesPerView={1}
             pagination={{clickable: true}}
           >
             <SwiperSlide>

@@ -28,6 +28,7 @@ const ScaleGraph = () => {
           <p>체중</p>
           <p>(kg)</p>
         </GraphBtn>
+        <div style={{flex: 1}}></div>
         <Navigation />
       </AlignBase>
     </BaseScreen>
@@ -38,6 +39,7 @@ const GraphBtn = styled.div<{isActive: boolean}>`
   height: ${prop => (prop.isActive ? '52px' : '320px')};
   box-shadow: 0rem 0.1rem 0.5rem 0rem rgb(223, 223, 223, 0.8);
   border-radius: 12px;
+  width: 100%;
   p:first-child {
     position: absolute;
     font-size: 16px;

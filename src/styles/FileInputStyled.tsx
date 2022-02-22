@@ -51,11 +51,10 @@ export const FileInput = styled.input`
   display: none;
 `;
 export const FileRectengle = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 150px;
+  display: block;
+  min-width: 150px;
+  width: 47.022%;
+  padding-bottom: 47.022%;
   border: 1px solid ${props => props.theme.btnColor2};
   border-radius: 10px;
   background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
