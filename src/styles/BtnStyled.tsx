@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-/* 
+
 interface Prop {
   children?: any;
 }
+/* 
 export const BtnShort = ({children}: Prop) => <Short>{children}</Short>;
 export const BtnMiddle = ({children}: Prop) => <Middle />;
 export const BtnLong = ({children}: Prop) => <Long />;
@@ -11,6 +12,13 @@ export const BtnMain = ({children}: Prop) => <Btn>{children}</Btn>;
 export const BtnMain2 = ({children}: Prop) => <Btn2>{children}</Btn2>;
 export const BtnMain3 = ({children}: Prop) => <Btn3>{children}</Btn3>;
  */
+export const HealthSubject = ({children}: Prop) => (
+  <LongBtn>{children}</LongBtn>
+);
+export const HealthIndex = ({children}: Prop) => (
+  <MiddleBtn>{children}</MiddleBtn>
+);
+
 export const ShortBtn = styled.button`
   display: block;
   min-width: 59px;

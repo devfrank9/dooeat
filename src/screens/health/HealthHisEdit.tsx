@@ -5,11 +5,11 @@ import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import Excer from './EditBtnComp/Excer';
 
-const HealthEdit = () => {
+const HealthHisEdit = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar2 Subject="운동 기록" />
+        <StatusBar2 Subject="운동 기록 수정" />
         <div style={{height: '110px'}} />
         <Subject>오늘의 체중</Subject>
         <div style={{position: 'relative'}}>
@@ -49,4 +49,4 @@ const Input = styled(Common)`
   padding-left: 30px;
 `;
 
-export default HealthEdit;
+export default HealthHisEdit;
