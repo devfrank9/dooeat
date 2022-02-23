@@ -30,7 +30,7 @@ export const Navigation2 = () => {
           />
         </button>
       </Link>
-      <Link to="/" onClick={() => setIsActive(4)}>
+      <Link to="/shop" onClick={() => setIsActive(4)}>
         <button style={{width: '94px'}}>
           <Img1
             src={isActive === 4 ? '/image/nav7.png' : '/image/nav7_un.png'}
@@ -79,7 +79,7 @@ export const Navigation = () => {
           />
         </button>
       </Link>
-      <Link to="/" onClick={() => setIsActive(5)}>
+      <Link to="/shop" onClick={() => setIsActive(5)}>
         <button>
           <Img1
             src={isActive === 5 ? '/image/nav7.png' : '/image/nav7_un.png'}
