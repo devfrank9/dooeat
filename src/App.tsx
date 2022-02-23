@@ -27,6 +27,8 @@ import UserHealth from './screens/health/UserHealth';
 import {createGlobalStyle} from 'styled-components';
 import ProProfile from './screens/proProfile/ProProfileRouter';
 import ShopRoute from './screens/shop/ShopRoute';
+import UserMypageRoute from './screens/userMypage/UserMypageRoute';
+import ProMypageRoute from './screens/proMypage/ProMyPageRoute';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -114,6 +116,8 @@ function Screens() {
           <Route path={'/user/pro/*'} element={<UserPro />} />
           <Route path={'/pro/profile/*'} element={<ProProfile />} />
           <Route path={'/shop/*'} element={<ShopRoute />} />
+          <Route path={'/user/mypage/*'} element={<UserMypageRoute />} />
+          <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
