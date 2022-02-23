@@ -37,10 +37,11 @@ const BtnFix2 = styled(ColoredBtn)`
 const FileAlign = styled.div`
   display: flex;
   margin-top: 20px;
+  justify-content: space-between;
   img {
-    width: 152px;
-    height: 152px;
-    margin-left: 16px;
+    display: block;
+    min-width: 150px;
+    width: 47.022%;
   }
 `;
 const TextAreaReview = styled(TextArea)`

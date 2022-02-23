@@ -299,6 +299,7 @@ const BackImg = styled.div`
   margin: 0 -28px;
   height: 440px;
   z-index: -6;
+  background: url('/image/hi.png');
   background-size: cover;
 `;
 
