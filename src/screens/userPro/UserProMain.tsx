@@ -15,7 +15,11 @@ const UserProMain = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar Subject="전문가" Img="/image/myInfo.png" />
+        <StatusBar
+          Subject="전문가"
+          Img="/image/myInfo.png"
+          LinkTo="/user/mypage"
+        />
         <div style={{height: '110px'}} />
         <Search placeholder="원하시는 전문가를 검색해보세요." />
         <Subject>추천 전문가</Subject>
