@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Navigation2} from '../../components/Navigation';
-import {StatusBar3} from '../../components/StatusBar';
+import {StatusBar} from '../../components/StatusBar';
 import Switch from '../../components/Toggle';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
@@ -9,7 +9,11 @@ const ProProfileMain = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar3 Subject="전문가 정보" />
+        <StatusBar
+          Subject="프로필"
+          Img="/image/myInfo.png"
+          LinkTo="/pro/mypage"
+        />
         <BackImg>
           <p>등록된 소개 사진이 없습니다.</p>
           <p>우측 하단 "수정"에서</p>

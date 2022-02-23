@@ -9,7 +9,11 @@ const HealthMain = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar Subject="오늘" Img="/image/myInfo.png" />
+        <StatusBar
+          Subject="오늘"
+          Img="/image/myInfo.png"
+          LinkTo="/user/profile"
+        />
         <div style={{height: '110px'}} />
         <SelectDate />
 

@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 interface Prop {
   Subject?: string;
   Img?: string;
+  LinkTo?: string;
 }
 export const StatusBar3 = ({Subject = '오늘'}: Prop) => {
   let navigate = useNavigate();
@@ -45,14 +46,16 @@ export const StatusBar2 = ({
   );
 };
 
-export const StatusBar = ({Subject = '오늘', Img = ''}: Prop) => {
+export const StatusBar = ({Subject = '오늘', Img = '', LinkTo = ''}: Prop) => {
   return (
     <Container>
       <StatusText>{Subject}</StatusText>
       <StatusMyInfo>
-        <button>
-          <img src={Img} alt="." />
-        </button>
+        <Link to={LinkTo}>
+          <button>
+            <img src={Img} alt="." />
+          </button>
+        </Link>
       </StatusMyInfo>
     </Container>
   );

@@ -12,7 +12,11 @@ const mealMain = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar Subject="오늘" Img="/image/myInfo.png" />
+        <StatusBar
+          Subject="오늘"
+          Img="/image/myInfo.png"
+          LinkTo="/user/mypage"
+        />
         <div style={{height: '110px'}}></div>
         <SelectDate />
         <Subject>식단 입력</Subject>

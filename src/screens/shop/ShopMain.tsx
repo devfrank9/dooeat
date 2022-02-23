@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
@@ -7,7 +8,11 @@ const ShopMain = () => {
   return (
     <BaseScreen>
       <AlignBase>
-        <StatusBar Subject="쇼핑몰" Img="/image/myInfo.png" />
+        <StatusBar
+          Subject="쇼핑몰"
+          Img="/image/myInfo.png"
+          LinkTo="/user/mypage"
+        />
         <div style={{height: '110px'}} />
         <div
           style={{
@@ -67,6 +72,7 @@ const ShopMain = () => {
             <p>31,000 원</p>
           </Align>
         </div>
+        <Navigation />
       </AlignBase>
     </BaseScreen>
   );
