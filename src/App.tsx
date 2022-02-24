@@ -32,6 +32,7 @@ import ProMypageRoute from './screens/proMypage/ProMyPageRoute';
 import Notice from './screens/Notice';
 import NoticeDetail from './screens/NoticeDetail';
 import CommuRoutes from './screens/community/CommuRoutes';
+import ProManageRoutes from './screens/proManage/ProManageRoutes';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -125,6 +126,7 @@ function Screens() {
           <Route path={'/notice'} element={<Notice />} />
           <Route path={'/notice/:id'} element={<NoticeDetail />} />
           <Route path={'/community/*'} element={<CommuRoutes />} />
+          <Route path={'/pro/manage/*'} element={<ProManageRoutes />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
