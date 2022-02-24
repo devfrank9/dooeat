@@ -29,6 +29,9 @@ import ProProfile from './screens/proProfile/ProProfileRouter';
 import ShopRoute from './screens/shop/ShopRoute';
 import UserMypageRoute from './screens/userMypage/UserMypageRoute';
 import ProMypageRoute from './screens/proMypage/ProMyPageRoute';
+import Notice from './screens/Notice';
+import NoticeDetail from './screens/NoticeDetail';
+import CommuRoutes from './screens/community/CommuRoutes';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -106,6 +109,7 @@ function Screens() {
       >
         <Routes location={location}>
           <Route path={'/'} element={<Main />} />
+          <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
           <Route path={'/login'} element={<Login />} />
           <Route path={'/search'} element={<SearchId />} />
           <Route path={'/join-user/*'} element={<JoinUser />} />
@@ -118,6 +122,9 @@ function Screens() {
           <Route path={'/shop/*'} element={<ShopRoute />} />
           <Route path={'/user/mypage/*'} element={<UserMypageRoute />} />
           <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
+          <Route path={'/notice'} element={<Notice />} />
+          <Route path={'/notice/:id'} element={<NoticeDetail />} />
+          <Route path={'/community/*'} element={<CommuRoutes />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

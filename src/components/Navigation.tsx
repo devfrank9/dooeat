@@ -71,7 +71,7 @@ export const Navigation = () => {
           />
         </button>
       </Link>
-      <Link to="/" onClick={() => setIsActive(4)}>
+      <Link to="/community/favor" onClick={() => setIsActive(4)}>
         <button>
           <Img1
             src={isActive === 4 ? '/image/nav6.png' : '/image/nav6_un.png'}
