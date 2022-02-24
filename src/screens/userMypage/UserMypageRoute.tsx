@@ -6,6 +6,7 @@ import UserMyPageComm from './UserMyPageComm';
 import UserMyPageMatchSet from './UserMyPageMatchSet';
 import UserMyPageApply from './UserMyPageApply';
 import UserMyPageFavor from './UserMyPageFavor';
+import UserMyPageSet from './UserMyPageSet';
 
 const UserMypageRoute = () => {
   return (
@@ -17,6 +18,7 @@ const UserMypageRoute = () => {
       <Route path="/match-set" element={<UserMyPageMatchSet />} />
       <Route path="/match-apply" element={<UserMyPageApply />} />
       <Route path="/favor-pro" element={<UserMyPageFavor />} />
+      <Route path="/alert-set" element={<UserMyPageSet />} />
     </Routes>
   );
 };
