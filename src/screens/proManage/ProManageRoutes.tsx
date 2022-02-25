@@ -6,6 +6,8 @@ import ProManageWrite from './ProManageWrite';
 import ProManageComm from './ProManageComm';
 import ProManageAll from './ProManageAll';
 import ProManageGram from './ProManageGram';
+import ProManageGramEdit from './ProManageGramEdit';
+import ProManageCal from './ProManageCal';
 
 function proManageRoutes() {
   return (
@@ -17,6 +19,8 @@ function proManageRoutes() {
       <Route path="lecture/commEdit" element={<ProManageComm />} />
       <Route path="lecture/all" element={<ProManageAll />} />
       <Route path="lecture/gram" element={<ProManageGram />} />
+      <Route path="lecture/gram/edit" element={<ProManageGramEdit />} />
+      <Route path="lecture/calender" element={<ProManageCal />} />
     </Routes>
   );
 }

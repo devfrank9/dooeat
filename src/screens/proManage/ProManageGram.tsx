@@ -48,51 +48,55 @@ const ProManageGram = () => {
           <div style={{display: 'flex', margin: '0 28px'}}>
             <TextBox>
               <p>목표 까지</p>
-              <Inline>
-                <UnderLine>
-                  <strong>1주일에 0.5~1kg </strong>
-                </UnderLine>
-                <p> 정도 입니다.</p>
-              </Inline>
+              <div style={{display: 'flex', position: 'relative'}}>
+                <p>체지방</p>
+                <p style={{fontWeight: '500', margin: '0 5px'}}>5kg</p>
+                <p>감량</p>
+                <UnderLIne style={{width: '95px', left: '-3px'}} />
+              </div>
+              <div style={{display: 'flex', position: 'relative'}}>
+                <p>근육</p>
+                <p style={{fontWeight: '500', margin: '0 5px'}}>2kg</p>
+                <p>증가 필요</p>
+                <UnderLIne />
+              </div>
             </TextBox>
           </div>
         </Content>
-        <div style={{position: 'relative', maxWidth: '480px', width: '100%'}}>
-          <EditBtn to="/user/health/edit" />
-        </div>
+        <BtnAlign>
+          <EditBtn to="edit" />
+        </BtnAlign>
       </AlignBase>
     </BaseScreen>
   );
 };
-const EditBtn = styled(Link)`
+const UnderLIne = styled.div`
+  width: 83px;
+  height: 12px;
+  border-radius: 8px;
+  background-color: ${prop => prop.theme.pointColor2};
+  position: absolute;
+  opacity: 0.5;
+  left: -7px;
+  bottom: -2px;
+`;
+const BtnAlign = styled.div`
   position: fixed;
-  bottom: 90px;
-  background: url('/image/healthEdit.png') no-repeat;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  width: 100%;
+  max-width: 480px;
+`;
+const EditBtn = styled(Link)`
   width: 66px;
   height: 66px;
   border-radius: 33px;
-  right: 0;
-`;
-const Inline = styled.div`
-  display: flex;
-`;
-const UnderLine = styled.p`
-  font-size: 16px;
-  position: relative;
-  display: inline;
-  font-weight: 700;
-  &::after {
-    content: '';
-    width: 100%;
-    height: 16px;
-    border-radius: 8px;
-    background: rgb(252, 228, 234);
-    position: absolute;
-    display: inline-block;
-    bottom: -3px;
-    left: 0;
-    z-index: -1;
-  }
+  background: url('/image/healthEdit.png') no-repeat;
+  position: absolute;
+  right: 28px;
+  bottom: 0;
 `;
 const TextBox = styled.div`
   display: flex;
@@ -111,6 +115,8 @@ const TextBox = styled.div`
 const Graph = styled.div`
   height: 320px;
   border: 1px solid gray;
+  margin: 0 28px;
+  margin-top: 40.5px;
 `;
 const Content = styled.div`
   background-color: white;
@@ -119,16 +125,14 @@ const Content = styled.div`
   margin: 0 -28px;
 `;
 const Tap = styled.div<{isActive: boolean}>`
-  max-width: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   border-bottom: 2px solid
     ${props =>
       props.isActive ? props.theme.mainColor : props.theme.fontColor2};
-
   min-width: 187px;
-
   height: 60px;
   color: ${props =>
     props.isActive ? props.theme.mainColor : props.theme.fontColor2};
@@ -138,7 +142,6 @@ const Taps = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 60px;
-  margin: 0 -28px;
 `;
 const GramDiv = styled.div`
   display: flex;

@@ -26,6 +26,7 @@ const ProManageWrite = () => {
             <Input value="1" />
           </div>
         </InputAlign>
+        <div style={{height: '30px'}} />
         <Excer />
       </AlignBase>
     </BaseScreen>

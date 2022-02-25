@@ -17,7 +17,7 @@ const ProManageLecture = () => {
             <Link to="gram">
               <button />
             </Link>
-            <Link to="write-calender">
+            <Link to="calender">
               <button
                 style={{
                   background: "url('/image/calender.png') no-repeat 50% 50%",
