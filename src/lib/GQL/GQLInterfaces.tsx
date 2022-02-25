@@ -83,14 +83,29 @@ export interface ResponseQueryGetBoardListBoardData {
 }
 
 interface ResponseBoardFile {
-    url: string;
+    url: string|number;
     fileType: string;
-    thumb: string;
+    thumb: string|number;
     bf_id: number;
     bo_table: string;
     wr_id : number;
     fileName: string;
     downloadCount: number
+}
+
+export interface ResponseQueryGetOther {
+    mb_id : string;
+    mb_name: string;
+    mb_1 : string;
+    mb_2 : string;
+    mb_3 : string;
+    mb_4 : string;
+    mb_5 : string;
+    mb_6 : string;
+    mb_7 : string;
+    mb_8 : string;
+    mb_9 : string;
+    mb_img : string|number;
 }
 
 export interface ResponseQueryGetBoardListBoardList {
@@ -101,7 +116,7 @@ export interface ResponseQueryGetBoardListBoardList {
     mb_id : string;
     wr_name: string;
     subject : string;
-    contnet : string;
+    content : string;
 
     file: ResponseBoardFile[];
 
@@ -117,6 +132,16 @@ export interface ResponseQueryGetBoardListBoardList {
     wr_1: string;
     wr_2: string;
     wr_3: string;
+    wr_4: string;
+    wr_5: string;
+    wr_6: string;
+    wr_7: string;
+    wr_8: string;
+    wr_9: string;
+    wr_10: string;
+
+    writerData? : ResponseQueryGetOther;
+
 }
 
 export interface ResponseQueryGetBoardList {
@@ -178,6 +203,11 @@ interface ResponseAllBoard {
     pageCount: number;
 }
 
+export interface ResponseMineExpert {
+    mine : ResponseMe;
+    expert: ResponseQueryGetBoardListBoardList
+}
+
 export interface ResponseData extends ResponseShopData{
     setOrder: string;
     getCurrentSendCost: number;
@@ -195,7 +225,7 @@ export interface ResponseData extends ResponseShopData{
     setBoardWrite: number;
 
     getAllBoard : ResponseAllBoard;
-
+    getMineExpert : ResponseMineExpert;
 
 }
 
