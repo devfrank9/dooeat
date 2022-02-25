@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {DummySelect} from "../lib/Dummys";
+import {DummySelect} from '../lib/Dummys';
 
 export const SelectTest = () => <Select></Select>;
 
@@ -30,16 +30,21 @@ interface Prop {
   placeholder?: string;
 }
 
-const DropDown = ({items, value, onChange, placeholder = '선택해주세요'} : Prop) => {
+const DropDown = ({
+  items,
+  value,
+  onChange,
+  placeholder = '선택해주세요',
+}: Prop) => {
   const [isActive, setIsActive] = useState(false);
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState('');
   const example = items ? items : DummySelect;
 
   const onActiveToggle = useCallback(() => {
     setIsActive(prev => !prev);
   }, []);
 
-  const onSelectItem = (e : any) => {
+  const onSelectItem = (e: any) => {
     const targetId = e.target.id;
 
     if (targetId === 'item_name') {
@@ -116,7 +121,7 @@ const DropdownItemContainer = styled.li`
   &:last-child {
     border-bottom: none;
   }
-  background-color:white;
+  background-color: white;
 `;
 
 const ItemName = styled.p`

@@ -6,83 +6,50 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 import Footer from '../../components/Footer';
 // Styles
-import {UnColoredBtn, LongBtn} from '../../styles/BtnStyled';
-import {Common} from '../../styles/InputStyled';
-import {LinkStyle, LinkStyle2} from '../../styles/LinkStyled';
-import {AbsoluteColBtn, TextAlign} from './JoinUser1';
+import {LongBtn} from '../../styles/BtnStyled';
+import {useNavigate} from 'react-router-dom';
+import * as Styled from '../../styles/joinUser/styled';
 
 const JoinUser3 = () => {
+  const navigate = useNavigate();
   return (
     <BaseScreen>
       <AlignBase>
         <NavProgress pageNumber={3} />
-        <TextAlign>
+        <Styled.TextAlign>
           <p>회원님의</p>
           <div style={{display: 'flex'}}>
             <p style={{fontWeight: '500'}}>성별과 나이</p>를 입력해주세요.
           </div>
-        </TextAlign>
+        </Styled.TextAlign>
         <div style={{height: 41}} />
-        <Subject>성별</Subject>
+        <Styled.Subject>성별</Styled.Subject>
         <BtnAlign>
           <LongBtn style={{fontFamily: 'Noto Sans KR'}}>여자</LongBtn>
           <LongBtn style={{fontFamily: 'Noto Sans KR'}}>남자</LongBtn>
         </BtnAlign>
         <div style={{height: '30px'}} />
-        <Subject>나이</Subject>
+        <Styled.Subject>나이</Styled.Subject>
         <div style={{height: '10px'}} />
         <div style={{position: 'relative'}}>
-          <Age>세</Age>
-          <AgeInput placeholder="나이를 입력해주세요." />
+          <Styled.Age>세</Styled.Age>
+          <Styled.AgeInput placeholder="나이를 입력해주세요." />
         </div>
         <div style={{flex: 1}} />
-        <LinkStyle2 to="/join-user/4">
-          <AbsoluteUnColBtn>건너뛰기</AbsoluteUnColBtn>
-        </LinkStyle2>
+        <Styled.LinkStyle2 to="/join-user/4">
+          <Styled.AbsoluteUnColBtn>건너뛰기</Styled.AbsoluteUnColBtn>
+        </Styled.LinkStyle2>
         <div style={{height: '12px'}} />
-        <LinkStyle to="/join-user/4">
-          <AbsoluteColBtn2>다음</AbsoluteColBtn2>
-        </LinkStyle>
-        <FooterAlign>
+        <Styled.AbsoluteColBtn2 onClick={() => navigate('/join-user/4')}>
+          다음
+        </Styled.AbsoluteColBtn2>
+        <Styled.FooterAlign>
           <Footer />
-        </FooterAlign>
+        </Styled.FooterAlign>
       </AlignBase>
     </BaseScreen>
   );
 };
-const FooterAlign = styled.div`
-  position: absolute;
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 82px;
-  width: 85%;
-  max-width: 480px;
-`;
-export const AbsoluteColBtn2 = styled(AbsoluteColBtn)`
-  bottom: 113px;
-`;
-export const AbsoluteUnColBtn = styled(UnColoredBtn)`
-  position: absolute;
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 177px;
-  width: 85%;
-  max-width: 480px;
-`;
-
-const Age = styled.label`
-  position: absolute;
-  top: 15px;
-  right: 31px;
-  font-size: 15px;
-  font-weight: 500;
-  color: ${prop => prop.theme.mainColor};
-`;
-const AgeInput = styled(Common)`
-  padding-left: 30px;
-`;
 const BtnAlign = styled.div`
   display: flex;
   margin: 0 1px;
@@ -90,10 +57,6 @@ const BtnAlign = styled.div`
     margin-top: 10px;
     margin-right: 12px;
   }
-`;
-export const Subject = styled.p`
-  margin: 0 1px;
-  font-size: 18px;
 `;
 
 export default JoinUser3;

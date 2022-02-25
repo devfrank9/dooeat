@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
-import {LongBtn} from '../../styles/BtnStyled';
+import {ColoredBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import {AbsoluteColBtn} from '../joinUser/JoinUser1';
 
 const ProManageComm = () => {
   return (
@@ -39,6 +38,15 @@ const ProManageComm = () => {
     </BaseScreen>
   );
 };
+const AbsoluteColBtn = styled(ColoredBtn)`
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 85%;
+  max-width: 480px;
+`;
 const Subject2 = styled.div`
   font-size: 18px;
 `;

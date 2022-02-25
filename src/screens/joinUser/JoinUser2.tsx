@@ -1,58 +1,33 @@
-// Packages
-import styled from 'styled-components';
-// Screens
 import BaseScreen, {AlignBase} from '../BaseScreen';
-// Components
 import NavProgress from '../../components/NavProgress';
-// Styles
-import {CheckNone} from '../../styles/InputStyled';
-import {LinkStyle} from '../../styles/LinkStyled';
-import {AbsoluteColBtn, TextAlign} from './JoinUser1';
+import * as Styled from '../../styles/joinUser/styled';
+import {useNavigate} from 'react-router-dom';
 
 const JoinUser2 = () => {
+  const navigate = useNavigate();
   return (
     <BaseScreen>
       <AlignBase>
         <NavProgress pageNumber={2} />
-        <TextAlign>
+        <Styled.TextAlign>
           <p>회원님의</p>
           <p>활동 정보를 입력해주세요.</p>
-        </TextAlign>
+        </Styled.TextAlign>
         <div style={{height: '68px'}} />
         <div style={{width: '100%'}}>
-          <PicAlign>
+          <Styled.PicAlign>
             <input type="file" id="fileinput" />
             <label htmlFor="fileinput" />
-          </PicAlign>
+          </Styled.PicAlign>
         </div>
         <div style={{height: '24px'}} />
-        <CheckNone placeholder="닉네임을 입력해주세요." />
-        <LinkStyle to="/join-user/3">
-          <AbsoluteColBtn>다음</AbsoluteColBtn>
-        </LinkStyle>
+        <Styled.CheckNone placeholder="닉네임을 입력해주세요." />
+        <Styled.AbsoluteColBtn onClick={() => navigate('/join-user/3')}>
+          다음
+        </Styled.AbsoluteColBtn>
       </AlignBase>
     </BaseScreen>
   );
 };
-const PicAlign = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
-  background-color: ${props => props.theme.btnColor1};
-  input {
-    display: none;
-  }
-  input + label {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    border-radius: 60px;
-    background: url('/image/Icon feather-plus.png') no-repeat 50% 50%;
-  }
-`;
 
 export default JoinUser2;
