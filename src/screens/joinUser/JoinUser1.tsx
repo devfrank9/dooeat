@@ -1,15 +1,12 @@
+import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-// Screens
+import {RulesProp, validate} from '../../lib/GlobalFunction';
+import {useQueryForCheckDuplicate} from '../../lib/GQL/CommunicationMap';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-// Components
 import NavProgress from '../../components/NavProgress';
 import Agreement from '../../components/Agreement';
-// Styles
 import * as Styled from '../../styles/joinUser/styled';
-import {useEffect, useState} from 'react';
-import {useQueryForCheckDuplicate} from '../../lib/GQL/CommunicationMap';
 import CheckInput from '../../components/CheckInput';
-import {RulesProp, validate} from '../../lib/GlobalFunction';
 
 const JoinUser1 = () => {
   const navigate = useNavigate();

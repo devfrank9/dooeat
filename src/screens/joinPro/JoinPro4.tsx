@@ -7,19 +7,20 @@ import NavProgress from '../../components/NavProgress';
 // Styles
 import ImgUpload, {FileLabel, FileInput} from '../../styles/FileInputStyled';
 import {TextArea} from '../../styles/InputStyled';
-import {LinkStyle} from '../../styles/LinkStyled';
-import {AbsoluteColBtn} from './JoinPro1';
+import * as Styled from '../../styles/joinPro/styled';
+import {useNavigate} from 'react-router-dom';
 
 const JoinPro4 = () => {
+  const navigate = useNavigate();
   return (
     <BaseScreen>
       <AlignBase>
         <NavProgress pageNumber={4} />
-        <TextAlign>
+        <Styled.TextAlign2>
           <p>전문가님의</p>
           <p>인증 수단을 입력해주세요.</p>
-        </TextAlign>
-        <LabelAlign>
+        </Styled.TextAlign2>
+        <Styled.LabelAlign>
           <FileLabel htmlFor="file1">전문 자격증</FileLabel>
           <FileInput type="file" id="file1" />
           <FileLabel htmlFor="file1">사업자등록증</FileLabel>
@@ -27,26 +28,14 @@ const JoinPro4 = () => {
           <FileLabel htmlFor="file1">기타(별도 입력)</FileLabel>
           <FileInput type="file" id="file1" />
           <ImgUpload />
-        </LabelAlign>
+        </Styled.LabelAlign>
         <TextArea placeholder="내용을 입력해주세요." />
-        <AbsoluteColBtn>
-          <LinkStyle to="/join-pro/5">다음</LinkStyle>
-        </AbsoluteColBtn>
+        <Styled.AbsoluteColBtn onClick={() => navigate('/join-pro/5')}>
+          다음
+        </Styled.AbsoluteColBtn>
       </AlignBase>
     </BaseScreen>
   );
 };
-const LabelAlign = styled.div`
-  Label {
-    margin-bottom: 16px;
-  }
-`;
-const TextAlign = styled.div`
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 33px;
-  margin-left: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
+
 export default JoinPro4;
