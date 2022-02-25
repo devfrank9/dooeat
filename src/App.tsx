@@ -13,25 +13,28 @@ import Constants from './lib/Constants';
 import {__isLoading, __session} from './lib/atom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {useLocalStorage, useSessionStorage} from 'react-use-storage';
+import {createGlobalStyle} from 'styled-components';
 
-// view 페이지
+// Route
 import Main from './screens/Main';
 import Login from './screens/Login';
 import SearchId from './screens/SearchId';
-import JoinUser from './screens/joinUser/JoinUser';
-import SearchMento from './screens/searchMento/SearchMento';
-import JoinPro from './screens/joinPro/JoinPro';
-import UserMeal from './screens/meal/UserMeal';
-import UserPro from './screens/userPro/UserPro';
-import UserHealth from './screens/health/UserHealth';
-import {createGlobalStyle} from 'styled-components';
-import ProProfile from './screens/proProfile/ProProfileRouter';
+
+import JoinUserRoute from './screens/joinUser/JoinUserRoute';
+import JoinProRoute from './screens/joinPro/JoinProRoute';
+import SearchMentoRoutes from './screens/searchMento/SearchMentoRoutes';
 import ShopRoute from './screens/shop/ShopRoute';
-import UserMypageRoute from './screens/userMypage/UserMypageRoute';
-import ProMypageRoute from './screens/proMypage/ProMyPageRoute';
 import Notice from './screens/Notice';
 import NoticeDetail from './screens/NoticeDetail';
 import CommuRoutes from './screens/community/CommuRoutes';
+
+import UserMealRoute from './screens/userMeal/UserMealRoute';
+import UserProRoute from './screens/userPro/UserProRoute';
+import UserHealthRoute from './screens/health/UserHealthRoute';
+import UserMypageRoute from './screens/userMypage/UserMypageRoute';
+
+import ProProfileRouter from './screens/proProfile/ProProfileRouter';
+import ProMypageRoute from './screens/proMypage/ProMyPageRoute';
 import ProManageRoutes from './screens/proManage/ProManageRoutes';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
@@ -109,23 +112,27 @@ function Screens() {
         time
       >
         <Routes location={location}>
+          {/* 공통 라우팅 */}
           <Route path={'/'} element={<Main />} />
           <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
           <Route path={'/login'} element={<Login />} />
           <Route path={'/search'} element={<SearchId />} />
-          <Route path={'/join-user/*'} element={<JoinUser />} />
-          <Route path={'/search-mento/*'} element={<SearchMento />} />
-          <Route path={'/join-pro/*'} element={<JoinPro />} />
-          <Route path={'/user/meal/*'} element={<UserMeal />} />
-          <Route path={'/user/health/*'} element={<UserHealth />} />
-          <Route path={'/user/pro/*'} element={<UserPro />} />
-          <Route path={'/pro/profile/*'} element={<ProProfile />} />
-          <Route path={'/shop/*'} element={<ShopRoute />} />
-          <Route path={'/user/mypage/*'} element={<UserMypageRoute />} />
-          <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
           <Route path={'/notice'} element={<Notice />} />
           <Route path={'/notice/:id'} element={<NoticeDetail />} />
           <Route path={'/community/*'} element={<CommuRoutes />} />
+          <Route path={'/shop/*'} element={<ShopRoute />} />
+          {/* 회원가입 라우팅 */}
+          <Route path={'/join-user/*'} element={<JoinUserRoute />} />
+          <Route path={'/search-mento/*'} element={<SearchMentoRoutes />} />
+          <Route path={'/join-pro/*'} element={<JoinProRoute />} />
+          {/* 회원 라우팅 */}
+          <Route path={'/user/meal/*'} element={<UserMealRoute />} />
+          <Route path={'/user/health/*'} element={<UserHealthRoute />} />
+          <Route path={'/user/pro/*'} element={<UserProRoute />} />
+          <Route path={'/user/mypage/*'} element={<UserMypageRoute />} />
+          {/* 전문가 라우팅 */}
+          <Route path={'/pro/profile/*'} element={<ProProfileRouter />} />
+          <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
           <Route path={'/pro/manage/*'} element={<ProManageRoutes />} />
         </Routes>
       </CSSTransition>

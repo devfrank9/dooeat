@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Calender from '../../components/Calender';
-import {SelectDate} from '../../components/SelectDate';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
