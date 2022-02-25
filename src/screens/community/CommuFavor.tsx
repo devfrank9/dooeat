@@ -208,15 +208,12 @@ const BtnAlign = styled.div`
   max-width: 480px;
 `;
 const EditBtn = styled(Link)`
-  width: 48px;
-  height: 48px;
-  background: url('/image/healthEdit.png') no-repeat 50% 50%;
-  background-size: cover;
-  background-color: ${prop => prop.theme.mainColor};
-  border: none;
-  border-radius: 24px;
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+  background: url('/image/healthEdit.png') no-repeat;
   position: absolute;
-  right: 29px;
+  right: 28px;
   bottom: 0;
 `;
 const CommentBox = styled.div`

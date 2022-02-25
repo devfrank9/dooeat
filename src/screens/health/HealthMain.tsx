@@ -61,22 +61,32 @@ const HealthMain = () => {
           <ExerciseKind2>러닝머신</ExerciseKind2>
           <ExcerciseInfo2>40분</ExcerciseInfo2>
         </BtnAlign>
-        <div style={{position: 'relative'}}>
-          <EditBtn to="/user/health/edit" />
-        </div>
+        <BtnAlign2>
+          <EditBtn to="edit" />
+        </BtnAlign2>
         <div style={{height: '102px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>
   );
 };
-const EditBtn = styled(Link)`
+const BtnAlign2 = styled.div`
   position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 90px;
-  background: url('/image/healthEdit.png') no-repeat;
+  width: 100%;
+  max-width: 480px;
+`;
+const EditBtn = styled(Link)`
   width: 66px;
   height: 66px;
   border-radius: 33px;
+  background: url('/image/healthEdit.png') no-repeat;
+  position: absolute;
+  right: 28px;
+  bottom: 0;
 `;
 const LongExKind = styled.div`
   display: flex;
