@@ -1,4 +1,20 @@
 import {ResponseMe, ResponseMineExpert, ResponseQueryGetBoardList} from "../lib/GQL/GQLInterfaces";
+import profile1 from "./Image/profile1.png"
+import profile2 from "./Image/profile2.png"
+import food1 from "./Image/food1.jpg"
+import food2 from "./Image/food2.png"
+import food3 from "./Image/food3.png"
+import food4 from "./Image/food4.png"
+import food5 from "./Image/food5.png"
+import resizeFood1 from "./Image/resize_food1.png"
+import resizeFood2 from "./Image/resize_food2.png"
+import resizeFood3 from "./Image/resize_food3.png"
+import resizeFood4 from "./Image/resize_food4.png"
+import resizeFood5 from "./Image/resize_food5.png"
+import trophy1 from "./Image/trophy1.png"
+import trophy2 from "./Image/trophy2.png"
+import resizeTrophy1 from "./Image/resize_trophy1.png"
+import resizeTrophy2 from "./Image/resize_trophy2.png"
 
 export const Zone1 = {
     getZone : ["서울시","경기도","인천시","마산시","경상북도","경상남도","전라북도","전라남도"]
@@ -32,7 +48,7 @@ export const MemberDataLv2 = {  // 일반회원
         mb_level: 2,
         sns: "",
 
-        mb_img: require('../Dummy/Image/profile1.png'),
+        mb_img: profile1,
     } as ResponseMe
 }
 export const MemberDataLv3 = {
@@ -60,7 +76,7 @@ export const MemberDataLv3 = {
         mb_level: 3,
         sns: "",
 
-        mb_img: require('../Dummy/Image/profile2.png'),
+        mb_img: profile2,
     } as ResponseMe
 }
 
@@ -90,7 +106,7 @@ export const expertData = {
             mb_level: 3,
             sns: "",
 
-            mb_img: require('../Dummy/Image/profile2.png'),
+            mb_img: profile2,
         },
         expert : {
             wr_num: 0,
@@ -103,9 +119,9 @@ export const expertData = {
             content : "전문(실명)",
 
             file: [{
-                url: require("../Dummy/Image/trophy1.png"),
+                url: trophy1,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_trophy1.png"),
+                thumb: resizeTrophy1,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -114,9 +130,9 @@ export const expertData = {
             },
             null,
             {
-                url: require("../Dummy/Image/trophy2.png"),
+                url: trophy2,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_trophy2.png"),
+                thumb: resizeTrophy2,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -185,9 +201,9 @@ export const FoodData = {
             content : "식단일기 내용",
 
             file: [{
-                url: require("../Dummy/Image/food1.jpg"),
+                url: food1,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_food1.png"),
+                thumb: resizeFood1,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -195,9 +211,9 @@ export const FoodData = {
                 downloadCount: 0,
             },
             {
-                url: require("../Dummy/Image/food2.jpg"),
+                url: food2,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_food2.png"),
+                thumb: resizeFood2,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -236,9 +252,9 @@ export const FoodData = {
             content : "식단일기 내용 두번째",
 
             file: [{
-                url: require("../Dummy/Image/food3.jpg"),
+                url: food3,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_food3.png"),
+                thumb: resizeFood3,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -246,9 +262,9 @@ export const FoodData = {
                 downloadCount: 0,
                 },
                 {
-                    url: require("../Dummy/Image/food4.jpg"),
+                    url: food4,
                     fileType: "image",
-                    thumb: require("../Dummy/Image/resize_food4.png"),
+                    thumb: resizeFood4,
                     bf_id: 1,
                     bo_table: "",
                     wr_id : 0,
@@ -287,9 +303,9 @@ export const FoodData = {
             content : "식단일기 내용3",
 
             file: [{
-                url: require("../Dummy/Image/food5.jpg"),
+                url: food5,
                 fileType: "image",
-                thumb: require("../Dummy/Image/resize_food5.png"),
+                thumb: resizeFood5,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -297,9 +313,9 @@ export const FoodData = {
                 downloadCount: 0,
             },
                 {
-                    url: require("../Dummy/Image/food1.jpg"),
+                    url: food1,
                     fileType: "image",
-                    thumb: require("../Dummy/Image/resize_food1.png"),
+                    thumb: resizeFood1,
                     bf_id: 1,
                     bo_table: "",
                     wr_id : 0,
@@ -363,9 +379,9 @@ export const exerciseData = {
             "subject": "2022-01-26 테스트전문가회원",
             "content": "[{\"part\":\"하체\",\"name\":\"빡세게\",\"set\":3,\"weight\":3,\"times\":10,\"movieURL\":\"\",\"time\":\"\",\"power\":\"\"},{\"part\":\"어깨\",\"name\":\"웨이트로\",\"set\":13,\"weight\":5,\"times\":5,\"movieURL\":\"\",\"time\":\"\",\"power\":\"\"}]",
             "file": [{
-                url: require("../Dummy/Image/profile1.png"),
+                url: profile2,
                 fileType: "image",
-                thumb: require("../Dummy/Image/profile2.png"),
+                thumb: profile2,
                 bf_id: 1,
                 bo_table: "",
                 wr_id : 0,
@@ -438,4 +454,45 @@ export const exerciseForm = {
     }
 }
 
-
+export const shareList = {
+    "getShareData": {
+        "exercise": {
+            "date": "2022-01-26",
+            "exerciseType": "헬스",
+            "todayWeight": 80,
+            "file": [],
+            "exerciseData": [
+                {
+                    "part": "하체",
+                    "name": "빡세게",
+                    "set": 3,
+                    "weight": 3,
+                    "times": 10,
+                    "movieURL": "",
+                    "time": "",
+                    "power": ""
+                },
+                {
+                    "part": "어깨",
+                    "name": "웨이트로",
+                    "set": 13,
+                    "weight": 5,
+                    "times": 5,
+                    "movieURL": "",
+                    "time": "",
+                    "power": ""
+                }
+            ]
+        },
+        "food": null,
+        "comment": "코멘트를 다는 곳입니다",
+        "weight": 80,
+        "question": "질문을 던지는곳입니다.",
+        "date": "2022-01-26",
+        "bodyForm": [],
+        "bodyComment": "",
+        "teaching": [],
+        "foodGood": 0,
+        "exerciseGood": 0
+    }
+}
