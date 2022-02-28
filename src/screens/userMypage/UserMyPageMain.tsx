@@ -2,8 +2,10 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
+import useLogout from '../../lib/Hook/useLogout';
 
 const UserMyPageMain = () => {
+  const logout = useLogout();
   return (
     <BaseScreen>
       <AlignBase>
@@ -28,7 +30,7 @@ const UserMyPageMain = () => {
         </List>
         <div style={{height: '116px'}} />
         <MypageFooter>
-          <Link to="/">로그아웃</Link>
+          <a onClick={logout}>로그아웃</a>
           <Link to="/">회원탈퇴</Link>
         </MypageFooter>
       </AlignBase>
