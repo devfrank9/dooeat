@@ -36,24 +36,18 @@ const JoinUser1 = () => {
       setIdOK(false);
       setErrorLabel(commDuplicateResult.error!.message);
     }
-  }, [commDuplicateResult]);
+  }, [commDuplicateResult.data,commDuplicateResult.error]);
+
   useEffect(() => {
-    let msg = '';
+    let rules: RulesProp = {};
     if (signup.mb_id) {
-      let rules: RulesProp = {
-        id: {email: {message: '이메일 형식에 맞지 않습니다'}},
-      };
-      let vali = validate({id: signup.mb_id}, rules);
-      if (vali) {
-        msg = vali;
-      }
+      rules.mb_id = {email: {message: '이메일 형식에 맞지 않습니다'}};
     }
-    if (!msg && signup.mb_password && passwordConfirm) {
-      if (signup.mb_password !== passwordConfirm) {
-        msg = '암호가 일치하지 않습니다';
-      }
+    if (signup.mb_password) {
+      rules.mb_password = {equal: {message: '암호가 일치하지 않습니다',value: passwordConfirm}};
     }
-    setErrorLabel(msg);
+    let msg = validate(signup, rules);
+    setErrorLabel(msg || "");
   }, [signup.mb_id, signup.mb_password, passwordConfirm]);
 
   const processSignup = () => {
@@ -87,7 +81,7 @@ const JoinUser1 = () => {
             placeholder="비밀번호를 입력해주세요."
             value={signup.mb_password ?? ''}
             type={'password'}
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => setSignup({...signup, mb_password: e.target.value})}
             status={
               password.length === 0 || passwordConfirm.length === 0
                 ? 'none'
@@ -102,7 +96,6 @@ const JoinUser1 = () => {
             value={passwordConfirm}
             onChange={e => {
               setPasswordConfirm(e.target.value);
-              setSignup({...signup, mb_password: e.target.value});
             }}
             status={
               password.length === 0 || passwordConfirm.length === 0
