@@ -8,27 +8,37 @@ import {Logo} from '../components/Logo';
 import {UnColoredBtn, ColoredBtn} from '../styles/BtnStyled';
 import {LinkStyle, LinkStyle2} from '../styles/LinkStyled';
 import {AlignBase, Space} from './BaseScreen';
+import {useState} from 'react';
+import MealMain from './userMeal/MealMain';
 
 const Main = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <BaseScreen>
-      <AlignBase>
-        <div style={{height: '147px'}} />
-        <Logo />
-        <BtnAlign>
-          <ColoredBtn>
-            <LinkStyle to={'/login'}>로그인</LinkStyle>
-          </ColoredBtn>
-          <UnColoredBtn>
-            <LinkStyle2 to={'/join-user/1'}>일반 회원 가입하기</LinkStyle2>
-          </UnColoredBtn>
-          <UnColoredBtn>
-            <LinkStyle2 to={'/join-pro/1'}>전문가 회원 가입하기</LinkStyle2>
-          </UnColoredBtn>
-        </BtnAlign>
-        <Space />
-      </AlignBase>
-    </BaseScreen>
+    <>
+      {isLoggedIn ? (
+        <MealMain />
+      ) : (
+        <BaseScreen>
+          <AlignBase>
+            <div style={{height: '147px'}} />
+            <Logo />
+            <BtnAlign>
+              <ColoredBtn>
+                <LinkStyle to={'/login'}>로그인</LinkStyle>
+              </ColoredBtn>
+              <UnColoredBtn>
+                <LinkStyle2 to={'/join-user/1'}>일반 회원 가입하기</LinkStyle2>
+              </UnColoredBtn>
+              <UnColoredBtn>
+                <LinkStyle2 to={'/join-pro/1'}>전문가 회원 가입하기</LinkStyle2>
+              </UnColoredBtn>
+            </BtnAlign>
+            <Space />
+          </AlignBase>
+        </BaseScreen>
+      )}
+    </>
   );
 };
 const BtnAlign = styled.div`
