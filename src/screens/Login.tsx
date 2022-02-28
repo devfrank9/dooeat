@@ -1,6 +1,15 @@
 // Packages
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {useLocalStorage, useSessionStorage} from 'react-use-storage';
+import {useSetRecoilState} from 'recoil';
+import {__session} from '../lib/atom';
+import {useLQueryForLogin} from '../lib/GQL/CommunicationMap';
+import Constants from '../lib/Constants';
+import {useNavigate} from 'react-router-dom';
+import {RequestQueryGetLogin} from '../lib/GQL/GQLInterfaces';
+import {RulesProp, validate} from '../lib/GlobalFunction';
 // Screens
 import BaseScreen from './BaseScreen';
 // Components
@@ -11,18 +20,68 @@ import {ColoredBtn} from '../styles/BtnStyled';
 import {AlignBase, Space} from './BaseScreen';
 
 const Login = () => {
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const [preventEvent, setPreventEvent] = useState(false);
+
+  const [___, setCurrentValue, _____] = useSessionStorage(
+    Constants.storage.currentLoginSession,
+    '',
+  );
+  const navigate = useNavigate();
+  const [commLogin, commLoginResult] = useLQueryForLogin();
+  const setSession = useSetRecoilState(__session);
+
+  const process = () => {
+    let rules: RulesProp = {
+      mb_id: {required: {message: '아이디를 입력해주세요'}},
+      mb_password: {required: {message: '암호를 입력해주세요'}},
+    };
+    let vvv: RequestQueryGetLogin = {
+      mb_id: id,
+      mb_password: pw,
+    };
+    let vali = validate(vvv, rules);
+    if (vali) {
+      alert('warning');
+      return;
+    }
+    commLogin({variables: vvv});
+  };
+
+  useEffect(() => {
+    if (commLoginResult.data && commLoginResult.data.login) {
+      setPreventEvent(true);
+      setSession(commLoginResult.data.login);
+      setCurrentValue(commLoginResult.data.login);
+      alert('로그인 되었습니다');
+      navigate('/');
+    }
+  }, [commLoginResult.data]);
+
   return (
     <BaseScreen>
       <AlignBase>
         <div style={{height: '147px'}} />
         <Logo />
         <InputAlign>
-          <Common placeholder="이메일을 입력해주세요" />
-          <Common placeholder="비밀번호를 입력해주세요" />
+          <Common
+            value={id}
+            onChange={e => setId(e.target.value)}
+            maxLength={20}
+            placeholder="이메일을 입력해주세요"
+          />
+          <Common
+            value={pw}
+            onChange={e => setPw(e.target.value)}
+            type={'password'}
+            placeholder="비밀번호를 입력해주세요"
+          />
         </InputAlign>
-        <ColoredBtn>두잇두잇 시작하기</ColoredBtn>
+        <ColoredBtn onClick={() => process()}>두잇두잇 시작하기</ColoredBtn>
         <SearchLink to={'/search'}>아이디 / 비밀번호 찾기</SearchLink>
         <Space />
+        <div style={{height: '30px'}} />
       </AlignBase>
     </BaseScreen>
   );
