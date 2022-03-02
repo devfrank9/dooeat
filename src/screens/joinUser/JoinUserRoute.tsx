@@ -1,4 +1,8 @@
+import React, {useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {userDataState} from '../../lib/atom';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
 import JoinUser1 from './JoinUser1';
 import JoinUser2 from './JoinUser2';
 import JoinUser3 from './JoinUser3';
@@ -9,6 +13,12 @@ import JoinUser7 from './JoinUser7';
 import JoinUser8 from './JoinUser8';
 
 function JoinUser() {
+  /*   const joinSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    useEffect(() => {
+      const userDataObj = JSON.parse(sessionStorage.getItem(string || {}));
+    });
+    const pushUserData: RequestSetMember = {};
+  }; */
   return (
     <Routes>
       <Route path="1" element={<JoinUser1 />} />
