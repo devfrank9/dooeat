@@ -6,9 +6,21 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 // Styles
 import * as Styled from '../../styles/joinUser/styled';
+import {useState} from 'react';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import {useRecoilState} from 'recoil';
+import {userFormState} from '../../lib/atom';
 
 const JoinUser7 = () => {
   const navigate = useNavigate();
+  const [signup, setSignup] = useState<RequestSetMember>({});
+  const [userData, setUserData] = useRecoilState(userFormState);
+
+  const processSignup = () => {
+    Object.assign(signup, userData);
+    setUserData(signup);
+    navigate('/join-user/8');
+  };
 
   return (
     <BaseScreen>
@@ -36,15 +48,20 @@ const JoinUser7 = () => {
             <Styled.ScaleAlign>
               <div style={{position: 'relative'}}>
                 <Styled.KgLabel>kg</Styled.KgLabel>
-                <Styled.KgInput placeholder="입력해주세요." type="text" />
+                <Styled.KgInput
+                  placeholder="입력해주세요."
+                  type="text"
+                  value={signup.mb_4 ?? ''}
+                  onChange={e => {
+                    setSignup({...signup, mb_4: e.target.value});
+                  }}
+                />
               </div>
               <p> 입니다.</p>
             </Styled.ScaleAlign>
           </Styled.LastText>
           <div style={{flex: 0.5}} />
-          <Styled.ColoredBtn onClick={() => navigate('/join-user/8')}>
-            완료
-          </Styled.ColoredBtn>
+          <Styled.ColoredBtn onClick={processSignup}>완료</Styled.ColoredBtn>
           <div style={{height: 113}} />
         </div>
       </AlignBase>

@@ -1,13 +1,19 @@
+import {useRecoilState, useRecoilValue} from 'recoil';
 import styled from 'styled-components';
+import {userFormState} from '../lib/atom';
 
-const BmiResult = () => {
+interface Prop {
+  result: string;
+}
+
+const BmiResult = ({result}: Prop) => {
   return (
     <ContentBox>
       <Header>
         <p>BMI(신체질량지수)</p>
       </Header>
       <BmiCalc>
-        <p>20.29</p>
+        <p>{result}</p>
       </BmiCalc>
       <HealthResult>
         <p>정상</p>

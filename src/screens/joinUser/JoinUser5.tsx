@@ -6,9 +6,22 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 // Styles
 import * as Styled from '../../styles/joinUser/styled';
+import {useState} from 'react';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import {useRecoilState} from 'recoil';
+import {userFormState} from '../../lib/atom';
 
 const JoinUser5 = () => {
   const navigate = useNavigate();
+  const [signup, setSignup] = useState<RequestSetMember>({});
+  const [userData, setUserData] = useRecoilState(userFormState);
+
+  const processSignup = () => {
+    Object.assign(signup, userData);
+    setUserData(signup);
+    navigate('/join-user/6');
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -24,17 +37,29 @@ const JoinUser5 = () => {
         <div style={{height: '10px'}} />
         <div style={{position: 'relative'}}>
           <Styled.Label>kg</Styled.Label>
-          <Styled.Input placeholder="kg단위로 입력해주세요." />
+          <Styled.Input
+            placeholder="kg단위로 입력해주세요."
+            value={signup.mb_2 ?? ''}
+            onChange={e => {
+              setSignup({...signup, mb_2: e.target.value});
+            }}
+          />
         </div>
         <div style={{height: '30px'}} />
         <Styled.Subject>키</Styled.Subject>
         <div style={{height: '10px'}} />
         <div style={{position: 'relative'}}>
           <Styled.Label>cm</Styled.Label>
-          <Styled.Input placeholder="cm단위로 입력해주세요." />
+          <Styled.Input
+            placeholder="cm단위로 입력해주세요."
+            value={signup.mb_3 ?? ''}
+            onChange={e => {
+              setSignup({...signup, mb_3: e.target.value});
+            }}
+          />
         </div>
         <div style={{flex: 1.7}} />
-        <Styled.AbsoluteColBtn2 onClick={() => navigate('/join-user/6')}>
+        <Styled.AbsoluteColBtn2 onClick={processSignup}>
           다음
         </Styled.AbsoluteColBtn2>
         <div style={{height: 113}} />

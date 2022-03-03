@@ -76,43 +76,51 @@ const JoinUser1 = () => {
           <p>아이디 정보를 입력해주세요.</p>
         </Styled.TextAlign>
         <Styled.InputAlign>
-          <CheckInput
-            placeholder="이메일을 입력해주세요"
-            value={signup.mb_id ?? ''}
-            onChange={e => {
-              setId(e.target.value);
-              setSignup({...signup, mb_id: e.target.value});
-            }}
-            onBlur={() => commDuplicate({variables: {mb_email: id}})}
-          />
-          <CheckInput
-            placeholder="비밀번호를 입력해주세요."
-            value={signup.mb_password ?? ''}
-            type={'password'}
-            onChange={e => setSignup({...signup, mb_password: e.target.value})}
-            status={
-              password.length === 0 || passwordConfirm.length === 0
-                ? 'none'
-                : password === passwordConfirm
-                ? 'succ'
-                : 'err'
-            }
-          />
-          <CheckInput
-            placeholder="비밀번호를 다시 한번 입력해주세요."
-            type={'password'}
-            value={passwordConfirm}
-            onChange={e => {
-              setPasswordConfirm(e.target.value);
-            }}
-            status={
-              password.length === 0 || passwordConfirm.length === 0
-                ? 'none'
-                : password === passwordConfirm
-                ? 'succ'
-                : 'err'
-            }
-          />
+          <form action="">
+            <CheckInput
+              placeholder="이메일을 입력해주세요"
+              value={signup.mb_id ?? ''}
+              onChange={e => {
+                setId(e.target.value);
+                setSignup({...signup, mb_id: e.target.value});
+              }}
+              onBlur={() => commDuplicate({variables: {mb_email: id}})}
+            />
+            <CheckInput
+              placeholder="비밀번호를 입력해주세요."
+              value={signup.mb_password ?? ''}
+              type={'password'}
+              name="password"
+              autoComplete="off"
+              onChange={e =>
+                setSignup({...signup, mb_password: e.target.value})
+              }
+              status={
+                password.length === 0 || passwordConfirm.length === 0
+                  ? 'none'
+                  : password === passwordConfirm
+                  ? 'succ'
+                  : 'err'
+              }
+            />
+            <CheckInput
+              placeholder="비밀번호를 다시 한번 입력해주세요."
+              type={'password'}
+              value={passwordConfirm}
+              name="password"
+              autoComplete="off"
+              onChange={e => {
+                setPasswordConfirm(e.target.value);
+              }}
+              status={
+                password.length === 0 || passwordConfirm.length === 0
+                  ? 'none'
+                  : password === passwordConfirm
+                  ? 'succ'
+                  : 'err'
+              }
+            />
+          </form>
         </Styled.InputAlign>
         {errorLabel}
         <Styled.AgreementAlign>

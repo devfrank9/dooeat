@@ -30,7 +30,7 @@ export const userDataState = atom<RequestSetMember | any>({
 export const userFormState = atom<RequestSetMember | any>({
   key: 'userFormState',
   default: {
-    id: '',
+    id: 1,
     session: '',
     mb_id: '',
     mb_name: '',

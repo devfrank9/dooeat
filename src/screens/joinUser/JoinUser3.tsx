@@ -23,13 +23,6 @@ const JoinUser3 = () => {
     Object.assign(signup, userData);
     setUserData(signup);
     navigate('/join-user/4');
-    // commSetMember({variables: signup}).then(data => {
-    //   if (data.data?.setMember) {
-    //     userData(signup);
-    //     setSession(data.data.setMember);
-
-    //   }
-    // });
   };
   return (
     <BaseScreen>
@@ -68,16 +61,16 @@ const JoinUser3 = () => {
           <Styled.Age>세</Styled.Age>
           <Styled.AgeInput
             placeholder="나이를 입력해주세요."
-            value={signup.mb_birth ?? ''}
+            value={signup.mb_1 ?? ''}
             onChange={e => {
-              setSignup({...signup, mb_birth: e.target.value});
+              setSignup({...signup, mb_1: e.target.value});
             }}
           />
         </div>
         <div style={{flex: 1}} />
-        <Styled.LinkStyle2 to="/join-user/4">
-          <Styled.AbsoluteUnColBtn>건너뛰기</Styled.AbsoluteUnColBtn>
-        </Styled.LinkStyle2>
+        <Styled.AbsoluteUnColBtn onClick={() => navigate('/join-user/4')}>
+          건너뛰기
+        </Styled.AbsoluteUnColBtn>
         <div style={{height: '12px'}} />
         <Styled.AbsoluteColBtn2 onClick={processSignup}>
           다음

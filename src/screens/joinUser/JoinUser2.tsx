@@ -4,8 +4,7 @@ import * as Styled from '../../styles/joinUser/styled';
 import {useNavigate} from 'react-router-dom';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
 import {useEffect, useState} from 'react';
-import ProfileImgUp from '../../components/ProfileImgUp';
-import {useRecoilCallback, useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {useQueryForCheckDuplicate} from '../../lib/GQL/CommunicationMap';
 
@@ -14,16 +13,37 @@ const JoinUser2 = () => {
   const [signup, setSignup] = useState<RequestSetMember>({});
   const [userData, setUserData] = useRecoilState(userFormState);
   const [commDuplicate, commDuplicateResult] = useQueryForCheckDuplicate();
-  const [idOK, setIdOK] = useState(false);
+  const [nickOK, setNickOK] = useState(false);
   const [checkNick, setCheckNick] = useState(false);
   const [errorLabel, setErrorLabel] = useState('');
+  const [fileUrl, setFileUrl] = useState(null);
+
+  function processImage(e: any) {
+    const imageFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    // @ts-ignore
+    setFileUrl(imageUrl);
+  }
+
+  const signImg = (e: any) => {
+    let FR = new FileReader();
+    FR.addEventListener('load', () => {
+      // @ts-ignore
+      setSignup({
+        ...signup,
+        mb_img: FR.result as string,
+      });
+    });
+    // @ts-ignore
+    FR.readAsDataURL(e.target.files[0]);
+  };
 
   useEffect(() => {
     if (commDuplicateResult.data?.checkDuplicate) {
-      setIdOK(true);
+      setNickOK(true);
       setErrorLabel('');
     } else if (commDuplicateResult.error) {
-      setIdOK(false);
+      setNickOK(false);
       setErrorLabel('이미 존재하는 닉네임 입니다.');
     }
   }, [commDuplicateResult.data, commDuplicateResult.error]);
@@ -32,13 +52,6 @@ const JoinUser2 = () => {
     Object.assign(signup, userData);
     setUserData(signup);
     navigate('/join-user/3');
-    // commSetMember({variables: signup}).then(data => {
-    //   if (data.data?.setMember) {
-    //     userData(signup);
-    //     setSession(data.data.setMember);
-
-    //   }
-    // });
   };
   return (
     <BaseScreen>
@@ -50,7 +63,31 @@ const JoinUser2 = () => {
         </Styled.TextAlign>
         <div style={{height: '68px'}} />
         <div style={{width: '100%'}}>
-          <ProfileImgUp />
+          <Styled.PicAlign>
+            <input
+              type="file"
+              id="fileinput"
+              onChange={e => {
+                signImg(e);
+                processImage(e);
+              }}
+              accept="image/*"
+            />
+            {fileUrl !== null ? (
+              <img
+                src={fileUrl ?? ''}
+                alt=""
+                style={{
+                  display: 'inline-block',
+                  width: '120px',
+                  height: '120px',
+                  borderRadius: '60px',
+                }}
+              />
+            ) : (
+              <label htmlFor="fileinput" />
+            )}
+          </Styled.PicAlign>
         </div>
         <div style={{height: '24px'}} />
         <Styled.CheckNone

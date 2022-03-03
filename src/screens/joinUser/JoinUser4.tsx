@@ -40,7 +40,7 @@ const JoinUser4 = () => {
           <DropDown placeholder={'시군구'} />
         </Styled.SelectAlign>
         <div style={{flex: 1}} />
-        <Styled.AbsoluteUnColBtn onClick={processSignup}>
+        <Styled.AbsoluteUnColBtn onClick={() => navigate('/join-user/5')}>
           건너뛰기
         </Styled.AbsoluteUnColBtn>
         <div style={{height: '12px'}} />
