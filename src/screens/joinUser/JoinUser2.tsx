@@ -7,6 +7,7 @@ import {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {useQueryForCheckDuplicate} from '../../lib/GQL/CommunicationMap';
+import CheckInput from '../../components/CheckInput';
 
 const JoinUser2 = () => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const JoinUser2 = () => {
             />
             {fileUrl !== null ? (
               <img
-                src={fileUrl ?? ''}
+                src={fileUrl ?? userData.mb_img}
                 alt=""
                 style={{
                   display: 'inline-block',
@@ -90,18 +91,32 @@ const JoinUser2 = () => {
           </Styled.PicAlign>
         </div>
         <div style={{height: '24px'}} />
-        <Styled.CheckNone
+        <CheckInput
           placeholder="닉네임을 입력해주세요."
           required
-          value={signup.mb_nick ?? ''}
+          defaultValue={signup.mb_nick ?? ''}
           onChange={e => {
             setSignup({...signup, mb_nick: e.target.value});
             setCheckNick(false);
           }}
           onBlur={() => commDuplicate({variables: {mb_nick: signup.mb_nick}})}
+          status={
+            errorLabel.length === 0
+              ? 'none'
+              : errorLabel.length !== 0
+              ? 'err'
+              : 'succ'
+          }
         />
         {errorLabel}
-        <Styled.AbsoluteColBtn onClick={processSignup}>
+        <Styled.AbsoluteColBtn
+          onClick={() => {
+            if (errorLabel.length > 0 || !nickOK) return;
+            else {
+              processSignup();
+            }
+          }}
+        >
           다음
         </Styled.AbsoluteColBtn>
       </AlignBase>

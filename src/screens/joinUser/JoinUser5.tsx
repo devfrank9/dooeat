@@ -39,7 +39,7 @@ const JoinUser5 = () => {
           <Styled.Label>kg</Styled.Label>
           <Styled.Input
             placeholder="kg단위로 입력해주세요."
-            value={signup.mb_2 ?? ''}
+            defaultValue={signup.mb_2 ?? ''}
             onChange={e => {
               setSignup({...signup, mb_2: e.target.value});
             }}
@@ -52,7 +52,7 @@ const JoinUser5 = () => {
           <Styled.Label>cm</Styled.Label>
           <Styled.Input
             placeholder="cm단위로 입력해주세요."
-            value={signup.mb_3 ?? ''}
+            defaultValue={signup.mb_3 ?? ''}
             onChange={e => {
               setSignup({...signup, mb_3: e.target.value});
             }}

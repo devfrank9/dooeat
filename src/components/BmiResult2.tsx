@@ -3,9 +3,20 @@ import styled from 'styled-components';
 interface Prop {
   HeaderText?: string;
   HeaderColor: string;
+  gram?: string;
+  result?: string | number;
+  text?: string;
+  statu?: string;
 }
 
-const BmiResult2 = ({HeaderText, HeaderColor}: Prop) => {
+const BmiResult2 = ({
+  HeaderText,
+  HeaderColor,
+  gram,
+  result,
+  text,
+  statu,
+}: Prop) => {
   return (
     <ContentBox>
       <Header HeaderColor={HeaderColor}>
@@ -18,15 +29,15 @@ const BmiResult2 = ({HeaderText, HeaderColor}: Prop) => {
           }}
         >
           <Label>kg</Label>
-          <KgInput placeholder="입력해주세요." type="text" value={55} />
+          <KgInput type="text" value={gram} />
         </div>
       </Header>
       <BmiCalc HeaderColor={HeaderColor}>
-        <p>현재 BMI</p>
-        <p>20.29</p>
+        <p>{text} BMI</p>
+        <p>{result}</p>
       </BmiCalc>
       <HealthResult>
-        <p>정상</p>
+        <p>{statu}</p>
       </HealthResult>
       <BmiGraph>
         <div>저체중</div>

@@ -8,31 +8,27 @@ import BmiResult from '../../components/BmiResult';
 // Styles
 import * as Styled from '../../styles/joinUser/styled';
 import {useEffect, useState} from 'react';
-import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
 import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 
 const JoinUser6 = () => {
   const navigate = useNavigate();
-  const [signup, setSignup] = useState<RequestSetMember>({});
   const [userData, setUserData] = useRecoilState(userFormState);
   const [result, setResult] = useState('');
+  const [statu, setStatu] = useState('');
 
   useEffect(() => {
-    // @ts-ignore
-    const data = JSON.parse(sessionStorage.getItem('recoil-persist'));
-    const kg = data.userFormState.mb_3;
-    const cm = data.userFormState.mb_2;
-    const bmi = (kg / (cm * 0.01 * (cm * 0.01))).toFixed(2);
+    const bmi = (
+      userData.mb_2 /
+      (userData.mb_3 * 0.01 * (userData.mb_3 * 0.01))
+    ).toFixed(2);
     setResult(bmi);
-  }, []);
-
-  const processSignup = () => {
-    setSignup({...signup, mb_5: result});
-    Object.assign(signup, userData);
-    setUserData(signup);
-    navigate('/join-user/7');
-  };
+    if (Number(bmi) < 18.5) setStatu('저체중');
+    if (Number(bmi) < 23 && Number(bmi) > 18.5) setStatu('정상');
+    if (Number(bmi) < 25 && Number(bmi) > 23) setStatu('과체중');
+    if (Number(bmi) <= 30 && Number(bmi) > 25) setStatu('경도비만');
+    if (Number(bmi) > 30) setStatu('중등비만');
+  }, [userData]);
 
   return (
     <BaseScreen>
@@ -42,9 +38,11 @@ const JoinUser6 = () => {
         >
           <NavProgress pageNumber={6} />
           <Styled.BmiSubject>BMI 계산 결과</Styled.BmiSubject>
-          <BmiResult result={result} />
+          <BmiResult result={result} statu={statu} />
           <div style={{height: 40}} />
-          <Styled.ColoredBtn onClick={processSignup}>다음</Styled.ColoredBtn>
+          <Styled.ColoredBtn onClick={() => navigate('/join-user/7')}>
+            다음
+          </Styled.ColoredBtn>
           <div style={{height: 113}} />
         </div>
       </AlignBase>

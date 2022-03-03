@@ -1,12 +1,11 @@
-import {useRecoilState, useRecoilValue} from 'recoil';
 import styled from 'styled-components';
-import {userFormState} from '../lib/atom';
 
 interface Prop {
-  result: string;
+  result: string | number;
+  statu?: string;
 }
 
-const BmiResult = ({result}: Prop) => {
+const BmiResult = ({result, statu}: Prop) => {
   return (
     <ContentBox>
       <Header>
@@ -16,7 +15,7 @@ const BmiResult = ({result}: Prop) => {
         <p>{result}</p>
       </BmiCalc>
       <HealthResult>
-        <p>정상</p>
+        <p>{statu}</p>
       </HealthResult>
       <BmiGraph>
         <div>저체중</div>

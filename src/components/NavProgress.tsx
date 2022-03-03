@@ -12,7 +12,6 @@ const NavProgress = ({pageNumber = 1}: Prop) => {
       <ArrowContainer>
         <BackArrow
           onClick={() => {
-            console.log(1);
             navigate(-1);
           }}
         />

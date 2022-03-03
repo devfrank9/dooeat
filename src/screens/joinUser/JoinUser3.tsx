@@ -19,6 +19,9 @@ const JoinUser3 = () => {
   const [signup, setSignup] = useState<RequestSetMember>({});
   const [userData, setUserData] = useRecoilState(userFormState);
 
+  const [isActive, setIsActive] = useState(false);
+  const onActiveToggle = () => setIsActive(prev => !prev);
+
   const processSignup = () => {
     Object.assign(signup, userData);
     setUserData(signup);
@@ -40,7 +43,8 @@ const JoinUser3 = () => {
           <LongBtn
             style={{fontFamily: 'Noto Sans KR'}}
             onClick={e => {
-              setSignup({...signup, mb_sex: '여자'});
+              setSignup({...signup, mb_sex: 'W'});
+              onActiveToggle();
             }}
           >
             여자
@@ -48,7 +52,8 @@ const JoinUser3 = () => {
           <LongBtn
             style={{fontFamily: 'Noto Sans KR'}}
             onClick={e => {
-              setSignup({...signup, mb_sex: '남자'});
+              setSignup({...signup, mb_sex: 'M'});
+              onActiveToggle();
             }}
           >
             남자
@@ -61,7 +66,7 @@ const JoinUser3 = () => {
           <Styled.Age>세</Styled.Age>
           <Styled.AgeInput
             placeholder="나이를 입력해주세요."
-            value={signup.mb_1 ?? ''}
+            defaultValue={signup.mb_1 ?? ''}
             onChange={e => {
               setSignup({...signup, mb_1: e.target.value});
             }}

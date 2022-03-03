@@ -57,7 +57,6 @@ export const MemberDataLv2 = {
     mb_3: '180',
     // 목표체중
     mb_4: '70',
-    // bmi계산결과
     mb_5: '',
     mb_6: '',
     mb_7: '',
