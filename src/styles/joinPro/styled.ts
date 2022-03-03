@@ -88,3 +88,29 @@ export const TextAlign3 = styled.div`
 export const DisplayNone = styled(LongBtn)`
   background-color: inherit;
 `;
+export const PicAlign = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  background-color: ${props => props.theme.btnColor1};
+  input {
+    display: none;
+  }
+  input + label {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background: url('/image/Icon feather-plus.png') no-repeat 50% 50%;
+  }
+  img {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+  }
+`;
