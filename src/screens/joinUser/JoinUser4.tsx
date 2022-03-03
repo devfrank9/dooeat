@@ -8,9 +8,22 @@ import Footer from '../../components/Footer';
 // Styles
 import DropDown from '../../styles/SelectStyled';
 import * as Styled from '../../styles/joinUser/styled';
+import {useState} from 'react';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import {stateSelect, userFormState} from '../../lib/atom';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 const JoinUser4 = () => {
   const navigate = useNavigate();
+  const [signup, setSignup] = useState<RequestSetMember>({});
+  const [userData, setUserData] = useRecoilState(userFormState);
+
+  const processSignup = () => {
+    Object.assign(signup, userData);
+    setUserData(signup);
+    navigate('/join-user/5');
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -27,11 +40,11 @@ const JoinUser4 = () => {
           <DropDown placeholder={'시군구'} />
         </Styled.SelectAlign>
         <div style={{flex: 1}} />
-        <Styled.AbsoluteUnColBtn onClick={() => navigate('/join-user/5')}>
+        <Styled.AbsoluteUnColBtn onClick={processSignup}>
           건너뛰기
         </Styled.AbsoluteUnColBtn>
         <div style={{height: '12px'}} />
-        <Styled.AbsoluteColBtn2 onClick={() => navigate('/join-user/5')}>
+        <Styled.AbsoluteColBtn2 onClick={processSignup}>
           다음
         </Styled.AbsoluteColBtn2>
         <Styled.FooterAlign2>

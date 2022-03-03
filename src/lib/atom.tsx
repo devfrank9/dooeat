@@ -82,3 +82,20 @@ export const filteredUserDataState = selector({
     return users;
   },
 });
+
+export const stateSelect = selector({
+  key: 'state',
+  get: async () => {
+    const response = await fetch('http://api.vworld.kr/req/data');
+    const stateInfo = await response.json();
+    return stateInfo.ctp_kor_nm;
+  },
+});
+export const citySelect = selector({
+  key: 'city',
+  get: async () => {
+    const response = await fetch('http://api.vworld.kr/req/data');
+    const stateInfo = await response.json();
+    return stateInfo.ctp_kor_nm;
+  },
+});

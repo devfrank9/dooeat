@@ -108,6 +108,12 @@ const DropdownMenu = styled.ul<{isActive: boolean}>`
   border: 1px solid ${props => props.theme.pointColor2};
   border-radius: 0 0 8px 8px;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 `;
 
 const DropdownItemContainer = styled.li`
@@ -117,7 +123,7 @@ const DropdownItemContainer = styled.li`
   border-bottom: 1px solid ${props => props.theme.btnColor1};
   border-top: none;
   height: 48px;
-  min-width: 319px;
+  max-width: 480px;
   &:last-child {
     border-bottom: none;
   }

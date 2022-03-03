@@ -9,9 +9,28 @@ import Footer from '../../components/Footer';
 import {LongBtn} from '../../styles/BtnStyled';
 import {useNavigate} from 'react-router-dom';
 import * as Styled from '../../styles/joinUser/styled';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import {useState} from 'react';
+import {useRecoilState} from 'recoil';
+import {userFormState} from '../../lib/atom';
 
 const JoinUser3 = () => {
   const navigate = useNavigate();
+  const [signup, setSignup] = useState<RequestSetMember>({});
+  const [userData, setUserData] = useRecoilState(userFormState);
+
+  const processSignup = () => {
+    Object.assign(signup, userData);
+    setUserData(signup);
+    navigate('/join-user/4');
+    // commSetMember({variables: signup}).then(data => {
+    //   if (data.data?.setMember) {
+    //     userData(signup);
+    //     setSession(data.data.setMember);
+
+    //   }
+    // });
+  };
   return (
     <BaseScreen>
       <AlignBase>
@@ -25,22 +44,42 @@ const JoinUser3 = () => {
         <div style={{height: 41}} />
         <Styled.Subject>성별</Styled.Subject>
         <BtnAlign>
-          <LongBtn style={{fontFamily: 'Noto Sans KR'}}>여자</LongBtn>
-          <LongBtn style={{fontFamily: 'Noto Sans KR'}}>남자</LongBtn>
+          <LongBtn
+            style={{fontFamily: 'Noto Sans KR'}}
+            onClick={e => {
+              setSignup({...signup, mb_sex: '여자'});
+            }}
+          >
+            여자
+          </LongBtn>
+          <LongBtn
+            style={{fontFamily: 'Noto Sans KR'}}
+            onClick={e => {
+              setSignup({...signup, mb_sex: '남자'});
+            }}
+          >
+            남자
+          </LongBtn>
         </BtnAlign>
         <div style={{height: '30px'}} />
         <Styled.Subject>나이</Styled.Subject>
         <div style={{height: '10px'}} />
         <div style={{position: 'relative'}}>
           <Styled.Age>세</Styled.Age>
-          <Styled.AgeInput placeholder="나이를 입력해주세요." />
+          <Styled.AgeInput
+            placeholder="나이를 입력해주세요."
+            value={signup.mb_birth ?? ''}
+            onChange={e => {
+              setSignup({...signup, mb_birth: e.target.value});
+            }}
+          />
         </div>
         <div style={{flex: 1}} />
         <Styled.LinkStyle2 to="/join-user/4">
           <Styled.AbsoluteUnColBtn>건너뛰기</Styled.AbsoluteUnColBtn>
         </Styled.LinkStyle2>
         <div style={{height: '12px'}} />
-        <Styled.AbsoluteColBtn2 onClick={() => navigate('/join-user/4')}>
+        <Styled.AbsoluteColBtn2 onClick={processSignup}>
           다음
         </Styled.AbsoluteColBtn2>
         <Styled.FooterAlign>
