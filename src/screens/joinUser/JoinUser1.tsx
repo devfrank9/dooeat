@@ -40,8 +40,8 @@ const JoinUser1 = () => {
   }, [commDuplicateResult.data, commDuplicateResult.error]);
   useEffect(() => {
     let rules: RulesProp = {};
-    if (signup.mb_email) {
-      rules.mb_email = {email: {message: '이메일 형식에 맞지 않습니다'}};
+    if (signup.mb_id) {
+      rules.mb_id = {email: {message: '이메일 형식에 맞지 않습니다'}};
     }
     if (signup.mb_password) {
       rules.mb_password = {
