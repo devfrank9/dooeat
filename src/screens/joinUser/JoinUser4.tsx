@@ -35,9 +35,9 @@ const JoinUser4 = () => {
           </div>
         </Styled.TextAlign>
         <Styled.SelectAlign>
-          <DropDown placeholder={'광역시도'} />
+          <DropDown placeholderText="광역시도" />
           <div style={{height: '12px'}} />
-          <DropDown placeholder={'시군구'} />
+          <DropDown placeholderText="시군구" />
         </Styled.SelectAlign>
         <div style={{flex: 1}} />
         <Styled.AbsoluteUnColBtn onClick={() => navigate('/join-user/5')}>
