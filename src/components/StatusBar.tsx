@@ -14,7 +14,6 @@ export const StatusBar3 = ({Subject = '오늘'}: Prop) => {
       <ArrowContainer>
         <BackArrow
           onClick={() => {
-            console.log(1);
             navigate(-1);
           }}
         />
@@ -35,7 +34,6 @@ export const StatusBar2 = ({
       <StatusMyInfo2>
         <button
           onClick={() => {
-            console.log(1);
             navigate(-1);
           }}
         >
