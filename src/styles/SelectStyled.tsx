@@ -24,17 +24,17 @@ export const Select = styled.select`
   }
 `;
 interface Prop {
-  items?: {id: number; name: string}[];
+  items?: {id: number; region: string}[];
   value?: string;
   onChange?: (value: string) => void;
-  placeholder?: string;
+  placeholderText?: string;
 }
 
 const DropDown = ({
   items,
   value,
   onChange,
-  placeholder = '선택해주세요',
+  placeholderText = '선택해주세요',
 }: Prop) => {
   const [isActive, setIsActive] = useState(false);
   const [item, setItem] = useState('');
@@ -46,7 +46,6 @@ const DropDown = ({
 
   const onSelectItem = (e: any) => {
     const targetId = e.target.id;
-
     if (targetId === 'item_name') {
       setItem(e.target.parentElement.innertText);
     } else if (targetId === 'item') {
@@ -64,14 +63,14 @@ const DropDown = ({
           </>
         ) : (
           <>
-            <DropdownSelect>선택해주세요.</DropdownSelect>
+            <DropdownSelect>{placeholderText}</DropdownSelect>
           </>
         )}
       </DropdownBody>
       <DropdownMenu isActive={isActive}>
         {example.map(item => (
           <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
-            <ItemName id="item_name">{item.name}</ItemName>
+            <ItemName id="item_name">{item.region}</ItemName>
           </DropdownItemContainer>
         ))}
       </DropdownMenu>
