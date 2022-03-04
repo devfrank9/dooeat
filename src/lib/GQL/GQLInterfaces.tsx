@@ -261,8 +261,8 @@ export interface RequestSetMember {
   mb_3?: string;
   mb_4?: string;
   mb_5?: string;
-  mb_6?: string;
-  mb_7?: string;
+  mb_6?: string[];
+  mb_7?: string[];
   mb_8?: string;
   mb_9?: string;
 
