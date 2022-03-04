@@ -81,6 +81,8 @@ export const TextArea = styled.textarea`
 `;
 export const UrlInputAdd = styled.input`
   display: flex;
+  max-width: 480px;
+  width: 100%;
   height: 52px;
   align-items: center;
   padding-left: 19px;
@@ -89,7 +91,6 @@ export const UrlInputAdd = styled.input`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url('/image/Icon feather-plus-circle.png') no-repeat 95% 50%;
   box-sizing: border-box;
   background-color: inherit;
   color: ${props => props.theme.fontColor1};
@@ -108,6 +109,8 @@ export const UrlInputAdd = styled.input`
 `;
 export const UrlInputDel = styled.input`
   display: flex;
+  width: 100%;
+  max-width: 480px;
   height: 52px;
   align-items: center;
   padding-left: 19px;
@@ -116,8 +119,6 @@ export const UrlInputDel = styled.input`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url('/image/Icon ionic-ios-close-circle-outline.png') no-repeat
-    95% 50%;
   box-sizing: border-box;
   background-color: ${props => props.theme.pointColor3};
   color: ${props => props.theme.mainColor};

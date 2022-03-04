@@ -10,6 +10,11 @@ export const TextAlign = styled.div`
   margin-top: 30px;
   margin-bottom: 40px;
 `;
+export const ColBtn = styled(ColoredBtn)`
+  width: 100%;
+  max-width: 480px;
+  margin-top: 85px;
+`;
 export const AbsoluteColBtn = styled(ColoredBtn)`
   position: absolute;
   margin: 0 auto;
@@ -35,7 +40,6 @@ export const InputAlign = styled.div`
   input:nth-child(2) {
     margin-bottom: 12px;
   }
-  margin-bottom: 200px;
 `;
 export const TextAlign2 = styled.div`
   font-size: 22px;
