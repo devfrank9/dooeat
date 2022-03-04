@@ -1,11 +1,38 @@
+import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import {Navigation2} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import Switch from '../../components/Toggle';
+import {__me, __session} from '../../lib/atom';
+import {useMutationForSetMember} from '../../lib/GQL/CommunicationMap';
+import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import useGetMe from '../../lib/Hook/useGetMe';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const ProProfileMain = () => {
+  const me = useRecoilValue(__me);
+  const session = useRecoilValue(__session);
+
+  const [signup, setSignup] = useState<RequestSetMember>({});
+
+  const refreshMe = useGetMe();
+  const [commSetMember] = useMutationForSetMember();
+
+  useEffect(() => {
+    setSignup({
+      session: session,
+      mb_name: me?.mb_name,
+      mb_id: me?.mb_id,
+      mb_email: me?.mb_email,
+      mb_img: me?.mb_img,
+      mb_9: me?.mb_9,
+      mb_addr1: me?.mb_addr1,
+      mb_5: me?.mb_5,
+    });
+  }, [me, session]);
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -20,13 +47,18 @@ const ProProfileMain = () => {
           <p>데이터를 입력해주세요.</p>
         </BackImg>
         <ProfileImg>
+          {}
           <img src="/image/Icon material-person.png" alt="" />
         </ProfileImg>
         <ContentAlgin>
           <TextAlign>
             <p>#헬스 #크로스핏</p>
-            <p>홍길동 전문가</p>
-            <p>한줄 소개를 등록 전입니다.</p>
+            <p>{signup.mb_name} 전문가</p>
+            <p>
+              {signup.mb_9 === undefined
+                ? signup.mb_9
+                : '한줄 소개를 등록 전입니다.'}
+            </p>
             <div style={{height: '40px'}} />
           </TextAlign>
         </ContentAlgin>
@@ -37,7 +69,7 @@ const ProProfileMain = () => {
           </div>
           <div style={{marginBottom: '12px'}}>
             <PinkDiv>활동지역</PinkDiv>
-            <p>서울특별시 용산구</p>
+            <p>{signup.mb_addr1}</p>
           </div>
           <div style={{marginBottom: '12px'}}>
             <PinkDiv>상담시간</PinkDiv>
@@ -45,7 +77,7 @@ const ProProfileMain = () => {
           </div>
           <div style={{marginBottom: '31px'}}>
             <PinkDiv>사이트</PinkDiv>
-            <p>Instagram.com/ioplanit</p>
+            <p>{signup.mb_5}</p>
           </div>
         </InfoAlign>
         <CareerAlign>
