@@ -23,9 +23,8 @@ const JoinPro6 = () => {
   const [inputUrl2, setInputUrl2] = useState('');
   const [disable, setDisable] = useState(false);
   const [disable2, setDisable2] = useState(false);
-  const onClick = (e: any) => {
-    setDisable(prev => !prev);
-  };
+
+  const onClick = (e: any) => setDisable(prev => !prev);
   const onClick2 = () => setDisable2(prev => !prev);
 
   const processSignup = () => {
