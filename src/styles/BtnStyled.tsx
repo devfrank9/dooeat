@@ -53,12 +53,14 @@ export const LongBtn = styled(ShortBtn)`
 `;
 export const LongLine = styled.button`
   display: block;
+  width: 100%;
   height: 48px;
   border-radius: 6px;
   border: none;
   background-color: ${prop => prop.theme.btnColor1};
   font-size: 15px;
   font-weight: 400;
+  margin-bottom: 12px;
   &:hover {
     background-color: ${props => props.theme.mainColor};
     color: ${prop => prop.theme.fontColor3};
