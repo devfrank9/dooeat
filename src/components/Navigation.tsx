@@ -1,39 +1,43 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {useState} from 'react';
+import {useRoutes} from 'react-router-dom';
 
 export const Navigation2 = () => {
-  const [isActive, setIsActive] = useState(1);
+  const match1 = useRoutes([{path: '/pro/profile'}]);
+  const match2 = useRoutes([{path: '/pro/manage'}]);
+  const match3 = useRoutes([{path: '/community/favor'}]);
+  const match4 = useRoutes([{path: '/shop'}]);
+
   return (
     <NavContainer>
-      <Link to="/pro/profile" onClick={() => setIsActive(1)}>
+      <Link to="/pro/profile">
         <button style={{width: '94px'}}>
           <Img1
-            src={isActive === 1 ? '/image/nav2.png' : '/image/nav2_un.png'}
+            src={match1 !== null ? '/image/nav2.png' : '/image/nav2_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/pro/manage " onClick={() => setIsActive(2)}>
+      <Link to="/pro/manage ">
         <button style={{width: '94px'}}>
           <Img1
-            src={isActive === 2 ? '/image/nav1.png' : '/image/nav1_un.png'}
+            src={match2 !== null ? '/image/nav1.png' : '/image/nav1_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/community/favor" onClick={() => setIsActive(3)}>
+      <Link to="/community/favor">
         <button style={{width: '94px'}}>
           <Img1
-            src={isActive === 3 ? '/image/nav6.png' : '/image/nav6_un.png'}
+            src={match3 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/shop" onClick={() => setIsActive(4)}>
+      <Link to="/shop">
         <button style={{width: '94px'}}>
           <Img1
-            src={isActive === 4 ? '/image/nav7.png' : '/image/nav7_un.png'}
+            src={match4 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
             alt=""
           />
         </button>
@@ -43,46 +47,50 @@ export const Navigation2 = () => {
 };
 
 export const Navigation = () => {
-  const [isActive, setIsActive] = useState(1);
+  const match1 = useRoutes([{path: '/user/meal'}]);
+  const match2 = useRoutes([{path: '/user/health'}]);
+  const match3 = useRoutes([{path: '/user/pro'}]);
+  const match4 = useRoutes([{path: '/community/favor'}]);
+  const match5 = useRoutes([{path: '/shop'}]);
 
   return (
     <NavContainer>
-      <Link to="/user/meal" onClick={() => setIsActive(1)}>
+      <Link to="/user/meal">
         <button>
           <Img1
-            src={isActive === 1 ? '/image/nav3.png' : '/image/nav3_un.png'}
+            src={match1 !== null ? '/image/nav3.png' : '/image/nav3_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/user/health " onClick={() => setIsActive(2)}>
+      <Link to="/user/health ">
         <button>
           <Img1
-            src={isActive === 2 ? '/image/nav4.png' : '/image/nav4_un.png'}
+            src={match2 !== null ? '/image/nav4.png' : '/image/nav4_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/user/pro" onClick={() => setIsActive(3)}>
+      <Link to="/user/pro">
         <button>
           <Img1
-            src={isActive === 3 ? '/image/nav5.png' : '/image/nav5_un.png'}
+            src={match3 !== null ? '/image/nav5.png' : '/image/nav5_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/community/favor" onClick={() => setIsActive(4)}>
+      <Link to="/community/favor">
         <button>
           <Img1
-            src={isActive === 4 ? '/image/nav6.png' : '/image/nav6_un.png'}
+            src={match4 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
             alt=""
           />
         </button>
       </Link>
-      <Link to="/shop" onClick={() => setIsActive(5)}>
+      <Link to="/shop">
         <button>
           <Img1
-            src={isActive === 5 ? '/image/nav7.png' : '/image/nav7_un.png'}
+            src={match5 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
             alt=""
           />
         </button>
