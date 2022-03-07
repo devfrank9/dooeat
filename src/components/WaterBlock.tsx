@@ -1,26 +1,25 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-export const WaterBlock = () => {
-  const [water, setWater] = useState();
+interface Prop {
+  water: number;
+  isActive: boolean;
+  onClickWater: React.MouseEventHandler<HTMLButtonElement>;
+}
 
+export const WaterBlock = ({water, isActive, onClickWater}: Prop) => {
   return (
     <Container>
       <TextAlign>
-        <p>0.25</p>
+        <p>{water}</p>
         <p>L</p>
       </TextAlign>
       <Hr />
       <Notice>한 컵당 250ml</Notice>
       <AlignGlass>
-        <FillGlassWater />
-        <GlassWater />
-        <GlassWater />
-        <GlassWater />
-        <GlassWater />
-        <GlassWater />
-        <GlassWater />
-        <GlassWater />
+        {[...Array(8)].map((x, i) => (
+          <GlassWater isActive={isActive} onClick={onClickWater} key={i} />
+        ))}
       </AlignGlass>
     </Container>
   );
@@ -29,24 +28,21 @@ export const WaterBlock = () => {
 const AlignGlass = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0 35px;
   button {
-    margin: 0 10.875px;
+    margin: 0 10px;
     margin-bottom: 20px;
   }
   margin-bottom: 10px;
 `;
-const FillGlassWater = styled.button`
+const GlassWater = styled.button<{isActive: boolean}>`
   width: 40px;
   height: 52px;
-  background: url('/image/fill glass.png') no-repeat 50% 50%;
-  border: none;
-`;
-const GlassWater = styled.button`
-  width: 40px;
-  height: 52px;
-  background: url('/image/empty glass.png') no-repeat 50% 50%;
+  background: ${prop =>
+    !prop.isActive
+      ? "url('/image/empty glass.png') no-repeat 50% 50%"
+      : "url('/image/fill glass.png') no-repeat 50% 50%"};
   border: none;
 `;
 const Notice = styled.p`
