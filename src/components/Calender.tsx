@@ -97,8 +97,6 @@ const Calender = ({backColor = ''}: Prop) => {
   );
 };
 
-export default Calender;
-
 const WeekText = styled.tr`
   display: flex;
   flex-direction: row;
@@ -173,3 +171,5 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export default Calender;
