@@ -6,17 +6,17 @@ import {
 import profile1 from './Image/profile1.png';
 import profile2 from './Image/profile2.png';
 import food1 from './Image/food1.jpg';
-import food2 from './Image/food2.png';
-import food3 from './Image/food3.png';
-import food4 from './Image/food4.png';
-import food5 from './Image/food5.png';
+import food2 from './Image/food2.jpg';
+import food3 from './Image/food3.jpg';
+import food4 from './Image/food4.jpg';
+import food5 from './Image/food5.jpg';
 import resizeFood1 from './Image/resize_food1.png';
 import resizeFood2 from './Image/resize_food2.png';
 import resizeFood3 from './Image/resize_food3.png';
 import resizeFood4 from './Image/resize_food4.png';
 import resizeFood5 from './Image/resize_food5.png';
 import trophy1 from './Image/trophy1.png';
-import trophy2 from './Image/trophy2.png';
+import trophy2 from './Image/trophy2.jpg';
 import resizeTrophy1 from './Image/resize_trophy1.png';
 import resizeTrophy2 from './Image/resize_trophy2.png';
 
