@@ -126,10 +126,12 @@ function Screens() {
           <Route path={'/search-mento/*'} element={<SearchMentoRoutes />} />
           <Route path={'/join-pro/*'} element={<JoinProRoute />} />
           {/* 회원 라우팅 */}
-          <Route path={'/user/meal/*'} element={<UserMealRoute />} />
-          <Route path={'/user/health/*'} element={<UserHealthRoute />} />
-          <Route path={'/user/pro/*'} element={<UserProRoute />} />
-          <Route path={'/user/mypage/*'} element={<UserMypageRoute />} />
+          <Route path={'/user/*'}>
+            <Route path={'meal/*'} element={<UserMealRoute />} />
+            <Route path={'health/*'} element={<UserHealthRoute />} />
+            <Route path={'pro/*'} element={<UserProRoute />} />
+            <Route path={'mypage/*'} element={<UserMypageRoute />} />
+          </Route>
           {/* 전문가 라우팅 */}
           <Route path={'/pro/profile/*'} element={<ProProfileRouter />} />
           <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
