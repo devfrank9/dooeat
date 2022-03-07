@@ -1,24 +1,23 @@
-import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 interface Prop {
-  water: number;
-  isActive: boolean;
-  onClickWater: React.MouseEventHandler<HTMLButtonElement>;
+  waterCalc: number;
+  active: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const WaterBlock = ({water, isActive, onClickWater}: Prop) => {
+export const WaterBlock = ({waterCalc, active, onClick}: Prop) => {
   return (
     <Container>
       <TextAlign>
-        <p>{water}</p>
+        <p>{waterCalc}</p>
         <p>L</p>
       </TextAlign>
       <Hr />
       <Notice>한 컵당 250ml</Notice>
       <AlignGlass>
         {[...Array(8)].map((x, i) => (
-          <GlassWater isActive={isActive} onClick={onClickWater} key={i} />
+          <GlassWater isActive={active} onClick={onClick} key={i} />
         ))}
       </AlignGlass>
     </Container>
