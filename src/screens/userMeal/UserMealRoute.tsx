@@ -6,7 +6,7 @@ function SearchMento() {
   return (
     <Routes>
       <Route path="/" element={<MealMain />} />
-      <Route path="edit" element={<MealEdit />} />
+      <Route path="edit/:wr_id" element={<MealEdit />} />
     </Routes>
   );
 }
