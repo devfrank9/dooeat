@@ -1,12 +1,20 @@
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 interface Prop {
   waterCalc: number;
-  active: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const WaterBlock = ({waterCalc, active, onClick}: Prop) => {
+export const WaterBlock = ({waterCalc}: Prop) => {
+  const [isActive, setIsActive] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [isActive3, setIsActive3] = useState(false);
+  const [isActive4, setIsActive4] = useState(false);
+  const [isActive5, setIsActive5] = useState(false);
+  const [isActive6, setIsActive6] = useState(false);
+  const [isActive7, setIsActive7] = useState(false);
+  const [isActive8, setIsActive8] = useState(false);
+
   return (
     <Container>
       <TextAlign>
@@ -16,9 +24,54 @@ export const WaterBlock = ({waterCalc, active, onClick}: Prop) => {
       <Hr />
       <Notice>한 컵당 250ml</Notice>
       <AlignGlass>
-        {[...Array(8)].map((x, i) => (
-          <GlassWater isActive={active} onClick={onClick} key={i} />
-        ))}
+        <GlassWater
+          isActive={isActive}
+          onClick={e => {
+            setIsActive(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive2}
+          onClick={() => {
+            setIsActive2(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive3}
+          onClick={() => {
+            setIsActive3(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive4}
+          onClick={() => {
+            setIsActive4(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive5}
+          onClick={() => {
+            setIsActive5(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive6}
+          onClick={() => {
+            setIsActive6(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive7}
+          onClick={() => {
+            setIsActive7(prev => !prev);
+          }}
+        />
+        <GlassWater
+          isActive={isActive8}
+          onClick={() => {
+            setIsActive8(prev => !prev);
+          }}
+        />
       </AlignGlass>
     </Container>
   );
