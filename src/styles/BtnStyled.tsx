@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import styled from 'styled-components';
 
 interface Prop {
@@ -27,7 +28,8 @@ export const ShortBtn = styled.button`
   height: 15.05%;
   border-radius: 6px;
   border: none;
-  background-color: ${prop => prop.theme.btnColor1};
+  background-color: rgb(245, 245, 245);
+  color: black;
   font-size: 15px;
   font-weight: 400;
   &:hover {
