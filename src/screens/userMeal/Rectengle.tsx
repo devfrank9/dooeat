@@ -5,11 +5,12 @@ interface Prop {
   img: any;
   emoji?: string;
   text: string;
+  link?: any;
 }
 
-export const RectPrev = ({img, emoji, text}: Prop) => {
+export const RectPrev = ({img, emoji, text, link}: Prop) => {
   return (
-    <Preview to="/user/meal/edit" img={img}>
+    <Preview to={link}>
       <div>{text}</div>
       <img src={emoji} alt="" />
     </Preview>
@@ -29,7 +30,7 @@ const RectLink = styled(Link)`
   border-radius: 10px;
   background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
 `;
-const Preview = styled(Link)<{img: string}>`
+const Preview = styled(Link)`
   position: relative;
   display: block;
   min-width: 150px;
@@ -37,9 +38,7 @@ const Preview = styled(Link)<{img: string}>`
   padding-bottom: 47.022%;
   border: 1px solid ${props => props.theme.btnColor2};
   border-radius: 10px;
-  background: ${prop => '../../Dummy/Image/' + prop.img + '.png'} no-repeat 50%
-    50%;
-  background-size: cover;
+  background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
   div {
     position: absolute;
     width: 68px;
