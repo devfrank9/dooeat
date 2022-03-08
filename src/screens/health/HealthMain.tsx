@@ -1,11 +1,36 @@
+import moment from 'moment';
+import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import DateSelect from '../../components/DateSelect';
 import {Navigation} from '../../components/Navigation';
 import {SelectDate} from '../../components/SelectDate';
 import {StatusBar} from '../../components/StatusBar';
+import {
+  exerciseData,
+  exerciseForm,
+  FoodData,
+  MemberDataLv2,
+} from '../../Dummy/Dummy';
 import BaseScreen, {AlignBase} from '../BaseScreen';
+import HealthMain2 from './HealthMain2';
 
 const HealthMain = () => {
+  const data = MemberDataLv2.getMe;
+  const excerData = exerciseData.getBoardList.boardList;
+  const excerForm = exerciseForm.getExercise.exerciseData;
+  const [getMoment, setMoment] = useState(moment());
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    const nowDate = getMoment.format('YYYY-MM-DD');
+    console.log(nowDate);
+  }, [getMoment]);
+
+  const ImgRender = () => {
+    for (let i = 0; i <= excerData.length; i++) {}
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -15,56 +40,87 @@ const HealthMain = () => {
           LinkTo="/user/profile"
         />
         <div style={{height: '110px'}} />
-        <SelectDate />
+        <DateSelect
+          today={getMoment.format('YYYY. MM. DD')}
+          backClick={() => {
+            setMoment(getMoment.clone().subtract(1, 'day'));
+          }}
+          forClick={() => {
+            setMoment(getMoment.clone().add(1, 'day'));
+          }}
+        />
+        {data === null ? (
+          <HealthMain2 />
+        ) : (
+          <>
+            <KgBanner>
+              <Link to="/user/health/scale-graph">
+                <Scale />
+              </Link>
+              <BannerTextAlign>
+                <p>오늘의 몸무게는</p>
+                <Label>kg</Label>
+                <KgInput
+                  placeholder="입력해주세요."
+                  type="text"
+                  value={data.mb_2}
+                />
+                <p>입니다</p>
+              </BannerTextAlign>
+            </KgBanner>
 
-        <KgBanner>
-          <Link to="/user/health/scale-graph">
-            <Scale />
-          </Link>
-          <BannerTextAlign>
-            <p>오늘의 몸무게는</p>
-            <Label>kg</Label>
-            <KgInput placeholder="입력해주세요." type="text" value={55} />
-            <p>입니다</p>
-          </BannerTextAlign>
-        </KgBanner>
+            <div style={{height: '30px'}} />
+            <Subject>하루 운동량 분석</Subject>
+            <HealthKind>{excerData[0].wr_3}</HealthKind>
 
-        <div style={{height: '30px'}} />
-        <Subject>하루 운동량 분석</Subject>
-        <HealthKind>헬스</HealthKind>
-        <div style={{height: '30px'}} />
-        <Subject>눈바디</Subject>
-        <ImgAlign>
-          <img src="/image/body.png" alt="" />
-          <img src="/image/body2.png" alt="" />
-        </ImgAlign>
-        <div style={{height: '30px'}} />
-        <Subject>하체 운동</Subject>
-        <BtnAlign>
-          <ExerciseKind>스쿼트</ExerciseKind>
-          <ExcerciseInfo>100kg, 20회, 4SET</ExcerciseInfo>
-        </BtnAlign>
-        <BtnAlign>
-          <ExerciseKind>런지</ExerciseKind>
-          <ExcerciseInfo>80kg, 20회, 4SET</ExcerciseInfo>
-        </BtnAlign>
-        <LongExKind>라잉힙 사이드 레그레이즈</LongExKind>
-        <div style={{height: '12px'}} />
-        <LongExInfo>20회 4세트</LongExInfo>
-        <div style={{height: '30px'}} />
-        <Subject>유산소 운동</Subject>
-        <BtnAlign>
-          <ExerciseKind2>줄넘기</ExerciseKind2>
-          <ExcerciseInfo2>10분</ExcerciseInfo2>
-        </BtnAlign>
-        <BtnAlign>
-          <ExerciseKind2>러닝머신</ExerciseKind2>
-          <ExcerciseInfo2>40분</ExcerciseInfo2>
-        </BtnAlign>
-        <BtnAlign2>
-          <EditBtn to="edit" />
-        </BtnAlign2>
-        <div style={{height: '102px'}} />
+            <div style={{height: '30px'}} />
+            <Subject>눈바디</Subject>
+            <ImgAlign>
+              {excerData.map((img, index) => (
+                <img src={`${excerData[index].file[index].url}`} alt="" />
+              ))}
+            </ImgAlign>
+
+            <div style={{height: '30px'}} />
+            {excerForm.map((data, index) => {
+              return excerForm[index].name.length < 4
+                ? excerForm.map((data, index) => (
+                    <>
+                      <Subject>{excerForm[index].part} 운동</Subject>
+                      <BtnAlign>
+                        <ExerciseKind>{excerForm[index].name}</ExerciseKind>
+                        <ExcerciseInfo>{`${excerForm[index].weight}kg, ${excerForm[index].times}회, ${excerForm[0].set}SET`}</ExcerciseInfo>
+                      </BtnAlign>
+                    </>
+                  ))
+                : excerForm.map((data, index) => (
+                    <>
+                      <Subject>{excerForm[index].part} 운동</Subject>
+                      <LongExKind>{excerForm[index].name}</LongExKind>
+                      <div style={{height: '12px'}} />
+                      <LongExInfo>{`${excerForm[index].times}회, ${excerForm[index].set}SET`}</LongExInfo>
+                      <div style={{height: '30px'}} />
+                    </>
+                  ));
+            })}
+
+            <div style={{height: '30px'}} />
+            <Subject>{excerForm[1].part}</Subject>
+            <BtnAlign>
+              <ExerciseKind2>{excerForm[1].name}</ExerciseKind2>
+              <ExcerciseInfo2>{excerForm[1].times}분</ExcerciseInfo2>
+            </BtnAlign>
+            <BtnAlign>
+              <ExerciseKind2>{excerForm[1].name}</ExerciseKind2>
+              <ExcerciseInfo2>{excerForm[1].times}분</ExcerciseInfo2>
+            </BtnAlign>
+            <BtnAlign2>
+              <EditBtn to="edit" />
+            </BtnAlign2>
+            <div style={{height: '102px'}} />
+          </>
+        )}
+
         <Navigation />
       </AlignBase>
     </BaseScreen>
