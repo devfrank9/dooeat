@@ -232,6 +232,7 @@ export interface RequestGetBoardWrite {
   session?: string;
   bo_table: string;
   wr_id?: string;
+  wr_1?: string;
 }
 
 export interface RequestSetMember {
