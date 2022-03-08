@@ -1,30 +1,23 @@
 import {SelectDate} from '../../components/SelectDate';
-import {StatusBar} from '../../components/StatusBar';
-import {Navigation} from '../../components/Navigation';
-import BaseScreen, {AlignBase} from '../BaseScreen';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 const HealthMain2 = () => {
   return (
-    <BaseScreen>
-      <AlignBase>
-        <StatusBar Subject="오늘" Img="/image/myInfo.png" />
-        <div style={{height: '110px'}} />
-        <SelectDate />
-        <TextAlign>
-          <p>오늘 운동 기록이 없습니다.</p>
-          <p>우측 하단 연필 버튼을 터치해서</p>
-          <p>오늘의 운동일자를 기록해주세요.</p>
-        </TextAlign>
-        <BtnAlign>
-          <Link to={'/user/health/edit'}>
-            <EditBtn />
-          </Link>
-        </BtnAlign>
-        <Navigation />
-      </AlignBase>
-    </BaseScreen>
+    <>
+      <div style={{height: '110px'}} />
+      <SelectDate />
+      <TextAlign>
+        <p>오늘 운동 기록이 없습니다.</p>
+        <p>우측 하단 연필 버튼을 터치해서</p>
+        <p>오늘의 운동일자를 기록해주세요.</p>
+      </TextAlign>
+      <BtnAlign>
+        <Link to={'/user/health/edit'}>
+          <EditBtn />
+        </Link>
+      </BtnAlign>
+    </>
   );
 };
 const BtnAlign = styled.div`
