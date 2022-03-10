@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {Children, useState} from 'react';
 import styled from 'styled-components';
 
 interface Prop {
@@ -19,8 +19,7 @@ export const HealthSubject = ({children}: Prop) => (
 export const HealthIndex = ({children}: Prop) => (
   <MiddleBtn>{children}</MiddleBtn>
 );
-
-export const ShortBtn = styled.button`
+export const ShortBtn = styled.button<{isActive?: boolean}>`
   display: block;
   min-width: 59px;
   width: 18.495%;
@@ -28,14 +27,11 @@ export const ShortBtn = styled.button`
   height: 15.05%;
   border-radius: 6px;
   border: none;
-  background-color: rgb(245, 245, 245);
-  color: black;
+  background-color: ${prop =>
+    prop.isActive ? 'rgb(239,144,167)' : 'rgb(245, 245, 245)'};
+  color: ${prop => (prop.isActive ? 'white' : 'black')};
   font-size: 15px;
   font-weight: 400;
-  &:hover {
-    background-color: ${prop => prop.theme.mainColor};
-    color: ${prop => prop.theme.fontColor3};
-  }
   &:active {
     background-color: ${props => props.theme.mainColor};
     color: ${prop => prop.theme.fontColor3};

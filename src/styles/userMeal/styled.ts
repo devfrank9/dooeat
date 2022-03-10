@@ -15,7 +15,6 @@ export const Subject = styled.div`
   margin-top: 32px;
   margin-bottom: 12px;
 `;
-
 export const RectengleAlign = styled.div`
   display: block;
   justify-content: space-between;
