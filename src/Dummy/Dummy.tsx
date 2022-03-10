@@ -102,7 +102,7 @@ export const expertData = {
   getMineExpert: {
     mine: {
       mb_id: 'testLv3',
-      mb_name: '테스트전문가',
+      mb_name: '테스트',
       mb_nick: '테스트전문가',
       mb_email: 'testlv3@test.com',
       mb_zip: '',
