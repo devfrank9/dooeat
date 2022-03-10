@@ -15,7 +15,7 @@ const LogoAlign = styled.div`
 `;
 
 const LogoImg = styled.div`
-  background: url('/image/logo.jpg') no-repeat 50% 50%;
+  background: url('/image/logo.png') no-repeat 50% 50%;
   width: 31.25rem;
   height: 24.75vh;
   object-fit: cover;
