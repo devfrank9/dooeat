@@ -9,8 +9,8 @@ function SearchMento() {
   return (
     <Routes>
       <Route path="/" element={<UserProMain />} />
-      <Route path="profile" element={<UserProProfile />} />
-      <Route path="profile/story" element={<UserProStory />} />
+      <Route path=":mb_id" element={<UserProProfile />} />
+      <Route path=":mb_id/story" element={<UserProStory />} />
       <Route path="apply" element={<UserProApply />} />
       <Route path="review" element={<UserProReview />} />
     </Routes>
