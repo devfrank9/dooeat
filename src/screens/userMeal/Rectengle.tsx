@@ -11,6 +11,7 @@ interface Prop {
 export const RectPrev = ({img, emoji, text, link}: Prop) => {
   return (
     <Preview to={link}>
+      <img src={img} alt="" />
       <div>{text}</div>
       <img src={emoji} alt="" />
     </Preview>
@@ -35,10 +36,15 @@ const Preview = styled(Link)`
   display: block;
   min-width: 150px;
   width: 47.022%;
-  padding-bottom: 47.022%;
   border: 1px solid ${props => props.theme.btnColor2};
   border-radius: 10px;
   background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
+  img:first-child {
+    min-width: 150px;
+    width: 100%;
+    min-height: 150px;
+    height: 100%;
+  }
   div {
     position: absolute;
     width: 68px;
@@ -54,7 +60,7 @@ const Preview = styled(Link)`
     font-size: 15px;
     font-weight: 300;
   }
-  img {
+  img:last-child {
     position: absolute;
     width: 32px;
     height: 32px;
