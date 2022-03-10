@@ -44,7 +44,6 @@ const JoinPro4 = () => {
     // @ts-ignore
     setFileUrl(imageUrlList);
   };
-
   const handleDeleteImage = (id: number) => {
     setFileUrl(fileUrl.filter((_, index) => index !== id));
   };

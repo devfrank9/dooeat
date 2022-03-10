@@ -21,7 +21,6 @@ const JoinPro5 = () => {
         </Styled.TextAlign2>
         <Styled.DropDownAlign>
           <DropDown />
-          <DropDown />
         </Styled.DropDownAlign>
         <Styled.AbsoluteColBtn onClick={() => navigate('/join-pro/6')}>
           다음
