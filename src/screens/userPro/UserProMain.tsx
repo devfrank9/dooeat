@@ -8,10 +8,12 @@ import SwiperCore, {Pagination} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import {MemberDataLv3} from '../../Dummy/Dummy';
 
 SwiperCore.use([Pagination]);
 
 const UserProMain = () => {
+  const data = MemberDataLv3.getMe;
   return (
     <BaseScreen>
       <AlignBase>
@@ -32,27 +34,31 @@ const UserProMain = () => {
             <SwiperSlide>
               <RecommendPro>
                 <button />
-                <Link to="/user/pro/profile">
-                  <img src="/image/people.png" alt="" />
+                <Link to=":mb_id">
+                  <img
+                    src={data.mb_img}
+                    alt=""
+                    style={{borderRadius: '40px'}}
+                  />
                 </Link>
                 <p>#헬스 # 크로스핏</p>
-                <p>홍길동 전문가</p>
+                <p>{data.mb_name}전문가</p>
                 <p>건강한 바디프로필 문화를 선도하는</p>
                 <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>서울시 금천구</p>
+                <p>{data.mb_addr1}</p>
               </RecommendPro>
             </SwiperSlide>
             <SwiperSlide>
               <RecommendPro>
                 <button />
-                <Link to="/user/pro/profile">
+                <Link to=":mb_id">
                   <img src="/image/people.png" alt="" />
                 </Link>
                 <p>#헬스 # 크로스핏</p>
-                <p>홍길동 전문가</p>
+                <p>{data.mb_name}전문가</p>
                 <p>건강한 바디프로필 문화를 선도하는</p>
                 <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>서울시 금천구</p>
+                <p>{data.mb_addr1}</p>
               </RecommendPro>
             </SwiperSlide>
             <SwiperSlide>
