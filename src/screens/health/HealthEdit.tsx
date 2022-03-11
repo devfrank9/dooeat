@@ -39,9 +39,17 @@ const HealthEdit = () => {
         <Subject>눈바디 사진 업로드</Subject>
       </AlignBase>
       <div style={{margin: '0 28px'}}>
-        <FileRectengle>
-          <FileInput />
-        </FileRectengle>
+        {formData === undefined ? (
+          <FileRectengle>
+            <FileInput />
+          </FileRectengle>
+        ) : (
+          <ImgAlign>
+            {formData?.file.map((img, index) => (
+              <img key={index} src={`${formData?.file[index].url}`} alt="" />
+            ))}
+          </ImgAlign>
+        )}
         <div style={{height: '30px'}} />
         <Excer />
         <div style={{height: '30px'}} />
@@ -49,7 +57,17 @@ const HealthEdit = () => {
     </BaseScreen>
   );
 };
-
+const ImgAlign = styled.div`
+  display: flex;
+  justify-content: space-between;
+  img {
+    display: block;
+    min-width: 150px;
+    width: 47.022%;
+    border-radius: 10px;
+    opacity: 0.9;
+  }
+`;
 const Subject = styled.div`
   font-size: 18px;
   font-weight: 500;
