@@ -1,35 +1,56 @@
 import moment from 'moment';
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import DateSelect from '../../components/DateSelect';
 import {Navigation} from '../../components/Navigation';
-import {SelectDate} from '../../components/SelectDate';
 import {StatusBar} from '../../components/StatusBar';
-import {
-  exerciseData,
-  exerciseForm,
-  FoodData,
-  MemberDataLv2,
-} from '../../Dummy/Dummy';
+import {exerciseForm} from '../../Dummy/Dummy';
+import {__session} from '../../lib/atom';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import HealthMain2 from './HealthMain2';
 
+interface IImg {
+  url: string | number;
+  fileType: string;
+  thumb: string | number;
+  bf_id: number;
+  bo_table: string;
+  wr_id: number;
+  fileName: string;
+  downloadCount: number;
+}
+interface IExcerData {
+  part: string;
+  name: string;
+  set: number;
+  weight: number;
+  times: number;
+  movieURL: string;
+  time: string;
+  power: string;
+}
+interface IGetExcerForm {
+  [x: string]: any;
+  date: string;
+  exerciseType: string;
+  todayWeight: number;
+  file: IImg[];
+  exerciseData: IExcerData[];
+}
+
 const HealthMain = () => {
-  const data = MemberDataLv2.getMe;
-  const excerData = exerciseData.getBoardList.boardList;
-  const excerForm = exerciseForm.getExercise.exerciseData;
+  const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
-  const [userData, setUserData] = useState();
+  const getForm = exerciseForm.getExercise;
+  const [formData, setFormData] = useState<IGetExcerForm>();
 
   useEffect(() => {
     const nowDate = getMoment.format('YYYY-MM-DD');
-    console.log(nowDate);
-  }, [getMoment]);
-
-  const ImgRender = () => {
-    for (let i = 0; i <= excerData.length; i++) {}
-  };
+    if (getForm.date === nowDate) setFormData(getForm);
+    else setFormData(undefined);
+  }, [getMoment, getForm]);
 
   return (
     <BaseScreen>
@@ -49,7 +70,7 @@ const HealthMain = () => {
             setMoment(getMoment.clone().add(1, 'day'));
           }}
         />
-        {data === null ? (
+        {formData === undefined ? (
           <HealthMain2 />
         ) : (
           <>
@@ -63,56 +84,80 @@ const HealthMain = () => {
                 <KgInput
                   placeholder="입력해주세요."
                   type="text"
-                  value={data.mb_2}
+                  value={formData.todayWeight}
                 />
                 <p>입니다</p>
               </BannerTextAlign>
             </KgBanner>
-
             <div style={{height: '30px'}} />
             <Subject>하루 운동량 분석</Subject>
-            <HealthKind>{excerData[0].wr_3}</HealthKind>
-
+            <HealthKind>{formData.exerciseType}</HealthKind>
             <div style={{height: '30px'}} />
             <Subject>눈바디</Subject>
             <ImgAlign>
-              {excerData.map((img, index) => (
-                <img src={`${excerData[index].file[index].url}`} alt="" />
-              ))}
+              {formData.file.length === 0
+                ? [...Array(2)].map(item => <FileRectengle to="write" />)
+                : formData.file.map((img, index) => (
+                    <img
+                      key={index}
+                      src={`${formData.file[index].url}`}
+                      alt=""
+                    />
+                  ))}
             </ImgAlign>
 
             <div style={{height: '30px'}} />
-            {excerForm.map((data, index) => {
-              return excerForm[index].name.length < 4
-                ? excerForm.map((data, index) => (
+            {formData.exerciseData.map((data, index) => {
+              return formData.exerciseData[index].name === '유산소'
+                ? formData.exerciseData.map((data, index) => (
                     <>
-                      <Subject>{excerForm[index].part} 운동</Subject>
+                      <Subject>{formData.exerciseData[index].part}운동</Subject>
                       <BtnAlign>
-                        <ExerciseKind>{excerForm[index].name}</ExerciseKind>
-                        <ExcerciseInfo>{`${excerForm[index].weight}kg, ${excerForm[index].times}회, ${excerForm[0].set}SET`}</ExcerciseInfo>
+                        <ExerciseKind2>
+                          {formData.exerciseData[index].name}
+                        </ExerciseKind2>
+                        <ExcerciseInfo2>
+                          {formData.exerciseData[index].times}분
+                        </ExcerciseInfo2>
                       </BtnAlign>
                     </>
                   ))
-                : excerForm.map((data, index) => (
+                : formData.exerciseData[index].name.length < 4
+                ? formData.exerciseData.map((data, index) => (
                     <>
-                      <Subject>{excerForm[index].part} 운동</Subject>
-                      <LongExKind>{excerForm[index].name}</LongExKind>
+                      <Subject>
+                        {formData.exerciseData[index].part} 운동
+                      </Subject>
+                      <BtnAlign>
+                        <ExerciseKind>
+                          {formData.exerciseData[index].name}
+                        </ExerciseKind>
+                        <ExcerciseInfo>{`${formData.exerciseData[index].weight}kg, ${formData.exerciseData[index].times}회, ${formData.exerciseData[0].set}SET`}</ExcerciseInfo>
+                      </BtnAlign>
+                    </>
+                  ))
+                : formData.exerciseData.map((data, index) => (
+                    <>
+                      <Subject>
+                        {formData.exerciseData[index].part} 운동
+                      </Subject>
+                      <LongExKind>
+                        {formData.exerciseData[index].name}
+                      </LongExKind>
                       <div style={{height: '12px'}} />
-                      <LongExInfo>{`${excerForm[index].times}회, ${excerForm[index].set}SET`}</LongExInfo>
+                      <LongExInfo>{`${formData.exerciseData[index].times}회, ${formData.exerciseData[index].set}SET`}</LongExInfo>
                       <div style={{height: '30px'}} />
                     </>
                   ));
             })}
 
             <div style={{height: '30px'}} />
-            <Subject>{excerForm[1].part}</Subject>
+
             <BtnAlign>
-              <ExerciseKind2>{excerForm[1].name}</ExerciseKind2>
-              <ExcerciseInfo2>{excerForm[1].times}분</ExcerciseInfo2>
-            </BtnAlign>
-            <BtnAlign>
-              <ExerciseKind2>{excerForm[1].name}</ExerciseKind2>
-              <ExcerciseInfo2>{excerForm[1].times}분</ExcerciseInfo2>
+              <ExerciseKind2>{formData.exerciseData[1].name}</ExerciseKind2>
+              <ExcerciseInfo2>
+                {formData.exerciseData[1].times}분
+              </ExcerciseInfo2>
             </BtnAlign>
             <BtnAlign2>
               <EditBtn to="edit" />
@@ -126,6 +171,15 @@ const HealthMain = () => {
     </BaseScreen>
   );
 };
+const FileRectengle = styled(Link)`
+  display: block;
+  min-width: 150px;
+  width: 47.022%;
+  padding-bottom: 47.022%;
+  border: 1px solid ${props => props.theme.btnColor2};
+  border-radius: 10px;
+  background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
+`;
 const BtnAlign2 = styled.div`
   position: fixed;
   margin: 0 auto;

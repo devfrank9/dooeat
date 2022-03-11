@@ -1,12 +1,9 @@
-import {SelectDate} from '../../components/SelectDate';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 const HealthMain2 = () => {
   return (
     <>
-      <div style={{height: '110px'}} />
-      <SelectDate />
       <TextAlign>
         <p>오늘 운동 기록이 없습니다.</p>
         <p>우측 하단 연필 버튼을 터치해서</p>
