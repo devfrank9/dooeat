@@ -1,6 +1,6 @@
 import moment from 'moment';
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate, useParams} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import DateSelect from '../../components/DateSelect';
@@ -41,6 +41,8 @@ interface IGetExcerForm {
 }
 
 const HealthMain = () => {
+  let params = useParams();
+  const navigate = useNavigate();
   const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
   const getForm = exerciseForm.getExercise;
@@ -51,6 +53,70 @@ const HealthMain = () => {
     if (getForm.date === nowDate) setFormData(getForm);
     else setFormData(undefined);
   }, [getMoment, getForm]);
+
+  const healthRender = () => {
+    if (formData !== undefined) {
+      const n = formData.exerciseData.length;
+      let renderArray: any[] = [];
+
+      for (let i = 0; i < n; i++) {
+        if (formData.exerciseData[i].name.length < 4) {
+          let empty: any[] = [];
+          empty.push(formData.exerciseData[i]);
+          renderArray.push(
+            empty.map((data, index) => (
+              <>
+                <Subject>{empty[index].part} 운동</Subject>
+                <BtnAlign>
+                  <ExerciseKind>{empty[index].name}</ExerciseKind>
+                  <ExcerciseInfo>{`${empty[index].weight}kg, ${empty[index].times}회, ${empty[index].set}SET`}</ExcerciseInfo>
+                </BtnAlign>
+              </>
+            )),
+          );
+        }
+      }
+      for (let i = 0; i < n; i++) {
+        if (formData.exerciseData[i].name.length >= 4) {
+          let empty: any[] = [];
+          empty.push(formData.exerciseData[i]);
+          renderArray.push(
+            empty.map((data, index) => (
+              <>
+                <Subject>{empty[index].part} 운동</Subject>
+                <LongExKind>{empty[index].name}</LongExKind>
+                <div style={{height: '12px'}} />
+                <LongExInfo>{`${empty[index].times}회, ${empty[index].set}SET`}</LongExInfo>
+                <div style={{height: '30px'}} />
+              </>
+            )),
+          );
+        }
+      }
+      for (let i = 0; i < n; i++) {
+        if (formData.exerciseData[i].part === '유산소') {
+          let empty: any[] = [];
+          empty.push(formData.exerciseData[i]);
+          renderArray.push(
+            empty.map((data, index) => (
+              <>
+                <Subject>{empty[index].part}운동</Subject>
+                <BtnAlign>
+                  <ExerciseKind2>{empty[index].name}</ExerciseKind2>
+                  <ExcerciseInfo2>{empty[index].times}분</ExcerciseInfo2>
+                </BtnAlign>
+              </>
+            )),
+          );
+        }
+      }
+      return renderArray;
+    }
+  };
+  const editBtnProcess = () => {
+    if (formData !== undefined) navigate(`${formData.date}`);
+    else navigate('edit');
+  };
 
   return (
     <BaseScreen>
@@ -84,7 +150,7 @@ const HealthMain = () => {
                 <KgInput
                   placeholder="입력해주세요."
                   type="text"
-                  value={formData.todayWeight}
+                  defaultValue={formData.todayWeight}
                 />
                 <p>입니다</p>
               </BannerTextAlign>
@@ -105,72 +171,21 @@ const HealthMain = () => {
                     />
                   ))}
             </ImgAlign>
-
             <div style={{height: '30px'}} />
-            {formData.exerciseData.map((data, index) => {
-              return formData.exerciseData[index].name === '유산소'
-                ? formData.exerciseData.map((data, index) => (
-                    <>
-                      <Subject>{formData.exerciseData[index].part}운동</Subject>
-                      <BtnAlign>
-                        <ExerciseKind2>
-                          {formData.exerciseData[index].name}
-                        </ExerciseKind2>
-                        <ExcerciseInfo2>
-                          {formData.exerciseData[index].times}분
-                        </ExcerciseInfo2>
-                      </BtnAlign>
-                    </>
-                  ))
-                : formData.exerciseData[index].name.length < 4
-                ? formData.exerciseData.map((data, index) => (
-                    <>
-                      <Subject>
-                        {formData.exerciseData[index].part} 운동
-                      </Subject>
-                      <BtnAlign>
-                        <ExerciseKind>
-                          {formData.exerciseData[index].name}
-                        </ExerciseKind>
-                        <ExcerciseInfo>{`${formData.exerciseData[index].weight}kg, ${formData.exerciseData[index].times}회, ${formData.exerciseData[0].set}SET`}</ExcerciseInfo>
-                      </BtnAlign>
-                    </>
-                  ))
-                : formData.exerciseData.map((data, index) => (
-                    <>
-                      <Subject>
-                        {formData.exerciseData[index].part} 운동
-                      </Subject>
-                      <LongExKind>
-                        {formData.exerciseData[index].name}
-                      </LongExKind>
-                      <div style={{height: '12px'}} />
-                      <LongExInfo>{`${formData.exerciseData[index].times}회, ${formData.exerciseData[index].set}SET`}</LongExInfo>
-                      <div style={{height: '30px'}} />
-                    </>
-                  ));
-            })}
-
+            {healthRender()}
             <div style={{height: '30px'}} />
-
-            <BtnAlign>
-              <ExerciseKind2>{formData.exerciseData[1].name}</ExerciseKind2>
-              <ExcerciseInfo2>
-                {formData.exerciseData[1].times}분
-              </ExcerciseInfo2>
-            </BtnAlign>
             <BtnAlign2>
-              <EditBtn to="edit" />
+              <EditBtn onClick={() => editBtnProcess()} />
             </BtnAlign2>
             <div style={{height: '102px'}} />
           </>
         )}
-
         <Navigation />
       </AlignBase>
     </BaseScreen>
   );
 };
+
 const FileRectengle = styled(Link)`
   display: block;
   min-width: 150px;
@@ -189,7 +204,7 @@ const BtnAlign2 = styled.div`
   width: 100%;
   max-width: 480px;
 `;
-const EditBtn = styled(Link)`
+const EditBtn = styled.button`
   width: 66px;
   height: 66px;
   border-radius: 33px;
@@ -197,6 +212,7 @@ const EditBtn = styled(Link)`
   position: absolute;
   right: 28px;
   bottom: 0;
+  border: none;
 `;
 const LongExKind = styled.div`
   display: flex;
