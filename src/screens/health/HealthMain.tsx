@@ -11,7 +11,7 @@ import {__session} from '../../lib/atom';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import HealthMain2 from './HealthMain2';
 
-interface IImg {
+export interface IImg {
   url: string | number;
   fileType: string;
   thumb: string | number;
@@ -21,7 +21,7 @@ interface IImg {
   fileName: string;
   downloadCount: number;
 }
-interface IExcerData {
+export interface IExcerData {
   part: string;
   name: string;
   set: number;
@@ -31,7 +31,7 @@ interface IExcerData {
   time: string;
   power: string;
 }
-interface IGetExcerForm {
+export interface IGetExcerForm {
   [x: string]: any;
   date: string;
   exerciseType: string;
