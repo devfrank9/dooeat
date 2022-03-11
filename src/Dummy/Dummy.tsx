@@ -372,7 +372,7 @@ export const FoodData = {
       },
     ],
     pageCount: 1,
-  } as ResponseQueryGetBoardList,
+  },
 };
 
 export const exerciseData = {
@@ -458,10 +458,21 @@ export const exerciseData = {
 
 export const exerciseForm = {
   getExercise: {
-    date: '2022-01-26',
+    date: '2022-03-10',
     exerciseType: '헬스',
     todayWeight: 80,
-    file: [],
+    file: [
+      {
+        url: profile2,
+        fileType: 'image',
+        thumb: profile2,
+        bf_id: 1,
+        bo_table: '',
+        wr_id: 0,
+        fileName: '',
+        downloadCount: 0,
+      },
+    ],
     exerciseData: [
       {
         part: '하체',
