@@ -1,11 +1,27 @@
+import moment from 'moment';
+import {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
+import {exerciseForm} from '../../Dummy/Dummy';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import Excer from './EditBtnComp/Excer';
+import {IGetExcerForm} from './HealthMain';
 
 const HealthEdit = () => {
+  const {date} = useParams();
+  const [getMoment, setMoment] = useState(moment());
+  const getForm = exerciseForm.getExercise;
+  const [formData, setFormData] = useState<IGetExcerForm>();
+
+  useEffect(() => {
+    if (date !== undefined) setFormData(getForm);
+    else return;
+  }, [getForm, date]);
+  useEffect(() => {}, [Excer]);
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -14,7 +30,10 @@ const HealthEdit = () => {
         <Subject>오늘의 체중</Subject>
         <div style={{position: 'relative'}}>
           <Label>kg</Label>
-          <Input placeholder="kg단위로 입력해주세요." />
+          <Input
+            placeholder="kg단위로 입력해주세요."
+            defaultValue={formData?.todayWeight ?? ''}
+          />
         </div>
         <div style={{height: '30px'}} />
         <Subject>눈바디 사진 업로드</Subject>
