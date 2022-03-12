@@ -64,11 +64,7 @@ const MealMain = () => {
         </Styled.RectengleAlign>
         <div style={{height: '32px'}} />
         <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
-        <WaterBlock
-          active={isActive}
-          onClick={onClickWater}
-          waterCalc={water}
-        />
+        <WaterBlock onClick={onClickWater} waterCalc={water} />
         <div style={{height: '135px'}} />
         <Navigation />
       </AlignBase>

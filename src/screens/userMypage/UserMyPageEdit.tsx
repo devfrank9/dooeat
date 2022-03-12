@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar3} from '../../components/StatusBar';
+import {MemberDataLv2} from '../../Dummy/Dummy';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {Common} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
@@ -8,6 +9,7 @@ import {Select} from '../../styles/SelectStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageEdit = () => {
+  const getData = MemberDataLv2.getMe;
   return (
     <BaseScreen>
       <AlignBase>
@@ -15,7 +17,7 @@ const UserMyPageEdit = () => {
         <div style={{height: '110px'}} />
         <SubjectAlign>
           <Subject>이메일</Subject>
-          <p>test@naver.com</p>
+          <p>{getData.mb_email}</p>
         </SubjectAlign>
         <PasswordAlign>
           <Subject style={{marginBottom: '8px'}}>비밀번호</Subject>
@@ -29,14 +31,14 @@ const UserMyPageEdit = () => {
         <PicAlign>
           <input type="file" id="pic" />
           <label htmlFor="pic" />
-          <img src="/image/canera.png" alt="" />
+          <img src={getData.mb_img} alt="" />
         </PicAlign>
         <div style={{height: '20px'}} />
         <Subject style={{marginBottom: '8px'}}>닉네임</Subject>
-        <Common value="홍길동" />
+        <Common value={getData.mb_nick} />
         <div style={{height: '20px'}} />
         <Subject style={{marginBottom: '8px'}}>나이</Subject>
-        <Common value="28" />
+        <Common value={getData.mb_1} />
         <div style={{height: '20px'}} />
         <Subject style={{marginBottom: '8px'}}>사는곳</Subject>
         <SelcetAlgin>
@@ -48,19 +50,19 @@ const UserMyPageEdit = () => {
         <Subject style={{marginBottom: '8px'}}>현재 체중</Subject>
         <div style={{position: 'relative'}}>
           <Label>kg</Label>
-          <Input value="55" />
+          <Input value={getData.mb_2} />
         </div>
         <div style={{height: '20px'}} />
         <Subject style={{marginBottom: '8px'}}>키</Subject>
         <div style={{position: 'relative'}}>
           <Label>cm</Label>
-          <Input value="168" />
+          <Input value={getData.mb_3} />
         </div>
         <div style={{height: '20px'}} />
         <Subject style={{marginBottom: '8px'}}>목표 체중</Subject>
         <div style={{position: 'relative'}}>
           <Label>kg</Label>
-          <Input value="48" />
+          <Input value={getData.mb_4} />
         </div>
         <div style={{height: '40px'}} />
         <ColoredBtn>

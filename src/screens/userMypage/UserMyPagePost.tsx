@@ -9,18 +9,9 @@ const UserMyPagePost = () => {
         <StatusBar3 Subject="내가 쓴 글" />
         <div style={{height: '110px'}} />
         <PicAlign>
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
+          {[...Array(12)].map((item, index) => (
+            <div key={index} />
+          ))}
         </PicAlign>
       </AlignBase>
     </BaseScreen>

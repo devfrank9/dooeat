@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar3} from '../../components/StatusBar';
-import {expertData, MemberDataLv3} from '../../Dummy/Dummy';
+import {expertData} from '../../Dummy/Dummy';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageFavor = () => {

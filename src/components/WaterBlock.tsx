@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 interface Prop {
   waterCalc: number;
+  onClick: () => void;
 }
 
-export const WaterBlock = ({waterCalc}: Prop) => {
+export const WaterBlock = ({waterCalc, onClick}: Prop) => {
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
   const [isActive3, setIsActive3] = useState(false);
