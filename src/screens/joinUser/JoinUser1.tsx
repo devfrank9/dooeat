@@ -10,6 +10,7 @@ import CheckInput from '../../components/CheckInput';
 import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import ValidBtn from '../../components/ValidBtn';
 
 const JoinUser1 = () => {
   const [userData, setUserData] = useRecoilState(userFormState);
@@ -124,16 +125,17 @@ const JoinUser1 = () => {
           <Agreement checked={handleOnChange} />
         </Styled.AgreementAlign>
         <Styled.BtnAlign />
-        <Styled.AbsoluteColBtn
+        <ValidBtn
           onClick={() => {
             if (errorLabel.length > 0 || !idOK) return;
             else {
               processSignup();
             }
           }}
+          status={errorLabel.length > 0 || !idOK ? 'err' : undefined}
         >
           다음
-        </Styled.AbsoluteColBtn>
+        </ValidBtn>
       </AlignBase>
     </BaseScreen>
   );
