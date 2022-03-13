@@ -6,8 +6,26 @@ import {Time, TextArea} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
+import {FoodData} from '../../Dummy/Dummy';
+import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
 
 const MealEdit = () => {
+  const getData: ResponseQueryGetBoardListBoardList[] =
+    FoodData.getBoardList.boardList;
+  const {wr_id} = useParams();
+  const [board, setBoard] = useState({});
+
+  useEffect(() => {
+    getData.map((item, index) => {
+      return getData[index].wr_id === Number(wr_id)
+        ? setBoard(getData[index])
+        : setBoard({});
+    });
+    console.log(board);
+  }, [getData]);
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -20,7 +38,7 @@ const MealEdit = () => {
         <FileAlign>
           <FileRectengle />
           <Preview>
-            <div>점심</div>
+            {/* <div>{getData !== undefined ? board.wr_5 : ''}</div> */}
             <img src="/image/exe.png" alt="" />
           </Preview>
         </FileAlign>
