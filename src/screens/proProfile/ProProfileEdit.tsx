@@ -12,8 +12,40 @@ import {
 import {LinkStyle} from '../../styles/LinkStyled';
 import {Select} from '../../components/JoinSelect';
 import BaseScreen, {AlignBase} from '../BaseScreen';
+import {MemberDataLv3} from '../../Dummy/Dummy';
+import {useState} from 'react';
 
 const ProProfileEdit = () => {
+  const getData = MemberDataLv3.getMe;
+  const arr: string[] = [
+    '헬스',
+    '요가',
+    '필라테스',
+    '크로스핏',
+    '복싱',
+    '주짓수',
+    '수영',
+    '기타',
+  ];
+  const [select, setSelect] = useState<string[]>([]);
+  const [etc, setEtc] = useState('');
+
+  const btnRender = () => {
+    return arr.map((item, index) => (
+      <LongBtn
+        key={index}
+        onClick={() => {
+          !select.includes(item)
+            ? setSelect(select => [...select, item])
+            : setSelect(select.filter(button => button !== item));
+        }}
+        isActive={select.includes(item) ? true : false}
+      >
+        {item}
+      </LongBtn>
+    ));
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -23,12 +55,21 @@ const ProProfileEdit = () => {
           <p>사진을 추가해주세요.</p>
         </BackImg>
         <ProfileImg>
-          <img src="/image/plus.png" alt="" />
+          <img
+            src={`${getData.mb_img}`}
+            alt=""
+            style={{
+              width: '110px',
+              height: '110px',
+              borderRadius: '55px',
+              position: 'absolute',
+            }}
+          />
         </ProfileImg>
         <ContentAlgin>
           <TextAlign>
             <p>#헬스 #크로스핏</p>
-            <p>홍길동 전문가</p>
+            <p>{getData.mb_name} 전문가</p>
             <button />
             <TextArea
               style={{width: '85%', marginTop: '26px'}}
@@ -67,22 +108,30 @@ const ProProfileEdit = () => {
         <div style={{height: '12px'}} />
         <Select />
         <Subject>운영 사이트</Subject>
-        <UrlInputAdd placeholder="사이트 링크를 입력해주세요." />
-        <div style={{height: '12px'}} />
-        <UrlInputDel value="https://naver.com" />
+        {getData.mb_6 === undefined ? (
+          <>
+            <UrlInputAdd placeholder="사이트 링크를 입력해주세요." />
+            <div style={{height: '12px'}} />
+          </>
+        ) : (
+          getData.mb_6.map((item, index) => (
+            <>
+              <UrlInputDel value={item[index]} />
+              <div key={index} style={{height: '12px'}} />
+            </>
+          ))
+        )}
         <Subject>자신있는 코칭 분야</Subject>
         <div style={{height: '30px'}} />
         <BtnAlign>
-          <LongBtn>헬스</LongBtn>
-          <LongBtn>요가</LongBtn>
-          <LongBtn>필라테스</LongBtn>
-          <LongBtn>크로스핏</LongBtn>
-          <LongBtn>복싱</LongBtn>
-          <LongBtn>주짓수</LongBtn>
-          <LongBtn>수영</LongBtn>
-          <LongBtn>기타</LongBtn>
+          {btnRender()}
           <DisplayNone />
-          <Common placeholder="기타 내용을 입력해 주세요." />
+          <Common
+            placeholder="기타 내용을 입력해 주세요."
+            //@ts-ignore
+            disabled={select.includes('기타') === true ? false : true}
+            onChange={e => setEtc(e.target.value)}
+          />
         </BtnAlign>
         <div style={{height: '60px'}} />
         <ColoredBtn>
@@ -165,6 +214,14 @@ const ContentAlgin = styled.div`
   margin: 0 -28px;
   border-radius: 34px 34px 0 0;
 `;
+const Img = styled.img`
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 45px;
+`;
 const ProfileImg = styled.div`
   width: 110px;
   height: 110px;
@@ -176,14 +233,6 @@ const ProfileImg = styled.div`
   transform: translateX(-50%);
   z-index: 5;
   background-color: ${prop => prop.theme.pointColor2};
-  img {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 45px;
-  }
 `;
 const BackImg = styled.div`
   display: flex;
