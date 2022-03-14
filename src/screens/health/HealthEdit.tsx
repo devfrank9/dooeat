@@ -20,7 +20,6 @@ const HealthEdit = () => {
     if (date !== undefined) setFormData(getForm);
     else return;
   }, [getForm, date]);
-  useEffect(() => {}, [Excer]);
 
   return (
     <BaseScreen>

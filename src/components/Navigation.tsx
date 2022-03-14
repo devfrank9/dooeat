@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useRoutes} from 'react-router-dom';
 
 export const Navigation2 = () => {
@@ -47,18 +47,20 @@ export const Navigation2 = () => {
 };
 
 export const Navigation = () => {
-  const match1 = useRoutes([{path: '/user/meal'}]);
+  const match1 = useRoutes([{path: '/*/user/meal'}]);
   const match2 = useRoutes([{path: '/user/health'}]);
   const match3 = useRoutes([{path: '/user/pro'}]);
   const match4 = useRoutes([{path: '/community/favor'}]);
   const match5 = useRoutes([{path: '/shop'}]);
+  const {path} = useParams();
+  const navigate = useNavigate();
 
   return (
     <NavContainer>
       <Link to="/user/meal">
         <button>
           <Img1
-            src={match1 !== null ? '/image/nav3.png' : '/image/nav3_un.png'}
+            src={path !== undefined ? '/image/nav3.png' : '/image/nav3_un.png'}
             alt=""
           />
         </button>

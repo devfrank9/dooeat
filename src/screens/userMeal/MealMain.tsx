@@ -5,36 +5,58 @@ import DateSelect from '../../components/DateSelect';
 import * as Styled from '../../styles/userMeal/styled';
 import {useEffect, useState} from 'react';
 import {WaterBlock} from '../../components/WaterBlock';
-import moment from 'moment';
-import {RectPrev, RectInput} from './Rectengle';
 import {FoodData} from '../../Dummy/Dummy';
+import moment from 'moment';
+import {RectPrev} from './Rectengle';
+import {Link, useParams} from 'react-router-dom';
 import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
+import styled from 'styled-components';
 
 const MealMain = () => {
-  const [getMoment, setMoment] = useState(moment());
-  const today = getMoment.format('YYYY. MM. DD');
-  const [water, setWater] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const keyDate = getMoment.format('YYYY-MM-DD');
-  const [render, setRender] = useState(false);
-  const boardQuery = FoodData.getBoardList.boardList;
+  let params = useParams();
+  const data = FoodData.getBoardList.boardList;
   const [userData, setUserData] = useState<
     ResponseQueryGetBoardListBoardList[]
   >([]);
+  const [water, setWater] = useState(0);
+  const [no, setNo] = useState(false);
+  const [getMoment, setMoment] = useState(moment());
+  const [select, setSelect] = useState<number[]>([]);
 
-  /*   for (let i = 0; i <= boardQuery.length; i++) {
-    if (boardQuery[i].datetime === keyDate) setRender(prev => !prev);
-  } */
-
-  const onClickWater = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsActive(prev => !prev);
-    if (isActive === true) setWater(water - 0.25);
-    else setWater(water + 0.25);
-  };
   useEffect(() => {
-    setUserData(boardQuery);
-  }, [boardQuery, userData]);
-  useEffect(() => {}, [render]);
+    const nowDate = getMoment.format('YYYY-MM-DD');
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].datetime === nowDate) setUserData(data);
+      else setUserData([]);
+    }
+  }, [data, getMoment]);
+
+  const waterRender = () => {
+    return (
+      <Container>
+        <TextAlign>
+          <p>{water}</p>
+          <p>L</p>
+        </TextAlign>
+        <Hr />
+        <Notice>한 컵당 250ml</Notice>
+        <AlignGlass>
+          {[...Array(8)].map((item, index) => (
+            <GlassWater
+              key={index}
+              onClick={() => {
+                !select.includes(item)
+                  ? setSelect(select => [...select, item])
+                  : setSelect(select.filter(button => button !== item));
+                console.log(item);
+              }}
+              isActive={select.includes(item) ? true : false}
+            />
+          ))}
+        </AlignGlass>
+      </Container>
+    );
+  };
 
   return (
     <BaseScreen>
@@ -46,7 +68,7 @@ const MealMain = () => {
         />
         <div style={{height: '110px'}} />
         <DateSelect
-          today={today}
+          today={getMoment.format('YYYY. MM. DD')}
           backClick={() => {
             setMoment(getMoment.clone().subtract(1, 'day'));
           }}
@@ -57,23 +79,86 @@ const MealMain = () => {
         <Styled.Subject>식단 입력</Styled.Subject>
         <Styled.RectengleAlign>
           <Styled.FileAlign>
-            {userData.map(data => (
-              <RectPrev key={data.wr_id} img={data} text={data.wr_2} />
-            ))}
+            {userData.length === 0
+              ? [...Array(2)].map(data => <FileRectengle to="write" />)
+              : userData.map(data => (
+                  <RectPrev
+                    link={`edit/${data.wr_id}`}
+                    key={data.wr_id}
+                    img={data.file[0].url}
+                    text={data.wr_2}
+                  />
+                ))}
           </Styled.FileAlign>
         </Styled.RectengleAlign>
         <div style={{height: '32px'}} />
         <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
-        <WaterBlock
-          active={isActive}
-          onClick={onClickWater}
-          waterCalc={water}
-        />
+        {waterRender()}
         <div style={{height: '135px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>
   );
 };
+const FileRectengle = styled(Link)`
+  display: block;
+  min-width: 150px;
+  width: 47.022%;
+  padding-bottom: 47.022%;
+  border: 1px solid ${props => props.theme.btnColor2};
+  border-radius: 10px;
+  background: url('/image/IIcon feather-plus-circle.png') no-repeat 50% 50%;
+`;
+const AlignGlass = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 35px;
+  button {
+    margin: 0 10px;
+    margin-bottom: 20px;
+  }
+  margin-bottom: 10px;
+`;
+const GlassWater = styled.button<{isActive?: boolean}>`
+  width: 40px;
+  height: 52px;
+  background: ${prop =>
+    !prop.isActive
+      ? "url('/image/empty glass.png') no-repeat 50% 50%"
+      : "url('/image/fill glass.png') no-repeat 50% 50%"};
+  border: none;
+`;
+const Notice = styled.p`
+  font-size: 14px;
+  color: ${prop => prop.theme.mainColor};
+  text-align: center;
+  margin-bottom: 10px;
+`;
+const Hr = styled.hr`
+  width: 160px;
+  opacity: 0.5;
+`;
+const TextAlign = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  margin-top: 24px;
+  font-family: ${prop => prop.theme.roboto};
+  p:last-child {
+    position: relative;
+    left: 10px;
+    top: 12px;
+    font-size: 20px;
+    align-items: flex-start;
+  }
+`;
+const Container = styled.div`
+  display: block;
+  border: 1px solid rgb(223, 223, 223);
+  box-shadow: 0pt 3pt 10pt 0pt rgb(0, 0, 0, 0.1);
+  border-radius: 12px;
+`;
 
 export default MealMain;

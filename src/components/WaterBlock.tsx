@@ -6,14 +6,9 @@ interface Prop {
 }
 
 export const WaterBlock = ({waterCalc}: Prop) => {
-  const [isActive, setIsActive] = useState(false);
-  const [isActive2, setIsActive2] = useState(false);
-  const [isActive3, setIsActive3] = useState(false);
-  const [isActive4, setIsActive4] = useState(false);
-  const [isActive5, setIsActive5] = useState(false);
-  const [isActive6, setIsActive6] = useState(false);
-  const [isActive7, setIsActive7] = useState(false);
-  const [isActive8, setIsActive8] = useState(false);
+  const [value, setValue] = useState(0);
+  const [pick, setPick] = useState<number[]>([]);
+  const [select, setSelect] = useState<number[]>([]);
 
   return (
     <Container>
@@ -24,54 +19,17 @@ export const WaterBlock = ({waterCalc}: Prop) => {
       <Hr />
       <Notice>한 컵당 250ml</Notice>
       <AlignGlass>
-        <GlassWater
-          isActive={isActive}
-          onClick={e => {
-            setIsActive(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive2}
-          onClick={() => {
-            setIsActive2(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive3}
-          onClick={() => {
-            setIsActive3(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive4}
-          onClick={() => {
-            setIsActive4(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive5}
-          onClick={() => {
-            setIsActive5(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive6}
-          onClick={() => {
-            setIsActive6(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive7}
-          onClick={() => {
-            setIsActive7(prev => !prev);
-          }}
-        />
-        <GlassWater
-          isActive={isActive8}
-          onClick={() => {
-            setIsActive8(prev => !prev);
-          }}
-        />
+        {[...Array(8)].map((item, index) => (
+          <GlassWater
+            key={index}
+            onClick={() => {
+              !select.includes(item)
+                ? setSelect(select => [...select, item])
+                : setSelect(select.filter(button => button !== item));
+            }}
+            isActive={select.includes(item) ? true : false}
+          />
+        ))}
       </AlignGlass>
     </Container>
   );
@@ -88,7 +46,7 @@ const AlignGlass = styled.div`
   }
   margin-bottom: 10px;
 `;
-const GlassWater = styled.button<{isActive: boolean}>`
+const GlassWater = styled.button<{isActive?: boolean}>`
   width: 40px;
   height: 52px;
   background: ${prop =>

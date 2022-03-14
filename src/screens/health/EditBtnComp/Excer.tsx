@@ -1,48 +1,116 @@
+import {selectionSetMatchesResult} from '@apollo/client/cache/inmemory/helpers';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {
-  HealthSubject,
-  HealthIndex,
-  ColoredBtn,
-} from '../../../styles/BtnStyled';
+import {ColoredBtn, LongBtn, MiddleBtn} from '../../../styles/BtnStyled';
 import {Common} from '../../../styles/InputStyled';
 
 const Excer = () => {
+  const [main, setMain] = useState(false);
+  const [main2, setMain2] = useState(false);
+  const [main3, setMain3] = useState(false);
+  const [select, setSelect] = useState<string[]>([]);
+  let renderList: any[] = [];
+
+  const handleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (main === true) {
+      setMain2(false);
+      setMain3(false);
+    }
+    if (main2 === true) {
+      setMain(false);
+      setMain3(false);
+    }
+    if (main3 === true) {
+      setMain(false);
+      setMain2(false);
+    }
+  };
+  const clickEvent = (value: string) => {
+    !select.includes(value)
+      ? setSelect(select => [...select, value])
+      : setSelect(select.filter(button => button !== value));
+    console.log(select);
+    renderList.push(select);
+    console.log(renderList);
+    renderExSubject();
+  };
+  const renderExSubject = () => {
+    console.log('im run');
+    if (main === true) {
+      console.log('im run');
+      return renderList.map((item, index) => (
+        <div key={index}>
+          {console.log('im run')}
+          <Subject>{item} 운동</Subject>
+          <ExcerAlign>
+            <ExcerKindBtn>운동 종류 등록</ExcerKindBtn>
+            <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
+          </ExcerAlign>
+        </div>
+      ));
+    }
+  };
+
   return (
     <>
       <Subject>운동 종류</Subject>
       <BtnAlign>
-        <HealthSubject>헬스</HealthSubject>
-        <HealthSubject>홈트</HealthSubject>
-        <HealthSubject>기타</HealthSubject>
+        <LongBtn
+          isActive={main === false ? false : true}
+          onClick={e => {
+            setMain(prev => !prev);
+            handleBtn(e);
+          }}
+        >
+          헬스
+        </LongBtn>
+        <LongBtn
+          isActive={main2 === false ? false : true}
+          onClick={e => {
+            setMain2(prev => !prev);
+            handleBtn(e);
+          }}
+        >
+          홈트
+        </LongBtn>
+        <LongBtn
+          isActive={main3 === false ? false : true}
+          onClick={e => {
+            setMain3(prev => !prev);
+            handleBtn(e);
+          }}
+        >
+          기타
+        </LongBtn>
       </BtnAlign>
       <div style={{height: '30px'}} />
       <Subject>운동 부위</Subject>
       <BtnAlign>
-        <HealthIndex>가슴</HealthIndex>
-        <HealthIndex>어깨</HealthIndex>
-        <HealthIndex>팔</HealthIndex>
-        <HealthIndex>등</HealthIndex>
-        <HealthIndex>하체</HealthIndex>
-        <HealthIndex>전신</HealthIndex>
-        <HealthIndex>유산소</HealthIndex>
-        <HealthIndex>스트레칭</HealthIndex>
+        <MiddleBtn
+          onClick={() => clickEvent('가슴')}
+          isActive={select.includes('가슴') ? true : false}
+        >
+          가슴
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('어깨')}
+          isActive={select.includes('어깨') ? true : false}
+        >
+          어깨
+        </MiddleBtn>
+        <MiddleBtn>팔</MiddleBtn>
+        <MiddleBtn>등</MiddleBtn>
+        <MiddleBtn>하체</MiddleBtn>
+        <MiddleBtn>전신</MiddleBtn>
+        <MiddleBtn>유산소</MiddleBtn>
+        <MiddleBtn>스트레칭</MiddleBtn>
       </BtnAlign>
       <div style={{height: '30px'}} />
-      <Subject>하체 운동</Subject>
-      <ExcerAlign>
-        <ExcerKindBtn>운동 종류 등록</ExcerKindBtn>
-        <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
-      </ExcerAlign>
-      <Subject>하체 운동</Subject>
-      <ExcerAlign>
-        <ExcerKindBtn>운동 종류 등록</ExcerKindBtn>
-        <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
-      </ExcerAlign>
+      {renderExSubject}
+
       <Input value="런지" />
       <div style={{height: '30px'}} />
-      <div
-        style={{display: 'flex', justifyContent: 'flex-between', width: '100%'}}
-      >
+      <ExInputAlign>
         <ExInput>
           <Subject>무게</Subject>
           <input type="text" />
@@ -53,7 +121,7 @@ const Excer = () => {
           <input type="text" />
           <label htmlFor="">회</label>
         </ExInput>
-      </div>
+      </ExInputAlign>
       <div style={{height: '30px'}} />
       <Subject>세트</Subject>
       <div
@@ -77,6 +145,11 @@ const Excer = () => {
     </>
   );
 };
+const ExInputAlign = styled.div`
+  display: flex;
+  justify-content: flex-between;
+  width: 100%;
+`;
 const CheckInput = styled.div`
   display: flex;
   align-items: center;
