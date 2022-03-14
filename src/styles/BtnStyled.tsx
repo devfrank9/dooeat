@@ -49,7 +49,7 @@ export const LongBtn = styled(ShortBtn)`
   min-height: 48px;
   height: 15.05%;
 `;
-export const LongLine = styled.button<{isActive?: false}>`
+export const LongLine = styled.button<{isActive?: boolean}>`
   display: block;
   width: 100%;
   height: 48px;
