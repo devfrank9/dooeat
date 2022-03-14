@@ -2,18 +2,17 @@ import styled from 'styled-components';
 import {ColoredBtn} from '../styles/BtnStyled';
 
 interface Prop extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  status?: 'err';
+  status?: 'err' | 'succ';
 }
 
 export default (props: Prop) => {
-  const style = props.status === 'err' ? `rgb(245,245,245)` : `#EF90A7`;
-  const valid = props.status === 'err' ? false : true;
-  const textColor = props.status === 'err' ? 'black' : 'white';
+  const style =
+    props.status === 'err' ? `rgb(245,245,245)` : 'succ' ? `#EF90A7` : '';
+  const textColor = props.status === 'err' ? 'black' : 'succ' ? 'white' : '';
 
   return (
     <AbsoluteColBtn
       {...props}
-      disabled={valid}
       style={{color: `${textColor}`, background: `${style}`}}
     />
   );
