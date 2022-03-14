@@ -3,25 +3,12 @@ import styled from 'styled-components';
 
 interface Prop {
   waterCalc: number;
-  onClick: () => void;
 }
 
-<<<<<<< HEAD
 export const WaterBlock = ({waterCalc}: Prop) => {
   const [value, setValue] = useState(0);
   const [pick, setPick] = useState<number[]>([]);
   const [select, setSelect] = useState<number[]>([]);
-=======
-export const WaterBlock = ({waterCalc, onClick}: Prop) => {
-  const [isActive, setIsActive] = useState(false);
-  const [isActive2, setIsActive2] = useState(false);
-  const [isActive3, setIsActive3] = useState(false);
-  const [isActive4, setIsActive4] = useState(false);
-  const [isActive5, setIsActive5] = useState(false);
-  const [isActive6, setIsActive6] = useState(false);
-  const [isActive7, setIsActive7] = useState(false);
-  const [isActive8, setIsActive8] = useState(false);
->>>>>>> df6cce6af795814bedb480d5e743b95e26677bec
 
   return (
     <Container>
