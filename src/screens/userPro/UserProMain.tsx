@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
@@ -13,6 +13,8 @@ import {MemberDataLv3} from '../../Dummy/Dummy';
 SwiperCore.use([Pagination]);
 
 const UserProMain = () => {
+  const navigate = useNavigate();
+  let params = useParams();
   const data = MemberDataLv3.getMe;
   return (
     <BaseScreen>
@@ -27,53 +29,30 @@ const UserProMain = () => {
         <Subject>추천 전문가</Subject>
         <div style={{display: 'flex'}}>
           <Swiper
+            style={{width: '100%'}}
             spaceBetween={20}
-            slidesPerView={1}
+            slidesPerView={1.1}
             pagination={{clickable: true}}
           >
-            <SwiperSlide>
-              <RecommendPro>
-                <button />
-                <Link to=":mb_id">
-                  <img
-                    src={data.mb_img}
-                    alt=""
-                    style={{borderRadius: '40px'}}
-                  />
-                </Link>
-                <p>#헬스 # 크로스핏</p>
-                <p>{data.mb_name}전문가</p>
-                <p>건강한 바디프로필 문화를 선도하는</p>
-                <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>{data.mb_addr1}</p>
-              </RecommendPro>
-            </SwiperSlide>
-            <SwiperSlide>
-              <RecommendPro>
-                <button />
-                <Link to=":mb_id">
-                  <img src="/image/people.png" alt="" />
-                </Link>
-                <p>#헬스 # 크로스핏</p>
-                <p>{data.mb_name}전문가</p>
-                <p>건강한 바디프로필 문화를 선도하는</p>
-                <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>{data.mb_addr1}</p>
-              </RecommendPro>
-            </SwiperSlide>
-            <SwiperSlide>
-              <RecommendPro>
-                <button />
-                <Link to="/user/pro/profile">
-                  <img src="/image/people.png" alt="" />
-                </Link>
-                <p>#헬스 # 크로스핏</p>
-                <p>홍길동 전문가</p>
-                <p>건강한 바디프로필 문화를 선도하는</p>
-                <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>서울시 금천구</p>
-              </RecommendPro>
-            </SwiperSlide>
+            {[...Array(3)].map((item, index) => (
+              <SwiperSlide>
+                <RecommendPro>
+                  <button />
+                  <div onClick={() => navigate(':wr_id')}>
+                    <img
+                      src={data.mb_img}
+                      alt=""
+                      style={{borderRadius: '40px'}}
+                    />
+                  </div>
+                  <p>#헬스 # 크로스핏</p>
+                  <p>{data.mb_name}전문가</p>
+                  <p>건강한 바디프로필 문화를 선도하는</p>
+                  <p>경력 10년의 배테랑 전문가 입니다.</p>
+                  <p>{data.mb_addr1}</p>
+                </RecommendPro>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <RecommendAlign>
@@ -96,38 +75,25 @@ const UserProMain = () => {
               <p>서울시 금천구</p>
             </CardTextAlign>
           </Card>
-          <Card>
-            <img src="/image/people.png" alt="" />
-            <button
-              style={{
-                background: `url('/image/Icon awesome-bookmark_gray.png') no-repeat 50% 50%`,
-              }}
-            />
-            <CardTextAlign>
-              <p>홍길동 전문가</p>
-              <p>건강한 바디프로필 문화를 선도하는</p>
-              <p>경력 10년의 배테랑 전문가 입니다.</p>
-              <p>#헬스 # 크로스핏</p>
-              <p>서울시 금천구</p>
-            </CardTextAlign>
-          </Card>
-          <Card>
-            <img src="/image/people.png" alt="" />
-            <button
-              style={{
-                background: `url('/image/Icon awesome-bookmark_gray.png') no-repeat 50% 50%`,
-              }}
-            />
-            <CardTextAlign>
-              <p>홍길동 전문가</p>
-              <p>건강한 바디프로필 문화를 선도하는</p>
-              <p>경력 10년의 배테랑 전문가 입니다.</p>
-              <p>#헬스 # 크로스핏</p>
-              <p>서울시 금천구</p>
-            </CardTextAlign>
-          </Card>
+          {[...Array(2)].map((item, index) => (
+            <Card>
+              <img src="/image/people.png" alt="" />
+              <button
+                style={{
+                  background: `url('/image/Icon awesome-bookmark_gray.png') no-repeat 50% 50%`,
+                }}
+              />
+              <CardTextAlign>
+                <p>홍길동 전문가</p>
+                <p>건강한 바디프로필 문화를 선도하는</p>
+                <p>경력 10년의 배테랑 전문가 입니다.</p>
+                <p>#헬스 # 크로스핏</p>
+                <p>서울시 금천구</p>
+              </CardTextAlign>
+            </Card>
+          ))}
         </ProCard>
-        <div style={{height: '90px'}}></div>
+        <div style={{height: '90px'}} />
         <Navigation />
       </AlignBase>
     </BaseScreen>

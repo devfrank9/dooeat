@@ -1,4 +1,5 @@
 import {useCallback, useState} from 'react';
+import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
 import {DateSelect} from '../lib/Dummys';
 
@@ -18,10 +19,12 @@ const SelectDrop = ({items}: Prop) => {
   }, []);
   const onSelectItem = (e: any) => {
     const targetId = e.target.id;
+    let inner = e.target.parentElement.innertText;
+    let inner2 = e.target.innerText;
     if (targetId === 'item_name') {
-      setItem(e.target.parentElement.innertText);
+      setItem(inner);
     } else if (targetId === 'item') {
-      setItem(e.target.innerText);
+      setItem(inner2);
     }
     setIsActive(prev => !prev);
   };

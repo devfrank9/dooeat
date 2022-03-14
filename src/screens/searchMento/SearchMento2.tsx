@@ -6,6 +6,7 @@ import {LinkStyle} from '../../styles/LinkStyled';
 import {BtnFix} from './SearchMento1';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import ValidBtn from '../../components/ValidBtn';
 
 interface Iselect {
   [x: string]: any;
@@ -98,10 +99,15 @@ const SearchMento2 = () => {
           <TextArea
             placeholder="내용을 입력해주세요"
             onChange={e => setEtc(e.target.value)}
+            onClick={() => console.log(select.length)}
           />
-          <BtnFix>
-            <LinkStyle to="/search-mento/3">다음</LinkStyle>
-          </BtnFix>
+          <ValidBtn
+            onClick={() => navigate('/search-mento/3')}
+            status={select.length >= 3 ? 'succ' : 'err'}
+            disabled={select.length >= 3 ? false : true}
+          >
+            다음
+          </ValidBtn>
         </div>
       </AlignBase>
     </BaseScreen>

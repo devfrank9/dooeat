@@ -1,9 +1,11 @@
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar3} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserProProfile = () => {
+  const {wr_id} = useParams();
+
   return (
     <BaseScreen>
       <AlignBase>

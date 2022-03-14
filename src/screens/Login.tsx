@@ -18,7 +18,6 @@ import {Logo} from '../components/Logo';
 import {Common} from '../styles/InputStyled';
 import {ColoredBtn} from '../styles/BtnStyled';
 import {AlignBase, Space} from './BaseScreen';
-import useGetMe from '../lib/Hook/useGetMe';
 
 const Login = () => {
   const [id, setId] = useState('');

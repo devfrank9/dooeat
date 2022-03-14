@@ -3,6 +3,7 @@ import {LinkStyle} from '../../styles/LinkStyled';
 import {Subject, TextAlign} from './SearchMento2';
 import {BtnFix} from './SearchMento1';
 import SelectDrop from '../../components/SelectDrop';
+import {useRecoilValue} from 'recoil';
 
 const SearchMento3 = () => {
   return (
