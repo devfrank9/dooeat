@@ -23,6 +23,7 @@ const JoinUser1 = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorLabel, setErrorLabel] = useState('');
+  const [checkEmail, setCheckEmail] = useState(false);
 
   const [commDuplicate, commDuplicateResult] = useQueryForCheckDuplicate();
   const [isChecked, setIsChecked] = useState(false);
@@ -44,7 +45,8 @@ const JoinUser1 = () => {
     let rules: RulesProp = {};
     if (signup.mb_id) {
       rules.mb_id = {email: {message: '이메일 형식에 맞지 않습니다'}};
-    }
+      setCheckEmail(false);
+    } else setCheckEmail(true);
     if (signup.mb_password) {
       rules.mb_password = {
         equal: {message: '암호가 일치하지 않습니다', value: passwordConfirm},
@@ -80,11 +82,7 @@ const JoinUser1 = () => {
               }}
               onBlur={() => commDuplicate({variables: {mb_email: id}})}
               status={
-                id.length === 0 || id.length === 0
-                  ? 'none'
-                  : errorLabel.length !== 0
-                  ? 'err'
-                  : 'succ'
+                id.length === 0 ? 'none' : checkEmail === false ? 'err' : 'succ'
               }
             />
             <CheckInput
@@ -131,11 +129,20 @@ const JoinUser1 = () => {
         <Styled.BtnAlign />
         <ValidBtn
           onClick={() => {
-            if (errorLabel.length === 0 && isChecked === undefined) return;
+            if (
+              errorLabel.length === 0 &&
+              isChecked === true &&
+              checkEmail === true
+            )
+              return;
             else processSignup();
           }}
           status={
-            errorLabel.length === 0 && isChecked === false ? 'err' : undefined
+            errorLabel.length !== 0 ||
+            isChecked === false ||
+            checkEmail === false
+              ? 'err'
+              : 'succ'
           }
         >
           다음

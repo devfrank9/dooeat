@@ -19,9 +19,6 @@ const JoinUser3 = () => {
   const [signup, setSignup] = useState<RequestSetMember>({});
   const [userData, setUserData] = useRecoilState(userFormState);
 
-  const [isActive, setIsActive] = useState(false);
-  const onActiveToggle = () => setIsActive(prev => !prev);
-
   const processSignup = () => {
     Object.assign(signup, userData);
     setUserData(signup);
@@ -44,8 +41,8 @@ const JoinUser3 = () => {
             style={{fontFamily: 'Noto Sans KR'}}
             onClick={e => {
               setSignup({...signup, mb_sex: 'W'});
-              onActiveToggle();
             }}
+            isActive={signup.mb_sex === 'W' ? true : false}
           >
             여자
           </LongBtn>
@@ -53,8 +50,8 @@ const JoinUser3 = () => {
             style={{fontFamily: 'Noto Sans KR'}}
             onClick={e => {
               setSignup({...signup, mb_sex: 'M'});
-              onActiveToggle();
             }}
+            isActive={signup.mb_sex === 'M' ? true : false}
           >
             남자
           </LongBtn>

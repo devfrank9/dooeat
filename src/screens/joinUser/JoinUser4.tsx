@@ -6,12 +6,12 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import NavProgress from '../../components/NavProgress';
 import Footer from '../../components/Footer';
 // Styles
-import DropDown from '../../styles/SelectStyled';
+import DropDown from '../../components/JoinSelect';
 import * as Styled from '../../styles/joinUser/styled';
 import {useState} from 'react';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
-import {stateSelect, userFormState} from '../../lib/atom';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {userFormState} from '../../lib/atom';
+import {useRecoilState} from 'recoil';
 
 const JoinUser4 = () => {
   const navigate = useNavigate();

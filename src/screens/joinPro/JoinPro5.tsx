@@ -5,7 +5,7 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
 // Styles
-import DropDown from '../../styles/SelectStyled';
+import DropDown from '../../components/JoinSelect';
 import * as Styled from '../../styles/joinPro/styled';
 import {useNavigate} from 'react-router-dom';
 
