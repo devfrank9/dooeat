@@ -13,7 +13,7 @@ export const RectPrev = ({img, emoji, text, link}: Prop) => {
     <Preview to={link}>
       <img src={img} alt="" />
       <div>{text}</div>
-      <img src={emoji} alt="" />
+      <img src="/image/smile.png" alt="" />
     </Preview>
   );
 };

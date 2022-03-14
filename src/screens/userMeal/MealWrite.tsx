@@ -6,7 +6,8 @@ import {Time, TextArea} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {useNavigate, useParams} from 'react-router-dom';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
 
 interface Iselect {
   [x: string]: any;
@@ -33,7 +34,19 @@ const MealEdit = () => {
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
   const [fileUrl, setFileUrl] = useState<string[]>([]);
+  const [data, setData] = useState({
+    subject: '',
+    content: '',
+    wr_5: '',
+    wr_2: '',
+    wr_3: '',
+    file: {},
+  });
 
+  const handleChange = (event: any) => {
+    const {name, value} = event.target;
+    setData({...data, [name]: value});
+  };
   const processImage = (e: any) => {
     const imageUrlList: string[] = [...fileUrl];
     const imageUrl = URL.createObjectURL(e.target.files[0]);
@@ -82,16 +95,22 @@ const MealEdit = () => {
       </>
     );
   };
+  const selectChange = (item: string) => {
+    if (!select.includes(item)) return setSelect(select => [...select, item]);
+    else return setSelect(select.filter(button => button !== item));
+  };
+
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
     if (n === 0) {
       return list.map((item, index) => (
         <ShortBtn
           key={index}
+          name="wr_5"
           onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
+            selectChange(item);
+            console.log(select);
+            console.log(data);
           }}
           isActive={select.includes(item) ? true : false}
         >
@@ -103,6 +122,7 @@ const MealEdit = () => {
       return list.map((item, index) => (
         <MiddleBtn
           key={index}
+          name="wr_2"
           onClick={() => {
             !select.includes(item)
               ? setSelect(select => [...select, item])
@@ -118,6 +138,7 @@ const MealEdit = () => {
       return list.map((item, index) => (
         <LongBtn
           key={index}
+          name="wr_3"
           onClick={() => {
             !select.includes(item)
               ? setSelect(select => [...select, item])
@@ -132,6 +153,7 @@ const MealEdit = () => {
   };
 
   const process = () => {
+    console.log(data);
     navigate(-1);
   };
   return (
@@ -140,7 +162,11 @@ const MealEdit = () => {
         <StatusBar2 Subject="식단입력" />
         <div style={{height: '110px'}} />
         <Subject>식사 시간</Subject>
-        <Time placeholder="시간을 입력해주세요." type="time" value="" />
+        <Time
+          placeholder="시간을 입력해주세요."
+          type="time"
+          value={data.subject}
+        />
         <div style={{height: '30px'}} />
         <Subject>식단 사진</Subject>
         <FileAlign>{renderFile()}</FileAlign>
@@ -155,7 +181,9 @@ const MealEdit = () => {
         <TextArea
           style={{height: '144px'}}
           placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
-          value=""
+          value={data.content}
+          onChange={e => handleChange(e)}
+          name="content"
         />
         <div style={{height: '30px'}} />
         <CheckInput>

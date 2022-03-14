@@ -4,7 +4,6 @@ import {Navigation} from '../../components/Navigation';
 import DateSelect from '../../components/DateSelect';
 import * as Styled from '../../styles/userMeal/styled';
 import {useEffect, useState} from 'react';
-import {WaterBlock} from '../../components/WaterBlock';
 import {FoodData} from '../../Dummy/Dummy';
 import moment from 'moment';
 import {RectPrev} from './Rectengle';
@@ -19,7 +18,6 @@ const MealMain = () => {
     ResponseQueryGetBoardListBoardList[]
   >([]);
   const [water, setWater] = useState(0);
-  const [no, setNo] = useState(false);
   const [getMoment, setMoment] = useState(moment());
   const [select, setSelect] = useState<number[]>([]);
 
@@ -48,9 +46,8 @@ const MealMain = () => {
                 !select.includes(item)
                   ? setSelect(select => [...select, item])
                   : setSelect(select.filter(button => button !== item));
-                console.log(item);
               }}
-              isActive={select.includes(item) ? true : false}
+              isActive={select.includes(index) ? true : false}
             />
           ))}
         </AlignGlass>
@@ -80,8 +77,8 @@ const MealMain = () => {
         <Styled.RectengleAlign>
           <Styled.FileAlign>
             {userData.length === 0
-              ? [...Array(2)].map(data => <FileRectengle to="write" />)
-              : userData.map(data => (
+              ? [...Array(2)].map(() => <FileRectengle to="write" />)
+              : userData.map((data, index) => (
                   <RectPrev
                     link={`edit/${data.wr_id}`}
                     key={data.wr_id}
