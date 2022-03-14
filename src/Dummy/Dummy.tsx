@@ -57,7 +57,7 @@ export const MemberDataLv2 = {
     // 목표체중
     mb_4: '70',
     mb_5: '',
-    mb_6: '',
+    mb_6: [],
     mb_7: '',
     mb_8: '',
     mb_9: '',
@@ -71,7 +71,7 @@ export const MemberDataLv2 = {
 export const MemberDataLv3 = {
   getMe: {
     mb_id: 'testLv3',
-    mb_name: '테스트전문가',
+    mb_name: '테스트',
     mb_nick: '테스트전문가',
     mb_email: 'testlv3@test.com',
     mb_zip: '',
@@ -85,7 +85,7 @@ export const MemberDataLv3 = {
     mb_3: '',
     mb_4: '',
     mb_5: '', // 원래 직업이 나오는 부분이지만 수정사항 요청으로 삭제되었습니다 참고하세요
-    mb_6: "['http://naver.com','http://google.com']",
+    mb_6: ['http://naver.com', 'http://google.com'],
     mb_7: '',
     mb_8: '',
     mb_9: '',
@@ -114,7 +114,7 @@ export const expertData = {
       mb_3: '',
       mb_4: '',
       mb_5: '', // 원래 직업이 나오는 부분이지만 수정사항 요청으로 삭제되었습니다 참고하세요
-      mb_6: "['http://naver.com','http://google.com']",
+      mb_6: ['http://naver.com', 'http://google.com'],
       mb_7: '',
       mb_8: '',
       mb_9: '',
