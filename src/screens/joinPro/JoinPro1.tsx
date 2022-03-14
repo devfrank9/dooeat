@@ -11,6 +11,7 @@ import {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import ValidBtn from '../../components/ValidBtn';
 
 const JoinPro1 = () => {
   const [userData, setUserData] = useRecoilState(userFormState);
@@ -35,17 +36,18 @@ const JoinPro1 = () => {
           <p>정확한 정보가 필요합니다.</p>
         </Styled.TextAlign>
         <Agreement checked={handleOnChange} />
-        <Styled.AbsoluteColBtn
+        <ValidBtn
           onClick={() => {
-            if (isChecked) return;
+            /* if (isChecked === false) return;
             else {
-              processSignup();
-              if (signup.mb_level === 3) navigate('/join-pro/2');
-            }
+            } */
+            processSignup();
+            if (signup.mb_level === 3) navigate('/join-pro/2');
           }}
+          status={isChecked === false ? 'err' : 'succ'}
         >
           휴대폰 본인 확인
-        </Styled.AbsoluteColBtn>
+        </ValidBtn>
       </AlignBase>
     </BaseScreen>
   );

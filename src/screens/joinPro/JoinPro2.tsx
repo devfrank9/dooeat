@@ -14,10 +14,12 @@ import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
 import {useQueryForCheckDuplicate} from '../../lib/GQL/CommunicationMap';
 import CheckInput from '../../components/CheckInput';
 import {RulesProp, validate} from '../../lib/GlobalFunction';
+import ValidBtn from '../../components/ValidBtn';
 
 const JoinPro2 = () => {
   const [userData, setUserData] = useRecoilState(userFormState);
   const [signup, setSignup] = useState<RequestSetMember>({});
+  const [checkEmail, setCheckEmail] = useState(false);
 
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -122,16 +124,26 @@ const JoinPro2 = () => {
         <Styled.AgreementAlign>
           <Agreement checked={handleOnChange} />
         </Styled.AgreementAlign>
-        <Styled.AbsoluteColBtn
+        <ValidBtn
           onClick={() => {
-            if (errorLabel.length > 0 || !idOK) return;
-            else {
-              processSignup();
-            }
+            if (
+              errorLabel.length === 0 &&
+              isChecked === true &&
+              checkEmail === true
+            )
+              return;
+            else processSignup();
           }}
+          status={
+            errorLabel.length !== 0 ||
+            isChecked === false ||
+            checkEmail === false
+              ? 'err'
+              : 'succ'
+          }
         >
           다음
-        </Styled.AbsoluteColBtn>
+        </ValidBtn>
       </AlignBase>
     </BaseScreen>
   );
