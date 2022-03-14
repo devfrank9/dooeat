@@ -3,7 +3,7 @@ import {StatusBar2} from '../../components/StatusBar';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {Common, TextArea} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import {Select} from '../../styles/SelectStyled';
+import {Select} from '../../components/JoinSelect';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const ProManageGramEdit = () => {

@@ -3,7 +3,7 @@ import {StatusBar3} from '../../components/StatusBar';
 import {ColoredBtn, LongBtn, MiddleBtn, ShortBtn} from '../../styles/BtnStyled';
 import {Common, TextArea} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import DropDown from '../../styles/SelectStyled';
+import DropDown from '../../components/JoinSelect';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageMatchSet = () => {

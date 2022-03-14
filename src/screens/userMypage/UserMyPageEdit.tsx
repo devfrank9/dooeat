@@ -5,7 +5,7 @@ import {MemberDataLv2} from '../../Dummy/Dummy';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {Common} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import {Select} from '../../styles/SelectStyled';
+import {Select} from '../../components/JoinSelect';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageEdit = () => {

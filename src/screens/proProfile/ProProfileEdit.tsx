@@ -10,7 +10,7 @@ import {
   UrlInputDel,
 } from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import {Select} from '../../styles/SelectStyled';
+import {Select} from '../../components/JoinSelect';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const ProProfileEdit = () => {
