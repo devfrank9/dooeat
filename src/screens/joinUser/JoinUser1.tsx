@@ -10,6 +10,8 @@ import CheckInput from '../../components/CheckInput';
 import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
+import ValidBtn from '../../components/ValidBtn';
+import {useChecks} from '../../hooks/useChecks';
 
 const JoinUser1 = () => {
   const [userData, setUserData] = useRecoilState(userFormState);
@@ -56,7 +58,9 @@ const JoinUser1 = () => {
     setUserData(signup);
     navigate('/join-user/2');
   };
-
+  /*   const labels = ['개인정보처리방침', '서비스이용약관'];
+  const [isAllChecked, renderChecks] = useChecks(labels);
+ */
   return (
     <BaseScreen>
       <AlignBase>
@@ -122,18 +126,20 @@ const JoinUser1 = () => {
         {errorLabel}
         <Styled.AgreementAlign>
           <Agreement checked={handleOnChange} />
+          {/* {renderChecks()} */}
         </Styled.AgreementAlign>
         <Styled.BtnAlign />
-        <Styled.AbsoluteColBtn
+        <ValidBtn
           onClick={() => {
-            if (errorLabel.length > 0 || !idOK) return;
-            else {
-              processSignup();
-            }
+            if (errorLabel.length === 0 && isChecked === undefined) return;
+            else processSignup();
           }}
+          status={
+            errorLabel.length === 0 && isChecked === false ? 'err' : undefined
+          }
         >
           다음
-        </Styled.AbsoluteColBtn>
+        </ValidBtn>
       </AlignBase>
     </BaseScreen>
   );

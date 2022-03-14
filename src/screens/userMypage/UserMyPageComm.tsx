@@ -1,26 +1,19 @@
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar3} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageComm = () => {
+  const navigate = useNavigate();
   return (
     <BaseScreen>
       <AlignBase>
         <StatusBar3 Subject="내가 쓴 댓글" />
         <div style={{height: '110px'}} />
         <PicAlign>
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
+          {[...Array(12)].map((item, index) => (
+            <div onClick={() => navigate(':id')} />
+          ))}
         </PicAlign>
       </AlignBase>
     </BaseScreen>

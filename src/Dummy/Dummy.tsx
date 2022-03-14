@@ -35,7 +35,6 @@ export const Zone1 = {
 export const Zone2 = {
   getZone: ['강남구', '강서구', '금천구', '구로구'],
 };
-
 export const MemberDataLv2 = {
   // 일반회원
   getMe: {
@@ -97,7 +96,6 @@ export const MemberDataLv3 = {
     mb_img: profile2,
   } as ResponseMe,
 };
-
 export const expertData = {
   getMineExpert: {
     mine: {
@@ -182,11 +180,9 @@ export const expertData = {
     },
   } as ResponseMineExpert,
 };
-
 export const WaterDrinkData = {
   getWaterDrink: 2500,
 };
-
 export const FoodData = {
   getBoardList: {
     boardData: {
@@ -374,7 +370,6 @@ export const FoodData = {
     pageCount: 1,
   },
 };
-
 export const exerciseData = {
   getBoardList: {
     boardData: {
@@ -455,7 +450,6 @@ export const exerciseData = {
     pageCount: 1,
   } as ResponseQueryGetBoardList,
 };
-
 export const exerciseForm = {
   getExercise: {
     date: '2022-03-10',
@@ -497,7 +491,6 @@ export const exerciseForm = {
     ],
   },
 };
-
 export const shareList = {
   getShareData: {
     exercise: {

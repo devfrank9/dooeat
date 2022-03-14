@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import useLogout from '../../lib/Hook/useLogout';
+import {MemberDataLv2} from '../../Dummy/Dummy';
 
 const UserMyPageMain = () => {
+  const getData = MemberDataLv2.getMe;
   const logout = useLogout();
   return (
     <BaseScreen>
@@ -13,8 +15,8 @@ const UserMyPageMain = () => {
         <div style={{height: '80px'}} />
         <MyPageBanner>
           <img src="/image/body.png" alt="" />
-          <p>회원 닉네임</p>
-          <p>test@naver.com</p>
+          <p>{getData.mb_name}</p>
+          <p>{getData.mb_email}</p>
           <EditLink to="/user/mypage/edit">편집</EditLink>
         </MyPageBanner>
         <List>

@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar3} from '../../components/StatusBar';
+import {MemberDataLv3} from '../../Dummy/Dummy';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const UserMyPageApply = () => {
+  const getData = MemberDataLv3.getMe;
   return (
     <BaseScreen>
       <AlignBase
@@ -12,30 +14,33 @@ const UserMyPageApply = () => {
         <StatusBar3 Subject="매칭 신청 내역" />
         <div style={{height: '100px'}} />
         <ProCard>
-          <Card>
-            <div
-              style={{
-                borderBottom: '2px solid rgb(245,245,245)',
-                height: '159px',
-              }}
-            >
-              <Link to="/user/pro/profile">
-                <img src="/image/people.png" alt="" />
-              </Link>
-              <button />
-              <CardTextAlign>
-                <p>홍길동 전문가</p>
-                <p>건강한 바디프로필 문화를 선도하는</p>
-                <p>경력 10년의 배테랑 전문가 입니다.</p>
-                <p>#헬스 # 크로스핏</p>
-                <p>서울시 금천구</p>
-              </CardTextAlign>
-            </div>
-            <CardFooter>
-              <p>2021. 12. 31 신청</p>
-              <div>대기중</div>
-            </CardFooter>
-          </Card>
+          {[...Array(3)].map((item, index) => (
+            <Card>
+              <div
+                style={{
+                  borderBottom: '2px solid rgb(245,245,245)',
+                  height: '159px',
+                }}
+              >
+                <Link to="/user/pro/profile">
+                  <img src={getData.mb_img} alt="" />
+                </Link>
+                <button />
+                <CardTextAlign>
+                  <p>{getData.mb_name} 전문가</p>
+                  <p>건강한 바디프로필 문화를 선도하는</p>
+                  <p>경력 10년의 배테랑 전문가 입니다.</p>
+                  <p>#헬스 # 크로스핏</p>
+                  <p>{getData.mb_addr1}</p>
+                </CardTextAlign>
+              </div>
+              <CardFooter>
+                <p>2021. 12. 31 신청</p>
+                <div>대기중</div>
+              </CardFooter>
+            </Card>
+          ))}
+
           <Card>
             <div
               style={{
