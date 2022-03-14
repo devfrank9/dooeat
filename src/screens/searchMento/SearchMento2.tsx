@@ -4,8 +4,78 @@ import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
 import {BtnFix} from './SearchMento1';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+
+interface Iselect {
+  [x: string]: any;
+  key: number;
+  list: string[];
+}
 
 const SearchMento2 = () => {
+  const navigate = useNavigate();
+  const arr = [
+    {key: 1, list: ['1끼', '2끼', '3끼', '4끼 이상']},
+    {key: 2, list: ['아침', '점심', '저녁', '간식', '야식']},
+    {key: 3, list: ['반그릇', '한그릇', '두그릇 이상']},
+  ];
+  const [pick, setPick] = useState<Iselect[]>(arr);
+  const [select, setSelect] = useState<string[]>([]);
+  const [etc, setEtc] = useState('');
+
+  const btnRender = (n: number) => {
+    const list: string[] = pick[n].list;
+    if (n === 0) {
+      return list.map((item, index) => (
+        <MiddleBtn
+          key={index}
+          onClick={() => {
+            !select.includes(item)
+              ? setSelect(select => [...select, item])
+              : setSelect(select.filter(button => button !== item));
+          }}
+          isActive={select.includes(item) ? true : false}
+        >
+          {item}
+        </MiddleBtn>
+      ));
+    }
+    if (n === 1) {
+      return list.map((item, index) => (
+        <ShortBtn
+          key={index}
+          onClick={() => {
+            !select.includes(item)
+              ? setSelect(select => [...select, item])
+              : setSelect(select.filter(button => button !== item));
+          }}
+          isActive={select.includes(item) ? true : false}
+        >
+          {item}
+        </ShortBtn>
+      ));
+    }
+    if (n === 2) {
+      return list.map((item, index) => (
+        <LongBtn
+          key={index}
+          onClick={() => {
+            !select.includes(item)
+              ? setSelect(select => [...select, item])
+              : setSelect(select.filter(button => button !== item));
+          }}
+          isActive={select.includes(item) ? true : false}
+        >
+          {item}
+        </LongBtn>
+      ));
+    }
+  };
+  const processSignup = () => {
+    navigate('/search-mento/3');
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -19,28 +89,16 @@ const SearchMento2 = () => {
             </div>
           </TextAlign>
           <Subject>1. 하루 몇 끼를 드시나요?</Subject>
-          <BtnAlign>
-            <MiddleBtn>1끼</MiddleBtn>
-            <MiddleBtn>2끼</MiddleBtn>
-            <MiddleBtn>3끼</MiddleBtn>
-            <MiddleBtn>4끼 이상</MiddleBtn>
-          </BtnAlign>
+          <BtnAlign>{btnRender(0)}</BtnAlign>
           <Subject>2. 평소에 어떤 맛을 선호 하시나요?</Subject>
-          <BtnAlign>
-            <ShortBtn>아침</ShortBtn>
-            <ShortBtn>점심</ShortBtn>
-            <ShortBtn>저녁</ShortBtn>
-            <ShortBtn>간식</ShortBtn>
-            <ShortBtn>야식</ShortBtn>
-          </BtnAlign>
+          <BtnAlign>{btnRender(1)}</BtnAlign>
           <Subject>3. 한 끼 식사량이 얼마나 되시나요?</Subject>
-          <BtnAlign>
-            <LongBtn>반그릇</LongBtn>
-            <LongBtn>한그릇</LongBtn>
-            <LongBtn>두그릇 이상</LongBtn>
-          </BtnAlign>
+          <BtnAlign>{btnRender(2)}</BtnAlign>
           <Subject>4. 특이사항이 있다면 알려주세요!</Subject>
-          <TextArea placeholder="내용을 입력해주세요" />
+          <TextArea
+            placeholder="내용을 입력해주세요"
+            onChange={e => setEtc(e.target.value)}
+          />
           <BtnFix>
             <LinkStyle to="/search-mento/3">다음</LinkStyle>
           </BtnFix>

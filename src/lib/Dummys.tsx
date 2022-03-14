@@ -346,6 +346,14 @@ export const DummySelect = [
   {id: 17, region: {key: 17, name: '제주', state: ['제주시', '서귀포시']}},
 ];
 
+export const DateSelect = [
+  {id: 1, name: '1일'},
+  {id: 2, name: '2일'},
+  {id: 3, name: '3일'},
+  {id: 4, name: '4일'},
+  {id: 5, name: '5일'},
+];
+
 export const Chest = [
   {id: 1, name: '벤치 프레스'},
   {id: 2, name: '푸쉬업'},

@@ -58,8 +58,6 @@ const DateLabel = styled.label`
   height: 48px;
   border: 1px solid ${props => props.theme.mainColor};
   border-radius: 0.5rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   box-sizing: border-box;
   background-color: ${props => props.theme.pointColor3};

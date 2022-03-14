@@ -3,9 +3,44 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import {LongBtn} from '../../styles/BtnStyled';
 import {Common} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
-import {LinkStyle} from '../../styles/LinkStyled';
+import {useState} from 'react';
+import ValidBtn from '../../components/ValidBtn';
+import {useNavigate} from 'react-router-dom';
 
 const SearchMento1 = () => {
+  const navigate = useNavigate();
+  const arr: string[] = [
+    '헬스',
+    '요가',
+    '필라테스',
+    '크로스핏',
+    '복싱',
+    '주짓수',
+    '수영',
+    '기타',
+  ];
+  const [select, setSelect] = useState<string[]>([]);
+  const [etc, setEtc] = useState('');
+
+  const btnRender = () => {
+    return arr.map((item, index) => (
+      <LongBtn
+        key={index}
+        onClick={() => {
+          !select.includes(item)
+            ? setSelect(select => [...select, item])
+            : setSelect(select.filter(button => button !== item));
+        }}
+        isActive={select.includes(item) ? true : false}
+      >
+        {item}
+      </LongBtn>
+    ));
+  };
+  const processSignup = () => {
+    navigate('/search-mento/2');
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -19,23 +54,24 @@ const SearchMento1 = () => {
             </div>
           </TextAlign>
           <BtnAlign>
-            <LongBtn>헬스</LongBtn>
-            <LongBtn>요가</LongBtn>
-            <LongBtn>필라테스</LongBtn>
-            <LongBtn>크로스핏</LongBtn>
-            <LongBtn>복싱</LongBtn>
-            <LongBtn>주짓수</LongBtn>
-            <LongBtn>수영</LongBtn>
-            <LongBtn>기타</LongBtn>
+            {btnRender()}
             <DisplayNone />
           </BtnAlign>
           <InputAlign>
-            <Common placeholder="기타 (별도 입력 해주세요.)" />
+            <Common
+              placeholder="기타 (별도 입력 해주세요.)"
+              //@ts-ignore
+              disabled={select.includes('기타') === true ? false : true}
+              onChange={e => setEtc(e.target.value)}
+            />
           </InputAlign>
-          <div style={{flex: '0.5'}}></div>
-          <BtnFix>
-            <LinkStyle to="/search-mento/2">다음</LinkStyle>
-          </BtnFix>
+          <ValidBtn
+            onClick={() => navigate('/search-mento/2')}
+            status={select.length === 0 ? 'err' : undefined}
+            disabled={select.length === 0 ? true : false}
+          >
+            다음
+          </ValidBtn>
         </div>
       </AlignBase>
     </BaseScreen>

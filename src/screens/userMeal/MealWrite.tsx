@@ -104,13 +104,10 @@ const MealEdit = () => {
         <MiddleBtn
           key={index}
           onClick={() => {
-            //@ts-ignore
             !select.includes(item)
-              ? //@ts-ignore
-                setSelect(select => [...select, item])
+              ? setSelect(select => [...select, item])
               : setSelect(select.filter(button => button !== item));
           }}
-          //@ts-ignore
           isActive={select.includes(item) ? true : false}
         >
           {item}
@@ -122,13 +119,10 @@ const MealEdit = () => {
         <LongBtn
           key={index}
           onClick={() => {
-            //@ts-ignore
             !select.includes(item)
-              ? //@ts-ignore
-                setSelect(select => [...select, item])
+              ? setSelect(select => [...select, item])
               : setSelect(select.filter(button => button !== item));
           }}
-          //@ts-ignore
           isActive={select.includes(item) ? true : false}
         >
           {item}

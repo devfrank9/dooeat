@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {ColoredBtn} from '../styles/BtnStyled';
 
 interface Prop extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  status?: 'err' | undefined;
+  status?: 'err';
 }
 
 export default (props: Prop) => {

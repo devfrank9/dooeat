@@ -49,16 +49,18 @@ export const LongBtn = styled(ShortBtn)`
   min-height: 48px;
   height: 15.05%;
 `;
-export const LongLine = styled.button`
+export const LongLine = styled.button<{isActive?: false}>`
   display: block;
   width: 100%;
   height: 48px;
   border-radius: 6px;
   border: none;
-  background-color: ${prop => prop.theme.btnColor1};
+  background-color: ${prop =>
+    prop.isActive ? 'rgb(239,144,167)' : 'rgb(245, 245, 245)'};
   font-size: 15px;
   font-weight: 400;
   margin-bottom: 12px;
+  color: ${prop => (prop.isActive ? 'white' : 'black')};
   &:hover {
     background-color: ${props => props.theme.mainColor};
     color: ${prop => prop.theme.fontColor3};
