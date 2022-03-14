@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useLocalStorage, useSessionStorage} from 'react-use-storage';
-import {useSetRecoilState} from 'recoil';
-import {__session} from '../lib/atom';
+import {useRecoilState, useSetRecoilState} from 'recoil';
+import {__me, __session} from '../lib/atom';
 import {useLQueryForLogin} from '../lib/GQL/CommunicationMap';
 import Constants from '../lib/Constants';
 import {useNavigate} from 'react-router-dom';
@@ -18,12 +18,18 @@ import {Logo} from '../components/Logo';
 import {Common} from '../styles/InputStyled';
 import {ColoredBtn} from '../styles/BtnStyled';
 import {AlignBase, Space} from './BaseScreen';
+import useGetMe from '../lib/Hook/useGetMe';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [preventEvent, setPreventEvent] = useState(false);
+  const [autoLogin, setAutoLogin] = useState(false);
 
+  const [_, setValue, __] = useLocalStorage(
+    Constants.storage.autoLoginSession,
+    '',
+  );
   const [___, setCurrentValue, _____] = useSessionStorage(
     Constants.storage.currentLoginSession,
     '',
@@ -47,6 +53,7 @@ const Login = () => {
       return;
     }
     commLogin({variables: vvv});
+    console.log(commLoginResult.data);
   };
 
   useEffect(() => {
@@ -55,7 +62,7 @@ const Login = () => {
       setSession(commLoginResult.data.login);
       setCurrentValue(commLoginResult.data.login);
       alert('로그인 되었습니다');
-      navigate('/');
+      navigate('/user/meal');
     }
   }, [commLoginResult.data]);
 
