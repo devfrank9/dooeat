@@ -1,19 +1,27 @@
 import React, {useEffect} from 'react';
 import './styles/App.css';
-import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from 'react-router-dom';
 import {
   ApolloClient,
   ApolloProvider,
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import {RecoilRoot, useSetRecoilState} from 'recoil';
+import {RecoilRoot, useRecoilValue, useSetRecoilState} from 'recoil';
 import {createNetworkStatusNotifier} from 'react-apollo-network-status';
 import Constants from './lib/Constants';
-import {__isLoading, __session} from './lib/atom';
+import {__isLoading, __me, __session} from './lib/atom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {useLocalStorage, useSessionStorage} from 'react-use-storage';
 import {createGlobalStyle} from 'styled-components';
+import PrivateRoute from './lib/PrivateRoute';
+import PublicRoute from './lib/PublicRoute';
 
 // Route
 import Main from './screens/Main';
@@ -101,6 +109,7 @@ const ScreenHooker = () => {
 
 function Screens() {
   let location = useLocation();
+
   return (
     <TransitionGroup>
       <CSSTransition
@@ -113,7 +122,15 @@ function Screens() {
       >
         <Routes location={location}>
           {/* 공통 라우팅 */}
-          <Route path={'/'} element={<Main />} />
+          {/* <Route
+            path={'/'}
+            element={
+              <PublicRoute restricted={false}>
+                <Main />
+              </PublicRoute>
+            }
+          /> */}
+          <Route path="/" element={<Main />} />
           <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
           <Route path={'/login'} element={<Login />} />
           <Route path={'/search'} element={<SearchId />} />
@@ -127,6 +144,14 @@ function Screens() {
           <Route path={'/join-pro/*'} element={<JoinProRoute />} />
           {/* 회원 라우팅 */}
           <Route path={'/user/*'}>
+            {/* <Route
+              path={'meal/*'}
+              element={
+                <PrivateRoute>
+                  <UserMealRoute />
+                </PrivateRoute>
+              }
+            /> */}
             <Route path={'meal/*'} element={<UserMealRoute />} />
             <Route path={'health/*'} element={<UserHealthRoute />} />
             <Route path={'pro/*'} element={<UserProRoute />} />
