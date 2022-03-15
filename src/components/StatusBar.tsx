@@ -49,7 +49,7 @@ export const StatusBar = ({Subject = '오늘', Img = '', LinkTo = ''}: Prop) => 
     <Container>
       <StatusText>{Subject}</StatusText>
       <StatusMyInfo>
-        <Link to={LinkTo}>
+        <Link to="/profile">
           <button>
             <img src={Img} alt="." />
           </button>
