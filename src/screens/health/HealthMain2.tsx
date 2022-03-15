@@ -10,7 +10,7 @@ const HealthMain2 = () => {
         <p>오늘의 운동일자를 기록해주세요.</p>
       </TextAlign>
       <BtnAlign>
-        <Link to={'/user/health/edit'}>
+        <Link to={'edit'}>
           <EditBtn />
         </Link>
       </BtnAlign>
