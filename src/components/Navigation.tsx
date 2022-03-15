@@ -11,11 +11,7 @@ export const Navigation = () => {
   return (
     <>
       {getUserLevel?.mb_level === 2 ? (
-        <NavContainer
-          onClick={() => {
-            console.log(pathname);
-          }}
-        >
+        <NavContainer>
           <button onClick={() => navigate('/meal')}>
             <Img1
               src={
