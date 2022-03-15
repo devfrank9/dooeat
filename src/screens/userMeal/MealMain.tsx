@@ -71,9 +71,11 @@ const MealMain = () => {
       <Styled.Subject>식단 입력</Styled.Subject>
       <Styled.RectengleAlign>
         <Styled.FileAlign>
-          {userData.length === 0
-            ? [...Array(2)].map(() => <FileRectengle to="write" />)
-            : userData.map((data, index) => (
+          {userData.length === 0 ? (
+            [...Array(2)].map(() => <FileRectengle to="write" />)
+          ) : (
+            <>
+              {userData.map((data, index) => (
                 <RectPrev
                   link={`edit/${data.wr_id}`}
                   key={data.wr_id}
@@ -81,6 +83,9 @@ const MealMain = () => {
                   text={data.wr_2}
                 />
               ))}
+              <FileRectengle to="write" />
+            </>
+          )}
         </Styled.FileAlign>
       </Styled.RectengleAlign>
       <div style={{height: '32px'}} />
@@ -90,6 +95,7 @@ const MealMain = () => {
     </>
   );
 };
+
 const FileRectengle = styled(Link)`
   display: block;
   min-width: 150px;
