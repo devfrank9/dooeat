@@ -333,8 +333,8 @@ export const useQueryForGetBoardWrite = (variables: RequestGetBoardWrite) =>
 export const useLQueryForLogin = () =>
   useLazyQuery<ResponseData, RequestQueryGetLogin>(
     gql`
-      query login($mb_id: String, $mb_password: String) {
-        login(mb_id: $mb_id, mb_password: $mb_password)
+      query login($mb_id: String, $mb_password: String, $mb_email: String) {
+        login(mb_id: $mb_id, mb_password: $mb_password, mb_email: $mb_email)
       }
     `,
     {
@@ -519,6 +519,7 @@ export const useLQueryForGetMe = () =>
         mb_9
         sns
         mb_img
+        mb_level
       }
     }
   `);

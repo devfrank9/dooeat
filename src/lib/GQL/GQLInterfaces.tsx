@@ -50,6 +50,7 @@ interface ResponseQueryGetPopular {
 export interface RequestQueryGetLogin {
   mb_id: string;
   mb_password: string;
+  mb_email: string;
 }
 
 export interface RequestQueryGetBoardDetail {
