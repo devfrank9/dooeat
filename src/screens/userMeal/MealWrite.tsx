@@ -2,12 +2,21 @@ import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
-import {Time, TextArea} from '../../styles/InputStyled';
+import {TextArea} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {useNavigate, useParams} from 'react-router-dom';
-import React, {useState} from 'react';
-import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
+import {useEffect, useState} from 'react';
+import {
+  RequestMutationSetBoardWrite,
+  RequestSubFileData,
+} from '../../lib/GQL/GQLInterfaces';
+import {useRecoilValue} from 'recoil';
+import {__session} from '../../lib/atom';
+import {
+  useMutationSetBoardWrite,
+  useQueryForGetBoardWrite,
+} from '../../lib/GQL/CommunicationMap';
 
 interface Iselect {
   [x: string]: any;
@@ -16,7 +25,16 @@ interface Iselect {
 }
 
 const MealEdit = () => {
+  const {bo_table, wr_id} = useParams();
   const navigate = useNavigate();
+  const session = useRecoilValue(__session);
+  const queryResult = useQueryForGetBoardWrite({
+    bo_table: bo_table!,
+    wr_id: wr_id,
+    session: session,
+  });
+  const [commSetBoardWrite] = useMutationSetBoardWrite();
+
   const arr = [
     {
       key: 1,
@@ -34,18 +52,56 @@ const MealEdit = () => {
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
   const [fileUrl, setFileUrl] = useState<string[]>([]);
-  const [data, setData] = useState({
+  const [img, setImg] = useState<RequestSubFileData[]>([]);
+  const [data, setData] = useState<RequestMutationSetBoardWrite>({
+    session: '',
+    bo_table: 'food',
+    token: '',
     subject: '',
     content: '',
-    wr_5: '',
-    wr_2: '',
-    wr_3: '',
-    file: {},
   });
 
-  const handleChange = (event: any) => {
-    const {name, value} = event.target;
-    setData({...data, [name]: value});
+  useEffect(() => {
+    if (queryResult.data?.getBoardWrite) {
+      let boardInfo = queryResult.data.getBoardWrite.boardInfo as any;
+      if (boardInfo) {
+        setData({
+          session: session,
+          bo_table: bo_table || '',
+          token: '',
+
+          wr_id: boardInfo.wr_id,
+          subject: boardInfo.subject,
+          content: boardInfo.content,
+
+          wr_1: boardInfo.wr_1,
+          wr_2: boardInfo.wr_2,
+          wr_3: boardInfo.wr_3,
+          wr_4: boardInfo.wr_4,
+          wr_5: boardInfo.wr_5,
+          wr_6: boardInfo.wr_6,
+          wr_7: boardInfo.wr_7,
+          wr_8: boardInfo.wr_8,
+          wr_9: boardInfo.wr_9,
+          wr_10: boardInfo.wr_10,
+          files: boardInfo.file,
+        });
+      }
+    }
+  }, []);
+  const signImg = (e: any) => {
+    let FF = [...img];
+    let FR = new FileReader();
+    FR.addEventListener('load', () => {
+      // @ts-ignore
+      FF[e.target.dataset.order] = {
+        // @ts-ignore
+        fileName: e.target.files[0].name,
+        fileData: FR.result as string,
+      };
+      setImg(FF);
+    });
+    FR.readAsDataURL(e.target.files[0]);
   };
   const processImage = (e: any) => {
     const imageUrlList: string[] = [...fileUrl];
@@ -66,6 +122,7 @@ const MealEdit = () => {
               id="file1"
               onChange={e => {
                 processImage(e);
+                signImg(e);
               }}
               accept="image/*"
             />
@@ -78,14 +135,15 @@ const MealEdit = () => {
               id="file1"
               onChange={e => {
                 processImage(e);
+                signImg(e);
               }}
               accept="image/*"
             />
             <UploadImgContainer>
               {fileUrl.map((image: string, id: number) => (
                 <ImgContainer key={id}>
-                  <div>{}</div>
-                  <UploadedImg src={fileUrl[0]} alt={`${image}-${id}`} />
+                  {data.wr_5 === '' ? <></> : <div>{data.wr_5}</div>}
+                  <UploadedImg src={fileUrl[id]} alt={`${image}-${id}`} />
                   <Delete onClick={() => handleDeleteImage(id)} />
                 </ImgContainer>
               ))}
@@ -99,7 +157,6 @@ const MealEdit = () => {
     if (!select.includes(item)) return setSelect(select => [...select, item]);
     else return setSelect(select.filter(button => button !== item));
   };
-
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
     if (n === 0) {
@@ -109,8 +166,7 @@ const MealEdit = () => {
           name="wr_5"
           onClick={() => {
             selectChange(item);
-            console.log(select);
-            console.log(data);
+            setData({...data, wr_5: item});
           }}
           isActive={select.includes(item) ? true : false}
         >
@@ -124,9 +180,8 @@ const MealEdit = () => {
           key={index}
           name="wr_2"
           onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
+            selectChange(item);
+            setData({...data, wr_2: item});
           }}
           isActive={select.includes(item) ? true : false}
         >
@@ -140,9 +195,8 @@ const MealEdit = () => {
           key={index}
           name="wr_3"
           onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
+            selectChange(item);
+            setData({...data, wr_3: item});
           }}
           isActive={select.includes(item) ? true : false}
         >
@@ -151,20 +205,23 @@ const MealEdit = () => {
       ));
     }
   };
-
   const process = () => {
-    console.log(data);
-    navigate(-1);
+    setData({...data, files: img});
+    setData({...data, bo_table: 'food'});
+    commSetBoardWrite({variables: data}).then(result => {
+      if (result.data && result.data.setBoardWrite) navigate(-1);
+    });
   };
+
   return (
     <>
       <StatusBar2 Subject="식단입력" />
       <div style={{height: '110px'}} />
       <Subject>식사 시간</Subject>
-      <Time
-        placeholder="시간을 입력해주세요."
+      <TimeInput
         type="time"
         value={data.subject}
+        onChange={e => setData({...data, subject: e.target.value})}
       />
       <div style={{height: '30px'}} />
       <Subject>식단 사진</Subject>
@@ -180,8 +237,8 @@ const MealEdit = () => {
       <TextArea
         style={{height: '144px'}}
         placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
-        value={data.content}
-        onChange={e => handleChange(e)}
+        value={data?.content}
+        onChange={e => setData({...data, content: e.target.value})}
         name="content"
       />
       <div style={{height: '30px'}} />
@@ -190,13 +247,55 @@ const MealEdit = () => {
         <label htmlFor="check2" />
         <p>식사 기록을 내 전문가와 공유</p>
       </CheckInput>
+
       <div style={{height: '30px'}} />
       <ColoredBtn onClick={process}>기록하기</ColoredBtn>
       <div style={{height: '30px'}} />
     </>
   );
 };
-
+const TimeInput = styled.input`
+  width: 100%;
+  height: 52px;
+  border: 0.1rem solid rgb(239, 144, 167);
+  font-size: 15px;
+  border-radius: 0.5rem;
+  display: block;
+  box-sizing: border-box;
+  background-color: rgb(255, 249, 249);
+  background-image: url('/image/Icon feather-clock.png') no-repeat 26px 50%;
+  &::-webkit-datetime-edit-fields-wrapper {
+    display: flex;
+  }
+  &::-webkit-datetime-edit-text {
+    padding: 19px 4px;
+  }
+  &::-webkit-datetime-edit-hour-field {
+    background-color: rgb(255, 249, 249);
+    border-radius: 15%;
+    padding: 19px 13px;
+    color: rgb(239, 144, 167);
+    font-family: roboto;
+    font-size: 16px;
+  }
+  &::-webkit-datetime-edit-minute-field {
+    background-color: rgb(255, 249, 249);
+    border-radius: 15%;
+    padding: 19px 13px;
+    color: rgb(239, 144, 167);
+    font-family: roboto;
+    font-size: 16px;
+  }
+  &::-webkit-datetime-edit-ampm-field {
+    display: none;
+  }
+  &::-webkit-clear-button {
+    display: none;
+  }
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+`;
 const ImgContainer = styled.div`
   position: relative;
   display: block;
