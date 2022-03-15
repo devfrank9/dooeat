@@ -157,45 +157,43 @@ const MealEdit = () => {
     navigate(-1);
   };
   return (
-    <BaseScreen>
-      <AlignBase>
-        <StatusBar2 Subject="식단입력" />
-        <div style={{height: '110px'}} />
-        <Subject>식사 시간</Subject>
-        <Time
-          placeholder="시간을 입력해주세요."
-          type="time"
-          value={data.subject}
-        />
-        <div style={{height: '30px'}} />
-        <Subject>식단 사진</Subject>
-        <FileAlign>{renderFile()}</FileAlign>
-        <div style={{height: '30px'}} />
-        <Subject>타입</Subject>
-        <BtnAlign>{btnRender(0)}</BtnAlign>
-        <Subject>먹은 양</Subject>
-        <BtnAlign>{btnRender(1)}</BtnAlign>
-        <Subject>식단 종류</Subject>
-        <BtnAlign>{btnRender(2)}</BtnAlign>
-        <Subject>식단 일기</Subject>
-        <TextArea
-          style={{height: '144px'}}
-          placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
-          value={data.content}
-          onChange={e => handleChange(e)}
-          name="content"
-        />
-        <div style={{height: '30px'}} />
-        <CheckInput>
-          <input type="checkbox" id="check2" />
-          <label htmlFor="check2" />
-          <p>식사 기록을 내 전문가와 공유</p>
-        </CheckInput>
-        <div style={{height: '30px'}} />
-        <ColoredBtn onClick={process}>기록하기</ColoredBtn>
-        <div style={{height: '30px'}} />
-      </AlignBase>
-    </BaseScreen>
+    <>
+      <StatusBar2 Subject="식단입력" />
+      <div style={{height: '110px'}} />
+      <Subject>식사 시간</Subject>
+      <Time
+        placeholder="시간을 입력해주세요."
+        type="time"
+        value={data.subject}
+      />
+      <div style={{height: '30px'}} />
+      <Subject>식단 사진</Subject>
+      <FileAlign>{renderFile()}</FileAlign>
+      <div style={{height: '30px'}} />
+      <Subject>타입</Subject>
+      <BtnAlign>{btnRender(0)}</BtnAlign>
+      <Subject>먹은 양</Subject>
+      <BtnAlign>{btnRender(1)}</BtnAlign>
+      <Subject>식단 종류</Subject>
+      <BtnAlign>{btnRender(2)}</BtnAlign>
+      <Subject>식단 일기</Subject>
+      <TextArea
+        style={{height: '144px'}}
+        placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
+        value={data.content}
+        onChange={e => handleChange(e)}
+        name="content"
+      />
+      <div style={{height: '30px'}} />
+      <CheckInput>
+        <input type="checkbox" id="check2" />
+        <label htmlFor="check2" />
+        <p>식사 기록을 내 전문가와 공유</p>
+      </CheckInput>
+      <div style={{height: '30px'}} />
+      <ColoredBtn onClick={process}>기록하기</ColoredBtn>
+      <div style={{height: '30px'}} />
+    </>
   );
 };
 

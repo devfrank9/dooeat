@@ -56,45 +56,38 @@ const MealMain = () => {
   };
 
   return (
-    <BaseScreen>
-      <AlignBase>
-        <StatusBar
-          Subject="오늘"
-          Img="/image/myInfo.png"
-          LinkTo="/user/mypage"
-        />
-        <div style={{height: '110px'}} />
-        <DateSelect
-          today={getMoment.format('YYYY. MM. DD')}
-          backClick={() => {
-            setMoment(getMoment.clone().subtract(1, 'day'));
-          }}
-          forClick={() => {
-            setMoment(getMoment.clone().add(1, 'day'));
-          }}
-        />
-        <Styled.Subject>식단 입력</Styled.Subject>
-        <Styled.RectengleAlign>
-          <Styled.FileAlign>
-            {userData.length === 0
-              ? [...Array(2)].map(() => <FileRectengle to="write" />)
-              : userData.map((data, index) => (
-                  <RectPrev
-                    link={`edit/${data.wr_id}`}
-                    key={data.wr_id}
-                    img={data.file[0].url}
-                    text={data.wr_2}
-                  />
-                ))}
-          </Styled.FileAlign>
-        </Styled.RectengleAlign>
-        <div style={{height: '32px'}} />
-        <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
-        {waterRender()}
-        <div style={{height: '135px'}} />
-        <Navigation />
-      </AlignBase>
-    </BaseScreen>
+    <>
+      <StatusBar Subject="오늘" Img="/image/myInfo.png" LinkTo="/user/mypage" />
+      <div style={{height: '110px'}} />
+      <DateSelect
+        today={getMoment.format('YYYY. MM. DD')}
+        backClick={() => {
+          setMoment(getMoment.clone().subtract(1, 'day'));
+        }}
+        forClick={() => {
+          setMoment(getMoment.clone().add(1, 'day'));
+        }}
+      />
+      <Styled.Subject>식단 입력</Styled.Subject>
+      <Styled.RectengleAlign>
+        <Styled.FileAlign>
+          {userData.length === 0
+            ? [...Array(2)].map(() => <FileRectengle to="write" />)
+            : userData.map((data, index) => (
+                <RectPrev
+                  link={`edit/${data.wr_id}`}
+                  key={data.wr_id}
+                  img={data.file[0].url}
+                  text={data.wr_2}
+                />
+              ))}
+        </Styled.FileAlign>
+      </Styled.RectengleAlign>
+      <div style={{height: '32px'}} />
+      <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
+      {waterRender()}
+      <div style={{height: '135px'}} />
+    </>
   );
 };
 const FileRectengle = styled(Link)`
