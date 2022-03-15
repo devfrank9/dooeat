@@ -190,7 +190,7 @@ function Screens() {
           <Route path={'/shop/*'} element={<ShopRoute />} />
           {/* 회원 라우팅 */}
           {getUserLevel?.mb_level === 2 ? (
-            <Route path={'/user/*'}>
+            <Route path={'/'}>
               <Route
                 path={'meal/*'}
                 element={
@@ -199,20 +199,65 @@ function Screens() {
                   </PrivateRoute>
                 }
               />
-              <Route path={'health/*'} element={<UserHealthRoute />} />
-              <Route path={'pro/*'} element={<UserProRoute />} />
-              <Route path={'mypage/*'} element={<UserMypageRoute />} />
+              <Route
+                path={'health/*'}
+                element={
+                  <PrivateRoute>
+                    <UserHealthRoute />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={'pro/*'}
+                element={
+                  <PrivateRoute>
+                    <UserProRoute />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={'mypage/*'}
+                element={
+                  <PrivateRoute>
+                    <UserMypageRoute />
+                  </PrivateRoute>
+                }
+              />
             </Route>
           ) : (
             <Route path="/error" element={<h1>못지나간다</h1>} />
           )}
-
           {/* 전문가 라우팅 */}
-          <Route path={'/pro/*'}>
-            <Route path={'profile/*'} element={<ProProfileRouter />} />
-            <Route path={'mypage/*'} element={<ProMypageRoute />} />
-            <Route path={'manage/*'} element={<ProManageRoutes />} />
-          </Route>
+          {getUserLevel?.mb_level === 3 ? (
+            <Route path={'/'}>
+              <Route
+                path={'profile/*'}
+                element={
+                  <PrivateRoute>
+                    <ProProfileRouter />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={'mypage/*'}
+                element={
+                  <PrivateRoute>
+                    <ProMypageRoute />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={'manage/*'}
+                element={
+                  <PrivateRoute>
+                    <ProManageRoutes />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+          ) : (
+            <Route path="/error" element={<h1>못지나간다</h1>} />
+          )}
           <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
         </Routes>
       </CSSTransition>
