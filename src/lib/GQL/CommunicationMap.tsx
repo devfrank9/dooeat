@@ -382,6 +382,7 @@ export const useMutationForSetMember = () =>
         $mb_8: String
         $mb_9: String
         $mb_img: String
+        $mb_level: Int
       ) {
         setMember(
           session: $session
@@ -410,6 +411,7 @@ export const useMutationForSetMember = () =>
           mb_8: $mb_8
           mb_9: $mb_9
           mb_img: $mb_img
+          mb_level: $mb_level
         )
       }
     `,
