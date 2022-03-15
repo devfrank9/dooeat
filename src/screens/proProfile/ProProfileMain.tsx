@@ -16,7 +16,6 @@ const ProProfileMain = () => {
   const session = useRecoilValue(__session);
 
   const [signup, setSignup] = useState<RequestSetMember>({});
-
   const refreshMe = useGetMe();
   const [commSetMember] = useMutationForSetMember();
 
@@ -91,16 +90,15 @@ const ProProfileMain = () => {
           </ul>
           <div style={{height: '30px'}} />
         </CareerAlign>
-        <Switch></Switch>
         <ReviewAlign>
           <ReviewTop>
             <div>
               <p>리뷰</p>
               <p>0</p>
             </div>
-            <button>
-              <LinkStyle to="/pro/profile/edit">리뷰 작성</LinkStyle>
-            </button>
+            <div>
+              <Switch label="리뷰 노출" />
+            </div>
           </ReviewTop>
           <Review>
             <p style={{marginTop: '12px'}}>작성된 리뷰가 없습니다.</p>
@@ -148,12 +146,6 @@ const Review = styled.div`
   }
   margin-top: 22px;
 `;
-const LinkStyle = styled(Link)`
-  text-decoration: none;
-  color: ${prop => prop.theme.pointColor1};
-  font-size: 14px;
-  font-weight: 600;
-`;
 const CareerAlign = styled.div`
   border-bottom: 1px solid ${prop => prop.theme.btnColor2};
   margin-bottom: 26px;
@@ -180,6 +172,9 @@ const ReviewTop = styled.div`
       margin-left: 10px;
       font-family: ${prop => prop.theme.roboto};
       color: ${prop => prop.theme.mainColor};
+    }
+    div:last-child {
+      align-items: center;
     }
   }
 `;
