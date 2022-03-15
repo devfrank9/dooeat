@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useLocalStorage, useSessionStorage} from 'react-use-storage';
-import {useRecoilState, useSetRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
 import {__me, __session} from '../lib/atom';
-import {useLQueryForLogin} from '../lib/GQL/CommunicationMap';
+import {
+  useLQueryForGetMe,
+  useLQueryForLogin,
+} from '../lib/GQL/CommunicationMap';
 import Constants from '../lib/Constants';
 import {useNavigate} from 'react-router-dom';
 import {RequestQueryGetLogin} from '../lib/GQL/GQLInterfaces';
@@ -38,21 +41,21 @@ const Login = () => {
   const setSession = useSetRecoilState(__session);
 
   const process = () => {
-    let rules: RulesProp = {
-      mb_id: {required: {message: '아이디를 입력해주세요'}},
+    let validateRules: RulesProp = {
+      mb_email: {required: {message: '아이디를 입력해주세요'}},
       mb_password: {required: {message: '암호를 입력해주세요'}},
     };
-    let vvv: RequestQueryGetLogin = {
-      mb_id: id,
+    let loginFormInput: RequestQueryGetLogin = {
+      mb_id: '',
+      mb_email: id,
       mb_password: pw,
     };
-    let vali = validate(vvv, rules);
+    let vali = validate(loginFormInput, validateRules);
     if (vali) {
-      alert('warning');
+      alert(vali);
       return;
     }
-    commLogin({variables: vvv});
-    console.log(commLoginResult.data);
+    commLogin({variables: loginFormInput});
   };
 
   useEffect(() => {
@@ -60,7 +63,6 @@ const Login = () => {
       setPreventEvent(true);
       setSession(commLoginResult.data.login);
       setCurrentValue(commLoginResult.data.login);
-      alert('로그인 되었습니다');
       navigate('/user/meal');
     }
   }, [commLoginResult.data]);
