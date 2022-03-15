@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {Navigation2} from '../../components/Navigation';
+import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import {LinkStyle2} from '../../styles/LinkStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
@@ -83,7 +83,7 @@ const ProManagMain = () => {
             <button>수락하기</button>
           </BtnAlign>
         </UserCard>
-        <Navigation2 />
+        <Navigation />
       </AlignBase>
     </BaseScreen>
   );

@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
-import {Navigation2} from '../../components/Navigation';
+import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import Switch from '../../components/Toggle';
 import {__me, __session} from '../../lib/atom';
@@ -108,7 +108,7 @@ const ProProfileMain = () => {
           <EditBtn to={'/pro/profile/edit'} />
         </BtnAlign>
         <div style={{height: '130px'}} />
-        <Navigation2 />
+        <Navigation />
       </AlignBase>
     </BaseScreen>
   );

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Routes} from 'react-router-dom';
 import styled from 'styled-components';
-import {Navigation2} from '../../components/Navigation';
+import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
 import {ColoredBtn, UnColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle2} from '../../styles/LinkStyled';
@@ -74,7 +74,7 @@ const ProManageMain2 = () => {
             </LinkStyle2>
           </BtnAlign>
         </UserCard>
-        <Navigation2 />
+        <Navigation />
       </AlignBase>
     </BaseScreen>
   );
