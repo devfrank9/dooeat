@@ -1,5 +1,4 @@
-import {selectionSetMatchesResult} from '@apollo/client/cache/inmemory/helpers';
-import React, {useEffect, useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 import styled from 'styled-components';
 import {ColoredBtn, LongBtn, MiddleBtn} from '../../../styles/BtnStyled';
 import {Common} from '../../../styles/InputStyled';
@@ -9,7 +8,7 @@ const Excer = () => {
   const [main2, setMain2] = useState(false);
   const [main3, setMain3] = useState(false);
   const [select, setSelect] = useState<string[]>([]);
-  let renderList: any[] = [];
+  const [renderList, setRenderList] = useState<ReactNode[]>([]);
 
   const handleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (main === true) {
@@ -29,18 +28,15 @@ const Excer = () => {
     !select.includes(value)
       ? setSelect(select => [...select, value])
       : setSelect(select.filter(button => button !== value));
-    console.log(select);
-    renderList.push(select);
-    console.log(renderList);
-    renderExSubject();
+    let thisArray = [...renderList];
+    thisArray.push(select);
+    setRenderList(thisArray);
   };
   const renderExSubject = () => {
-    console.log('im run');
     if (main === true) {
-      console.log('im run');
+      console.log(renderList);
       return renderList.map((item, index) => (
-        <div key={index}>
-          {console.log('im run')}
+        <div key={'EE' + index}>
           <Subject>{item} 운동</Subject>
           <ExcerAlign>
             <ExcerKindBtn>운동 종류 등록</ExcerKindBtn>
@@ -106,7 +102,7 @@ const Excer = () => {
         <MiddleBtn>스트레칭</MiddleBtn>
       </BtnAlign>
       <div style={{height: '30px'}} />
-      {renderExSubject}
+      {renderExSubject()}
 
       <Input value="런지" />
       <div style={{height: '30px'}} />
