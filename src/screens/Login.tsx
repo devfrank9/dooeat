@@ -39,6 +39,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [commLogin, commLoginResult] = useLQueryForLogin();
   const setSession = useSetRecoilState(__session);
+  const [loginData, loginDataResult] = useLQueryForGetMe();
+  const [getMe, setMe] = useRecoilState(__me);
 
   const process = () => {
     let validateRules: RulesProp = {
@@ -56,16 +58,25 @@ const Login = () => {
       return;
     }
     commLogin({variables: loginFormInput});
-  };
-
-  useEffect(() => {
     if (commLoginResult.data && commLoginResult.data.login) {
       setPreventEvent(true);
       setSession(commLoginResult.data.login);
       setCurrentValue(commLoginResult.data.login);
-      navigate('/user/meal');
+      let session: {session: string} = {
+        session: commLoginResult.data.login,
+      };
+      loginData({variables: session});
     }
-  }, [commLoginResult.data]);
+  };
+
+  useEffect(() => {
+    if (loginDataResult.data && loginDataResult.data.getMe) {
+      console.log(loginDataResult.data);
+      console.log(loginDataResult.data?.getMe);
+      setMe(loginDataResult.data.getMe);
+      navigate('/');
+    }
+  }, [loginDataResult.data]);
 
   return (
     <BaseScreen>
