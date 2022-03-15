@@ -109,6 +109,7 @@ const ScreenHooker = () => {
 
 function Screens() {
   let location = useLocation();
+  const getUserLevel = useRecoilValue(__me);
 
   return (
     <TransitionGroup>
@@ -122,45 +123,97 @@ function Screens() {
       >
         <Routes location={location}>
           {/* 공통 라우팅 */}
-          {/* <Route
+          <Route
             path={'/'}
             element={
               <PublicRoute restricted={false}>
-                <Main />
+                {getUserLevel?.mb_level === undefined ? (
+                  <Main />
+                ) : getUserLevel?.mb_level === 2 ? (
+                  <UserMealRoute />
+                ) : (
+                  <ProProfileRouter />
+                )}
               </PublicRoute>
             }
-          /> */}
-          <Route path="/" element={<Main />} />
-          <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
-          <Route path={'/login'} element={<Login />} />
-          <Route path={'/search'} element={<SearchId />} />
-          <Route path={'/notice'} element={<Notice />} />
+          />
+          <Route
+            path={'/login'}
+            element={
+              <PublicRoute restricted={false}>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path={'/search'}
+            element={
+              <PublicRoute restricted={false}>
+                <SearchId />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path={'/notice'}
+            element={
+              <PublicRoute restricted={false}>
+                <Notice />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path={'/join-user/*'}
+            element={
+              <PublicRoute restricted={false}>
+                <JoinUserRoute />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path={'/search-mento/*'}
+            element={
+              <PublicRoute restricted={false}>
+                <SearchMentoRoutes />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path={'/join-pro/*'}
+            element={
+              <PublicRoute restricted={false}>
+                <JoinProRoute />
+              </PublicRoute>
+            }
+          />
           <Route path={'/notice/:id'} element={<NoticeDetail />} />
           <Route path={'/community/*'} element={<CommuRoutes />} />
           <Route path={'/shop/*'} element={<ShopRoute />} />
-          {/* 회원가입 라우팅 */}
-          <Route path={'/join-user/*'} element={<JoinUserRoute />} />
-          <Route path={'/search-mento/*'} element={<SearchMentoRoutes />} />
-          <Route path={'/join-pro/*'} element={<JoinProRoute />} />
           {/* 회원 라우팅 */}
-          <Route path={'/user/*'}>
-            {/* <Route
-              path={'meal/*'}
-              element={
-                <PrivateRoute>
-                  <UserMealRoute />
-                </PrivateRoute>
-              }
-            /> */}
-            <Route path={'meal/*'} element={<UserMealRoute />} />
-            <Route path={'health/*'} element={<UserHealthRoute />} />
-            <Route path={'pro/*'} element={<UserProRoute />} />
-            <Route path={'mypage/*'} element={<UserMypageRoute />} />
-          </Route>
+          {getUserLevel?.mb_level === 2 ? (
+            <Route path={'/user/*'}>
+              <Route
+                path={'meal/*'}
+                element={
+                  <PrivateRoute>
+                    <UserMealRoute />
+                  </PrivateRoute>
+                }
+              />
+              <Route path={'health/*'} element={<UserHealthRoute />} />
+              <Route path={'pro/*'} element={<UserProRoute />} />
+              <Route path={'mypage/*'} element={<UserMypageRoute />} />
+            </Route>
+          ) : (
+            <Route path="/error" element={<h1>못지나간다</h1>} />
+          )}
+
           {/* 전문가 라우팅 */}
-          <Route path={'/pro/profile/*'} element={<ProProfileRouter />} />
-          <Route path={'/pro/mypage/*'} element={<ProMypageRoute />} />
-          <Route path={'/pro/manage/*'} element={<ProManageRoutes />} />
+          <Route path={'/pro/*'}>
+            <Route path={'profile/*'} element={<ProProfileRouter />} />
+            <Route path={'mypage/*'} element={<ProMypageRoute />} />
+            <Route path={'manage/*'} element={<ProManageRoutes />} />
+          </Route>
+          <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
