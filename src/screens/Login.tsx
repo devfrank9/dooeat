@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useLocalStorage, useSessionStorage} from 'react-use-storage';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import {__me, __session} from '../lib/atom';
 import {
   useLQueryForGetMe,
@@ -58,7 +58,10 @@ const Login = () => {
       return;
     }
     commLogin({variables: loginFormInput});
-    if (commLoginResult.data && commLoginResult.data.login) {
+  };
+
+  useEffect(() => {
+    if (commLoginResult.data) {
       setPreventEvent(true);
       setSession(commLoginResult.data.login);
       setCurrentValue(commLoginResult.data.login);
@@ -67,7 +70,7 @@ const Login = () => {
       };
       loginData({variables: session});
     }
-  };
+  }, [commLoginResult.data]);
 
   useEffect(() => {
     if (loginDataResult.data && loginDataResult.data.getMe) {
