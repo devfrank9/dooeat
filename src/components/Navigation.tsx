@@ -1,105 +1,95 @@
 import styled from 'styled-components';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useRoutes} from 'react-router-dom';
-
-export const Navigation2 = () => {
-  const match1 = useRoutes([{path: '/pro/profile'}]);
-  const match2 = useRoutes([{path: '/pro/manage'}]);
-  const match3 = useRoutes([{path: '/community/favor'}]);
-  const match4 = useRoutes([{path: '/shop'}]);
-
-  return (
-    <NavContainer>
-      <Link to="/pro/profile">
-        <button style={{width: '94px'}}>
-          <Img1
-            src={match1 !== null ? '/image/nav2.png' : '/image/nav2_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/pro/manage ">
-        <button style={{width: '94px'}}>
-          <Img1
-            src={match2 !== null ? '/image/nav1.png' : '/image/nav1_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/community/favor">
-        <button style={{width: '94px'}}>
-          <Img1
-            src={match3 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/shop">
-        <button style={{width: '94px'}}>
-          <Img1
-            src={match4 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-    </NavContainer>
-  );
-};
+import {useRecoilValue} from 'recoil';
+import {__me} from '../lib/atom';
 
 export const Navigation = () => {
-  const match1 = useRoutes([{path: '/*/user/meal'}]);
-  const match2 = useRoutes([{path: '/user/health'}]);
-  const match3 = useRoutes([{path: '/user/pro'}]);
-  const match4 = useRoutes([{path: '/community/favor'}]);
-  const match5 = useRoutes([{path: '/shop'}]);
+  const getUserLevel = useRecoilValue(__me);
+  const match1 = useRoutes([{path: '/profile'}]);
+  const match2 = useRoutes([{path: '/manage'}]);
+  const match3 = useRoutes([{path: '/community/favor'}]);
+  const match4 = useRoutes([{path: '/shop'}]);
+  const match5 = useRoutes([{path: '/meal'}]);
+  const match6 = useRoutes([{path: '/health'}]);
+  const match7 = useRoutes([{path: '/pro'}]);
+  const match8 = useRoutes([{path: '/community/favor'}]);
+  const match9 = useRoutes([{path: '/shop'}]);
   const {path} = useParams();
   const navigate = useNavigate();
 
   return (
-    <NavContainer>
-      <Link to="/user/meal">
-        <button>
-          <Img1
-            src={path !== undefined ? '/image/nav3.png' : '/image/nav3_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/user/health ">
-        <button>
-          <Img1
-            src={match2 !== null ? '/image/nav4.png' : '/image/nav4_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/user/pro">
-        <button>
-          <Img1
-            src={match3 !== null ? '/image/nav5.png' : '/image/nav5_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/community/favor">
-        <button>
-          <Img1
-            src={match4 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-      <Link to="/shop">
-        <button>
-          <Img1
-            src={match5 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
-            alt=""
-          />
-        </button>
-      </Link>
-    </NavContainer>
+    <>
+      {getUserLevel?.mb_level === 2 ? (
+        <NavContainer>
+          <button onClick={() => navigate('/meal')}>
+            <Img1
+              src={
+                match5 !== undefined ? '/image/nav3.png' : '/image/nav3_un.png'
+              }
+              alt=""
+            />
+          </button>
+          <button onClick={() => navigate('/health')}>
+            <Img1
+              src={match6 !== null ? '/image/nav4.png' : '/image/nav4_un.png'}
+              alt=""
+            />
+          </button>
+          <button onClick={() => navigate('/pro')}>
+            <Img1
+              src={match7 !== null ? '/image/nav5.png' : '/image/nav5_un.png'}
+              alt=""
+            />
+          </button>
+          <button onClick={() => navigate('/community/favor')}>
+            <Img1
+              src={match8 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
+              alt=""
+            />
+          </button>
+          <button onClick={() => navigate('/shop')}>
+            <Img1
+              src={match9 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
+              alt=""
+            />
+          </button>
+        </NavContainer>
+      ) : (
+        <NavContainer>
+          <button style={{width: '94px'}} onClick={() => navigate('/profile')}>
+            <Img1
+              src={match1 !== null ? '/image/nav2.png' : '/image/nav2_un.png'}
+              alt=""
+            />
+          </button>
+          <button style={{width: '94px'}} onClick={() => navigate('/manage')}>
+            <Img1
+              src={match2 !== null ? '/image/nav1.png' : '/image/nav1_un.png'}
+              alt=""
+            />
+          </button>
+          <button
+            style={{width: '94px'}}
+            onClick={() => navigate('/community/favor')}
+          >
+            <Img1
+              src={match3 !== null ? '/image/nav6.png' : '/image/nav6_un.png'}
+              alt=""
+            />
+          </button>
+          <button style={{width: '94px'}} onClick={() => navigate('/shop')}>
+            <Img1
+              src={match4 !== null ? '/image/nav7.png' : '/image/nav7_un.png'}
+              alt=""
+            />
+          </button>
+        </NavContainer>
+      )}
+    </>
   );
 };
+
 const Img1 = styled.img`
   position: fixed;
   bottom: 0;
