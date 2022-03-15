@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
@@ -8,6 +8,11 @@ import {MemberDataLv2} from '../../Dummy/Dummy';
 const UserMyPageMain = () => {
   const getData = MemberDataLv2.getMe;
   const logout = useLogout();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
   return (
     <BaseScreen>
       <AlignBase>
@@ -32,7 +37,7 @@ const UserMyPageMain = () => {
         </List>
         <div style={{height: '116px'}} />
         <MypageFooter>
-          <a onClick={logout}>로그아웃</a>
+          <p onClick={handleLogout}>로그아웃</p>
           <Link to="/">회원탈퇴</Link>
         </MypageFooter>
       </AlignBase>
@@ -42,8 +47,7 @@ const UserMyPageMain = () => {
 const MypageFooter = styled.div`
   display: flex;
   justify-content: space-between;
-
-  a {
+  p {
     font-size: 14px;
     color: rgb(151, 151, 151);
     &:link {
