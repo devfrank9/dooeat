@@ -1,3 +1,3 @@
-const isLogin = () => !!sessionStorage.getItem('session');
+const isLogin = () => !!sessionStorage.getItem('currentLoginSession');
 
 export default isLogin;
