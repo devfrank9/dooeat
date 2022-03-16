@@ -11,7 +11,7 @@ import {useRecoilState} from 'recoil';
 import {userFormState} from '../../lib/atom';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
 import ValidBtn from '../../components/ValidBtn';
-import {useChecks} from '../../hooks/useChecks';
+import {useChecks} from '../../lib/Hook/useChecks';
 
 const JoinUser1 = () => {
   const [userData, setUserData] = useRecoilState(userFormState);

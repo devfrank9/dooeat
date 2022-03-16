@@ -192,6 +192,13 @@ export interface ResponseQueryGetBoardDetail {
   wr_1: string;
   wr_2: string;
   wr_3: string;
+  wr_4: string;
+  wr_5: string;
+  wr_6: string;
+  wr_7: string;
+  wr_8: string;
+  wr_9: string;
+  wr_10: string;
 }
 
 export interface ResponseQueryGetBoardWrite {
@@ -284,6 +291,17 @@ export interface RequestSubFileData {
   fileData: string;
 }
 
+export interface RequestImgFileData {
+  url: string | number;
+  fileType: string;
+  thumb: string | number;
+  bf_id: number;
+  bo_table: string;
+  wr_id: number;
+  fileName: string;
+  downloadCount: number;
+}
+
 export interface RequestMutationSetBoardWrite {
   session?: string;
   bo_table: string;
@@ -312,7 +330,7 @@ export interface RequestMutationSetBoardWrite {
   wr_9?: string;
   wr_10?: string;
 
-  files?: (RequestSubFileData | null)[];
+  files?: (RequestImgFileData | null)[];
   deleteFile?: number[];
 }
 

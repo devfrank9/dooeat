@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Checks} from '../components/Checks';
+import {Checks} from '../../components/Checks';
 
 type UseChecksResult = [boolean, () => JSX.Element];
 

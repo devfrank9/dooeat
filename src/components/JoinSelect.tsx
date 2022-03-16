@@ -1,8 +1,6 @@
 import {useCallback, useState} from 'react';
-import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
-import {userFormState} from '../lib/atom';
-import {DummySelect} from '../lib/Dummys';
+import {DummySelect} from '../Dummy/Dummy';
 
 interface Prop {
   items?: {name: string; state: string[]}[];

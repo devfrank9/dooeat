@@ -1,7 +1,7 @@
 import {useCallback, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
-import {DateSelect} from '../lib/Dummys';
+import {DateSelect} from '../Dummy/Dummy';
 
 interface Prop {
   items?: {id: number; name: string[]}[];

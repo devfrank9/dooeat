@@ -17,6 +17,7 @@ import {
   useMutationSetBoardWrite,
   useQueryForGetBoardWrite,
 } from '../../lib/GQL/CommunicationMap';
+import {TimeInputStyle} from '../../components/TimeInput';
 
 interface Iselect {
   [x: string]: any;
@@ -63,17 +64,15 @@ const MealEdit = () => {
 
   useEffect(() => {
     if (queryResult.data?.getBoardWrite) {
-      let boardInfo = queryResult.data.getBoardWrite.boardInfo as any;
+      let boardInfo = queryResult.data.getBoardWrite.boardInfo;
       if (boardInfo) {
         setData({
           session: session,
           bo_table: bo_table || '',
           token: '',
-
           wr_id: boardInfo.wr_id,
           subject: boardInfo.subject,
           content: boardInfo.content,
-
           wr_1: boardInfo.wr_1,
           wr_2: boardInfo.wr_2,
           wr_3: boardInfo.wr_3,
@@ -93,11 +92,9 @@ const MealEdit = () => {
     let FF = [...img];
     let FR = new FileReader();
     FR.addEventListener('load', () => {
-      // @ts-ignore
+      //@ts-ignore
       FF[e.target.dataset.order] = {
-        // @ts-ignore
         fileName: e.target.files[0].name,
-        fileData: FR.result as string,
       };
       setImg(FF);
     });
@@ -112,21 +109,37 @@ const MealEdit = () => {
   const handleDeleteImage = (id: number) => {
     setFileUrl(fileUrl.filter((_, index) => index !== id));
   };
+  const selectChange = (item: string) => {
+    if (!select.includes(item)) return setSelect(select => [...select, item]);
+    else return setSelect(select.filter(button => button !== item));
+  };
+  const process = () => {
+    setData({...data, files: img});
+    setData({...data, bo_table: 'food'});
+    commSetBoardWrite({variables: data}).then(result => {
+      if (result.data && result.data.setBoardWrite) navigate(-1);
+    });
+  };
+
   const renderFile = () => {
     return (
       <>
         {fileUrl.length === 0 ? (
           <>
-            <FileInput
-              type="file"
-              id="file1"
-              onChange={e => {
-                processImage(e);
-                signImg(e);
-              }}
-              accept="image/*"
-            />
-            <FileRectengle htmlFor="file1" />
+            {[...Array(2)].map((item, index) => (
+              <>
+                <FileInput
+                  type="file"
+                  id="file1"
+                  onChange={e => {
+                    signImg(e);
+                    processImage(e);
+                  }}
+                  accept="image/*,image/*"
+                />
+                <FileRectengle htmlFor="file1" />
+              </>
+            ))}
           </>
         ) : (
           <>
@@ -134,16 +147,16 @@ const MealEdit = () => {
               type="file"
               id="file1"
               onChange={e => {
-                processImage(e);
                 signImg(e);
+                processImage(e);
               }}
               accept="image/*"
             />
             <UploadImgContainer>
-              {fileUrl.map((image: string, id: number) => (
+              {fileUrl.map((image, id) => (
                 <ImgContainer key={id}>
-                  {data.wr_5 === '' ? <></> : <div>{data.wr_5}</div>}
-                  <UploadedImg src={fileUrl[id]} alt={`${image}-${id}`} />
+                  {data.wr_5 === undefined ? <></> : <div>{data.wr_5}</div>}
+                  <UploadedImg src={image} alt={`${image}-${id}`} />
                   <Delete onClick={() => handleDeleteImage(id)} />
                 </ImgContainer>
               ))}
@@ -153,10 +166,7 @@ const MealEdit = () => {
       </>
     );
   };
-  const selectChange = (item: string) => {
-    if (!select.includes(item)) return setSelect(select => [...select, item]);
-    else return setSelect(select.filter(button => button !== item));
-  };
+
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
     if (n === 0) {
@@ -205,20 +215,13 @@ const MealEdit = () => {
       ));
     }
   };
-  const process = () => {
-    setData({...data, files: img});
-    setData({...data, bo_table: 'food'});
-    commSetBoardWrite({variables: data}).then(result => {
-      if (result.data && result.data.setBoardWrite) navigate(-1);
-    });
-  };
 
   return (
     <>
       <StatusBar2 Subject="식단입력" />
       <div style={{height: '110px'}} />
       <Subject>식사 시간</Subject>
-      <TimeInput
+      <TimeInputStyle
         type="time"
         value={data.subject}
         onChange={e => setData({...data, subject: e.target.value})}
@@ -247,55 +250,13 @@ const MealEdit = () => {
         <label htmlFor="check2" />
         <p>식사 기록을 내 전문가와 공유</p>
       </CheckInput>
-
       <div style={{height: '30px'}} />
       <ColoredBtn onClick={process}>기록하기</ColoredBtn>
       <div style={{height: '30px'}} />
     </>
   );
 };
-const TimeInput = styled.input`
-  width: 100%;
-  height: 52px;
-  border: 0.1rem solid rgb(239, 144, 167);
-  font-size: 15px;
-  border-radius: 0.5rem;
-  display: block;
-  box-sizing: border-box;
-  background-color: rgb(255, 249, 249);
-  background-image: url('/image/Icon feather-clock.png') no-repeat 26px 50%;
-  &::-webkit-datetime-edit-fields-wrapper {
-    display: flex;
-  }
-  &::-webkit-datetime-edit-text {
-    padding: 19px 4px;
-  }
-  &::-webkit-datetime-edit-hour-field {
-    background-color: rgb(255, 249, 249);
-    border-radius: 15%;
-    padding: 19px 13px;
-    color: rgb(239, 144, 167);
-    font-family: roboto;
-    font-size: 16px;
-  }
-  &::-webkit-datetime-edit-minute-field {
-    background-color: rgb(255, 249, 249);
-    border-radius: 15%;
-    padding: 19px 13px;
-    color: rgb(239, 144, 167);
-    font-family: roboto;
-    font-size: 16px;
-  }
-  &::-webkit-datetime-edit-ampm-field {
-    display: none;
-  }
-  &::-webkit-clear-button {
-    display: none;
-  }
-  &::-webkit-inner-spin-button {
-    display: none;
-  }
-`;
+
 const ImgContainer = styled.div`
   position: relative;
   display: block;

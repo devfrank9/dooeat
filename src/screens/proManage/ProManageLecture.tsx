@@ -1,10 +1,13 @@
+import moment from 'moment';
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {SelectDate} from '../../components/SelectDate';
+import DateSelect from '../../components/DateSelect';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const ProManageLecture = () => {
+  const [getMoment, setMoment] = useState(moment());
   return (
     <BaseScreen>
       <AlignBase>
@@ -12,7 +15,15 @@ const ProManageLecture = () => {
         <div style={{height: '71px'}} />
         <BackImg />
         <DateAlign>
-          <SelectDate backColor="white" />
+          <DateSelect
+            today={getMoment.format('YYYY. MM. DD')}
+            backClick={() => {
+              setMoment(getMoment.clone().subtract(1, 'day'));
+            }}
+            forClick={() => {
+              setMoment(getMoment.clone().add(1, 'day'));
+            }}
+          />
           <div>
             <Link to="gram">
               <button />
