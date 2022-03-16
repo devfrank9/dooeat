@@ -13,7 +13,7 @@ const useInput = ({initialValue, validator}: IInputProp) => {
     } = event;
 
     let willUpdate = true;
-    if (typeof validator === 'function') willUpdate = validator(value);
+    /* if (typeof validator === 'function') willUpdate = validator(value); */
     if (willUpdate) setValue(value);
   };
   return {value, onChange};

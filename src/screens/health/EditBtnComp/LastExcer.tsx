@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import {HealthSubject, HealthIndex} from '../../../styles/BtnStyled';
-import ProjectModal from '../../../components/ModalTest';
 import {Common} from '../../../styles/InputStyled';
 
 interface Prop {
@@ -10,7 +9,6 @@ interface Prop {
 const LastExcer = ({handleModal}: Prop) => {
   return (
     <>
-      <ProjectModal handleModal={handleModal} />
       <Subject>운동 종류</Subject>
       <BtnAlign>
         <HealthSubject>헬스</HealthSubject>

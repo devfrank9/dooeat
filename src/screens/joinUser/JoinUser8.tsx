@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 // Components
 import NavProgress from '../../components/NavProgress';
-import BmiResult2 from '../../components/BmiResult2';
+import BmiResult from '../../components/BmiResult';
 // Styles
 import * as Styled from '../../styles/joinUser/styled';
 import {useEffect, useState} from 'react';
@@ -72,7 +72,7 @@ const JoinUser8 = () => {
             <Styled.UnderLine>함께 이뤄드릴께요!</Styled.UnderLine>
           </Styled.Inline>
         </Styled.GoalFirstSubject>
-        <BmiResult2
+        <BmiResult
           HeaderText="현재 체중"
           HeaderColor="black"
           gram={userData.mb_2}
@@ -83,7 +83,7 @@ const JoinUser8 = () => {
         <Styled.Arrow>
           <img src="/image/Icon awesome-arrow-down.png" alt="" />
         </Styled.Arrow>
-        <BmiResult2
+        <BmiResult
           HeaderText="목표 체중"
           HeaderColor="rgb(239,144,167)"
           gram={userData.mb_4}

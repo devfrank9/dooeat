@@ -114,11 +114,11 @@ const MealEdit = () => {
     else return setSelect(select.filter(button => button !== item));
   };
   const process = () => {
-    setData({...data, files: img});
+    /* setData({...data, files: img});
     setData({...data, bo_table: 'food'});
     commSetBoardWrite({variables: data}).then(result => {
       if (result.data && result.data.setBoardWrite) navigate(-1);
-    });
+    }); */
   };
 
   const renderFile = () => {
