@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
-import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
-import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
-import {
-  RequestMutationSetBoardWrite,
-  RequestSubFileData,
-} from '../../lib/GQL/GQLInterfaces';
+
+import {RequestImgFileData, RequestMutationSetBoardWrite} from '../../lib/GQL/GQLInterfaces';
 import {useRecoilValue} from 'recoil';
 import {__session} from '../../lib/atom';
 import {
@@ -18,6 +14,9 @@ import {
   useQueryForGetBoardWrite,
 } from '../../lib/GQL/CommunicationMap';
 import {TimeInputStyle} from '../../components/TimeInput';
+import ImgInput from '../../components/ImgInput';
+import useImgInput from '../../lib/Hook/useImgInput';
+import {compressImageFile} from '../../lib/imgApi';
 
 interface Iselect {
   [x: string]: any;
@@ -26,16 +25,6 @@ interface Iselect {
 }
 
 const MealEdit = () => {
-  const {bo_table, wr_id} = useParams();
-  const navigate = useNavigate();
-  const session = useRecoilValue(__session);
-  const queryResult = useQueryForGetBoardWrite({
-    bo_table: bo_table!,
-    wr_id: wr_id,
-    session: session,
-  });
-  const [commSetBoardWrite] = useMutationSetBoardWrite();
-
   const arr = [
     {
       key: 1,
@@ -50,10 +39,17 @@ const MealEdit = () => {
       list: ['치팅', '일반식', '다이어트식'],
     },
   ];
+  const {bo_table, wr_id} = useParams();
+  const navigate = useNavigate();
+  const session = useRecoilValue(__session);
+  const queryResult = useQueryForGetBoardWrite({
+    bo_table: bo_table!,
+    wr_id: wr_id,
+    session: session,
+  });
+  const [commSetBoardWrite] = useMutationSetBoardWrite();
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
-  const [fileUrl, setFileUrl] = useState<string[]>([]);
-  const [img, setImg] = useState<RequestSubFileData[]>([]);
   const [data, setData] = useState<RequestMutationSetBoardWrite>({
     session: '',
     bo_table: 'food',
@@ -61,6 +57,14 @@ const MealEdit = () => {
     subject: '',
     content: '',
   });
+  const {
+    fileRef,
+    imgFiles,
+    isError,
+    handleClickOnFileInput,
+    handleUploadFile,
+    removeSeletedPreview,
+  } = useImgInput();
 
   useEffect(() => {
     if (queryResult.data?.getBoardWrite) {
@@ -87,86 +91,36 @@ const MealEdit = () => {
         });
       }
     }
-  }, []);
-  const signImg = (e: any) => {
-    let FF = [...img];
-    let FR = new FileReader();
-    FR.addEventListener('load', () => {
-      //@ts-ignore
-      FF[e.target.dataset.order] = {
-        fileName: e.target.files[0].name,
-      };
-      setImg(FF);
+  }, [queryResult.data?.getBoardWrite]);
+
+  useEffect(() => {
+    commSetBoardWrite({variables: data}).then(result => {
+      if (result.data && result.data.setBoardWrite) navigate(-1);
     });
-    FR.readAsDataURL(e.target.files[0]);
-  };
-  const processImage = (e: any) => {
-    const imageUrlList: string[] = [...fileUrl];
-    const imageUrl = URL.createObjectURL(e.target.files[0]);
-    imageUrlList.push(imageUrl);
-    setFileUrl(imageUrlList);
-  };
-  const handleDeleteImage = (id: number) => {
-    setFileUrl(fileUrl.filter((_, index) => index !== id));
-  };
+  }, [commSetBoardWrite]);
+
   const selectChange = (item: string) => {
     if (!select.includes(item)) return setSelect(select => [...select, item]);
     else return setSelect(select.filter(button => button !== item));
   };
+
+  const processImg = async () => {
+    const files = Object.values(imgFiles);
+    const empty: RequestImgFileData[] = [];
+    for (const file of files) {
+      let x = await compressImageFile(file);
+      empty.push(x);
+    }
+    empty.map((item,index)=>(
+       
+    ))
+  };
+
   const process = () => {
-    /* setData({...data, files: img});
+    processImg();
     setData({...data, bo_table: 'food'});
-    commSetBoardWrite({variables: data}).then(result => {
-      if (result.data && result.data.setBoardWrite) navigate(-1);
-    }); */
+    console.log(data);
   };
-
-  const renderFile = () => {
-    return (
-      <>
-        {fileUrl.length === 0 ? (
-          <>
-            {[...Array(2)].map((item, index) => (
-              <>
-                <FileInput
-                  type="file"
-                  id="file1"
-                  onChange={e => {
-                    signImg(e);
-                    processImage(e);
-                  }}
-                  accept="image/*,image/*"
-                />
-                <FileRectengle htmlFor="file1" />
-              </>
-            ))}
-          </>
-        ) : (
-          <>
-            <FileInput
-              type="file"
-              id="file1"
-              onChange={e => {
-                signImg(e);
-                processImage(e);
-              }}
-              accept="image/*"
-            />
-            <UploadImgContainer>
-              {fileUrl.map((image, id) => (
-                <ImgContainer key={id}>
-                  {data.wr_5 === undefined ? <></> : <div>{data.wr_5}</div>}
-                  <UploadedImg src={image} alt={`${image}-${id}`} />
-                  <Delete onClick={() => handleDeleteImage(id)} />
-                </ImgContainer>
-              ))}
-            </UploadImgContainer>
-          </>
-        )}
-      </>
-    );
-  };
-
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
     if (n === 0) {
@@ -228,7 +182,16 @@ const MealEdit = () => {
       />
       <div style={{height: '30px'}} />
       <Subject>식단 사진</Subject>
-      <FileAlign>{renderFile()}</FileAlign>
+      <ImgInput
+        fileRef={fileRef}
+        name="image-uploader"
+        imgFiles={imgFiles}
+        isError={isError}
+        handleClickOnFileInput={handleClickOnFileInput}
+        handleUploadFile={handleUploadFile}
+        removeSeletedPreview={removeSeletedPreview}
+        hidden
+      />
       <div style={{height: '30px'}} />
       <Subject>타입</Subject>
       <BtnAlign>{btnRender(0)}</BtnAlign>
@@ -257,43 +220,6 @@ const MealEdit = () => {
   );
 };
 
-const ImgContainer = styled.div`
-  position: relative;
-  display: block;
-  border-radius: 10px;
-  margin-bottom: 21px;
-  width: 150px;
-  div:first-child {
-    position: absolute;
-    width: 68px;
-    height: 32px;
-    border-radius: 16px;
-    background-color: rgb(51, 51, 51, 0.6);
-    left: 12px;
-    top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${prop => prop.theme.fontColor3};
-    font-size: 15px;
-    font-weight: 300;
-    z-index: 3;
-  }
-`;
-const UploadedImg = styled.img`
-  position: relative;
-  display: block;
-  width: 150px;
-  border-radius: 10px;
-`;
-const Delete = styled.div`
-  background: url('/image/imageDelete.png') no-repeat 50% 50%;
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  top: -4px;
-  right: -4px;
-`;
 const CheckInput = styled.div`
   display: flex;
   align-items: center;
@@ -336,20 +262,10 @@ const BtnAlign = styled.div`
   button {
   }
 `;
-const FileAlign = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
 const Subject = styled.div`
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 12px;
-`;
-const UploadImgContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 export default MealEdit;

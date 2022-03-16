@@ -1,16 +1,10 @@
-import exp from 'constants';
-import {
-  ResponseCart,
-  ResponseGetQueryGetShopCategories,
-  ResponseGetShopItems,
-  ResponseItemDetail,
-  ResponseShopData,
-} from './ShopGQLInterface';
+import {ResponseShopData} from './ShopGQLInterface';
 
 export interface Responses {
   data: ResponseData;
   errors: ResponseError[];
 }
+
 interface ResponseError {
   message: string;
 }
@@ -84,8 +78,8 @@ export interface ResponseQueryGetBoardListBoardData {
   bo_use_nogood: boolean;
 }
 
-interface ResponseBoardFile {
-  url: string | number;
+export interface ResponseBoardFile {
+  url: string;
   fileType: string;
   thumb: string | number;
   bf_id: number;
@@ -292,7 +286,7 @@ export interface RequestSubFileData {
 }
 
 export interface RequestImgFileData {
-  url: string | number;
+  url: string;
   fileType: string;
   thumb: string | number;
   bf_id: number;
