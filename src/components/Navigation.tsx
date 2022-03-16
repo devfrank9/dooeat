@@ -12,11 +12,9 @@ export const Navigation = () => {
     <>
       {getUserLevel?.mb_level === 2 ? (
         <NavContainer>
-          <button onClick={() => navigate('/meal')}>
+          <button onClick={() => navigate('/')}>
             <Img1
-              src={
-                pathname === '/meal' ? '/image/nav3.png' : '/image/nav3_un.png'
-              }
+              src={pathname === '/' ? '/image/nav3.png' : '/image/nav3_un.png'}
               alt=""
             />
           </button>
@@ -59,13 +57,9 @@ export const Navigation = () => {
         </NavContainer>
       ) : (
         <NavContainer>
-          <button style={{width: '94px'}} onClick={() => navigate('/profile')}>
+          <button style={{width: '94px'}} onClick={() => navigate('/')}>
             <Img1
-              src={
-                pathname === '/profile'
-                  ? '/image/nav2.png'
-                  : '/image/nav2_un.png'
-              }
+              src={pathname === '/' ? '/image/nav2.png' : '/image/nav2_un.png'}
               alt=""
             />
           </button>

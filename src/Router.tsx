@@ -111,7 +111,7 @@ const Router = () => {
           {getUserLevel?.mb_level === 2 ? (
             <Route path={'/'}>
               <Route
-                path={'meal/*'}
+                path={'/*'}
                 element={
                   <PrivateRoute>
                     <UserMealRoute />
@@ -150,7 +150,7 @@ const Router = () => {
           {getUserLevel?.mb_level === 3 ? (
             <Route path={'/'}>
               <Route
-                path={'profile/*'}
+                path={'/*'}
                 element={
                   <PrivateRoute>
                     <ProProfileRouter />

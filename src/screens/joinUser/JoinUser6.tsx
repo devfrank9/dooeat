@@ -1,11 +1,7 @@
-// Packages
 import {useNavigate} from 'react-router-dom';
-// Screens
 import BaseScreen, {AlignBase} from '../BaseScreen';
-// Components
 import NavProgress from '../../components/NavProgress';
 import BmiResult from '../../components/BmiResult';
-// Styles
 import * as Styled from '../../styles/joinUser/styled';
 import {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';

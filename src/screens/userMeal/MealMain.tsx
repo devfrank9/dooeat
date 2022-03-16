@@ -1,6 +1,4 @@
-import BaseScreen, {AlignBase} from '../BaseScreen';
 import {StatusBar} from '../../components/StatusBar';
-import {Navigation} from '../../components/Navigation';
 import DateSelect from '../../components/DateSelect';
 import * as Styled from '../../styles/userMeal/styled';
 import {useEffect, useState} from 'react';
