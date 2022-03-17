@@ -11,7 +11,7 @@ import UserMyPageSet from './UserMyPageSet';
 const UserMypageRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<UserMyPageMain />} />
+      <Route path="*" element={<UserMyPageMain />} />
       <Route path="/edit" element={<UserMyPageEdit />} />
       <Route path="/my-post" element={<UserMyPagePost />} />
       <Route path="/my-comment" element={<UserMyPageComm />} />

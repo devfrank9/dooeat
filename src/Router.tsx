@@ -109,9 +109,9 @@ const Router = () => {
           <Route path={'/shop/*'} element={<ShopRoute />} />
           {/* 회원 라우팅 */}
           {getUserLevel?.mb_level === 2 ? (
-            <Route path={'/'}>
+            <Route path={'*'}>
               <Route
-                path={'/*'}
+                path={'*'}
                 element={
                   <PrivateRoute>
                     <UserMealRoute />
@@ -148,9 +148,9 @@ const Router = () => {
           )}
           {/* 전문가 라우팅 */}
           {getUserLevel?.mb_level === 3 ? (
-            <Route path={'/'}>
+            <Route path={'*'}>
               <Route
-                path={'/*'}
+                path={'*'}
                 element={
                   <PrivateRoute>
                     <ProProfileRouter />

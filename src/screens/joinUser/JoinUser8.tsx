@@ -115,7 +115,7 @@ const JoinUser8 = () => {
           onClick={() => {
             processSignup();
             reset();
-            navigate('/user/meal');
+            navigate('/');
           }}
         >
           아니오, 괜찮습니다!
