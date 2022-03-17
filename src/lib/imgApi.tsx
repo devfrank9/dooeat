@@ -34,7 +34,7 @@ const resize = async (image: HTMLImageElement) => {
   canvas.height = height;
 
   const context = canvas.getContext('2d');
-  context?.drawImage(image, 0, 0, width, height);
+  context?.drawImage(image, 150, 150, width, height);
 
   return canvas.toDataURL('image/jpeg', 0.5);
 };

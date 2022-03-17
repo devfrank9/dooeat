@@ -1,11 +1,10 @@
 import {useCallback, useRef, useState} from 'react';
 import {nanoid} from 'nanoid';
-import {ResponseBoardFile} from '../GQL/GQLInterfaces';
-
 export type CustomFile = Record<string, File>;
 
 const useFileInput = () => {
   const [imgFiles, setImgFiles] = useState<CustomFile>({});
+
   const [isError, setIsError] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -25,23 +24,13 @@ const useFileInput = () => {
         const file = files[i];
         const values = Object.values(imgFiles).length;
 
-        if (values + (additional ?? 0) === 2) setIsError(true);
-        else if (isError) setIsError(false);
+        if (values + (additional ?? 0) === 2) {
+          setIsError(true);
+          return;
+        } else if (isError) setIsError(false);
 
         const customFile = {[nanoid()]: file};
-        console.log(customFile);
-        console.log(file);
         setImgFiles({...imgFiles, ...customFile});
-        /*         setProcess({
-          url: imgFiles,
-          fileType: '',
-          thumb: '',
-          bf_id: 0,
-          bo_table: '',
-          wr_id: 0,
-          fileName: '',
-          downloadCount: 0,
-        }); */
       }
     },
     [imgFiles, isError],

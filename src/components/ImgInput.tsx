@@ -42,8 +42,12 @@ const ImgInput = ({
   return (
     <FileAlign>
       {Object.keys(imgFiles).length === 0
-        ? [...Array(2)].map(item => (
-            <FileRectengle htmlFor="file1" onClick={handleClickOnFileInput}>
+        ? [...Array(2)].map((item, index) => (
+            <FileRectengle
+              htmlFor="file1"
+              onClick={handleClickOnFileInput}
+              key={index}
+            >
               <input
                 style={{display: 'none'}}
                 accept="image/*"
