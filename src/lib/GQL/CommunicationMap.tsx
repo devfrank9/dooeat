@@ -268,7 +268,12 @@ export const useQueryForGetBoardWrite = (variables: RequestGetBoardWrite) =>
         $wr_id: String
         $wr_1: String
       ) {
-        getBoardWrite(session: $session, bo_table: $bo_table, wr_id: $wr_id) {
+        getBoardWrite(
+          session: $session
+          bo_table: $bo_table
+          wr_id: $wr_id
+          wr_1: $wr_1
+        ) {
           boardData {
             subject
             canWrite

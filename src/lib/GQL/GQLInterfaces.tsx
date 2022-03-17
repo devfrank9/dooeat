@@ -1,10 +1,16 @@
-import {ResponseShopData} from './ShopGQLInterface';
+import exp from 'constants';
+import {
+  ResponseCart,
+  ResponseGetQueryGetShopCategories,
+  ResponseGetShopItems,
+  ResponseItemDetail,
+  ResponseShopData,
+} from './ShopGQLInterface';
 
 export interface Responses {
   data: ResponseData;
   errors: ResponseError[];
 }
-
 interface ResponseError {
   message: string;
 }
@@ -78,8 +84,8 @@ export interface ResponseQueryGetBoardListBoardData {
   bo_use_nogood: boolean;
 }
 
-export interface ResponseBoardFile {
-  url: string;
+interface ResponseBoardFile {
+  url: string | number;
   fileType: string;
   thumb: string | number;
   bf_id: number;
@@ -105,6 +111,10 @@ export interface ResponseQueryGetOther {
 }
 
 export interface ResponseQueryGetBoardListBoardList {
+  session: string;
+  bo_table: string;
+  token: string;
+
   wr_num: number;
   wr_id: number;
   wr_reply: number;
@@ -285,24 +295,12 @@ export interface RequestSubFileData {
   fileData: string;
 }
 
-export interface RequestImgFileData {
-  url: string;
-  fileType: string;
-  thumb: string | number;
-  bf_id: number;
-  bo_table: string;
-  wr_id: number;
-  fileName: string;
-  downloadCount: number;
-}
-
 export interface RequestMutationSetBoardWrite {
-  session?: string;
-  bo_table: string;
+  session: string;
   token: string;
-
   isDelete?: boolean;
 
+  bo_table: string;
   wr_id?: number;
 
   password?: string;
@@ -310,6 +308,7 @@ export interface RequestMutationSetBoardWrite {
   capcha?: string;
 
   category?: string;
+
   subject?: string;
   content: string;
 
@@ -324,7 +323,7 @@ export interface RequestMutationSetBoardWrite {
   wr_9?: string;
   wr_10?: string;
 
-  files?: (RequestImgFileData | null)[];
+  files?: (RequestSubFileData | null)[];
   deleteFile?: number[];
 }
 
