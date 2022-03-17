@@ -13,7 +13,7 @@ function UserMealRoute() {
         <Routes>
           <Route path="*" element={<MealMain />} />
           <Route path="/write" element={<MealWrite />} />
-          <Route path="/edit/:wr_id" element={<MealEdit />} />
+          <Route path=":wr_1/:wr_id" element={<MealWrite />} />
         </Routes>
         {pathname === '/' ? <Navigation /> : <></>}
       </AlignBase>

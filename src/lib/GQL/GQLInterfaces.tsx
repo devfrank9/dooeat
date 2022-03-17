@@ -31,6 +31,7 @@ export interface RequestQueryGetBoardListSearch {
   name?: string;
   category?: string;
   customWhere?: string;
+  wr_1?: string;
 }
 
 export interface RequestQueryGetBoardList {

@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
 
 import {useRecoilValue} from 'recoil';
-import {__session} from '../../lib/atom';
+import {__me, __session} from '../../lib/atom';
 import {
   useMutationSetBoardWrite,
   useQueryForGetBoardWrite,
@@ -45,16 +45,16 @@ const MealEdit = () => {
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
 
-  const {wr_id} = useParams();
+  const {wr_1, wr_id} = useParams();
   const navigate = useNavigate();
   const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
 
   const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
-    session: session,
+    session: String(session),
     bo_table: 'myFood',
     token: String(nanoid()),
-    wr_id: 1,
+    wr_id: Number(wr_id),
     files: [],
     wr_1: String(getMoment.format('YYYY-MM-DD')),
   });
@@ -62,6 +62,7 @@ const MealEdit = () => {
     bo_table: 'myFood',
     wr_id: wr_id,
     session: session,
+    wr_1: wr_1,
   });
 
   useEffect(() => {
