@@ -12,8 +12,7 @@ import {useEffect, useState} from 'react';
 import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
 
 const MealEdit = () => {
-  const getData: ResponseQueryGetBoardListBoardList[] =
-    FoodData.getBoardList.boardList;
+  const getData: any[] = FoodData.getBoardList.boardList;
   const {wr_id} = useParams();
   const [board, setBoard] = useState({});
 

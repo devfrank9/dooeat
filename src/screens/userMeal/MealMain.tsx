@@ -8,24 +8,35 @@ import {RectPrev} from './Rectengle';
 import {Link, useParams} from 'react-router-dom';
 import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
 import styled from 'styled-components';
+import {useQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
+import {__session} from '../../lib/atom';
+import {useRecoilValue} from 'recoil';
 
 const MealMain = () => {
   let params = useParams();
-  const data = FoodData.getBoardList.boardList;
-  const [userData, setUserData] = useState<
-    ResponseQueryGetBoardListBoardList[]
-  >([]);
+  const session = useRecoilValue(__session);
   const [water, setWater] = useState(0);
   const [getMoment, setMoment] = useState(moment());
   const [select, setSelect] = useState<number[]>([]);
+  const nowDate = getMoment.format('YYYY-MM-DD');
+
+  const [userData, setUserData] = useState<
+    ResponseQueryGetBoardListBoardList[] | any
+  >([]);
+  const queryResult = useQueryForGetBoardList({
+    session: session,
+    bo_table: 'myFood',
+  });
 
   useEffect(() => {
-    const nowDate = getMoment.format('YYYY-MM-DD');
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].datetime === nowDate) setUserData(data);
-      else setUserData([]);
+    const boardResult = queryResult.data?.getBoardList.boardList;
+    if (boardResult !== undefined) {
+      for (let i = 0; i < boardResult.length; i++) {
+        if (boardResult[i].datetime === nowDate) setUserData(boardResult);
+        else setUserData([...userData]);
+      }
     }
-  }, [data, getMoment]);
+  }, [getMoment]);
 
   const waterRender = () => {
     return (
@@ -70,10 +81,12 @@ const MealMain = () => {
       <Styled.RectengleAlign>
         <Styled.FileAlign>
           {userData.length === 0 ? (
-            [...Array(2)].map(() => <FileRectengle to="write" />)
+            [...Array(2)].map((data, index) => (
+              <FileRectengle to="write" key={index} />
+            ))
           ) : (
             <>
-              {userData.map((data, index) => (
+              {userData?.map((data: any, index: any) => (
                 <RectPrev
                   link={`edit/${data.wr_id}`}
                   key={data.wr_id}
