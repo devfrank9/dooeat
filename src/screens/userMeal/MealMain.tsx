@@ -9,7 +9,7 @@ import {Link, useParams} from 'react-router-dom';
 import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
 import styled from 'styled-components';
 import {useQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
-import {__session} from '../../lib/atom';
+import {__me, __session} from '../../lib/atom';
 import {useRecoilValue} from 'recoil';
 
 const MealMain = () => {
@@ -19,6 +19,7 @@ const MealMain = () => {
   const [getMoment, setMoment] = useState(moment());
   const [select, setSelect] = useState<number[]>([]);
   const nowDate = getMoment.format('YYYY-MM-DD');
+  const getMe = useRecoilValue(__me);
 
   const [userData, setUserData] = useState<
     ResponseQueryGetBoardListBoardList[] | any
@@ -26,13 +27,17 @@ const MealMain = () => {
   const queryResult = useQueryForGetBoardList({
     session: session,
     bo_table: 'myFood',
+    search: {
+      mb_id: getMe?.mb_id,
+      wr_1: nowDate,
+    },
   });
 
   useEffect(() => {
-    const boardResult = queryResult.data?.getBoardList.boardList;
+    let boardResult = queryResult.data?.getBoardList.boardList;
     if (boardResult !== undefined) {
       for (let i = 0; i < boardResult.length; i++) {
-        if (boardResult[i].datetime === nowDate) setUserData(boardResult);
+        if (boardResult[i].wr_1 === nowDate) setUserData(boardResult);
         else setUserData([...userData]);
       }
     }
@@ -82,15 +87,15 @@ const MealMain = () => {
         <Styled.FileAlign>
           {userData.length === 0 ? (
             [...Array(2)].map((data, index) => (
-              <FileRectengle to="write" key={index} />
+              <FileRectengle to={`${nowDate}/${index + 1}`} key={index} />
             ))
           ) : (
             <>
-              {userData?.map((data: any, index: any) => (
+              {userData.map((data: any, index: any) => (
                 <RectPrev
-                  link={`edit/${data.wr_id}`}
+                  link={`${data.wr_1}/${data.wr_id}`}
                   key={data.wr_id}
-                  img={data.file[0].url}
+                  img={''}
                   text={data.wr_2}
                 />
               ))}

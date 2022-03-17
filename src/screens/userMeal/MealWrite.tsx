@@ -11,6 +11,7 @@ import {useRecoilValue} from 'recoil';
 import {__me, __session} from '../../lib/atom';
 import {
   useMutationSetBoardWrite,
+  useQueryForGetBoardList,
   useQueryForGetBoardWrite,
 } from '../../lib/GQL/CommunicationMap';
 import {TimeInputStyle} from '../../components/TimeInput';
@@ -49,6 +50,8 @@ const MealEdit = () => {
   const navigate = useNavigate();
   const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
+  const getMe = useRecoilValue(__me);
+  const nowDate = wr_1;
 
   const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
     session: String(session),
@@ -58,11 +61,13 @@ const MealEdit = () => {
     files: [],
     wr_1: String(getMoment.format('YYYY-MM-DD')),
   });
-  const queryResult = useQueryForGetBoardWrite({
-    bo_table: 'myFood',
-    wr_id: wr_id,
+  const queryResult = useQueryForGetBoardList({
     session: session,
-    wr_1: wr_1,
+    bo_table: 'myFood',
+    search: {
+      mb_id: getMe?.mb_id,
+      wr_1: nowDate,
+    },
   });
 
   useEffect(() => {
