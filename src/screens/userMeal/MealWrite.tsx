@@ -5,8 +5,8 @@ import {TextArea} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
+import {nanoid} from 'nanoid';
 
-import {RequestImgFileData, RequestMutationSetBoardWrite} from '../../lib/GQL/GQLInterfaces';
 import {useRecoilValue} from 'recoil';
 import {__session} from '../../lib/atom';
 import {
@@ -17,6 +17,8 @@ import {TimeInputStyle} from '../../components/TimeInput';
 import ImgInput from '../../components/ImgInput';
 import useImgInput from '../../lib/Hook/useImgInput';
 import {compressImageFile} from '../../lib/imgApi';
+import moment from 'moment';
+import {RequestMutationSetBoardWrite} from '../../lib/GQL/GQLInterfaces';
 
 interface Iselect {
   [x: string]: any;
@@ -25,6 +27,7 @@ interface Iselect {
 }
 
 const MealEdit = () => {
+  const [commSetBoardWrite] = useMutationSetBoardWrite();
   const arr = [
     {
       key: 1,
@@ -39,24 +42,52 @@ const MealEdit = () => {
       list: ['치팅', '일반식', '다이어트식'],
     },
   ];
-  const {bo_table, wr_id} = useParams();
+  const [pick, setPick] = useState<Iselect[]>(arr);
+  const [select, setSelect] = useState<string[]>([]);
+
+  const {wr_id} = useParams();
   const navigate = useNavigate();
   const session = useRecoilValue(__session);
+  const [getMoment, setMoment] = useState(moment());
+
+  const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
+    session: session,
+    bo_table: 'myFood',
+    token: String(nanoid()),
+    wr_id: 1,
+    files: [],
+    wr_1: String(getMoment.format('YYYY-MM-DD')),
+  });
   const queryResult = useQueryForGetBoardWrite({
-    bo_table: bo_table!,
+    bo_table: 'myFood',
     wr_id: wr_id,
     session: session,
   });
-  const [commSetBoardWrite] = useMutationSetBoardWrite();
-  const [pick, setPick] = useState<Iselect[]>(arr);
-  const [select, setSelect] = useState<string[]>([]);
-  const [data, setData] = useState<RequestMutationSetBoardWrite>({
-    session: '',
-    bo_table: 'food',
-    token: '',
-    subject: '',
-    content: '',
-  });
+
+  useEffect(() => {
+    if (queryResult.data?.getBoardList.boardList !== undefined) {
+      let boardQueryResult = queryResult.data?.getBoardList.boardList;
+      boardQueryResult.map((item, index) => {
+        return boardQueryResult[index].wr_id === Number(wr_id)
+          ? setData({
+              session: boardQueryResult[index].session,
+              bo_table: boardQueryResult[index].bo_table,
+              token: boardQueryResult[index].token,
+              wr_id: boardQueryResult[index].wr_id,
+              subject: boardQueryResult[index].subject,
+              content: boardQueryResult[index].content,
+              files: boardQueryResult[index].file as any,
+              wr_1: boardQueryResult[index].wr_1,
+              wr_2: boardQueryResult[index].wr_2,
+              wr_3: boardQueryResult[index].wr_3,
+              wr_4: boardQueryResult[index].wr_4,
+              wr_5: boardQueryResult[index].wr_5,
+            })
+          : setData({...data});
+      });
+    }
+  }, []);
+
   const {
     fileRef,
     imgFiles,
@@ -65,61 +96,26 @@ const MealEdit = () => {
     handleUploadFile,
     removeSeletedPreview,
   } = useImgInput();
-
-  useEffect(() => {
-    if (queryResult.data?.getBoardWrite) {
-      let boardInfo = queryResult.data.getBoardWrite.boardInfo;
-      if (boardInfo) {
-        setData({
-          session: session,
-          bo_table: bo_table || '',
-          token: '',
-          wr_id: boardInfo.wr_id,
-          subject: boardInfo.subject,
-          content: boardInfo.content,
-          wr_1: boardInfo.wr_1,
-          wr_2: boardInfo.wr_2,
-          wr_3: boardInfo.wr_3,
-          wr_4: boardInfo.wr_4,
-          wr_5: boardInfo.wr_5,
-          wr_6: boardInfo.wr_6,
-          wr_7: boardInfo.wr_7,
-          wr_8: boardInfo.wr_8,
-          wr_9: boardInfo.wr_9,
-          wr_10: boardInfo.wr_10,
-          files: boardInfo.file,
-        });
-      }
+  const [imgData, setImgData] = useState<{}>({
+    fileData: '',
+    fileName: '',
+  });
+  const processImg = async () => {
+    const files = Object.values(imgFiles);
+    let a: any[] = [];
+    for (const file of files) {
+      let x = await compressImageFile(file);
+      setImgData({
+        fileData: URL.createObjectURL(x),
+        fileName: x.name,
+      });
+      a.push(imgData);
     }
-  }, [queryResult.data?.getBoardWrite]);
-
-  useEffect(() => {
-    commSetBoardWrite({variables: data}).then(result => {
-      if (result.data && result.data.setBoardWrite) navigate(-1);
-    });
-  }, [commSetBoardWrite]);
-
+    setData({...data, files: a as any});
+  };
   const selectChange = (item: string) => {
     if (!select.includes(item)) return setSelect(select => [...select, item]);
     else return setSelect(select.filter(button => button !== item));
-  };
-
-  const processImg = async () => {
-    const files = Object.values(imgFiles);
-    const empty: RequestImgFileData[] = [];
-    for (const file of files) {
-      let x = await compressImageFile(file);
-      empty.push(x);
-    }
-    empty.map((item,index)=>(
-       
-    ))
-  };
-
-  const process = () => {
-    processImg();
-    setData({...data, bo_table: 'food'});
-    console.log(data);
   };
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
@@ -169,6 +165,14 @@ const MealEdit = () => {
       ));
     }
   };
+  const process = () => {
+    processImg();
+    console.log(data);
+    commSetBoardWrite({variables: data}).then(result => {
+      console.log('run');
+      if (result.data?.setBoardWrite) navigate(-1);
+    });
+  };
 
   return (
     <>
@@ -177,21 +181,35 @@ const MealEdit = () => {
       <Subject>식사 시간</Subject>
       <TimeInputStyle
         type="time"
-        value={data.subject}
+        value={data?.subject}
         onChange={e => setData({...data, subject: e.target.value})}
       />
       <div style={{height: '30px'}} />
       <Subject>식단 사진</Subject>
-      <ImgInput
-        fileRef={fileRef}
-        name="image-uploader"
-        imgFiles={imgFiles}
-        isError={isError}
-        handleClickOnFileInput={handleClickOnFileInput}
-        handleUploadFile={handleUploadFile}
-        removeSeletedPreview={removeSeletedPreview}
-        hidden
-      />
+      {data.files.length === 0 ? (
+        <ImgInput
+          fileRef={fileRef}
+          name="image-uploader"
+          imgFiles={imgFiles}
+          isError={isError}
+          handleClickOnFileInput={handleClickOnFileInput}
+          handleUploadFile={handleUploadFile}
+          removeSeletedPreview={removeSeletedPreview}
+          hidden
+        />
+      ) : (
+        <ImgInput
+          fileRef={fileRef}
+          name="image-uploader"
+          imgFiles={imgFiles}
+          isError={isError}
+          handleClickOnFileInput={handleClickOnFileInput}
+          handleUploadFile={handleUploadFile}
+          removeSeletedPreview={removeSeletedPreview}
+          hidden
+        />
+      )}
+
       <div style={{height: '30px'}} />
       <Subject>타입</Subject>
       <BtnAlign>{btnRender(0)}</BtnAlign>

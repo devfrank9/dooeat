@@ -3,16 +3,29 @@ import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import useLogout from '../../lib/Hook/useLogout';
-import {MemberDataLv2} from '../../Dummy/Dummy';
+import {useEffect, useState} from 'react';
+import {useRecoilValue, useResetRecoilState} from 'recoil';
+import {__me} from '../../lib/atom';
+import {ResponseMe} from '../../lib/GQL/GQLInterfaces';
 
 const UserMyPageMain = () => {
-  const getData = MemberDataLv2.getMe;
+  const getMe = useRecoilValue(__me);
+  const [userData, setUserData] = useState<ResponseMe>();
   const logout = useLogout();
   const navigate = useNavigate();
+  const reset = useResetRecoilState(__me);
+
+  useEffect(() => {
+    if (getMe !== undefined) setUserData(getMe);
+  });
+  useEffect(() => {
+    if (getMe?.mb_id === undefined) navigate('/login');
+  });
   const handleLogout = () => {
+    reset();
     logout();
-    navigate('/');
   };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -20,20 +33,18 @@ const UserMyPageMain = () => {
         <div style={{height: '80px'}} />
         <MyPageBanner>
           <img src="/image/body.png" alt="" />
-          <p>{getData.mb_name}</p>
-          <p>{getData.mb_email}</p>
-          <EditLink to="/user/mypage/edit">편집</EditLink>
+          <p>{userData?.mb_name}</p>
+          <p>{userData?.mb_email}</p>
+          <EditLink to="edit">편집</EditLink>
         </MyPageBanner>
         <List>
-          <ListContent to="/user/mypage/my-post">내가 쓴 글</ListContent>
-          <ListContent to="/user/mypage/my-comment">내가 쓴 댓글</ListContent>
-          <ListContent to="/user/mypage/match-set">매칭 정보 설정</ListContent>
-          <ListContent to="/user/mypage/match-apply">
-            매칭 신청 내역
-          </ListContent>
-          <ListContent to="/user/mypage/favor-pro">찜한 전문가</ListContent>
+          <ListContent to="my-post">내가 쓴 글</ListContent>
+          <ListContent to="my-comment">내가 쓴 댓글</ListContent>
+          <ListContent to="match-set">매칭 정보 설정</ListContent>
+          <ListContent to="match-apply">매칭 신청 내역</ListContent>
+          <ListContent to="favor-pro">찜한 전문가</ListContent>
           <ListContent to="/notice">공지사항</ListContent>
-          <ListContent to="/user/mypage/alert-set">알림설정</ListContent>
+          <ListContent to="alert-set">알림설정</ListContent>
         </List>
         <div style={{height: '116px'}} />
         <MypageFooter>
