@@ -789,7 +789,7 @@ export const exerciseData = {
       },
     ],
     pageCount: 1,
-  } as ResponseQueryGetBoardList,
+  },
 };
 export const exerciseForm = {
   getExercise: {
