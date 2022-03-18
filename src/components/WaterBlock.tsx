@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 interface Prop {
-  waterCalc: number;
+  waterCalc?: number;
 }
 
 export const WaterBlock = ({waterCalc}: Prop) => {
