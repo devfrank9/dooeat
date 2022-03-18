@@ -6,19 +6,20 @@ import {ColoredBtn} from '../../styles/BtnStyled';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
-
 import {useRecoilValue} from 'recoil';
 import {__me, __session} from '../../lib/atom';
 import {
+  useLQueryForGetBoardList,
   useMutationSetBoardWrite,
-  useQueryForGetBoardList,
 } from '../../lib/GQL/CommunicationMap';
 import {TimeInputStyle} from '../../components/TimeInput';
 import ImgInput from '../../components/ImgInput';
 import useImgInput from '../../lib/Hook/useImgInput';
-import {compressImageFile} from '../../lib/imgApi';
 import moment from 'moment';
-import {RequestMutationSetBoardWrite} from '../../lib/GQL/GQLInterfaces';
+import {
+  RequestMutationSetBoardWrite,
+  RequestQueryGetBoardList,
+} from '../../lib/GQL/GQLInterfaces';
 
 interface Iselect {
   [x: string]: any;
@@ -27,7 +28,11 @@ interface Iselect {
 }
 
 const MealEdit = () => {
-  const [commSetBoardWrite] = useMutationSetBoardWrite();
+  const {pathname} = useLocation();
+  const {wr_id} = useParams();
+  const navigate = useNavigate();
+  const [getMoment, setMoment] = useState(moment());
+
   const arr = [
     {
       key: 1,
@@ -45,59 +50,10 @@ const MealEdit = () => {
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
 
-  const {wr_1, wr_id} = useParams();
-  const navigate = useNavigate();
-  const session = useRecoilValue(__session);
-  const [getMoment, setMoment] = useState(moment());
-  const getMe = useRecoilValue(__me);
-  const nowDate = wr_1;
-  const {pathname} = useLocation();
-
-  const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
-    session: String(session),
-    bo_table: 'myFood',
-    token: String(nanoid()),
-    wr_id: Number(nanoid()),
-    files: [],
-    wr_1: String(getMoment.format('YYYY-MM-DD')),
+  const [imgData, setImgData] = useState<{}>({
+    fileData: '',
+    fileName: '',
   });
-
-  const queryResult = useQueryForGetBoardList({
-    session: session,
-    bo_table: 'myFood',
-    search: {
-      mb_id: getMe?.mb_id,
-      wr_1: nowDate,
-    },
-  });
-
-  useEffect(() => {
-    if (queryResult.data?.getBoardList.boardList !== undefined) {
-      let boardQueryResult = queryResult.data?.getBoardList.boardList;
-      boardQueryResult.map((item, index) => {
-        return boardQueryResult[index].wr_id === Number(wr_id)
-          ? setData({
-              session: boardQueryResult[index].session,
-              bo_table: boardQueryResult[index].bo_table,
-              token: boardQueryResult[index].token,
-              wr_id: boardQueryResult[index].wr_id,
-              subject: boardQueryResult[index].subject,
-              content: boardQueryResult[index].content,
-              files: boardQueryResult[index].file as any,
-              wr_1: boardQueryResult[index].wr_1,
-              wr_2: boardQueryResult[index].wr_2,
-              wr_3: boardQueryResult[index].wr_3,
-              wr_4: boardQueryResult[index].wr_4,
-              wr_5: boardQueryResult[index].wr_5,
-              wr_6: boardQueryResult[index].subject,
-              wr_name: boardQueryResult[index].wr_name,
-              mb_id: boardQueryResult[index].mb_id,
-            })
-          : setData({...data});
-      });
-    }
-  }, []);
-
   const {
     fileRef,
     imgFiles,
@@ -106,23 +62,72 @@ const MealEdit = () => {
     handleUploadFile,
     removeSeletedPreview,
   } = useImgInput();
-  const [imgData, setImgData] = useState<{}>({
-    fileData: '',
-    fileName: '',
+
+  const session = useRecoilValue(__session);
+  const getMe = useRecoilValue(__me);
+
+  const [commSetBoardWrite, setBoardResult] = useMutationSetBoardWrite();
+  const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
+    session: String(session),
+    bo_table: 'myFood',
+    token: String(nanoid()),
+    wr_id: Number(nanoid()),
+    files: [],
+    wr_1: String(getMoment.format('YYYY-MM-DD')),
+    /* wr_6: subject,
+    wr_name: getMe?.mb_name,
+    wr_name: getMe?.mb_name, */
   });
-  const processImg = async () => {
+  const [queryData, queryDataResult] = useLQueryForGetBoardList();
+
+  useEffect(() => {
+    let queryBoardDetail: RequestQueryGetBoardList = {
+      session: session,
+      bo_table: 'myFood',
+      search: {
+        mb_id: getMe?.mb_id,
+        wr_1: String(getMoment.format('YYYY-MM-DD')),
+      },
+    };
+
+    queryData({variables: queryBoardDetail});
+    if (queryDataResult.data?.getBoardDetail !== undefined) {
+      let boardQueryResult = queryDataResult.data?.getBoardDetail;
+      if (boardQueryResult.wr_id === Number(wr_id)) {
+        setData({
+          subject: boardQueryResult.subject,
+          content: boardQueryResult.content,
+          files: boardQueryResult.file,
+          wr_1: boardQueryResult.wr_1,
+          wr_2: boardQueryResult.wr_2,
+          wr_3: boardQueryResult.wr_3,
+          wr_4: boardQueryResult.wr_4,
+          wr_5: boardQueryResult.wr_5,
+          wr_6: boardQueryResult.subject,
+          wr_name: boardQueryResult.wr_name,
+          mb_id: boardQueryResult.mb_id,
+        });
+      } else setData({});
+    }
+  }, [queryData]);
+
+  useEffect(() => {
     const files = Object.values(imgFiles);
     let a: any[] = [];
     for (const file of files) {
-      let x = await compressImageFile(file);
       setImgData({
-        fileData: URL.createObjectURL(x),
-        fileName: x.name,
+        fileData: URL.createObjectURL(file),
+        fileName: file.name,
       });
       a.push(imgData);
     }
     setData({...data, files: a as any});
-  };
+  }, [ImgInput]);
+
+  useEffect(() => {
+    if (setBoardResult.data?.setBoardWrite) navigate(-1);
+  }, [commSetBoardWrite]);
+
   const selectChange = (item: string) => {
     if (!select.includes(item)) return setSelect(select => [...select, item]);
     else return setSelect(select.filter(button => button !== item));
@@ -174,15 +179,6 @@ const MealEdit = () => {
         </LongBtn>
       ));
     }
-  };
-  const process = () => {
-    setData({...data, wr_6: data.subject});
-    processImg();
-    console.log(data);
-    commSetBoardWrite({variables: data}).then(result => {
-      console.log('run');
-      if (result.data?.setBoardWrite) navigate(-1);
-    });
   };
 
   return (
@@ -243,7 +239,9 @@ const MealEdit = () => {
         <p>식사 기록을 내 전문가와 공유</p>
       </CheckInput>
       <div style={{height: '30px'}} />
-      <ColoredBtn onClick={process}>기록하기</ColoredBtn>
+      <ColoredBtn onClick={() => commSetBoardWrite({variables: data})}>
+        기록하기
+      </ColoredBtn>
       <div style={{height: '30px'}} />
     </>
   );

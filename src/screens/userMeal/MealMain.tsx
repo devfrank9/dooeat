@@ -5,9 +5,12 @@ import {useEffect, useState} from 'react';
 import moment from 'moment';
 import {RectPrev} from './Rectengle';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
+import {
+  RequestQueryGetBoardList,
+  ResponseQueryGetBoardListBoardList,
+} from '../../lib/GQL/GQLInterfaces';
 import styled from 'styled-components';
-import {useQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
+import {useLQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
 import {__me, __session} from '../../lib/atom';
 import {useRecoilValue} from 'recoil';
 import {WaterBlock} from '../../components/WaterBlock';
@@ -17,35 +20,37 @@ const MealMain = () => {
   const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
   const nowDate = getMoment.format('YYYY-MM-DD');
-  const [dateText, setDateText] = useState(nowDate);
   const getMe = useRecoilValue(__me);
   const navigate = useNavigate();
 
+  const [queryData, queryDataResult] = useLQueryForGetBoardList();
   const [userData, setUserData] = useState<
     ResponseQueryGetBoardListBoardList[]
   >([]);
 
-  const query = useQueryForGetBoardList({
-    bo_table: 'myFood',
-    session: session,
-    search: {
-      mb_id: getMe?.mb_id,
-      wr_1: nowDate,
-    },
-  });
+  useEffect(() => {
+    const foodBoardData = queryDataResult.data?.getBoardList.boardList;
+    if (foodBoardData !== undefined) {
+      foodBoardData.map((item, index) => {
+        foodBoardData[index].wr_1 === nowDate
+          ? setUserData(foodBoardData)
+          : setUserData([]);
+      });
+    }
+  }, [queryDataResult]);
 
   useEffect(() => {
-    let boardResult = query.data?.getBoardList.boardList;
-    let queryResult = query.data?.getBoardDetail;
-    if (boardResult !== undefined) {
-      console.log(boardResult);
-      console.log(queryResult);
-      for (let i = 0; i < boardResult.length; i++) {
-        if (boardResult[i].wr_1 === nowDate) setUserData(boardResult);
-        else setUserData([]);
-      }
-    }
-  }, [getMoment, navigate]);
+    let queryFoodBoard: RequestQueryGetBoardList = {
+      bo_table: 'myFood',
+      session: session,
+      search: {
+        mb_id: getMe?.mb_id,
+        wr_1: nowDate,
+      },
+    };
+    queryData({variables: queryFoodBoard});
+    console.log(userData);
+  }, [getMoment]);
 
   return (
     <>
