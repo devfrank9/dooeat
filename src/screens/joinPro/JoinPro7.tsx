@@ -55,13 +55,14 @@ const JoinPro8 = () => {
       if (data.data?.setMember) {
         setSession(data.data.setMember);
         alert('회원가입을 환영합니다');
+        navigate('/pro/profile');
+        reset();
       } else {
         alert('회원가입 실패');
-        return;
+        navigate('/');
+        reset();
       }
     });
-    navigate('/pro/profile');
-    reset();
   };
 
   return (
