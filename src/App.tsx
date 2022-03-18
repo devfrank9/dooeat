@@ -15,6 +15,7 @@ import {useLocalStorage, useSessionStorage} from 'react-use-storage';
 import {GlobalStyle} from './styles/GlobalStyle';
 import Router from './Router';
 import LoadingScreen from './screens/includes/LoadingScreen';
+import useGetMe from './lib/Hook/useGetMe';
 
 const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
@@ -50,12 +51,15 @@ const ScreenHooker = () => {
   const status = useApolloNetworkStatus();
   const [isLoading, setIsLoading] = useRecoilState(__isLoading);
   const setSession = useSetRecoilState(__session);
+  const realTimeMe = useGetMe();
 
   useEffect(() => {
     if (sessionValue) {
       setSession(sessionValue);
+      realTimeMe();
     } else if (value) {
       setSession(value);
+      realTimeMe();
     }
   }, []);
 

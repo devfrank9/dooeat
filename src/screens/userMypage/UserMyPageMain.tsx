@@ -17,11 +17,9 @@ const UserMyPageMain = () => {
 
   useEffect(() => {
     if (getMe !== undefined) setUserData(getMe);
-  });
-  useEffect(() => {
-    if (getMe?.mb_id === undefined) navigate('/login');
-  });
+  }, []);
   const handleLogout = () => {
+    navigate('/');
     reset();
     logout();
   };

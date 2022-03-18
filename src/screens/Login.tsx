@@ -13,11 +13,8 @@ import Constants from '../lib/Constants';
 import {useNavigate} from 'react-router-dom';
 import {RequestQueryGetLogin} from '../lib/GQL/GQLInterfaces';
 import {RulesProp, validate} from '../lib/GlobalFunction';
-// Screens
 import BaseScreen from './BaseScreen';
-// Components
 import {Logo} from '../components/Logo';
-// Styles
 import {Common} from '../styles/InputStyled';
 import {ColoredBtn} from '../styles/BtnStyled';
 import {AlignBase, Space} from './BaseScreen';
@@ -26,7 +23,6 @@ const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [preventEvent, setPreventEvent] = useState(false);
-  const [autoLogin, setAutoLogin] = useState(false);
 
   const [_, setValue, __] = useLocalStorage(
     Constants.storage.autoLoginSession,
@@ -64,6 +60,7 @@ const Login = () => {
     if (commLoginResult.data) {
       setPreventEvent(true);
       setSession(commLoginResult.data.login);
+      setValue(commLoginResult.data.login);
       setCurrentValue(commLoginResult.data.login);
       let session: {session: string} = {
         session: commLoginResult.data.login,
@@ -74,7 +71,6 @@ const Login = () => {
 
   useEffect(() => {
     if (loginDataResult.data && loginDataResult.data.getMe) {
-      console.log(loginDataResult.data);
       console.log(loginDataResult.data?.getMe);
       setMe(loginDataResult.data.getMe);
       navigate('/');

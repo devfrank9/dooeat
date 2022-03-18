@@ -1,9 +1,29 @@
-import {Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useRecoilValue, useResetRecoilState} from 'recoil';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
+import {__me} from '../../lib/atom';
+import {ResponseMe} from '../../lib/GQL/GQLInterfaces';
+import useLogout from '../../lib/Hook/useLogout';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 
 const ProMyPageMain = () => {
+  const getMe = useRecoilValue(__me);
+  const [userData, setUserData] = useState<ResponseMe>();
+  const logout = useLogout();
+  const navigate = useNavigate();
+  const reset = useResetRecoilState(__me);
+
+  useEffect(() => {
+    if (getMe !== undefined) setUserData(getMe);
+  }, []);
+  const handleLogout = () => {
+    navigate('/');
+    reset();
+    logout();
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -24,7 +44,7 @@ const ProMyPageMain = () => {
         </List>
         <div style={{height: '240px'}} />
         <MypageFooter>
-          <Link to="/">로그아웃</Link>
+          <p onClick={handleLogout}>로그아웃</p>
           <Link to="/">회원탈퇴</Link>
         </MypageFooter>
       </AlignBase>
@@ -34,7 +54,7 @@ const ProMyPageMain = () => {
 const MypageFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  a {
+  p {
     font-size: 14px;
     &:link {
       color: rgb(151, 151, 151);
