@@ -3,7 +3,7 @@ import {StatusBar2} from '../../components/StatusBar';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
 
@@ -12,7 +12,6 @@ import {__me, __session} from '../../lib/atom';
 import {
   useMutationSetBoardWrite,
   useQueryForGetBoardList,
-  useQueryForGetBoardWrite,
 } from '../../lib/GQL/CommunicationMap';
 import {TimeInputStyle} from '../../components/TimeInput';
 import ImgInput from '../../components/ImgInput';
@@ -52,15 +51,17 @@ const MealEdit = () => {
   const [getMoment, setMoment] = useState(moment());
   const getMe = useRecoilValue(__me);
   const nowDate = wr_1;
+  const {pathname} = useLocation();
 
   const [data, setData] = useState<RequestMutationSetBoardWrite | any>({
     session: String(session),
     bo_table: 'myFood',
     token: String(nanoid()),
-    wr_id: Number(wr_id),
+    wr_id: Number(nanoid()),
     files: [],
     wr_1: String(getMoment.format('YYYY-MM-DD')),
   });
+
   const queryResult = useQueryForGetBoardList({
     session: session,
     bo_table: 'myFood',
@@ -88,6 +89,9 @@ const MealEdit = () => {
               wr_3: boardQueryResult[index].wr_3,
               wr_4: boardQueryResult[index].wr_4,
               wr_5: boardQueryResult[index].wr_5,
+              wr_6: boardQueryResult[index].subject,
+              wr_name: boardQueryResult[index].wr_name,
+              mb_id: boardQueryResult[index].mb_id,
             })
           : setData({...data});
       });
@@ -172,6 +176,7 @@ const MealEdit = () => {
     }
   };
   const process = () => {
+    setData({...data, wr_6: data.subject});
     processImg();
     console.log(data);
     commSetBoardWrite({variables: data}).then(result => {
@@ -192,7 +197,7 @@ const MealEdit = () => {
       />
       <div style={{height: '30px'}} />
       <Subject>식단 사진</Subject>
-      {data.files.length === 0 ? (
+      {pathname !== 'write' ? (
         <ImgInput
           fileRef={fileRef}
           name="image-uploader"
