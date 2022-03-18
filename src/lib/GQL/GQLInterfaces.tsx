@@ -239,6 +239,9 @@ export interface ResponseData extends ResponseShopData {
 
   getAllBoard: ResponseAllBoard;
   getMineExpert: ResponseMineExpert;
+
+  getExercise: ExerciseDetail;
+  getExerciseForm: ExerciseForm;
 }
 
 export interface RequestGetBoardWrite {
@@ -371,4 +374,31 @@ export interface RequestAllBoard {
   mb_id?: string;
   isComment?: boolean;
   isboard?: boolean;
+}
+
+export interface ExerciseForm {
+  session: string;
+  eType: string;
+}
+
+export interface ExerciseDetail {
+  date: string;
+  exerciseType: string;
+  todayWeight?: number;
+  file?: ResponseBoardFile[];
+  exerciseData?: ExerciseForm[];
+}
+
+export interface ExerciseForm {
+  part?: string;
+  name?: string;
+  set?: number;
+
+  weight?: number;
+  times?: number;
+
+  movieURL?: string;
+  time?: string;
+
+  power?: string;
 }

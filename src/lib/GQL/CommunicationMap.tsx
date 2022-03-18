@@ -1,5 +1,7 @@
 import {gql, useLazyQuery, useMutation, useQuery} from '@apollo/client';
 import {
+  ExerciseDetail,
+  ExerciseForm,
   RequestAllBoard,
   RequestCheckDuplicate,
   RequestGetBoardWrite,
@@ -29,6 +31,94 @@ export const useQueryForGetPopular = (variables: RequestQueryGetPopular) =>
       variables: variables,
       notifyOnNetworkStatusChange: true,
     },
+  );
+
+export const useLQueryForGetBoardList = () =>
+  useLazyQuery<ResponseData, RequestQueryGetBoardList>(
+    gql`
+      query getBoardList(
+        $session: String
+        $bo_table: String!
+        $page: Int
+        $noticeAbove: Boolean
+        $sort: String
+        $search: BoardSearchInput
+        $limit: Int
+      ) {
+        getBoardList(
+          session: $session
+          bo_table: $bo_table
+          page: $page
+          noticeAbove: $noticeAbove
+          sort: $sort
+          search: $search
+          limit: $limit
+        ) {
+          boardData {
+            subject
+            canWrite
+            canReply
+            canComment
+            canUseHTML
+            canUseLink
+            readPoint
+            writePoint
+            commentPoint
+            downloadPoint
+            category
+            bo_1
+            bo_2
+            bo_3
+            bo_4
+            bo_5
+            bo_6
+            bo_7
+            bo_8
+            bo_9
+            bo_10
+            bo_upload_count
+            bo_use_good
+            bo_use_nogood
+          }
+          boardList {
+            wr_num
+            wr_id
+            wr_reply
+            mb_id
+            wr_name
+            subject
+            content
+            file {
+              url
+              fileType
+              thumb
+              bf_id
+              bo_table
+              wr_id
+              fileName
+              downloadCount
+            }
+            datetime
+            hit
+            isSecret
+            isNotice
+            wr_1
+            wr_2
+            wr_3
+            wr_4
+            wr_5
+            wr_6
+            wr_7
+            wr_8
+            wr_9
+            wr_10
+            countGood
+            countBad
+          }
+          pageCount
+        }
+      }
+    `,
   );
 
 export const useQueryForGetBoardList = (variables: RequestQueryGetBoardList) =>
@@ -855,3 +945,44 @@ export const useQueryForAllBoard = (variables: RequestAllBoard) =>
       }
     }
   `);
+
+export const useQueryForExerciseForm = () =>
+  useQuery<ResponseData, ExerciseForm>(
+    gql`
+      query getExerciseForm($session: String, $eType: String) {
+        getExerciseForm(session: $session, eType: $eType) {
+          data {
+            exerciseForm {
+              part
+              name
+              set
+              weight
+              times
+              movieURL
+              time
+              power
+            }
+          }
+        }
+      }
+    `,
+  );
+
+export const useQueryForExerciseDetail = () =>
+  useQuery<ResponseData, ExerciseDetail>(
+    gql`
+      query getExercise ($session: String, $date: String) {
+        getExercise(session: $session, date: $date) {
+          data {
+            exerciseDetail {
+              date
+              exerciseType
+              todayWeight
+              file [BoardFileInput]
+              exerciseData [ExerciseForm]
+            }
+          }
+        }
+      }
+    `,
+  );
