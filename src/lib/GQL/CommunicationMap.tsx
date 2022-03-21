@@ -973,7 +973,6 @@ export const useQueryForExerciseDetail = () =>
     gql`
       query getExercise ($session: String, $date: String) {
         getExercise(session: $session, date: $date) {
-          data {
             exerciseDetail {
               date
               exerciseType
@@ -981,7 +980,6 @@ export const useQueryForExerciseDetail = () =>
               file [BoardFileInput]
               exerciseData [ExerciseForm]
             }
-          }
         }
       }
     `,

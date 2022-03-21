@@ -4,7 +4,7 @@ import * as Styled from '../../styles/userMeal/styled';
 import {useEffect, useState} from 'react';
 import moment from 'moment';
 import {RectPrev} from './Rectengle';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {
   RequestQueryGetBoardList,
   ResponseQueryGetBoardListBoardList,
@@ -37,7 +37,7 @@ const MealMain = () => {
           : setUserData([]);
       });
     }
-  }, [queryDataResult]);
+  }, [queryDataResult, navigate]);
 
   useEffect(() => {
     let queryFoodBoard: RequestQueryGetBoardList = {
@@ -70,7 +70,7 @@ const MealMain = () => {
         <Styled.FileAlign>
           {userData.length === 0 ? (
             [...Array(2)].map((data, index) => (
-              <FileRectengle to="write" key={index} />
+              <FileRectengle onClick={() => navigate('write')} key={index} />
             ))
           ) : (
             <>
@@ -78,11 +78,11 @@ const MealMain = () => {
                 <RectPrev
                   link={`${data.wr_id}`}
                   key={index}
-                  img={''}
+                  img={data.file[0].url}
                   text={data.wr_2}
                 />
               ))}
-              <FileRectengle to="write" />
+              <FileRectengle onClick={() => navigate('write')} />
             </>
           )}
         </Styled.FileAlign>
@@ -95,7 +95,7 @@ const MealMain = () => {
   );
 };
 
-const FileRectengle = styled(Link)`
+const FileRectengle = styled.div`
   display: block;
   min-width: 150px;
   width: 47.022%;

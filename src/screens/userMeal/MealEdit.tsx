@@ -1,36 +1,79 @@
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
-import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
-import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
+import {FileRectengle} from '../../styles/FileInputStyled';
 import {Time, TextArea} from '../../styles/InputStyled';
-import BaseScreen, {AlignBase} from '../BaseScreen';
 import {ColoredBtn} from '../../styles/BtnStyled';
 import {LinkStyle} from '../../styles/LinkStyled';
-import {FoodData} from '../../Dummy/Dummy';
-import {useParams} from 'react-router-dom';
+import {useLocation, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
-import {ResponseQueryGetBoardListBoardList} from '../../lib/GQL/GQLInterfaces';
+import {
+  RequestMutationSetBoardWrite,
+  RequestQueryGetBoardList,
+} from '../../lib/GQL/GQLInterfaces';
+import {useRecoilValue} from 'recoil';
+import {mealBtnState, __me, __session} from '../../lib/atom';
+import {
+  useLQueryForGetBoardList,
+  useMutationSetBoardWrite,
+} from '../../lib/GQL/CommunicationMap';
+import moment from 'moment';
+import {nanoid} from 'nanoid';
+import MealSelecBtn from '../../components/MealSelecBtn';
 
 const MealEdit = () => {
-  const getData: any[] = FoodData.getBoardList.boardList;
   const {wr_id} = useParams();
+  const session = useRecoilValue(__session);
   const [board, setBoard] = useState({});
+  const [commSetBoardWrite] = useMutationSetBoardWrite();
+  const [data, setData] = useState<RequestMutationSetBoardWrite | any>({});
+  const [queryData, queryDataResult] = useLQueryForGetBoardList();
+  const mealBtnData = useRecoilValue(mealBtnState);
+  const [file, setFile] = useState<string[]>([]);
+  const [subject, setSubject] = useState('');
+  const getMe = useRecoilValue(__me);
+  const [getMoment] = useState(moment());
+  const [imgData, setImgData] = useState<{}>({
+    fileData: '',
+    fileName: '',
+  });
 
   useEffect(() => {
-    getData.map((item, index) => {
-      return getData[index].wr_id === Number(wr_id)
-        ? setBoard(getData[index])
-        : setBoard({});
-    });
-    console.log(board);
-  }, [getData]);
+    let queryBoardList: RequestQueryGetBoardList = {
+      session: session,
+      bo_table: 'myFood',
+      search: {
+        mb_id: getMe?.mb_id,
+        wr_1: String(getMoment.format('YYYY-MM-DD')),
+      },
+    };
+    queryData({variables: queryBoardList});
+    console.log(data);
+  }, []);
+
+  useEffect(() => {
+    const boardQueryResult = queryDataResult.data?.getBoardList.boardList;
+    if (boardQueryResult !== undefined) {
+      for (let i = 0; i < boardQueryResult.length; i++) {
+        if (boardQueryResult[i].wr_id === Number(wr_id)) {
+          return setData(boardQueryResult[i]);
+        } else {
+          setData({});
+          return;
+        }
+      }
+    }
+  }, [queryDataResult]);
 
   return (
     <>
       <StatusBar2 Subject="식단입력" />
       <div style={{height: '110px'}} />
       <Subject>식사 시간</Subject>
-      <Time placeholder="시간을 입력해주세요." type="time" />
+      <Time
+        type="time"
+        value={data?.subject || subject}
+        onChange={e => setSubject(e.target.value)}
+      />
       <div style={{height: '30px'}} />
       <Subject>식단 사진</Subject>
       <FileAlign>
@@ -41,35 +84,20 @@ const MealEdit = () => {
         </Preview>
       </FileAlign>
       <div style={{height: '30px'}} />
-      <Subject>타입</Subject>
-      <BtnAlign>
-        <ShortBtn>아침</ShortBtn>
-        <ShortBtn>점심</ShortBtn>
-        <ShortBtn>저녁</ShortBtn>
-        <ShortBtn>간식</ShortBtn>
-        <ShortBtn>야식</ShortBtn>
-      </BtnAlign>
-      <Subject>먹은 양</Subject>
-      <BtnAlign>
-        <MiddleBtn>가벼워요</MiddleBtn>
-        <MiddleBtn>적당해요</MiddleBtn>
-        <MiddleBtn>배불러요</MiddleBtn>
-        <MiddleBtn>과했어요</MiddleBtn>
-      </BtnAlign>
-      <Subject>식단 종류</Subject>
-      <BtnAlign>
-        <LongBtn>치팅</LongBtn>
-        <LongBtn>일반식</LongBtn>
-        <LongBtn>다이어트식</LongBtn>
-      </BtnAlign>
+      <MealSelecBtn />
       <Subject>식단 일기</Subject>
-      <TextInput placeholder="오늘의 식단에 대해 자유롭게 적어보세요." />
+      <TextInput
+        style={{height: '144px'}}
+        placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
+        value={data?.content}
+        onChange={e => setData({...data, content: e.target.value})}
+        name="content"
+      />
       <div style={{height: '30px'}} />
       <CheckInput>
         <input type="checkbox" id="check2" />
         <label htmlFor="check2" />
         <p>식사 기록을 내 전문가와 공유</p>
-        <div style={{flex: 1}} />
       </CheckInput>
       <LinkStyle to="/user/meal">
         <Btn>기록하기</Btn>
@@ -115,18 +143,6 @@ const Btn = styled(ColoredBtn)`
 `;
 const TextInput = styled(TextArea)`
   height: 144px;
-`;
-const BtnAlign = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  height: 48px;
-  margin-bottom: 30px;
-  margin-right: -10px;
-  button {
-    margin-right: 6px;
-  }
 `;
 const FileAlign = styled.div`
   display: flex;

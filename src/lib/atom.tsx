@@ -33,39 +33,12 @@ export const userFormState = atom<RequestSetMember | any>({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const filteredUserDataState = selector({
-  key: 'filteredUserDataState',
-  get: ({get}) => {
-    const users = get(userDataState);
-    const filter = {...get(userFormState)};
-    Object.keys(filter).forEach(key => !filter[key] && delete filter[key]);
-    if (Object.keys(filter).length) {
-      return users.filter((user: any) => {
-        for (let key in filter) {
-          if (filter[key] !== user[key]) {
-            return false;
-          }
-        }
-        return true;
-      });
-    }
-    return users;
-  },
-});
-
-export const stateSelect = selector({
-  key: 'state',
-  get: async () => {
-    const response = await fetch('http://api.vworld.kr/req/data');
-    const stateInfo = await response.json();
-    return stateInfo.ctp_kor_nm;
-  },
-});
-export const citySelect = selector({
-  key: 'city',
-  get: async () => {
-    const response = await fetch('http://api.vworld.kr/req/data');
-    const stateInfo = await response.json();
-    return stateInfo.ctp_kor_nm;
+// for just passing state
+export const mealBtnState = atom({
+  key: 'mealSelect',
+  default: {
+    wr_5: '',
+    wr_2: '',
+    wr_3: '',
   },
 });
