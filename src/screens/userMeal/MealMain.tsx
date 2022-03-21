@@ -11,7 +11,7 @@ import {
 } from '../../lib/GQL/GQLInterfaces';
 import styled from 'styled-components';
 import {useLQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
-import {__me, __session} from '../../lib/atom';
+import {waterResult, __me, __session} from '../../lib/atom';
 import {useRecoilValue} from 'recoil';
 import {WaterBlock} from '../../components/WaterBlock';
 
@@ -22,6 +22,7 @@ const MealMain = () => {
   const nowDate = getMoment.format('YYYY-MM-DD');
   const getMe = useRecoilValue(__me);
   const navigate = useNavigate();
+  const water = useRecoilValue(waterResult);
 
   const [queryData, queryDataResult] = useLQueryForGetBoardList();
   const [userData, setUserData] = useState<
@@ -89,7 +90,10 @@ const MealMain = () => {
       </Styled.RectengleAlign>
       <div style={{height: '32px'}} />
       <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
-      <WaterBlock />
+      <WaterBlock
+        waterText={water / 1000}
+        day={getMoment.format('YYYY. MM. DD')}
+      />
       <div style={{height: '135px'}} />
     </>
   );

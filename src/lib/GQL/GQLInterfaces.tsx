@@ -242,6 +242,9 @@ export interface ResponseData extends ResponseShopData {
 
   getExercise: ExerciseDetail;
   getExerciseForm: ExerciseForm;
+
+  setWaterDrink: boolean;
+  getWaterDrink: number;
 }
 
 export interface RequestGetBoardWrite {

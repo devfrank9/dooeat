@@ -1,19 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import styled from 'styled-components';
+import {waterResult, __session} from '../lib/atom';
+import {
+  useLQueryForWaterDrink,
+  useMutationForSetWaterDrink,
+} from '../lib/GQL/CommunicationMap';
 
 interface Prop {
-  waterCalc?: number;
+  waterText: number;
+  day: string;
 }
 
-export const WaterBlock = ({waterCalc}: Prop) => {
-  const [value, setValue] = useState(0);
+export const WaterBlock = ({waterText, day}: Prop) => {
+  const [water, setWater] = useRecoilState(waterResult);
   const [pick, setPick] = useState<number[]>([]);
   const [select, setSelect] = useState<number[]>([]);
+  const session = useRecoilValue(__session);
+  const [query, queryResult] = useLQueryForWaterDrink();
+  /*   const [commSetWater] = useMutationForSetWaterDrink(); boolean 타입 되어있음 */
+
+  /*   useEffect(() => {
+    let queryWaterData = {
+      session: String(session),
+      date: day,
+    };
+    query({session: String(session),
+      date: day,});
+  }, []); */
+
+  useEffect(() => {
+    console.log(select.length);
+    if (select.length + 1) setWater(water + 250);
+    else if (select.length - 1) setWater(water - 250);
+  }, [select]);
 
   return (
     <Container>
       <TextAlign>
-        <p>{waterCalc}</p>
+        <p>{waterText}</p>
         <p>L</p>
       </TextAlign>
       <Hr />
@@ -23,11 +48,11 @@ export const WaterBlock = ({waterCalc}: Prop) => {
           <GlassWater
             key={index}
             onClick={() => {
-              !select.includes(item)
-                ? setSelect(select => [...select, item])
-                : setSelect(select.filter(button => button !== item));
+              !select.includes(index)
+                ? setSelect(select => [...select, index])
+                : setSelect(select.filter(button => button !== index));
             }}
-            isActive={select.includes(item) ? true : false}
+            isActive={select.includes(index) ? true : false}
           />
         ))}
       </AlignGlass>

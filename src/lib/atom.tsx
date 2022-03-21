@@ -42,3 +42,13 @@ export const mealBtnState = atom({
     wr_3: '',
   },
 });
+
+export const waterResult = atom({
+  key: 'water',
+  default: 0,
+});
+
+export const myQuery = selector({
+  key: 'MyQuery',
+  get: () => fetch('http://smuring.iozenweb.co.kr/api/api.php'),
+});

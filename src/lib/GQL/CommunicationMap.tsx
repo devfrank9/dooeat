@@ -968,8 +968,8 @@ export const useQueryForExerciseForm = () =>
     `,
   );
 
-export const useQueryForExerciseDetail = () =>
-  useQuery<ResponseData, ExerciseDetail>(
+export const useLQueryForExerciseDetail = () =>
+  useLazyQuery<ResponseData, ExerciseDetail>(
     gql`
       query getExercise ($session: String, $date: String) {
         getExercise(session: $session, date: $date) {
@@ -981,6 +981,24 @@ export const useQueryForExerciseDetail = () =>
               exerciseData [ExerciseForm]
             }
         }
+      }
+    `,
+  );
+
+export const useLQueryForWaterDrink = () =>
+  useLazyQuery<ResponseData, {session: string; data: string}>(
+    gql`
+      query getWaterDrink($session: String!, $date: String!) {
+        getWaterDrink(session: $session, date: $date)
+      }
+    `,
+  );
+
+export const useMutationForSetWaterDrink = () =>
+  useQuery<ResponseData, {session: string; date: string; water: number}>(
+    gql`
+      mutation setWaterDrink($session: String!, $date: String!, $water: Int!) {
+        setWaterDrink(session: $session, date: $date, water: $water)
       }
     `,
   );
