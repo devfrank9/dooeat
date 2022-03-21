@@ -986,7 +986,7 @@ export const useLQueryForExerciseDetail = () =>
   );
 
 export const useLQueryForWaterDrink = () =>
-  useLazyQuery<ResponseData, {session: string; data: string}>(
+  useLazyQuery<ResponseData, {session: string; date: string}>(
     gql`
       query getWaterDrink($session: String!, $date: String!) {
         getWaterDrink(session: $session, date: $date)
