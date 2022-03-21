@@ -10,6 +10,11 @@ import {exerciseForm} from '../../Dummy/Dummy';
 import {__session} from '../../lib/atom';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import HealthMain2 from './HealthMain2';
+import {useLQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
+import {
+  RequestQueryGetBoardList,
+  ResponseQueryGetBoardListBoardList,
+} from '../../lib/GQL/GQLInterfaces';
 
 export interface IImg {
   url: string | number;
@@ -45,14 +50,37 @@ const HealthMain = () => {
   const navigate = useNavigate();
   const session = useRecoilValue(__session);
   const [getMoment, setMoment] = useState(moment());
+  const nowDate = getMoment.format('YYYY-MM-DD');
+
+  const [queryData, queryDataResult] = useLQueryForGetBoardList();
+  const [userData, setUserData] = useState<
+    ResponseQueryGetBoardListBoardList[]
+  >([]);
+
   const getForm = exerciseForm.getExercise;
   const [formData, setFormData] = useState<IGetExcerForm>();
 
   useEffect(() => {
-    const nowDate = getMoment.format('YYYY-MM-DD');
-    if (getForm.date === nowDate) setFormData(getForm);
-    else setFormData(undefined);
-  }, [getMoment, getForm]);
+    const exerciseBoardData = queryDataResult.data?.getBoardList.boardList;
+    if (exerciseBoardData !== undefined) {
+      exerciseBoardData.map((item, index) => {
+        exerciseBoardData[index].wr_1 === nowDate
+          ? setUserData(exerciseBoardData)
+          : setUserData([]);
+      });
+    }
+  }, [queryDataResult, navigate]);
+
+  useEffect(() => {
+    let queryFoodBoard: RequestQueryGetBoardList = {
+      bo_table: 'myExercise',
+      session: session,
+      search: {
+        wr_1: nowDate,
+      },
+    };
+    queryData({variables: queryFoodBoard});
+  }, [getMoment]);
 
   const healthRender = () => {
     if (formData !== undefined) {
