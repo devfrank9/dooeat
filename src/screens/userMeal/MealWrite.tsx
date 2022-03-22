@@ -18,18 +18,21 @@ import moment from 'moment';
 import {
   RequestMutationSetBoardWrite,
   RequestQueryGetBoardList,
+  RequestSubFileData,
+  ResponseQueryGetBoardListBoardList,
 } from '../../lib/GQL/GQLInterfaces';
 import MealSelecBtn from '../../components/MealSelecBtn';
 
 const MealEdit = () => {
+  const session = useRecoilValue(__session);
+  const getMe = useRecoilValue(__me);
   const {pathname} = useLocation();
-  const {wr_id} = useParams();
+  const {wr_1, wr_id} = useParams();
   const navigate = useNavigate();
   const [getMoment] = useState(moment());
-  const [imgData, setImgData] = useState<{}>({
-    fileData: '',
-    fileName: '',
-  });
+
+  // 이미지 파일
+  const [imgData, setImgData] = useState<{}>({});
   const {
     fileRef,
     imgFiles,
@@ -38,14 +41,67 @@ const MealEdit = () => {
     handleUploadFile,
     removeSeletedPreview,
   } = useImgInput();
-  const session = useRecoilValue(__session);
-  const getMe = useRecoilValue(__me);
-  const [commSetBoardWrite] = useMutationSetBoardWrite();
-  const [data, setData] = useState<RequestMutationSetBoardWrite | any>({});
-  const [queryData, queryDataResult] = useLQueryForGetBoardList();
-  const mealBtnData = useRecoilValue(mealBtnState);
-  const [file, setFile] = useState<any[]>([]);
+  /*   const [mutationFile, setMutationFile] = useState<
+    (RequestSubFileData | null)[]
+  >([]); */
+  const [resFileObj, setResFileObj] = useState<{}>({});
+  const [responFile, setResponFile] = useState<string[]>([]);
+
+  // 폼 형식
+  const [mutationForm, setMutationForm] = useState<
+    RequestMutationSetBoardWrite | undefined
+  >(undefined);
+  const [responForm, setResponForm] = useState<
+    ResponseQueryGetBoardListBoardList | undefined
+  >(undefined);
+
+  // 값 상태
   const [subject, setSubject] = useState('');
+  const [content, setContent] = useState('');
+  const mealBtnData = useRecoilValue(mealBtnState);
+  const [btn, setBtn] = useState<string[]>([]);
+
+  // 쿼리 혹은 뮤테이션
+  const [query, queryResult] = useLQueryForGetBoardList();
+  const [commSetBoardWrite] = useMutationSetBoardWrite();
+
+  useEffect(() => {
+    const boardQueryResult = queryResult.data?.getBoardList.boardList;
+    if (boardQueryResult !== undefined) {
+      let filtered = boardQueryResult.find(
+        item => item.wr_id === Number(wr_id),
+      );
+      if (filtered) {
+        setResponForm(filtered);
+        setBtn([filtered.wr_2, filtered.wr_3, filtered.wr_5]);
+      } else {
+        setMutationForm({
+          session: String(session),
+          token: String(nanoid()),
+          bo_table: 'myFood',
+          subject: subject,
+          content: content,
+          wr_id: Number(nanoid()),
+          wr_1: String(getMoment.format('YYYY-MM-DD')),
+          wr_6: subject,
+          wr_2: mealBtnData.wr_2,
+          wr_3: mealBtnData.wr_3,
+          wr_5: mealBtnData.wr_5,
+        });
+      }
+    }
+  }, [queryResult.data, mealBtnData, imgData, subject]);
+
+  useEffect(() => {
+    if (responForm?.file !== undefined) {
+      let empty: any[] = [];
+      for (let i = 0; i < responForm.file.length; i++) {
+        setResFileObj(responForm.file[i].url);
+        empty.push(resFileObj);
+      }
+      setResponFile(empty ?? []);
+    }
+  }, [responForm]);
 
   useEffect(() => {
     let queryBoardList: RequestQueryGetBoardList = {
@@ -53,42 +109,13 @@ const MealEdit = () => {
       bo_table: 'myFood',
       search: {
         mb_id: getMe?.mb_id,
-        wr_1: String(getMoment.format('YYYY-MM-DD')),
+        wr_1: wr_1,
       },
     };
-    queryData({variables: queryBoardList});
-  }, [getMoment]);
+    query({variables: queryBoardList});
+  }, []);
 
-  useEffect(() => {
-    const boardQueryResult = queryDataResult.data?.getBoardList.boardList;
-    if (boardQueryResult !== undefined) {
-      for (let i = 0; i < boardQueryResult.length; i++) {
-        if (boardQueryResult[i].wr_id === Number(wr_id)) {
-          return setData(boardQueryResult[i]);
-        } else {
-          return setData({...data});
-        }
-      }
-    } else {
-      return setData({
-        subject: subject,
-        session: String(session),
-        bo_table: 'myFood',
-        token: String(nanoid()),
-        wr_id: Number(nanoid()),
-        files: file,
-        wr_1: String(getMoment.format('YYYY-MM-DD')),
-        wr_2: mealBtnData.wr_2,
-        wr_3: mealBtnData.wr_3,
-        wr_5: mealBtnData.wr_5,
-        wr_6: subject,
-        mb_id: getMe?.mb_id,
-      });
-    }
-    console.log(data);
-  }, [queryDataResult, mealBtnData, imgData]);
-
-  useEffect(() => {
+  /*   useEffect(() => {
     const files = Object.values(imgFiles);
     let empty: any[] = [];
     for (const file of files) {
@@ -96,20 +123,22 @@ const MealEdit = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         const base64data = reader.result;
-        setImgData({
-          fileData: base64data,
-          fileName: file.name,
-        });
+        setImgData({fileData: base64data});
         empty.push(imgData);
       };
-      setFile(empty);
+      setMutationFile(empty);
     }
   }, [imgFiles]);
+  
+  const removePreview = (e: React.MouseEvent, target: string) => {
+    e.preventDefault();
+    const removed = responFile.filter(preview => preview !== target);
+    setResponFile(removed);
+  }; */
 
   const processSetBoard = () => {
-    commSetBoardWrite({variables: data}).then(result => {
-      console.log(data);
-      console.log(result.data?.setBoardWrite);
+    commSetBoardWrite({variables: mutationForm}).then(result => {
+      console.log(mutationForm);
       if (result.data?.setBoardWrite) navigate(-1);
     });
   };
@@ -121,7 +150,7 @@ const MealEdit = () => {
       <Subject>식사 시간</Subject>
       <TimeInputStyle
         type="time"
-        value={data?.subject || subject}
+        value={mutationForm?.subject || responForm?.subject}
         onChange={e => setSubject(e.target.value)}
       />
       <div style={{height: '30px'}} />
@@ -137,7 +166,7 @@ const MealEdit = () => {
           removeSeletedPreview={removeSeletedPreview}
           hidden
         />
-      ) : data !== undefined ? (
+      ) : responForm?.file === undefined ? (
         <ImgInput
           fileRef={fileRef}
           name="image-uploader"
@@ -149,16 +178,26 @@ const MealEdit = () => {
           hidden
         />
       ) : (
-        <img src={data.file[0].url} alt="" />
+        <ImgInput
+          fileRef={fileRef}
+          name="image-uploader"
+          imgFiles={imgFiles}
+          isError={isError}
+          preview={responFile}
+          handleClickOnFileInput={handleClickOnFileInput}
+          handleUploadFile={handleUploadFile}
+          removeSeletedPreview={removeSeletedPreview}
+          hidden
+        />
       )}
       <div style={{height: '30px'}} />
-      <MealSelecBtn />
-      <Subject>식단 일기</Subject>
+      <MealSelecBtn sendChild={btn} />
+      <Subject onClick={() => console.log(responForm)}>식단 일기</Subject>
       <TextArea
         style={{height: '144px'}}
         placeholder="오늘의 식단에 대해 자유롭게 적어보세요."
-        value={data?.content}
-        onChange={e => setData({...data, content: e.target.value})}
+        value={mutationForm?.content || responForm?.content}
+        onChange={e => setContent(e.target.value)}
         name="content"
       />
       <div style={{height: '30px'}} />
