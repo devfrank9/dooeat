@@ -8,11 +8,10 @@ import {
 } from '../lib/GQL/CommunicationMap';
 
 interface Prop {
-  waterText: number;
   day: string;
 }
 
-export const WaterBlock = ({waterText, day}: Prop) => {
+export const WaterBlock = ({day}: Prop) => {
   const [water, setWater] = useRecoilState(waterResult);
   const [pick, setPick] = useState<number[]>([]);
   const [select, setSelect] = useState<number[]>([]);
@@ -30,15 +29,22 @@ export const WaterBlock = ({waterText, day}: Prop) => {
   }, []); */
 
   useEffect(() => {
-    console.log(select.length);
-    if (select.length + 1) setWater(water + 250);
-    else if (select.length - 1) setWater(water - 250);
+    if (select.length + 1) {
+      for (let i = 0; i < select.length; i++) {
+        setWater(water + 250);
+      }
+    }
+    if (select.length - 1) {
+      for (let i = 0; i < select.length; i++) {
+        setWater(water - 250);
+      }
+    }
   }, [select]);
 
   return (
     <Container>
       <TextAlign>
-        <p>{waterText}</p>
+        <p>{water}</p>
         <p>L</p>
       </TextAlign>
       <Hr />

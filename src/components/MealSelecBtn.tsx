@@ -9,8 +9,11 @@ interface Iselect {
   key: number;
   list: string[];
 }
+interface Prop {
+  sendChild?: string[];
+}
 
-const MealSelecBtn = () => {
+const MealSelecBtn = ({sendChild}: Prop) => {
   const arr = [
     {
       key: 1,
@@ -44,7 +47,9 @@ const MealSelecBtn = () => {
             selectChange(item);
             setMealData({...mealData, wr_5: item});
           }}
-          isActive={select.includes(item) ? true : false}
+          isActive={
+            select.includes(item) || sendChild?.includes(item) ? true : false
+          }
         >
           {item}
         </ShortBtn>
@@ -59,7 +64,9 @@ const MealSelecBtn = () => {
             selectChange(item);
             setMealData({...mealData, wr_2: item});
           }}
-          isActive={select.includes(item) ? true : false}
+          isActive={
+            select.includes(item) || sendChild?.includes(item) ? true : false
+          }
         >
           {item}
         </MiddleBtn>
@@ -74,7 +81,9 @@ const MealSelecBtn = () => {
             selectChange(item);
             setMealData({...mealData, wr_3: item});
           }}
-          isActive={select.includes(item) ? true : false}
+          isActive={
+            select.includes(item) || sendChild?.includes(item) ? true : false
+          }
         >
           {item}
         </LongBtn>
