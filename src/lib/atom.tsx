@@ -52,3 +52,8 @@ export const myQuery = selector({
   key: 'MyQuery',
   get: () => fetch('http://smuring.iozenweb.co.kr/api/api.php'),
 });
+
+export const selectLocation = atom({
+  key: 'location',
+  default: '',
+});
