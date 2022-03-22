@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {DummySelect} from '../Dummy/Dummy';
 
@@ -6,9 +6,13 @@ interface Prop {
   items?: {name: string; state: string[]}[];
   value?: string;
   onChange?: (value: string) => void;
+  location?: string;
 }
 
 const DropDown = ({items}: Prop) => {
+  /* useEffect(()=>{
+    
+  },[item,item2]) */
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
   const [item, setItem] = useState('');

@@ -10,15 +10,17 @@ import DropDown from '../../components/JoinSelect';
 import * as Styled from '../../styles/joinUser/styled';
 import {useState} from 'react';
 import {RequestSetMember} from '../../lib/GQL/GQLInterfaces';
-import {userFormState} from '../../lib/atom';
-import {useRecoilState} from 'recoil';
+import {selectLocation, userFormState} from '../../lib/atom';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 const JoinUser4 = () => {
   const navigate = useNavigate();
   const [signup, setSignup] = useState<RequestSetMember>({});
   const [userData, setUserData] = useRecoilState(userFormState);
+  const location = useRecoilValue(selectLocation);
 
   const processSignup = () => {
+    setSignup({...signup, mb_addr1: location});
     Object.assign(signup, userData);
     setUserData(signup);
     navigate('/join-user/5');
@@ -35,7 +37,7 @@ const JoinUser4 = () => {
           </div>
         </Styled.TextAlign>
         <Styled.SelectAlign>
-          <DropDown />
+          <DropDown location={location} />
         </Styled.SelectAlign>
         <div style={{flex: 1}} />
         <Styled.AbsoluteUnColBtn onClick={() => navigate('/join-user/5')}>

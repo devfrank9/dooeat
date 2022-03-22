@@ -8,9 +8,13 @@ import NavProgress from '../../components/NavProgress';
 import DropDown from '../../components/JoinSelect';
 import * as Styled from '../../styles/joinPro/styled';
 import {useNavigate} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
+import {selectLocation} from '../../lib/atom';
 
 const JoinPro5 = () => {
   const navigate = useNavigate();
+  const location = useRecoilValue(selectLocation);
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -20,7 +24,7 @@ const JoinPro5 = () => {
           <p>활동 지역은 어디인가요?</p>
         </Styled.TextAlign2>
         <Styled.DropDownAlign>
-          <DropDown />
+          <DropDown location={location} />
         </Styled.DropDownAlign>
         <Styled.AbsoluteColBtn onClick={() => navigate('/join-pro/6')}>
           다음
