@@ -33,7 +33,7 @@ const MealMain = () => {
     const foodBoardData = queryDataResult.data?.getBoardList.boardList;
     if (foodBoardData !== undefined) {
       foodBoardData.map((item, index) => {
-        foodBoardData[index].wr_1 === nowDate
+        return foodBoardData[index].wr_1 === nowDate
           ? setUserData(foodBoardData)
           : setUserData([]);
       });
@@ -50,7 +50,6 @@ const MealMain = () => {
       },
     };
     queryData({variables: queryFoodBoard});
-    console.log(userData);
   }, [getMoment]);
 
   return (
@@ -77,9 +76,9 @@ const MealMain = () => {
             <>
               {userData.map((data, index) => (
                 <RectPrev
-                  link={`${data.wr_id}`}
+                  link={`${data.wr_1}/${data.wr_id}`}
                   key={index}
-                  img={data.file[0].url}
+                  img={''}
                   text={data.wr_2}
                 />
               ))}
@@ -90,10 +89,7 @@ const MealMain = () => {
       </Styled.RectengleAlign>
       <div style={{height: '32px'}} />
       <Styled.Subject>하루 물 섭취 권장량 2L</Styled.Subject>
-      <WaterBlock
-        waterText={water / 1000}
-        day={getMoment.format('YYYY. MM. DD')}
-      />
+      <WaterBlock day={getMoment.format('YYYY. MM. DD')} />
       <div style={{height: '135px'}} />
     </>
   );
