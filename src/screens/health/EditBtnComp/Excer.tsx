@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {ColoredBtn, LongBtn, MiddleBtn} from '../../../styles/BtnStyled';
 import {Common} from '../../../styles/InputStyled';
@@ -8,7 +8,12 @@ const Excer = () => {
   const [main2, setMain2] = useState(false);
   const [main3, setMain3] = useState(false);
   const [select, setSelect] = useState<string[]>([]);
+
   const [renderList, setRenderList] = useState<ReactNode[]>([]);
+  const [detailList, setDetailList] = useState<ReactNode[]>([]);
+  const nextId = useRef(0);
+
+  useEffect(() => {}, []);
 
   const handleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (main === true) {
@@ -24,14 +29,25 @@ const Excer = () => {
       setMain2(false);
     }
   };
+
   const clickEvent = (value: string) => {
+    const btn = {
+      id: nextId.current,
+      content: '',
+      checked: false,
+    };
+    setRenderList(renderList.concat(btn));
+    nextId.current += 1;
+  };
+
+  /*   const clickEvent = (value: string) => {
     !select.includes(value)
       ? setSelect(select => [...select, value])
       : setSelect(select.filter(button => button !== value));
     let thisArray = [...renderList];
     thisArray.push(select);
     setRenderList(thisArray);
-  };
+  }; */
   const renderExSubject = () => {
     if (main === true) {
       console.log(renderList);
@@ -39,12 +55,49 @@ const Excer = () => {
         <div key={'EE' + index}>
           <Subject>{item} 운동</Subject>
           <ExcerAlign>
-            <ExcerKindBtn>운동 종류 등록</ExcerKindBtn>
+            <ExcerKindBtn onClick={() => renderDetailEx}>
+              운동 종류 등록
+            </ExcerKindBtn>
             <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
           </ExcerAlign>
         </div>
       ));
     }
+  };
+
+  const exerDetailClickEvent = () => {};
+
+  const renderDetailEx = () => {
+    return (
+      <>
+        <Input value="런지" />
+        <div style={{height: '30px'}} />
+        <ExInputAlign>
+          <ExInput>
+            <Subject>무게</Subject>
+            <input type="text" />
+            <label htmlFor="">kg</label>
+          </ExInput>
+          <ExInput>
+            <Subject>갯수</Subject>
+            <input type="text" />
+            <label htmlFor="">회</label>
+          </ExInput>
+        </ExInputAlign>
+        <div style={{height: '30px'}} />
+        <Subject>세트</Subject>
+        <div
+          style={{
+            position: 'relative',
+            borderBottom: '1px solid rgb(233,233,233',
+          }}
+        >
+          <Label>set</Label>
+          <Input2 />
+          <div style={{height: '50px'}} />
+        </div>
+      </>
+    );
   };
 
   return (
@@ -94,42 +147,46 @@ const Excer = () => {
         >
           어깨
         </MiddleBtn>
-        <MiddleBtn>팔</MiddleBtn>
-        <MiddleBtn>등</MiddleBtn>
-        <MiddleBtn>하체</MiddleBtn>
-        <MiddleBtn>전신</MiddleBtn>
-        <MiddleBtn>유산소</MiddleBtn>
-        <MiddleBtn>스트레칭</MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('팔')}
+          isActive={select.includes('팔') ? true : false}
+        >
+          팔
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('등')}
+          isActive={select.includes('등') ? true : false}
+        >
+          등
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('하체')}
+          isActive={select.includes('하체') ? true : false}
+        >
+          하체
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('전신')}
+          isActive={select.includes('전신') ? true : false}
+        >
+          전신
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('유산소')}
+          isActive={select.includes('유산소') ? true : false}
+        >
+          유산소
+        </MiddleBtn>
+        <MiddleBtn
+          onClick={() => clickEvent('스트레칭')}
+          isActive={select.includes('스트레칭') ? true : false}
+        >
+          스트레칭
+        </MiddleBtn>
       </BtnAlign>
       <div style={{height: '30px'}} />
       {renderExSubject()}
 
-      <Input value="런지" />
-      <div style={{height: '30px'}} />
-      <ExInputAlign>
-        <ExInput>
-          <Subject>무게</Subject>
-          <input type="text" />
-          <label htmlFor="">kg</label>
-        </ExInput>
-        <ExInput>
-          <Subject>갯수</Subject>
-          <input type="text" />
-          <label htmlFor="">회</label>
-        </ExInput>
-      </ExInputAlign>
-      <div style={{height: '30px'}} />
-      <Subject>세트</Subject>
-      <div
-        style={{
-          position: 'relative',
-          borderBottom: '1px solid rgb(233,233,233',
-        }}
-      >
-        <Label>set</Label>
-        <Input2 />
-        <div style={{height: '50px'}} />
-      </div>
       <div>
         <CheckInput>
           <input type="checkbox" id="check3" />
