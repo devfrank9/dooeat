@@ -17,9 +17,16 @@ interface Prop {
   }[];
   onToggleExers: (id: number) => void;
   onToggleDetail: (id: number) => void;
+  toggleModal: () => void;
 }
 
-const Exer = ({exers, exersDetail, onToggleExers, onToggleDetail}: Prop) => {
+const Exer = ({
+  exers,
+  exersDetail,
+  onToggleExers,
+  onToggleDetail,
+  toggleModal,
+}: Prop) => {
   const [select, setSelect] = useState<any[]>([]);
   const [renderList, setRenderList] = useState<ReactNode[]>([]);
   const [pass, setPass] = useState(false);
@@ -95,6 +102,7 @@ const Exer = ({exers, exersDetail, onToggleExers, onToggleDetail}: Prop) => {
             })}
       </BtnAlign>
       <ExerKindRegi
+        toggleModal={toggleModal}
         renderList={renderList}
         exers={exers}
         exersDetail={exersDetail}

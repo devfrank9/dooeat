@@ -53,6 +53,7 @@ const ModalLayout = ({
     </Portal>
   );
 };
+
 const Header = styled.div`
   height: 68px;
   display: flex;
@@ -62,7 +63,6 @@ const Header = styled.div`
   font-size: 18px;
   font-weight: 500;
   border-bottom: 2px solid rgb(245, 245, 245);
-  width: 100%;
 `;
 const CloseBtn = styled.img`
   width: 14px;
@@ -99,56 +99,57 @@ const ModalWrapper = styled.div<IModalWrapperProps>`
   justify-content: space-between;
   box-sizing: border-box;
   border-radius: 12px;
-  padding: 0 28px;
   padding-bottom: 30px;
   background-color: #fff;
   width: 85%;
   height: ${props => props.height};
   max-height: 96%;
-  background-color: 'gray'
-    ${({compact, theme}) =>
-      compact
-        ? css`
-            padding: 0;
-            width: auto;
-            height: auto;
-            min-height: auto;
-            border-radius: 1rem;
-            ${ModalInner} {
-              gap: 0;
-              svg {
-                display: none;
-              }
+  background-color: 'gray';
+  max-width: 480px;
+  padding: 0 28px;
+  ${({compact, theme}) =>
+    compact
+      ? css`
+          padding: 0;
+          width: auto;
+          height: auto;
+          min-height: auto;
+          border-radius: 1rem;
+          ${ModalInner} {
+            gap: 0;
+            svg {
+              display: none;
             }
-          `
-        : theme.mediaScreen.tablet`
+          }
+        `
+      : theme.mediaScreen.tablet`
         width: 85%;
       `}
-    //@ts-ignore
+  //@ts-ignore
     ${({fullWidth}) =>
-      fullWidth
-        ? css`
+    fullWidth
+      ? css`
+          padding: 0;
+          img {
+            border-radius: 3rem;
+          }
+          ${ModalCloseButton} {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 0;
-            img {
-              border-radius: 3rem;
+            top: 3rem;
+            right: 3rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 3.5rem;
+            background-color: #3a3a3a;
+            svg {
+              stroke: #fff;
             }
-            ${ModalCloseButton} {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 0;
-              top: 3rem;
-              right: 3rem;
-              width: 3.5rem;
-              height: 3.5rem;
-              border-radius: 3.5rem;
-              background-color: #3a3a3a;
-              svg {
-                stroke: #fff;
-              }
-            }
-          `
-        : css``};
+          }
+        `
+      : css``};
 `;
 
 const ModalCloseButton = styled.button`

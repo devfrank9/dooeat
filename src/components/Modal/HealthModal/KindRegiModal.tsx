@@ -35,6 +35,7 @@ const KindRegiModal = ({toggleModal, selected}: KindRegiModalProps) => {
 
   const onToggleStar = useCallback(
     (id: number) => {
+      console.log(legExer);
       setLegExer(
         legExer.map(star =>
           star.id === id ? {...star, active: !star.active} : star,
@@ -47,25 +48,24 @@ const KindRegiModal = ({toggleModal, selected}: KindRegiModalProps) => {
   return (
     <ModalLayout toggleModal={toggleModal} headerText={'운동 종류 등록'}>
       {legExer.map(item => (
-        <>
-          <CheckInput key={item.id}>
-            <div>
-              <input type="checkbox" id={item.id as unknown as string} />
-              <label htmlFor={item.id as unknown as string} />
-            </div>
-            <div>
-              <p>{item.content}</p>
-            </div>
-            <div>
-              <StarBtn
-                onClick={() => onToggleStar(item.id)}
-                isActive={item.active === false ? false : true}
-              />
-            </div>
-          </CheckInput>
-        </>
+        <CheckInput key={item.id}>
+          <div>
+            <input type="checkbox" id={item.id as unknown as string} />
+            <label htmlFor={item.id as unknown as string} />
+          </div>
+          <div>
+            <p>{item.content}</p>
+          </div>
+          <div>
+            <StarBtn
+              onClick={() => onToggleStar(item.id)}
+              isActive={item.active === false ? false : true}
+            />
+          </div>
+        </CheckInput>
       ))}
       <ColoredBtn>선택하기</ColoredBtn>
+      <div />
     </ModalLayout>
   );
 };
@@ -86,7 +86,7 @@ const CheckInput = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-
+  height: 21.4px;
   div:first-child {
     position: absolute;
     left: 0;

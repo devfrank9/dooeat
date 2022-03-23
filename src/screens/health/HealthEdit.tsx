@@ -3,21 +3,23 @@ import {useCallback, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
+import KindRegiModal from '../../components/Modal/HealthModal/KindRegiModal';
 import {StatusBar2} from '../../components/StatusBar';
-import {exerciseForm} from '../../Dummy/Dummy';
 import {__session} from '../../lib/atom';
 import {useQueryForGetBoardWrite} from '../../lib/GQL/CommunicationMap';
+import useModal from '../../lib/Hook/useModal';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import Excer from './EditBtnComp/Exer';
 import {IGetExcerForm} from './HealthMain';
+import ImgInput from '../../components/ImgInput';
+import useImgInput from '../../lib/Hook/useImgInput';
 
 const HealthEdit = () => {
   const session = useRecoilValue(__session);
   const {date} = useParams();
   const [getMoment, setMoment] = useState(moment());
-  const getForm = exerciseForm.getExercise;
   const [formData, setFormData] = useState<IGetExcerForm>();
   const [exers, setExers] = useState([
     {
@@ -78,6 +80,15 @@ const HealthEdit = () => {
       active: false,
     },
   ]);
+  const [isOpen, toggleModal] = useModal(false);
+  const {
+    fileRef,
+    imgFiles,
+    isError,
+    handleClickOnFileInput,
+    handleUploadFile,
+    removeSeletedPreview,
+  } = useImgInput();
 
   const onToggleExers = useCallback(
     (id: number) => {
@@ -117,26 +128,27 @@ const HealthEdit = () => {
         <Subject>눈바디 사진 업로드</Subject>
       </AlignBase>
       <div style={{margin: '0 28px'}}>
-        {formData === undefined ? (
-          <FileRectengle>
-            <FileInput />
-          </FileRectengle>
-        ) : (
-          <ImgAlign>
-            {formData?.file.map((img, index) => (
-              <img key={index} src={`${formData?.file[index].url}`} alt="" />
-            ))}
-          </ImgAlign>
-        )}
+        <ImgInput
+          fileRef={fileRef}
+          name="image-uploader"
+          imgFiles={imgFiles}
+          isError={isError}
+          handleClickOnFileInput={handleClickOnFileInput}
+          handleUploadFile={handleUploadFile}
+          removeSeletedPreview={removeSeletedPreview}
+          hidden
+        />
         <div style={{height: '30px'}} />
         <Excer
           exers={exers}
           exersDetail={exersDetail}
           onToggleExers={onToggleExers}
           onToggleDetail={onToggleDetail}
+          toggleModal={toggleModal}
         />
         <div style={{height: '30px'}} />
       </div>
+      {isOpen && <KindRegiModal toggleModal={toggleModal} />}
     </BaseScreen>
   );
 };

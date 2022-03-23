@@ -16,9 +16,10 @@ interface Prop {
     active: boolean;
   }[];
   renderList: React.ReactNode[];
+  toggleModal: () => void;
 }
 
-const ExerKindRegi = ({renderList, exers, exersDetail}: Prop) => {
+const ExerKindRegi = ({renderList, exers, exersDetail, toggleModal}: Prop) => {
   const [renderActive, setRenderActive] = useState(false);
 
   return (
@@ -28,7 +29,12 @@ const ExerKindRegi = ({renderList, exers, exersDetail}: Prop) => {
           <div style={{height: '30px'}} />
           <Subject>{item} 운동</Subject>
           <ExcerAlign>
-            <ExcerKindBtn onClick={() => setRenderActive(prev => !prev)}>
+            <ExcerKindBtn
+              onClick={() => {
+                setRenderActive(prev => !prev);
+                toggleModal();
+              }}
+            >
               운동 종류 등록
             </ExcerKindBtn>
             <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
