@@ -11,6 +11,7 @@ interface CustomModalProps {
   fullWidth?: boolean;
   compact?: boolean;
   onClick?: () => void;
+  headerText: string;
 }
 interface IModalWrapperProps {
   width?: string;
@@ -19,7 +20,7 @@ interface IModalWrapperProps {
   compact?: boolean;
 }
 
-const CustomModal = ({
+const ModalLayout = ({
   children,
   toggleModal,
   className,
@@ -28,6 +29,7 @@ const CustomModal = ({
   fullWidth,
   compact,
   onClick,
+  headerText,
 }: CustomModalProps) => {
   return (
     <Portal>
@@ -41,8 +43,9 @@ const CustomModal = ({
         >
           <ModalInner>
             <ModalCloseButton onClick={toggleModal}>
-              <img src="../../../public/image/close.png" alt="" />
+              <CloseBtn src="/image/Icon ionic-ios-close.png" alt="" />
             </ModalCloseButton>
+            <Header>{headerText}</Header>
             {children}
           </ModalInner>
         </ModalWrapper>
@@ -50,7 +53,21 @@ const CustomModal = ({
     </Portal>
   );
 };
-
+const Header = styled.div`
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${prop => prop.theme.mainColor};
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 2px solid rgb(245, 245, 245);
+  width: 100%;
+`;
+const CloseBtn = styled.img`
+  width: 14px;
+  height: 14px;
+`;
 const ModalOverlay = styled.div`
   display: flex;
   background-color: rgba(1, 1, 1, 0.55);
@@ -81,10 +98,11 @@ const ModalWrapper = styled.div<IModalWrapperProps>`
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  border-radius: 3rem;
-  padding: 3rem;
+  border-radius: 12px;
+  padding: 0 28px;
+  padding-bottom: 30px;
   background-color: #fff;
-  width: ${props => props.width || '65%'};
+  width: 85%;
   height: ${props => props.height};
   max-height: 96%;
   background-color: 'gray'
@@ -106,6 +124,7 @@ const ModalWrapper = styled.div<IModalWrapperProps>`
         : theme.mediaScreen.tablet`
         width: 85%;
       `}
+    //@ts-ignore
     ${({fullWidth}) =>
       fullWidth
         ? css`
@@ -133,16 +152,15 @@ const ModalWrapper = styled.div<IModalWrapperProps>`
 `;
 
 const ModalCloseButton = styled.button`
+  border: none;
+  background-color: inherit;
   position: absolute;
-  top: 0;
+  top: 25.6px;
   right: 0;
   cursor: pointer;
   &:hover {
     opacity: 0.75;
   }
-  svg {
-    stroke: ${({theme}) => theme.color['text-color']};
-  }
 `;
 
-export default CustomModal;
+export default ModalLayout;
