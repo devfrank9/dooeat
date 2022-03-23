@@ -1,9 +1,12 @@
 import moment from 'moment';
 import {useCallback, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import {exerciseForm} from '../../Dummy/Dummy';
+import {__session} from '../../lib/atom';
+import {useQueryForGetBoardWrite} from '../../lib/GQL/CommunicationMap';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
@@ -11,6 +14,7 @@ import Excer from './EditBtnComp/Exer';
 import {IGetExcerForm} from './HealthMain';
 
 const HealthEdit = () => {
+  const session = useRecoilValue(__session);
   const {date} = useParams();
   const [getMoment, setMoment] = useState(moment());
   const getForm = exerciseForm.getExercise;
@@ -74,11 +78,6 @@ const HealthEdit = () => {
       active: false,
     },
   ]);
-
-  useEffect(() => {
-    if (date !== undefined) setFormData(getForm);
-    else return;
-  }, [getForm, date]);
 
   const onToggleExers = useCallback(
     (id: number) => {

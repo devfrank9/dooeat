@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useCallback, useState} from 'react';
 import styled from 'styled-components';
 import {ColoredBtn, LongBtn, MiddleBtn} from '../../../styles/BtnStyled';
 import {Common} from '../../../styles/InputStyled';
@@ -20,19 +20,21 @@ interface Prop {
 }
 
 const Exer = ({exers, exersDetail, onToggleExers, onToggleDetail}: Prop) => {
-  const [select, setSelect] = useState<string[]>([]);
+  const [select, setSelect] = useState<any[]>([]);
   const [renderList, setRenderList] = useState<ReactNode[]>([]);
   const [pass, setPass] = useState(false);
 
-  const clickEvent = (value: string) => {
-    !select.includes(value)
-      ? setSelect(select => [...select, value])
-      : setSelect(select.filter(button => button !== value));
-    let thisArray = [...renderList];
-    console.log(renderList);
-    thisArray.push(select);
-    setRenderList(thisArray);
-  };
+  const renderKindRegi = useCallback(
+    (value: string) => {
+      !select.includes(value)
+        ? setSelect(select => [...select, value])
+        : setSelect(select.filter(button => button !== value));
+      !renderList.includes(value)
+        ? setRenderList(select => [...select, value])
+        : setRenderList(renderList.filter(button => button !== value));
+    },
+    [select],
+  );
 
   return (
     <>
@@ -84,7 +86,7 @@ const Exer = ({exers, exersDetail, onToggleExers, onToggleDetail}: Prop) => {
                   isActive={item.active === false ? false : true}
                   onClick={() => {
                     onToggleDetail(item.id);
-                    clickEvent(item.content);
+                    renderKindRegi(item.content);
                   }}
                 >
                   {item.content}
@@ -92,7 +94,11 @@ const Exer = ({exers, exersDetail, onToggleExers, onToggleDetail}: Prop) => {
               );
             })}
       </BtnAlign>
-      <ExerKindRegi renderList={renderList} />
+      <ExerKindRegi
+        renderList={renderList}
+        exers={exers}
+        exersDetail={exersDetail}
+      />
       <div>
         <CheckInput>
           <input type="checkbox" id="check3" />

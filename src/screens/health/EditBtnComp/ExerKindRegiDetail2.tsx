@@ -5,31 +5,34 @@ const ExerKindRegiDetail2 = () => {
   return (
     <>
       <Common placeholder="Youtube 영상 제목을 입력해주세요." />
+      <div style={{height: '10px'}} />
       <Common placeholder="Youtube URL 입력" />
       <Space30 />
       <Subject>세트</Subject>
       <div
         style={{
           position: 'relative',
-          borderBottom: '1px solid rgb(233,233,233',
         }}
       >
         <Label>set</Label>
-        <Input2 />
+        <Input2 placeholder="세트 수를 입력해주세요." />
         <div style={{height: '50px'}} />
       </div>
       <ExInputAlign>
         <ExInput>
-          <Subject>무게</Subject>
+          <Subject>시간</Subject>
           <input type="text" />
-          <label htmlFor="">kg</label>
+          <label htmlFor="">시간</label>
         </ExInput>
         <ExInput>
-          <Subject>갯수</Subject>
+          <Subject>.</Subject>
           <input type="text" />
-          <label htmlFor="">회</label>
+          <label htmlFor="">분</label>
         </ExInput>
       </ExInputAlign>
+      <div
+        style={{height: '50px', borderBottom: '1px solid rgb(233,233,233'}}
+      />
     </>
   );
 };
@@ -73,9 +76,9 @@ const ExInput = styled.div`
     position: absolute;
     color: ${prop => prop.theme.mainColor};
     bottom: 5px;
-    right: -24px;
+    left: 108.5px;
   }
-  margin-right: 50px;
+  margin-right: 57px;
 `;
 const ExInputAlign = styled.div`
   display: flex;

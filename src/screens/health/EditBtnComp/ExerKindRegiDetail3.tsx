@@ -9,20 +9,17 @@ const ExerKindRegiDetail3 = () => {
       <Space30 />
       <Subject>운동 강도</Subject>
       <BtnAlign>
-        <LongBtn />
+        <LongBtn>약</LongBtn>
+        <LongBtn>중</LongBtn>
+        <LongBtn>강</LongBtn>
       </BtnAlign>
+      <Space30 />
       <Subject>세트</Subject>
-      <div
-        style={{
-          position: 'relative',
-          borderBottom: '1px solid rgb(233,233,233',
-        }}
-      >
+      <div style={{position: 'relative'}}>
         <Label>set</Label>
         <Input2 />
         <div style={{height: '50px'}} />
       </div>
-      <Space30 />
       <ExInputAlign>
         <ExInput>
           <Subject>시간</Subject>
@@ -30,10 +27,14 @@ const ExerKindRegiDetail3 = () => {
           <label htmlFor="">시간</label>
         </ExInput>
         <ExInput>
+          <Subject>.</Subject>
           <input type="text" />
           <label htmlFor="">분</label>
         </ExInput>
       </ExInputAlign>
+      <div
+        style={{height: '50px', borderBottom: '1px solid rgb(233,233,233'}}
+      />
     </>
   );
 };
@@ -87,7 +88,7 @@ const ExInput = styled.div`
     position: absolute;
     color: ${prop => prop.theme.mainColor};
     bottom: 5px;
-    right: -24px;
+    left: 108.5px;
   }
   margin-right: 50px;
 `;

@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 import ExerKindRegiDetail from './ExerKindRegiDetail';
 import {useState} from 'react';
+import ExerKindRegiDetail2 from './ExerKindRegiDetail2';
+import ExerKindRegiDetail3 from './ExerKindRegiDetail3';
 
 interface Prop {
+  exers: {
+    id: number;
+    content: string;
+    active: boolean;
+  }[];
+  exersDetail: {
+    id: number;
+    content: string;
+    active: boolean;
+  }[];
   renderList: React.ReactNode[];
 }
 
-const ExerKindRegi = ({renderList}: Prop) => {
+const ExerKindRegi = ({renderList, exers, exersDetail}: Prop) => {
   const [renderActive, setRenderActive] = useState(false);
 
   return (
@@ -21,7 +33,15 @@ const ExerKindRegi = ({renderList}: Prop) => {
             </ExcerKindBtn>
             <ExcerKindBtn>이전 기록 불러오기</ExcerKindBtn>
           </ExcerAlign>
-          {renderActive === true ? <ExerKindRegiDetail /> : <></>}
+          {exers[0].active === true && renderActive === true ? (
+            <ExerKindRegiDetail />
+          ) : exers[1].active === true && renderActive === true ? (
+            <ExerKindRegiDetail2 />
+          ) : exers[2].active === true && renderActive === true ? (
+            <ExerKindRegiDetail3 />
+          ) : (
+            <></>
+          )}
         </div>
       ))}
     </>
@@ -36,7 +56,7 @@ const Subject = styled.div`
 const ExcerAlign = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 12px;
 `;
 const ExcerKindBtn = styled.button`
   display: flex;
