@@ -14,5 +14,25 @@ declare module 'styled-components' {
     fontColor2: string;
     fontColor3: string;
     roboto: string;
+    color: {
+      'text-color': string;
+    };
+
+    media: {
+      pc: number;
+      btw_pc_tab: number;
+      tablet: number;
+      btw_tab_mob: number;
+      phone: number;
+      headerSearch: number;
+    };
+    mediaScreen: {
+      pc: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+      btw_pc_tab: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+      tablet: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+      btw_tab_mob: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+      mphone: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+      phone: (args: TemplateStringsArray) => FlattenSimpleInterpolation;
+    };
   }
 }

@@ -1,4 +1,5 @@
 import {DefaultTheme} from 'styled-components';
+import {media, mediaScreen} from './styles/GlobalStyle';
 
 export const theme: DefaultTheme = {
   mainColor: '#EF90A7',
@@ -12,5 +13,10 @@ export const theme: DefaultTheme = {
   fontColor1: '#333333',
   fontColor2: '#979797',
   fontColor3: '#FFFFFF',
+  color: {
+    'text-color': 'black',
+  },
   roboto: '"Roboto", sans-serif',
+  media,
+  mediaScreen,
 };
