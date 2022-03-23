@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
@@ -7,7 +7,7 @@ import {exerciseForm} from '../../Dummy/Dummy';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import Excer from './EditBtnComp/Excer';
+import Excer from './EditBtnComp/Exer';
 import {IGetExcerForm} from './HealthMain';
 
 const HealthEdit = () => {
@@ -15,11 +15,91 @@ const HealthEdit = () => {
   const [getMoment, setMoment] = useState(moment());
   const getForm = exerciseForm.getExercise;
   const [formData, setFormData] = useState<IGetExcerForm>();
+  const [exers, setExers] = useState([
+    {
+      id: 1,
+      content: '헬스',
+      active: false,
+    },
+    {
+      id: 2,
+      content: '홈트',
+      active: false,
+    },
+    {
+      id: 3,
+      content: '기타',
+      active: false,
+    },
+  ]);
+  const [exersDetail, setExersDetail] = useState([
+    {
+      id: 1,
+      content: '가슴',
+      active: false,
+    },
+    {
+      id: 2,
+      content: '어깨',
+      active: false,
+    },
+    {
+      id: 3,
+      content: '팔',
+      active: false,
+    },
+    {
+      id: 4,
+      content: '등',
+      active: false,
+    },
+    {
+      id: 5,
+      content: '하체',
+      active: false,
+    },
+    {
+      id: 6,
+      content: '전신',
+      active: false,
+    },
+    {
+      id: 7,
+      content: '유산소',
+      active: false,
+    },
+    {
+      id: 8,
+      content: '스트레칭',
+      active: false,
+    },
+  ]);
 
   useEffect(() => {
     if (date !== undefined) setFormData(getForm);
     else return;
   }, [getForm, date]);
+
+  const onToggleExers = useCallback(
+    (id: number) => {
+      setExers(
+        exers.map(exer =>
+          exer.id === id ? {...exer, active: !exer.active} : exer,
+        ),
+      );
+    },
+    [exers],
+  );
+  const onToggleDetail = useCallback(
+    (id: number) => {
+      setExersDetail(
+        exersDetail.map(exer =>
+          exer.id === id ? {...exer, active: !exer.active} : exer,
+        ),
+      );
+    },
+    [exersDetail],
+  );
 
   return (
     <BaseScreen>
@@ -50,7 +130,12 @@ const HealthEdit = () => {
           </ImgAlign>
         )}
         <div style={{height: '30px'}} />
-        <Excer />
+        <Excer
+          exers={exers}
+          exersDetail={exersDetail}
+          onToggleExers={onToggleExers}
+          onToggleDetail={onToggleDetail}
+        />
         <div style={{height: '30px'}} />
       </div>
     </BaseScreen>

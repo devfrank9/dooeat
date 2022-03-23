@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {StatusBar2} from '../../components/StatusBar';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import Excer from '../health/EditBtnComp/Excer';
+import Excer from '../health/EditBtnComp/Exer';
 
 const ProManageWrite = () => {
   return (
@@ -27,7 +27,7 @@ const ProManageWrite = () => {
           </div>
         </InputAlign>
         <div style={{height: '30px'}} />
-        <Excer />
+        {/* <Excer /> */}
       </AlignBase>
     </BaseScreen>
   );

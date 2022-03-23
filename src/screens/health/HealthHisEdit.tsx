@@ -3,7 +3,7 @@ import {StatusBar2} from '../../components/StatusBar';
 import {FileInput, FileRectengle} from '../../styles/FileInputStyled';
 import {Common} from '../../styles/InputStyled';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import Excer from './EditBtnComp/Excer';
+import Excer from './EditBtnComp/Exer';
 
 const HealthHisEdit = () => {
   return (
@@ -24,7 +24,6 @@ const HealthHisEdit = () => {
           <FileInput />
         </FileRectengle>
         <div style={{height: '30px'}} />
-        <Excer />
         <div style={{height: '30px'}} />
       </div>
     </BaseScreen>
