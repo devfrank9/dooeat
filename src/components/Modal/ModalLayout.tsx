@@ -11,7 +11,6 @@ interface CustomModalProps {
   fullWidth?: boolean;
   compact?: boolean;
   onClick?: () => void;
-  headerText: string;
 }
 interface IModalWrapperProps {
   width?: string;
@@ -29,7 +28,6 @@ const ModalLayout = ({
   fullWidth,
   compact,
   onClick,
-  headerText,
 }: CustomModalProps) => {
   return (
     <Portal>
@@ -45,7 +43,6 @@ const ModalLayout = ({
             <ModalCloseButton onClick={toggleModal}>
               <CloseBtn src="/image/Icon ionic-ios-close.png" alt="" />
             </ModalCloseButton>
-            <Header>{headerText}</Header>
             {children}
           </ModalInner>
         </ModalWrapper>
@@ -54,16 +51,6 @@ const ModalLayout = ({
   );
 };
 
-const Header = styled.div`
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${prop => prop.theme.mainColor};
-  font-size: 18px;
-  font-weight: 500;
-  border-bottom: 2px solid rgb(245, 245, 245);
-`;
 const CloseBtn = styled.img`
   width: 14px;
   height: 14px;
