@@ -1,4 +1,4 @@
-import React, {ReactNode, useCallback, useState} from 'react';
+import React, {ReactNode, useCallback, useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {ColoredBtn, LongBtn, MiddleBtn} from '../../../styles/BtnStyled';
 import {Common} from '../../../styles/InputStyled';

@@ -2,36 +2,38 @@ import {useCallback, useState} from 'react';
 import styled from 'styled-components';
 import {ColoredBtn} from '../../../styles/BtnStyled';
 import ModalLayout from '../ModalLayout';
+import {
+  Arm,
+  Back,
+  Body,
+  Chest,
+  IExKindSelect,
+  Leg,
+  Running,
+  Shoulder,
+  Stretch,
+} from '../../../components/Modal/HealthModal/HealthKindList';
 
 interface KindRegiModalProps {
   toggleModal: () => void;
   selected?: number;
   headerText?: string;
+  progressOk?: boolean;
 }
 
-const KindRegiModal = ({toggleModal, selected}: KindRegiModalProps) => {
-  const [legExer, setLegExer] = useState([
-    {
-      id: 1,
-      content: '스쿼트',
-      active: false,
-    },
-    {
-      id: 2,
-      content: '런지',
-      active: false,
-    },
-    {
-      id: 3,
-      content: '백 익스텐션',
-      active: false,
-    },
-    {
-      id: 4,
-      content: '레그 컬',
-      active: false,
-    },
-  ]);
+const KindRegiModal = ({
+  toggleModal,
+  selected,
+  progressOk,
+}: KindRegiModalProps) => {
+  const [legExer, setLegExer] = useState<IExKindSelect>(Leg);
+  const [chestExer, setChestExer] = useState<IExKindSelect>(Chest);
+  const [shoulderExer, setShoulderExer] = useState<IExKindSelect>(Shoulder);
+  const [armExer, setArmExer] = useState<IExKindSelect>(Arm);
+  const [backExer, setBackExer] = useState<IExKindSelect>(Back);
+  const [bodyExer, setBodyExer] = useState<IExKindSelect>(Body);
+  const [runningExer, setRunningExer] = useState<IExKindSelect>(Running);
+  const [stretchExer, setStretchExer] = useState<IExKindSelect>(Stretch);
 
   const onToggleStar = useCallback(
     (id: number) => {

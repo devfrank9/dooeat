@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import DateSelect from '../../components/DateSelect';
 import {Navigation} from '../../components/Navigation';
 import {StatusBar} from '../../components/StatusBar';
-import {exerciseForm} from '../../Dummy/Dummy';
 import {__session} from '../../lib/atom';
 import BaseScreen, {AlignBase} from '../BaseScreen';
 import HealthMain2 from './HealthMain2';
@@ -56,8 +55,6 @@ const HealthMain = () => {
   const [userData, setUserData] = useState<
     ResponseQueryGetBoardListBoardList[]
   >([]);
-
-  const getForm = exerciseForm.getExercise;
   const [formData, setFormData] = useState<IGetExcerForm>();
 
   useEffect(() => {

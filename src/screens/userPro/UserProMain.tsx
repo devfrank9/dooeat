@@ -9,13 +9,43 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import {MemberDataLv3} from '../../Dummy/Dummy';
+import {useEffect, useState} from 'react';
+import {
+  RequestQueryGetBoardList,
+  RequestQueryGetBoardListSearch,
+  ResponseQueryGetBoardListBoardList,
+} from '../../lib/GQL/GQLInterfaces';
+import {useLQueryForGetBoardList} from '../../lib/GQL/CommunicationMap';
+import {useRecoilValue} from 'recoil';
+import {__session} from '../../lib/atom';
 
 SwiperCore.use([Pagination]);
 
 const UserProMain = () => {
   const navigate = useNavigate();
   let params = useParams();
+  const session = useRecoilValue(__session);
   const data = MemberDataLv3.getMe;
+
+  const [subject, setSubject] = useState('');
+  const [query, queryResult] = useLQueryForGetBoardList();
+  const [expert, setExpert] = useState<ResponseQueryGetBoardListBoardList[]>(
+    [],
+  );
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    let queryExpertSearch: RequestQueryGetBoardList = {
+      bo_table: 'expertList',
+      session: session,
+      search: {
+        subject: subject,
+      },
+      sort: '',
+    };
+  }, []);
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -25,7 +55,11 @@ const UserProMain = () => {
           LinkTo="/user/mypage"
         />
         <div style={{height: '110px'}} />
-        <Search placeholder="원하시는 전문가를 검색해보세요." />
+        <Search
+          value={subject ?? ''}
+          placeholder="원하시는 전문가를 검색해보세요."
+          onChange={e => setSubject(e.target.value)}
+        />
         <Subject>추천 전문가</Subject>
         <div style={{display: 'flex'}}>
           <Swiper

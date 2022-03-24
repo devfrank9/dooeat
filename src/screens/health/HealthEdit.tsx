@@ -89,6 +89,7 @@ const HealthEdit = () => {
     handleUploadFile,
     removeSeletedPreview,
   } = useImgInput();
+  const [modalOk, setModalOk] = useState(false);
 
   const onToggleExers = useCallback(
     (id: number) => {
@@ -148,21 +149,12 @@ const HealthEdit = () => {
         />
         <div style={{height: '30px'}} />
       </div>
-      {isOpen && <KindRegiModal toggleModal={toggleModal} />}
+      {isOpen && (
+        <KindRegiModal toggleModal={toggleModal} progressOk={modalOk} />
+      )}
     </BaseScreen>
   );
 };
-const ImgAlign = styled.div`
-  display: flex;
-  justify-content: space-between;
-  img {
-    display: block;
-    min-width: 150px;
-    width: 47.022%;
-    border-radius: 10px;
-    opacity: 0.9;
-  }
-`;
 const Subject = styled.div`
   font-size: 18px;
   font-weight: 500;
