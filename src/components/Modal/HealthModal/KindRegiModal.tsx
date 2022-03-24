@@ -17,7 +17,6 @@ import {
 interface KindRegiModalProps {
   toggleModal: () => void;
   selected?: number;
-  headerText?: string;
   progressOk?: boolean;
 }
 
@@ -48,7 +47,8 @@ const KindRegiModal = ({
   );
 
   return (
-    <ModalLayout toggleModal={toggleModal} headerText={'운동 종류 등록'}>
+    <ModalLayout toggleModal={toggleModal}>
+      <Header>운동 종류 등록</Header>
       {legExer.map(item => (
         <CheckInput key={item.id}>
           <div>
@@ -71,7 +71,16 @@ const KindRegiModal = ({
     </ModalLayout>
   );
 };
-
+const Header = styled.div`
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${prop => prop.theme.mainColor};
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 2px solid rgb(245, 245, 245);
+`;
 const StarBtn = styled.button<{isActive?: boolean}>`
   background: ${prop =>
       prop.isActive === false
