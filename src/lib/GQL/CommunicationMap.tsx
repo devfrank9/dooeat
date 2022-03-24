@@ -1002,3 +1002,61 @@ export const useMutationForSetWaterDrink = () =>
       }
     `,
   );
+
+export const useQueryForExpertList = () =>
+  useQuery<ResponseData, {session: string}>(
+    gql`
+      query getExpertList($session: String!) {
+        getExpertList(session: $session) {
+          wr_num
+          wr_id
+          wr_reply
+          mb_id
+          wr_name
+          subject
+          content
+          file {
+            url
+            fileType
+            thumb
+            bf_id
+            bo_table
+            wr_id
+            fileName
+            downloadCount
+          }
+          datetime
+          hit
+          isSecret
+          isNotice
+          wr_1
+          wr_2
+          wr_3
+          wr_4
+          wr_5
+          wr_6
+          wr_7
+          wr_8
+          wr_9
+          wr_10
+          countGood
+          countBad
+          writerData {
+            mb_id
+            mb_name
+            mb_1
+            mb_2
+            mb_3
+            mb_4
+            mb_5
+            mb_6
+            mb_7
+            mb_8
+            mb_9
+            mb_img
+          }
+          isScraped
+        }
+      }
+    `,
+  );
