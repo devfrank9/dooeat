@@ -37,7 +37,7 @@ const JoinPro7 = () => {
         key={index}
         onClick={() => {
           !select.includes(item)
-            ? setSelect(select => [...select, item])
+            ? setSelect(select => [item])
             : setSelect(select.filter(button => button !== item));
         }}
         isActive={select.includes(item) ? true : false}
