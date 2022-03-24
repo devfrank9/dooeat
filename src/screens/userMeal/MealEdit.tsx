@@ -84,7 +84,7 @@ const MealEdit = () => {
         </Preview>
       </FileAlign>
       <div style={{height: '30px'}} />
-      <MealSelecBtn />
+      {/*  <MealSelecBtn /> */}
       <Subject>식단 일기</Subject>
       <TextInput
         style={{height: '144px'}}

@@ -18,10 +18,11 @@ import moment from 'moment';
 import {
   RequestMutationSetBoardWrite,
   RequestQueryGetBoardList,
-  RequestSubFileData,
   ResponseQueryGetBoardListBoardList,
 } from '../../lib/GQL/GQLInterfaces';
 import MealSelecBtn from '../../components/MealSelecBtn';
+import useModal from '../../lib/Hook/useModal';
+import HandMeal from '../../components/Modal/UserMealModal/HandMeal';
 
 const MealEdit = () => {
   const session = useRecoilValue(__session);
@@ -30,6 +31,8 @@ const MealEdit = () => {
   const {wr_1, wr_id} = useParams();
   const navigate = useNavigate();
   const [getMoment] = useState(moment());
+  const [isOpen, toggleModal] = useModal(false);
+  const [modalOk, setModalOk] = useState(false);
 
   // 이미지 파일
   const [imgData, setImgData] = useState<{}>({});
@@ -191,7 +194,7 @@ const MealEdit = () => {
         />
       )}
       <div style={{height: '30px'}} />
-      <MealSelecBtn sendChild={btn} />
+      <MealSelecBtn sendChild={btn} toggleModal={toggleModal} />
       <Subject onClick={() => console.log(responForm)}>식단 일기</Subject>
       <TextArea
         style={{height: '144px'}}
@@ -209,6 +212,7 @@ const MealEdit = () => {
       <div style={{height: '30px'}} />
       <ColoredBtn onClick={processSetBoard}>기록하기</ColoredBtn>
       <div style={{height: '30px'}} />
+      {isOpen && <HandMeal toggleModal={toggleModal} progressOk={modalOk} />}
     </>
   );
 };
