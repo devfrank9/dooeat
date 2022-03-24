@@ -6,12 +6,13 @@ interface Prop {
   items?: {id: number; name: string[]}[];
   value?: string;
   onChange?: (value: string) => void;
+  item?: string;
 }
 
 const SelectDrop = ({items}: Prop) => {
   const [isActive, setIsActive] = useState(false);
-  const [item, setItem] = useState('');
   const example = items ? items : DateSelect;
+  const [item, setItem] = useState('');
 
   const onActiveToggle = useCallback(() => {
     setIsActive(prev => !prev);
