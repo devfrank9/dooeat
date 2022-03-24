@@ -1,10 +1,30 @@
 import styled from 'styled-components';
 import BaseScreen, {AlignBase} from '../BaseScreen';
-import {LinkStyle} from '../../styles/LinkStyled';
 import {Subject, TextAlign} from './SearchMento2';
 import {BtnFix} from './SearchMento1';
+import {useRecoilState, useResetRecoilState} from 'recoil';
+import {userFormState} from '../../lib/atom';
+import {useMutationSetBoardWrite} from '../../lib/GQL/CommunicationMap';
+import {useNavigate} from 'react-router-dom';
 
 const SearchMento4 = () => {
+  const [commSetBoard] = useMutationSetBoardWrite();
+  const [userData, setUserData] = useRecoilState(userFormState);
+  const reset = useResetRecoilState(userFormState);
+  const navigate = useNavigate();
+
+  const processSetSearch = () => {
+    commSetBoard({variables: userData}).then(data => {
+      if (data.data?.setBoardWrite) {
+        reset();
+        navigate('/');
+      } else {
+        alert('에러');
+        return;
+      }
+    });
+  };
+
   return (
     <BaseScreen>
       <AlignBase>
@@ -22,14 +42,22 @@ const SearchMento4 = () => {
           </Subject>
           <DateLabel htmlFor="date">
             날짜선택
-            <DateInput type="date" id="date" />
+            <DateInput
+              type="date"
+              id="date"
+              onChange={e => setUserData({...userData, wr_9: e.target.value})}
+            />
           </DateLabel>
           <Subject>
             <p>2. 종료일</p>
           </Subject>
-          <DateLabel htmlFor="date">
+          <DateLabel htmlFor="date2">
             날짜선택
-            <DateInput type="date" id="date" />
+            <DateInput
+              type="date"
+              id="date2"
+              onChange={e => setUserData({...userData, wr_10: e.target.value})}
+            />
           </DateLabel>
           <div style={{display: 'flex'}}>
             <TextBox>
@@ -43,8 +71,8 @@ const SearchMento4 = () => {
               </Inline>
             </TextBox>
           </div>
-          <BtnFix>
-            <LinkStyle to="/user/pro">전문가 추천 받으러 가기</LinkStyle>
+          <BtnFix onClick={() => processSetSearch()}>
+            전문가 추천 받으러 가기
           </BtnFix>
         </div>
       </AlignBase>

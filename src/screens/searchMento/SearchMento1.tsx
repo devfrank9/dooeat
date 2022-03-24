@@ -3,9 +3,12 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import {LongBtn} from '../../styles/BtnStyled';
 import {Common} from '../../styles/InputStyled';
 import {ColoredBtn} from '../../styles/BtnStyled';
-import {useState} from 'react';
+import {useState, useCallback, useEffect} from 'react';
 import ValidBtn from '../../components/ValidBtn';
 import {useNavigate} from 'react-router-dom';
+import {useRecoilState} from 'recoil';
+import {userFormState} from '../../lib/atom';
+import {RequestMutationSetBoardWrite} from '../../lib/GQL/GQLInterfaces';
 
 const SearchMento1 = () => {
   const navigate = useNavigate();
@@ -20,24 +23,37 @@ const SearchMento1 = () => {
     '기타',
   ];
   const [select, setSelect] = useState<string[]>([]);
-  const [etc, setEtc] = useState('');
+  const [userData, setUserData] = useRecoilState(userFormState);
+  const [signup, setSignup] = useState({});
+
+  useEffect(() => {
+    setUserData({...userData, bo_table: 'searchExpert'});
+  }, []);
+
+  const toggleResult = useCallback(
+    (item: string) => {
+      !select.includes(item)
+        ? setSelect(select => [item])
+        : setSelect(select.filter(button => button !== item));
+      setSignup({wr_1: item});
+    },
+    [select],
+  );
 
   const btnRender = () => {
     return arr.map((item, index) => (
       <LongBtn
         key={index}
-        onClick={() => {
-          !select.includes(item)
-            ? setSelect(select => [...select, item])
-            : setSelect(select.filter(button => button !== item));
-        }}
+        onClick={() => toggleResult(item)}
         isActive={select.includes(item) ? true : false}
       >
         {item}
       </LongBtn>
     ));
   };
+
   const processSignup = () => {
+    setUserData(signup);
     navigate('/search-mento/2');
   };
 
@@ -62,13 +78,13 @@ const SearchMento1 = () => {
               placeholder="기타 (별도 입력 해주세요.)"
               //@ts-ignore
               disabled={select.includes('기타') === true ? false : true}
-              onChange={e => setEtc(e.target.value)}
+              onChange={e => setSignup({wr_1: e.target.value})}
             />
           </InputAlign>
           <ValidBtn
-            onClick={() => navigate('/search-mento/2')}
-            status={select.length === 0 ? 'err' : undefined}
-            disabled={select.length === 0 ? true : false}
+            onClick={() => processSignup()}
+            status={select.length >= 1 ? undefined : 'err'}
+            disabled={select.length !== 1 ? true : false}
           >
             다음
           </ValidBtn>

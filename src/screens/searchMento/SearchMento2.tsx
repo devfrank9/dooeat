@@ -2,11 +2,11 @@ import BaseScreen, {AlignBase} from '../BaseScreen';
 import styled from 'styled-components';
 import {ShortBtn, MiddleBtn, LongBtn} from '../../styles/BtnStyled';
 import {TextArea} from '../../styles/InputStyled';
-import {LinkStyle} from '../../styles/LinkStyled';
-import {BtnFix} from './SearchMento1';
-import {useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import ValidBtn from '../../components/ValidBtn';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {userFormState, __me} from '../../lib/atom';
 
 interface Iselect {
   [x: string]: any;
@@ -23,7 +23,16 @@ const SearchMento2 = () => {
   ];
   const [pick, setPick] = useState<Iselect[]>(arr);
   const [select, setSelect] = useState<string[]>([]);
-  const [etc, setEtc] = useState('');
+  const [select2, setSelect2] = useState<string[]>([]);
+  const [select3, setSelect3] = useState<string[]>([]);
+
+  const [userData, setUserData] = useRecoilState(userFormState);
+  const [signup, setSignup] = useState({});
+  const getMe = useRecoilValue(__me);
+
+  useEffect(() => {
+    setUserData({...userData, subject: getMe?.mb_nick});
+  }, []);
 
   const btnRender = (n: number) => {
     const list: string[] = pick[n].list;
@@ -31,11 +40,7 @@ const SearchMento2 = () => {
       return list.map((item, index) => (
         <MiddleBtn
           key={index}
-          onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
-          }}
+          onClick={() => toggleResult(item)}
           isActive={select.includes(item) ? true : false}
         >
           {item}
@@ -46,12 +51,8 @@ const SearchMento2 = () => {
       return list.map((item, index) => (
         <ShortBtn
           key={index}
-          onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
-          }}
-          isActive={select.includes(item) ? true : false}
+          onClick={() => toggleResult2(item)}
+          isActive={select2.includes(item) ? true : false}
         >
           {item}
         </ShortBtn>
@@ -61,19 +62,45 @@ const SearchMento2 = () => {
       return list.map((item, index) => (
         <LongBtn
           key={index}
-          onClick={() => {
-            !select.includes(item)
-              ? setSelect(select => [...select, item])
-              : setSelect(select.filter(button => button !== item));
-          }}
-          isActive={select.includes(item) ? true : false}
+          onClick={() => toggleResult3(item)}
+          isActive={select3.includes(item) ? true : false}
         >
           {item}
         </LongBtn>
       ));
     }
   };
+  const toggleResult = useCallback(
+    (item: string) => {
+      !select.includes(item)
+        ? setSelect(select => [item])
+        : setSelect(select.filter(button => button !== item));
+      setSignup({wr_2: item});
+    },
+    [select],
+  );
+  const toggleResult2 = useCallback(
+    (item: string) => {
+      !select2.includes(item)
+        ? setSelect2(select2 => [item])
+        : setSelect2(select2.filter(button => button !== item));
+      setSignup({wr_3: item});
+    },
+    [select2],
+  );
+  const toggleResult3 = useCallback(
+    (item: string) => {
+      !select3.includes(item)
+        ? setSelect3(select3 => [item])
+        : setSelect3(select3.filter(button => button !== item));
+      setSignup({wr_4: item});
+    },
+    [select3],
+  );
+
   const processSignup = () => {
+    Object.assign(signup, userData);
+    setUserData(signup);
     navigate('/search-mento/3');
   };
 
@@ -98,13 +125,20 @@ const SearchMento2 = () => {
           <Subject>4. 특이사항이 있다면 알려주세요!</Subject>
           <TextArea
             placeholder="내용을 입력해주세요"
-            onChange={e => setEtc(e.target.value)}
-            onClick={() => console.log(select.length)}
+            onChange={e => setSignup({wr_5: e.target.value})}
           />
           <ValidBtn
-            onClick={() => navigate('/search-mento/3')}
-            status={select.length >= 3 ? 'succ' : 'err'}
-            disabled={select.length >= 3 ? false : true}
+            onClick={() => processSignup()}
+            status={
+              (select.length,
+              select2.length,
+              select3.length >= 1 ? 'succ' : 'err')
+            }
+            disabled={
+              (select.length,
+              select2.length,
+              select3.length >= 1 ? false : true)
+            }
           >
             다음
           </ValidBtn>
